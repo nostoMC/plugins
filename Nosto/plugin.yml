@@ -1,0 +1,98 @@
+api-version: 1.13
+name: Plugin-Custom-Nosto
+version: 0.0.1
+author: djredstone
+main: fr.djredstone.nosto.Main
+commands:
+  test:
+    description: Commande Test
+    permission: nosto.admin.test
+  annonce:
+    description: Commande annonce
+    permission: nosto.admin.annonce
+  fly:
+    description: Permet de voler
+    permission: nosto.fly
+  speed:
+    description: Permet de modifier la vitesse de vol et de marche
+    permission: nosto.speed
+  afk:
+    description: Juste AFK
+  staffChat:
+    description: Chat pour le staff
+    permission: nosto.admin.chat
+  sc:
+    description: Chat pour le staff
+    permission: nosto.admin.chat
+  spawn:
+    description: Permet de se TP au spawn du monde
+  lobby:
+    description: Permet d'ouvrir le menu de teleportation
+  feed:
+    description: Permet de manger
+    permission: nosto.feed
+  heal:
+    description: Permet de vivre
+    permission: nosto.heal
+  god:
+    description: God Mode
+    permission: nosto.admin.godmode
+  godmode:
+    description: God Mode
+    permission: nosto.admin.godmode
+  msg:
+    description: Permet d'envoyer des message privees
+  ban:
+    description: Permet de ban quelqu'un de pas gentils
+    permission: nosto.admin.ban
+  kick:
+    description: Permet de kick quelqu'un de pas gentils
+    permission: nosto.admin.kick
+  nosto:
+    description: Reload Custom
+    permission: nosto.admin.reload
+  freeze:
+    description: Permet de freeze un joueur
+    permission: nosto.admin.freeze
+  unban:
+    description: Permet de pardoner
+    permission: nosto.admin.unban
+  sethome:
+    decription: Permet de faire des homes
+  home:
+    description: Permet de se tp aux homes
+  delhome:
+    description: Permet de retirer des homes
+  claim:
+    description: Permet de claim des chunk
+  unclaim:
+    description: Permet d'unclaim des chunk
+  register:
+    description: Permet de se register
+  login:
+    description: Permet de se login
+  valide:
+    descrption: Permet de valide son mot de passe
+  mdp:
+    description: Permet de changer de mot de passe
+  clearTchat:
+    description: Permet de clear le tchat
+    permission: nosto.admin.cleartchat
+  ct:
+    description: Permet de clear le tchat
+    permission: nosto.admin.cleartchat
+  openinv:
+    description: Permet de faire des betises dans les inv des autre
+    permission: nosto.admin.openinv
+  sit:
+    description: Permet de s'assoir
+  vanish:
+    description: Permet de se rendre invisible
+    permission: nosto.admin.vanish
+  event:
+    description : Permet de creer des events
+    permission: nosto.admin.event
+  trails:
+    description: Particules
+  menu:
+    description: Menu Principal
