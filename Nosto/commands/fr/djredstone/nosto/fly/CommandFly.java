@@ -22,12 +22,12 @@ public class CommandFly implements CommandExecutor {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");
-					player.sendMessage("§cVous ne pouvez plus voler !");
+					player.sendMessage("Â§cVous ne pouvez plus voler !");
 				} else if(!list.contains(player)) {
 					list.add(player);
 					player.setAllowFlight(true);
 					player.sendMessage("");
-					player.sendMessage("§aVous pouvez voler !");
+					player.sendMessage("Â§aVous pouvez voler !");
 				}
 			} else if(args.length >= 1) {
 				player = Bukkit.getPlayer(args[0]);
@@ -35,12 +35,12 @@ public class CommandFly implements CommandExecutor {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");
-					player.sendMessage("§c" + player.getName() + " ne peut plus voler !");
+					player.sendMessage("Â§c" + player.getName() + " ne peut plus voler !");
 				} else if(!list.contains(player)) {
 					list.add(player);
 					player.setAllowFlight(true);
 					player.sendMessage("");
-					player.sendMessage("§a" + player.getName() + " peut voler !");
+					player.sendMessage("Â§a" + player.getName() + " peut voler !");
 				}
 			}
 		}

@@ -32,20 +32,20 @@ public class onplayerDeathListener implements Listener {
 		Player player = event.getEntity();
 		if(duel.contains(player)) {
 			Player playerWin = player.getKiller().getPlayer();
-			event.setDeathMessage("§8[§6DUEL§8] §6§l" + playerWin.getName() + " §egagne face à §6§l" + player.getName() + " §e!");
+			event.setDeathMessage("Â§8[Â§6DUELÂ§8] Â§6Â§l" + playerWin.getName() + " Â§egagne face Ã  Â§6Â§l" + player.getName() + " Â§e!");
 			duel.remove(playerWin);
 			playerWin.teleport(new Location(Bukkit.getWorld("duel"), 136.5, 71.0, -230.5, 0f, 0f));
 			playerWin.getInventory().clear();
 			ItemStack seriousPVP = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta seriousPVPMeta = seriousPVP.getItemMeta();
-			seriousPVPMeta.setDisplayName("§2§lPvP Sérieux");
+			seriousPVPMeta.setDisplayName("Â§2Â§lPvP SÃ©rieux");
 			seriousPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			seriousPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			seriousPVP.setItemMeta(seriousPVPMeta);
 			playerWin.getInventory().setItem(2, seriousPVP);
 			ItemStack funPVP = new ItemStack(Material.TNT, 1);
 			ItemMeta funPVPMeta = funPVP.getItemMeta();
-			funPVPMeta.setDisplayName("§a§lPvP Fun§8(WIP)");
+			funPVPMeta.setDisplayName("Â§aÂ§lPvP FunÂ§8(WIP)");
 			funPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			funPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			funPVP.setItemMeta(funPVPMeta);

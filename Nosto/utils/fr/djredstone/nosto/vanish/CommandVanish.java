@@ -24,26 +24,26 @@ public class CommandVanish implements CommandExecutor {
 			if(vanishList.contains(player)) {
 				Main.unVanishPlayer(player);
 				player.sendMessage("");
-				player.sendMessage("§7Vous êtes maintenant visible !");
+				player.sendMessage("Â§7Vous Ãªtes maintenant visible !");
 			} else {
 				Main.vanishPlayer(player);
 				player.sendMessage("");
-				player.sendMessage("§7Vous êtes maintenant invisible !");
+				player.sendMessage("Â§7Vous Ãªtes maintenant invisible !");
 			}
 		} else {
 			Player target = Bukkit.getPlayer(args[0]);
 			if(vanishList.contains(target)) {
 				Main.unVanishPlayer(target);
 				player.sendMessage("");
-				player.sendMessage("§7Vous avez mis " + target.getName() + " visible !");
+				player.sendMessage("Â§7Vous avez mis " + target.getName() + " visible !");
 				target.sendMessage("");
-				target.sendMessage("§7Vous êtes maintenant visible !");
+				target.sendMessage("Â§7Vous Ãªtes maintenant visible !");
 			} else {
 				Main.vanishPlayer(target);
 				player.sendMessage("");
-				player.sendMessage("§7Vous avez mis " + target.getName() + " en invisible !");
+				player.sendMessage("Â§7Vous avez mis " + target.getName() + " en invisible !");
 				target.sendMessage("");
-				target.sendMessage("§7Vous êtes maintenant invisible !");
+				target.sendMessage("Â§7Vous Ãªtes maintenant invisible !");
 			}
 		}
 		

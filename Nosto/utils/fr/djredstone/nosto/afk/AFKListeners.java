@@ -39,10 +39,10 @@ public class AFKListeners implements Listener {
 					}
 					if(time.get(players) == 60) {
 						afks.add(players);
-						players.setCustomName(players.getName() + " ง7งl(AFK)");
+						players.setCustomName(players.getName() + " ยง7ยงl(AFK)");
 						players.setCustomNameVisible(true);
 						Bukkit.broadcastMessage("");
-						Bukkit.broadcastMessage("ง8งl" + players.getName() + " ง8est AFK");
+						Bukkit.broadcastMessage("ยง8ยงl" + players.getName() + " ยง8est AFK");
 					}
 				}
 				
@@ -60,7 +60,7 @@ public class AFKListeners implements Listener {
 			player.setCustomName(player.getName());
 			player.setCustomNameVisible(true);
 			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("ง7งl" + player.getName() + " ง7n'est plus AFK");
+			Bukkit.broadcastMessage("ยง7ยงl" + player.getName() + " ยง7n'est plus AFK");
 			player.setCustomName(player.getName());
 		}
 	}

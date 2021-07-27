@@ -21,11 +21,11 @@ public class shopMenu {
 		
 		if(menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > Boutique");
+		Inventory inv = Bukkit.createInventory(null, 27, "Â§2Â§lMenu > Boutique");
 		
-		inv.setItem(11, getItem(Material.BLAZE_POWDER , "§e§lParticules"));
-		inv.setItem(15, getItem(Material.ELYTRA , "§6§lPouvoir"));
-		inv.setItem(22, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, getItem(Material.BLAZE_POWDER , "Â§eÂ§lParticules"));
+		inv.setItem(15, getItem(Material.ELYTRA , "Â§6Â§lPouvoir"));
+		inv.setItem(22, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

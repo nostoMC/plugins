@@ -15,14 +15,14 @@ public class onServerListPingListener implements Listener {
 	
 	@EventHandler
     public void onServerListPing(ServerListPingEvent event) {
-		String motd = "                       §f§l§k|| §b§lNOSTO §f§l§k||;             §f§nhttps://discord.io/Nosto";
+		String motd = "                       Â§fÂ§lÂ§k|| Â§bÂ§lNOSTO Â§fÂ§lÂ§k||;             Â§fÂ§nhttps://discord.io/Nosto";
 		motd = motd.replaceAll(";", System.getProperty("line.separator"));
 		FileConfiguration cf = Main.getInstance().getConfig();
 		if(cf.get("event") == null) {
 			event.setMotd(motd);
 		} else {
 			if(cf.get("event").toString().equalsIgnoreCase("show")) {
-				motd = "                       §f§l§k|| §b§lNOSTO §f§l§k|| §6§lEVENT EN COURS;             §f§nhttps://discord.io/Nosto";
+				motd = "                       Â§fÂ§lÂ§k|| Â§bÂ§lNOSTO Â§fÂ§lÂ§k|| Â§6Â§lEVENT EN COURS;             Â§fÂ§nhttps://discord.io/Nosto";
 				motd = motd.replaceAll(";", System.getProperty("line.separator"));
 				event.setMotd(motd);
 			}

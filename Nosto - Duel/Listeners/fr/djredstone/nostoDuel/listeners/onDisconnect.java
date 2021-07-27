@@ -31,21 +31,21 @@ public class onDisconnect implements Listener {
 		if(duel.contains(player)) {
 			duel.remove(player);
 			duelLobby.add(player);
-			event.setQuitMessage("§6§l" + player.getName() + " §es'est déconnecté ! §6§lMatch nul !");
+			event.setQuitMessage("Â§6Â§l" + player.getName() + " Â§es'est dÃ©connectÃ© ! Â§6Â§lMatch nul !");
 			Player playerWin = duel.get(0);
 			duel.remove(playerWin);
 			playerWin.teleport(new Location(Bukkit.getWorld("duel"), 136.5, 71.0, -230.5, 0f, 0f));
 			playerWin.getInventory().clear();
 			ItemStack seriousPVP = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta seriousPVPMeta = seriousPVP.getItemMeta();
-			seriousPVPMeta.setDisplayName("§2§lPvP Sérieux");
+			seriousPVPMeta.setDisplayName("Â§2Â§lPvP SÃ©rieux");
 			seriousPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			seriousPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			seriousPVP.setItemMeta(seriousPVPMeta);
 			playerWin.getInventory().setItem(2, seriousPVP);
 			ItemStack funPVP = new ItemStack(Material.TNT, 1);
 			ItemMeta funPVPMeta = funPVP.getItemMeta();
-			funPVPMeta.setDisplayName("§a§lPvP Fun§8(WIP)");
+			funPVPMeta.setDisplayName("Â§aÂ§lPvP FunÂ§8(WIP)");
 			funPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			funPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			funPVP.setItemMeta(funPVPMeta);

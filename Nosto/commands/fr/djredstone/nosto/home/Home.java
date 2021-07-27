@@ -23,7 +23,7 @@ public class Home implements CommandExecutor {
 				
 				if(args.length == 0) {
 					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /sethome <nom>");
+					p.sendMessage("Â§cUtilisation : /sethome <nom>");
 					return false;
 				}
 				
@@ -36,13 +36,13 @@ public class Home implements CommandExecutor {
 					Main.getInstance().getConfig().set("home." + p.getUniqueId().toString() + "." + args[0] + ".yaw", p.getEyeLocation().getYaw());
 					Main.getInstance().saveConfig();
 					p.sendMessage("");
-					p.sendMessage("§eLe home §6§l" + args[0] + " §eest maintenant mis en place en §a§l" + p.getLocation().getBlockX() + " §a§l" + p.getLocation().getBlockY() + " §a§l" + p.getLocation().getBlockZ() + " §e!");
+					p.sendMessage("Â§eLe home Â§6Â§l" + args[0] + " Â§eest maintenant mis en place en Â§aÂ§l" + p.getLocation().getBlockX() + " Â§aÂ§l" + p.getLocation().getBlockY() + " Â§aÂ§l" + p.getLocation().getBlockZ() + " Â§e!");
 					return false;
 				}
 				
 				if(args.length >= 2) {
 					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /sethome <nom>");
+					p.sendMessage("Â§cUtilisation : /sethome <nom>");
 					return false;
 				}
 				
@@ -54,7 +54,7 @@ public class Home implements CommandExecutor {
 				
 				if(args.length == 0) {
 					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /home <nom>");
+					p.sendMessage("Â§cUtilisation : /home <nom>");
 					return false;
 				}
 				
@@ -68,18 +68,18 @@ public class Home implements CommandExecutor {
 						double yaw = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId().toString() + "." + args[0] + ".yaw");
 						p.teleport(new Location(w, x, y, z, (float) yaw, (float) pitch));
 						p.sendMessage("");
-						p.sendMessage("§eTéléportation vers §6§l" + args[0] + " §e!");
+						p.sendMessage("Â§eTÃ©lÃ©portation vers Â§6Â§l" + args[0] + " Â§e!");
 						return false;
 					} else {
 						p.sendMessage("");
-						p.sendMessage("§cLe home n'exste pas !");
+						p.sendMessage("Â§cLe home n'exste pas !");
 						return false;
 					}
 				}
 				
 				if(args.length >= 2) {
 					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /home <nom>");
+					p.sendMessage("Â§cUtilisation : /home <nom>");
 					return false;
 				}
 				
@@ -90,7 +90,7 @@ public class Home implements CommandExecutor {
 
 				if(args.length == 0) {
 					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /delhome <nom>");
+					p.sendMessage("Â§cUtilisation : /delhome <nom>");
 					return false;
 				}
 			
@@ -99,14 +99,14 @@ public class Home implements CommandExecutor {
 						Main.getInstance().getConfig().set("home." + p.getUniqueId().toString() + "." + args[0], null);
 						Main.getInstance().saveConfig();
 						p.sendMessage("");
-						p.sendMessage("§eHome supprimé !");
+						p.sendMessage("Â§eHome supprimÃ© !");
 						return false;
 					}
 				}
 			
 				if(args.length >= 2) {
 					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /delhome <nom>");
+					p.sendMessage("Â§cUtilisation : /delhome <nom>");
 					return false;
 				}
 			}
@@ -120,7 +120,7 @@ public class Home implements CommandExecutor {
 			}
 		} else {
 			p.sendMessage("");
-			p.sendMessage("§cLes homes sont seulement autorisés dans les mondes : §6§lSurvie §r| §6§lSkyblock");
+			p.sendMessage("Â§cLes homes sont seulement autorisÃ©s dans les mondes : Â§6Â§lSurvie Â§r| Â§6Â§lSkyblock");
 		}
 		
 		return false;

@@ -31,14 +31,14 @@ public class onInventoryClickListener implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lTP > Events")) {
+		if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lTP > Events")) {
 			event.setCancelled(true);
 			
 			if(current.getType() == Material.FLINT_AND_STEEL) {
 				if(!player.hasPermission("server.huntAcces")) return;
 				welcomeMenu.openMenu(player);
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lTP > Events > Hunt")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lTP > Events > Hunt")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()) {
@@ -49,13 +49,13 @@ public class onInventoryClickListener implements Listener {
 					Location huntLobby = new Location(Bukkit.getWorld("Hunt"), 0, 100, 0, 0f, 0f);
 					player.teleport(huntLobby);
 					player.setGameMode(GameMode.SURVIVAL);
-					player.sendMessage("§eVous êtes un §b§lSpeedRunner §e!");
+					player.sendMessage("Â§eVous Ãªtes un Â§bÂ§lSpeedRunner Â§e!");
 				} else {
 					hunter.add(player);
 					Location huntLobby = new Location(Bukkit.getWorld("Hunt"), 0, 100, 0, 0f, 0f);
 					player.teleport(huntLobby);
 					player.setGameMode(GameMode.SURVIVAL);
-					player.sendMessage("§cUn §b§lSpeedRunner §ca déjà pris la place ! §eVous êtes donc un §4§lhunter §e!");
+					player.sendMessage("Â§cUn Â§bÂ§lSpeedRunner Â§ca dÃ©jÃ  pris la place ! Â§eVous Ãªtes donc un Â§4Â§lhunter Â§e!");
 				}
 				break;
 				
@@ -64,7 +64,7 @@ public class onInventoryClickListener implements Listener {
 				Location huntLobby = new Location(Bukkit.getWorld("Hunt"), 0, 100, 0, 0f, 0f);
 				player.teleport(huntLobby);
 				player.setGameMode(GameMode.SURVIVAL);
-				player.sendMessage("§eVous êtes un §4§lhunter §e!");
+				player.sendMessage("Â§eVous Ãªtes un Â§4Â§lhunter Â§e!");
 				break;
 			
 			default:

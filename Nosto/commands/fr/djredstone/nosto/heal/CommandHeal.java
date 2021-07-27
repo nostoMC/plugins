@@ -17,21 +17,21 @@ public class CommandHeal implements CommandExecutor {
             player.setHealth(20);
             player.setFoodLevel(20);
             player.sendMessage("");
-            player.sendMessage("§2Votre barre de vie a été restaurer !");
+            player.sendMessage("Â§2Votre barre de vie a Ã©tÃ© restaurer !");
             return true;
         }
         Player target = Bukkit.getServer().getPlayer(args[0]);
         if (target == null) {
         	player.sendMessage("");
-            player.sendMessage("§cJoueur innconu");
+            player.sendMessage("Â§cJoueur innconu");
             return true;
         }
         target.setHealth(20);
         target.setFoodLevel(20);
         target.sendMessage("");
-        target.sendMessage("§2Votre barre de vie a été restaurer !");
+        target.sendMessage("Â§2Votre barre de vie a Ã©tÃ© restaurer !");
         player.sendMessage("");
-        player.sendMessage("§2La barre de vie de §a§l" + target.getName() + " §2a été restaurer !!");
+        player.sendMessage("Â§2La barre de vie de Â§aÂ§l" + target.getName() + " Â§2a Ã©tÃ© restaurer !!");
 		
 		return false;
 	}

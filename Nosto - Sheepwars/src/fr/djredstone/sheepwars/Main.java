@@ -55,7 +55,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 			if(args.length >= 2) {
 			
 				player.sendMessage("");
-				player.sendMessage("§c§lUtilisation : /sheepwars play");
+				player.sendMessage("Â§cÂ§lUtilisation : /sheepwars play");
 				
 			
 			} else {
@@ -68,12 +68,12 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 				
 							hub = player.getLocation();
 							player.sendMessage("");
-							player.sendMessage("§a§lCoordonées missent à jour !");
+							player.sendMessage("Â§aÂ§lCoordonÃ©es missent Ã  jour !");
 					
 						} else {
 						
 							player.sendMessage("");
-							player.sendMessage("§c§lVous n'avez pas les permissions !");
+							player.sendMessage("Â§cÂ§lVous n'avez pas les permissions !");
 						
 						}
 					
@@ -89,7 +89,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 		} else {
 			
 			player.sendMessage("");
-			player.sendMessage("§cCette commande est seulement autorisés dans les mondes : §6§lSheepwars");
+			player.sendMessage("Â§cCette commande est seulement autorisÃ©s dans les mondes : Â§6Â§lSheepwars");
 			
 		}
 		
@@ -133,14 +133,14 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 	public void openMapMenu(Player player) {
 		
 		Inventory inv;
-		inv = Bukkit.createInventory(null, 45, "§f§lSheep§c§lwars");
+		inv = Bukkit.createInventory(null, 45, "Â§fÂ§lSheepÂ§cÂ§lwars");
 		
-		inv.setItem(10, getItem(Material.OAK_BOAT , "§f§lNaval"));
-		inv.setItem(12, getItem(Material.WHITE_WOOL , "§f§lAérien"));
-		inv.setItem(14, getItem(Material.SMOOTH_STONE , "§f§lGrate ciel"));
-		inv.setItem(16, getItem(Material.MAGMA_CREAM , "§f§lSpacial"));
-		inv.setItem(31, getItem(Material.FIREWORK_ROCKET, "§f§lMap Aléatoire"));
-		inv.setItem(36, getItem(Material.BARRIER, "§c§lFermer le menu"));
+		inv.setItem(10, getItem(Material.OAK_BOAT , "Â§fÂ§lNaval"));
+		inv.setItem(12, getItem(Material.WHITE_WOOL , "Â§fÂ§lAÃ©rien"));
+		inv.setItem(14, getItem(Material.SMOOTH_STONE , "Â§fÂ§lGrate ciel"));
+		inv.setItem(16, getItem(Material.MAGMA_CREAM , "Â§fÂ§lSpacial"));
+		inv.setItem(31, getItem(Material.FIREWORK_ROCKET, "Â§fÂ§lMap AlÃ©atoire"));
+		inv.setItem(36, getItem(Material.BARRIER, "Â§cÂ§lFermer le menu"));
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
@@ -153,7 +153,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 
-		if(event.getView().getTitle().equalsIgnoreCase("§f§lSheep§c§lwars")) {
+		if(event.getView().getTitle().equalsIgnoreCase("Â§fÂ§lSheepÂ§cÂ§lwars")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()){

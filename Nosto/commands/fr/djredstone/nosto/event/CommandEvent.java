@@ -23,7 +23,7 @@ public class CommandEvent implements CommandExecutor {
 					Main.getInstance().getConfig().set("event", "show");
 					Main.getInstance().saveConfig();
 					Bukkit.broadcastMessage("");
-					Bukkit.broadcastMessage("Un ÈvÈnement commence ! Utilisez /lobby pour vous tÈlÈporter !");
+					Bukkit.broadcastMessage("Un √©v√©nement commence ! Utilisez /lobby pour vous t√©l√©porter !");
 					if(sender instanceof Player) {
 						Player player = (Player) sender;
 						Location showLobby = new Location(Bukkit.getWorld("show"), 0.5, 65, 0.5, 0f, 0f);
@@ -34,7 +34,7 @@ public class CommandEvent implements CommandExecutor {
 				}
 			} else {
 				sender.sendMessage("");
-				sender.sendMessage("Un ÈvÈnement est dÈj‡ en cours !");
+				sender.sendMessage("Un √©v√©nement est d√©j√† en cours !");
 			}
 		} else if(args[0].equalsIgnoreCase("stop")) {
 			if(Main.getInstance().getConfig().get("event") != null) {
@@ -42,7 +42,7 @@ public class CommandEvent implements CommandExecutor {
 				Main.getInstance().saveConfig();
 			} else {
 				sender.sendMessage("");
-				sender.sendMessage("Aucun ÈvÈnement en cours !");
+				sender.sendMessage("Aucun √©v√©nement en cours !");
 			}
 		} else {
 			sender.sendMessage("");

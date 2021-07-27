@@ -43,31 +43,31 @@ public class CommandDuel implements CommandExecutor {
 							
 							} else {
 								player.sendMessage("");
-								player.sendMessage("§cUne partie est déjà en cours");
+								player.sendMessage("Â§cUne partie est dÃ©jÃ  en cours");
 							}
 						
 						} else {
 							player.sendMessage("");
-							player.sendMessage("§cTu ne peut pas accepter ton propre duel !");
+							player.sendMessage("Â§cTu ne peut pas accepter ton propre duel !");
 						}
 					
 					} else {
 						player.sendMessage("");
-						player.sendMessage("§cAucune demande en cours");
+						player.sendMessage("Â§cAucune demande en cours");
 					}
 				
 				} else {
 					player.sendMessage("");
-					player.sendMessage("§cUtilisation : /duel {accept}");
+					player.sendMessage("Â§cUtilisation : /duel {accept}");
 				}
 			} else {
 				player.sendMessage("");
-				player.sendMessage("§cUtilisation : /duel {accept}");
+				player.sendMessage("Â§cUtilisation : /duel {accept}");
 			}
 		
 		} else {
 			player.sendMessage("");
-			player.sendMessage("§cCette commande est utilisable uniquement dans le monde duel !");
+			player.sendMessage("Â§cCette commande est utilisable uniquement dans le monde duel !");
 		}
 		
 		return false;

@@ -32,19 +32,19 @@ public class onMessageListener implements Listener {
 		String group = "";
 		
 		if(player.hasPermission("group.dev")) {
-			group = "§bDevelopper ";
+			group = "Â§bDevelopper ";
 		}
 		if(player.hasPermission("group.buildeur")) {
-			group = "§aBuildeur ";
+			group = "Â§aBuildeur ";
 		}
 		if(player.hasPermission("group.administrateur")) {
-			group = "§cAdministrateur ";
+			group = "Â§cAdministrateur ";
 		}
 		
-		String format = "§f<" + group + "§f" + player.getName() + "> " + event.getMessage();
+		String format = "Â§f<" + group + "Â§f" + player.getName() + "> " + event.getMessage();
 		Bukkit.broadcastMessage("");
 		event.setFormat(format);
-		event.setMessage(event.getMessage().replaceAll("&", "§"));
+		event.setMessage(event.getMessage().replaceAll("&", "Â§"));
 	}
 
 }

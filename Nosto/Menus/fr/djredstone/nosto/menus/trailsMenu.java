@@ -21,13 +21,13 @@ public class trailsMenu {
 
 	public static void openMenu(Player player) {
 		
-		noPermLore.add("§c§lVous n'avez pas acheter cette particule !");
+		noPermLore.add("Â§cÂ§lVous n'avez pas acheter cette particule !");
 		
 		if(menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
-		Inventory inv = Bukkit.createInventory(null, 45, "§2§lMenu > Particules");
+		Inventory inv = Bukkit.createInventory(null, 45, "Â§2Â§lMenu > Particules");
 		
-		inv.setItem(10, getItem(Material.BLAZE_POWDER , "§c§lFlame"));
+		inv.setItem(10, getItem(Material.BLAZE_POWDER , "Â§cÂ§lFlame"));
 		if(!player.hasPermission("nosto.trails.flame")) {
 			inv.getItem(10).getItemMeta().setLore(noPermLore);
 		}
@@ -43,7 +43,7 @@ public class trailsMenu {
 			inv.setItem(10, it);
 		}
 		
-		inv.setItem(40, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(40, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

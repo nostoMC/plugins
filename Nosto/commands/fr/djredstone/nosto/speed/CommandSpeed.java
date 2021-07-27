@@ -44,7 +44,7 @@ public class CommandSpeed implements CommandExecutor {
             p.setWalkSpeed((float) speed/ 10);
         }
         p.sendMessage("");
-        p.sendMessage(Color("&eLa vitesse a été mis à jour sur §6§l" + speed));
+        p.sendMessage(Color("&eLa vitesse a Ã©tÃ© mis Ã  jour sur Â§6Â§l" + speed));
         return true;
 	}
 	

@@ -25,12 +25,12 @@ public class CommandStaffChat implements CommandExecutor {
 
         if (args.length < 1) {
         	p.sendMessage("");
-            p.sendMessage(Color("&cLe message ne peut pas être vide !"));
+            p.sendMessage(Color("&cLe message ne peut pas Ãªtre vide !"));
             return false;
         }
         
         p.sendMessage("");
-        String mess = "§c[StaffChat]§5 " + p.getDisplayName() + ": ";
+        String mess = "Â§c[StaffChat]Â§5 " + p.getDisplayName() + ": ";
         for (String s : args) {
             mess = mess + s + " ";
         }

@@ -15,7 +15,7 @@ public class CommandLobby implements CommandExecutor {
 		Player player = (Player) sender;
 
 		if(!player.isOp()) {
-    		player.sendMessage("Cette commande est en train d'être repensé");
+    		player.sendMessage("Cette commande est en train d'Ãªtre repensÃ©");
     		return true;
     	} else {
     		tpMenu.openMenu(player);

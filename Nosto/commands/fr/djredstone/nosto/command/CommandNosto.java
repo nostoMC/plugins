@@ -21,18 +21,18 @@ public class CommandNosto implements CommandExecutor {
 				if(args[0].equalsIgnoreCase("reload")) {
 					if(args[1].equalsIgnoreCase("server")) {
 						Bukkit.broadcastMessage("");
-						Bukkit.broadcastMessage("§4Reload dans §4§l10 §4secondes !");
+						Bukkit.broadcastMessage("Â§4Reload dans Â§4Â§l10 Â§4secondes !");
 						new BukkitRunnable() {
 							int timer = 11;
 							@Override
 							public void run() {
 								if(timer <= 5) {
 									Bukkit.broadcastMessage("");
-									Bukkit.broadcastMessage("§4Reload dans §4§l" + timer + "§4s !");
+									Bukkit.broadcastMessage("Â§4Reload dans Â§4Â§l" + timer + "Â§4s !");
 								}
 								if(timer == 0) {
 									Bukkit.broadcastMessage("");
-									Bukkit.broadcastMessage("§4§lReload !");
+									Bukkit.broadcastMessage("Â§4Â§lReload !");
 									Bukkit.reload();
 									cancel();
 								}

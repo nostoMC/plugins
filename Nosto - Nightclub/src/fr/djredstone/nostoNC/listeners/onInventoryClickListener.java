@@ -40,7 +40,7 @@ public class onInventoryClickListener implements Listener {
 		
 		if(current == null) return;
 		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lGestioraire des effets")) {
+		if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lGestioraire des effets")) {
 			event.setCancelled(true);
 			
 			if(current.getType() == Material.STRING) {

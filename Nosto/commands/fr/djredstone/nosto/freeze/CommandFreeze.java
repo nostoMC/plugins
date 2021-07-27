@@ -30,7 +30,7 @@ public class CommandFreeze implements CommandExecutor {
         		} else {
         			frozen.remove(target);
         			player.sendMessage("");
-        			player.sendMessage("Vous avez défreeze " + target.getPlayer());
+        			player.sendMessage("Vous avez dÃ©freeze " + target.getPlayer());
             	}
 			}
         }

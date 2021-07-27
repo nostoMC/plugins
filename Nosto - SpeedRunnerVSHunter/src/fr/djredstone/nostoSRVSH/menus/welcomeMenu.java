@@ -12,11 +12,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class welcomeMenu {
 
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 9, "§2§lTP > Events > Hunt");
+		Inventory inv = Bukkit.createInventory(null, 9, "Â§2Â§lTP > Events > Hunt");
 		
-		inv.setItem(2, getItem(Material.LEATHER_BOOTS , "§b§lSpeedRunner"));
-		inv.setItem(4, getItem(Material.IRON_SWORD , "§c§lHunter"));
-		inv.setItem(6, getItem(Material.IRON_SWORD , "§7§lSpectateur"));
+		inv.setItem(2, getItem(Material.LEATHER_BOOTS , "Â§bÂ§lSpeedRunner"));
+		inv.setItem(4, getItem(Material.IRON_SWORD , "Â§cÂ§lHunter"));
+		inv.setItem(6, getItem(Material.IRON_SWORD , "Â§7Â§lSpectateur"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

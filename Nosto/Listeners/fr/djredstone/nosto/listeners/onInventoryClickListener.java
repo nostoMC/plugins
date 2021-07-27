@@ -39,7 +39,7 @@ public class onInventoryClickListener implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
+		if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()) {
@@ -61,7 +61,7 @@ public class onInventoryClickListener implements Listener {
 			}
 			
 			
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > TP")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()){
@@ -89,7 +89,7 @@ public class onInventoryClickListener implements Listener {
 			default:
 				break;
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Monde Ouvert")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > TP > Monde Ouvert")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()) {
@@ -122,7 +122,7 @@ public class onInventoryClickListener implements Listener {
 				break;
 			
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Mini jeux")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > TP > Mini jeux")) {
 			event.setCancelled(true);
 
 			switch(current.getType()) {
@@ -157,7 +157,7 @@ public class onInventoryClickListener implements Listener {
 				break;
 			
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Training")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > TP > Training")) {
 			event.setCancelled(true);
 
 			switch(current.getType()) {
@@ -170,7 +170,7 @@ public class onInventoryClickListener implements Listener {
 				break;
 			
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Events")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > TP > Events")) {
 			event.setCancelled(true);
 
 			switch(current.getType()) {
@@ -234,7 +234,7 @@ public class onInventoryClickListener implements Listener {
 				break;
 			
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Events > Hunt")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > TP > Events > Hunt")) {
 			event.setCancelled(true);
 
 			if(current.getType() == Material.LEATHER_BOOTS || current.getType() == Material.IRON_SWORD || current.getType() == Material.ENDER_EYE) {
@@ -242,7 +242,7 @@ public class onInventoryClickListener implements Listener {
 				menuPlayers.remove(player);
 				Main.unVanishPlayer(player);
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Particules")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > Particules")) {
 			event.setCancelled(true);
 			
 			if(current.getType() == null) {
@@ -276,7 +276,7 @@ public class onInventoryClickListener implements Listener {
 			default:
 				break;
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Boutique")) {
+		} else if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lMenu > Boutique")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()) {

@@ -28,13 +28,13 @@ public class ClaimCommand implements CommandExecutor
 
             	if (Main.getInstance().getConfig().contains("claim." + chunkID)) {
             		player.sendMessage("");
-                	player.sendMessage("§cCe chunk est déjà claim !");
+                	player.sendMessage("Â§cCe chunk est dÃ©jÃ  claim !");
 
             	} else {
             		Main.getInstance().getConfig().set("claim." + chunkID , player.getUniqueId().toString());
             		Main.getInstance().saveConfig();
             		player.sendMessage("");
-            		player.sendMessage("§eVous avez claim ce chunk !");
+            		player.sendMessage("Â§eVous avez claim ce chunk !");
             	}
             } else if(cmd.getName().equalsIgnoreCase("unclaim")) {
             	
@@ -48,19 +48,19 @@ public class ClaimCommand implements CommandExecutor
             			Main.getInstance().getConfig().set("claim." + chunkID, null);;
             			Main.getInstance().saveConfig();
             			player.sendMessage("");
-                		player.sendMessage("§eVous avez unclaim ce chunk !");
+                		player.sendMessage("Â§eVous avez unclaim ce chunk !");
             		} else {
             			player.sendMessage("");
-            			player.sendMessage("§cCe chunk n'est pas claim !");
+            			player.sendMessage("Â§cCe chunk n'est pas claim !");
             		}
             	} else {
             		player.sendMessage("");
-            		player.sendMessage("§cVous ne possédez pas ce chunk !");
+            		player.sendMessage("Â§cVous ne possÃ©dez pas ce chunk !");
             	}
             }
             } else {
             	player.sendMessage("");
-            	player.sendMessage("§cLes claim sont seulement autorisés dans les mondes : §6§lSurvie");
+            	player.sendMessage("Â§cLes claim sont seulement autorisÃ©s dans les mondes : Â§6Â§lSurvie");
             }
         }
         return true;

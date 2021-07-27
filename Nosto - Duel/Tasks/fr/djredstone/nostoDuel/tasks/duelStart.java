@@ -35,7 +35,7 @@ public class duelStart extends BukkitRunnable {
 			if(duel.contains(players)) {
 				if(timer == 0) {
 					players.sendMessage("");
-					players.sendMessage("§a§lDébut de la partie !");
+					players.sendMessage("Â§aÂ§lDÃ©but de la partie !");
 					Player player1 = duel.get(0);
 					Player player2 = duel.get(1);
 					duelLobby.remove(players);
@@ -45,16 +45,16 @@ public class duelStart extends BukkitRunnable {
 					players.getInventory().clear();
 				}
 				if(timer == 20) {
-					players.sendTitle("§2§l3", "", 10, 0, 10);
+					players.sendTitle("Â§2Â§l3", "", 10, 0, 10);
 				}
 				if(timer == 40) {
-					players.sendTitle("§6§l2", "", 10, 0, 10);
+					players.sendTitle("Â§6Â§l2", "", 10, 0, 10);
 				}
 				if(timer == 60) {
-					players.sendTitle("§c§l1", "", 10, 0, 10);
+					players.sendTitle("Â§cÂ§l1", "", 10, 0, 10);
 				}
 				if(timer == 80) {
-					players.sendTitle("§8§lFight !!", "", 10, 0, 10);
+					players.sendTitle("Â§8Â§lFight !!", "", 10, 0, 10);
 				}
 				if(timer <= 80) {
 					player1.teleport(new Location(Bukkit.getWorld("duel"), 136.5, 26, -146.5, 180, 0));

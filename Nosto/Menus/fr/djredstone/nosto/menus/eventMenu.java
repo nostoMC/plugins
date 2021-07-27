@@ -12,15 +12,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class eventMenu {
 	
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 36, "§2§lMenu > TP > Events");
+		Inventory inv = Bukkit.createInventory(null, 36, "Â§2Â§lMenu > TP > Events");
 		
-		inv.setItem(10, getItem(Material.FLINT_AND_STEEL , "§8§lEvent Hunt"));
-		inv.setItem(12, getItem(Material.SHIELD , "§c§lEvent PvP"));
-		inv.setItem(14, getItem(Material.PLAYER_HEAD , "§4§lEvent Loup Garou"));
-		inv.setItem(16, getItem(Material.DIAMOND , "§b§lEvent Roue de la Chance"));
-		inv.setItem(20, getItem(Material.FIREWORK_ROCKET , "§6§lEvent Show"));
-		inv.setItem(24, getItem(Material.MUSIC_DISC_BLOCKS , "§e§lEvent NightClub"));
-		inv.setItem(22, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(10, getItem(Material.FLINT_AND_STEEL , "Â§8Â§lEvent Hunt"));
+		inv.setItem(12, getItem(Material.SHIELD , "Â§cÂ§lEvent PvP"));
+		inv.setItem(14, getItem(Material.PLAYER_HEAD , "Â§4Â§lEvent Loup Garou"));
+		inv.setItem(16, getItem(Material.DIAMOND , "Â§bÂ§lEvent Roue de la Chance"));
+		inv.setItem(20, getItem(Material.FIREWORK_ROCKET , "Â§6Â§lEvent Show"));
+		inv.setItem(24, getItem(Material.MUSIC_DISC_BLOCKS , "Â§eÂ§lEvent NightClub"));
+		inv.setItem(22, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

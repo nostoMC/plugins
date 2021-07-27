@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class kitSMenu {
 
 	public static void openMenu(Player player) {
-		Inventory invEvent = Bukkit.createInventory(null, 54, "§9§lChoisissez votre kit !");
+		Inventory invEvent = Bukkit.createInventory(null, 54, "Â§9Â§lChoisissez votre kit !");
 
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
@@ -63,18 +63,18 @@ public class kitSMenu {
 		invEvent.setItem(52, clearSlot);
 		invEvent.setItem(53, clearSlot);
 		
-		invEvent.setItem(10, getItem(Material.IRON_LEGGINGS, "§7§lKit Normal"));
-		invEvent.setItem(12, getItem(Material.GOLDEN_APPLE , "§6§lKit OP"));
-		invEvent.setItem(14, getItem(Material.BOW , "§2§lKit Archer"));
-		invEvent.setItem(16, getItem(Material.SPLASH_POTION , "§d§lKit Intense"));
-		invEvent.setItem(20, getItem(Material.BARRIER , "§0§lSoon..."));
-		invEvent.setItem(22, getItem(Material.BARRIER , "§0§lSoon..."));
-		invEvent.setItem(24, getItem(Material.BARRIER , "§0§lSoon..."));
+		invEvent.setItem(10, getItem(Material.IRON_LEGGINGS, "Â§7Â§lKit Normal"));
+		invEvent.setItem(12, getItem(Material.GOLDEN_APPLE , "Â§6Â§lKit OP"));
+		invEvent.setItem(14, getItem(Material.BOW , "Â§2Â§lKit Archer"));
+		invEvent.setItem(16, getItem(Material.SPLASH_POTION , "Â§dÂ§lKit Intense"));
+		invEvent.setItem(20, getItem(Material.BARRIER , "Â§0Â§lSoon..."));
+		invEvent.setItem(22, getItem(Material.BARRIER , "Â§0Â§lSoon..."));
+		invEvent.setItem(24, getItem(Material.BARRIER , "Â§0Â§lSoon..."));
 		
-		invEvent.setItem(37, getItem(Material.ENDER_EYE , "§e§lProposer à tous les joueurs le duel"));
-		invEvent.setItem(43, getItem(Material.ENDER_PEARL , "§5§lProposer à un joueurs le duel"));
+		invEvent.setItem(37, getItem(Material.ENDER_EYE , "Â§eÂ§lProposer Ã  tous les joueurs le duel"));
+		invEvent.setItem(43, getItem(Material.ENDER_PEARL , "Â§5Â§lProposer Ã  un joueurs le duel"));
 		
-		invEvent.setItem(40, getItem(Material.BARRIER , "§b§lKit sélectionné : §8§lAucun"));
+		invEvent.setItem(40, getItem(Material.BARRIER , "Â§bÂ§lKit sÃ©lectionnÃ© : Â§8Â§lAucun"));
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(invEvent);

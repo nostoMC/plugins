@@ -23,12 +23,12 @@ public class CommandGodmode implements CommandExecutor {
 				if(list.contains(player)) {
 					list.remove(player);
 					player.sendMessage("");
-					player.sendMessage("§cVous n'êtes plus un dieu !");
+					player.sendMessage("Â§cVous n'Ãªtes plus un dieu !");
 				} else if(!list.contains(player)) {
 					list.add(player);
 					player.setAllowFlight(true);
 					player.sendMessage("");
-					player.sendMessage("§2Vous êtes un dieu !");
+					player.sendMessage("Â§2Vous Ãªtes un dieu !");
 				}
 			} else if(args.length >= 1) {
 				player = Bukkit.getPlayer(args[0]);
@@ -36,12 +36,12 @@ public class CommandGodmode implements CommandExecutor {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");
-					player.sendMessage("§c" + player.getName() + " n'est plus un dieu !");
+					player.sendMessage("Â§c" + player.getName() + " n'est plus un dieu !");
 				} else if(!list.contains(player)) {
 					list.add(player);
 					player.setAllowFlight(true);
 					player.sendMessage("");
-					player.sendMessage("§2" + player.getName() + " est un dieu !");
+					player.sendMessage("Â§2" + player.getName() + " est un dieu !");
 				}
 			}
 		}

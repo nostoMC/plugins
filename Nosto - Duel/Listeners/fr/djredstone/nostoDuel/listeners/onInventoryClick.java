@@ -40,7 +40,7 @@ public class onInventoryClick implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(event.getView().getTitle().equalsIgnoreCase("§9§lChoisissez votre kit !")) {
+		if(event.getView().getTitle().equalsIgnoreCase("Â§9Â§lChoisissez votre kit !")) {
 			event.setCancelled(true);
 			
 			switch(current.getType()){
@@ -48,47 +48,47 @@ public class onInventoryClick implements Listener {
 			case BLACK_STAINED_GLASS_PANE: break;
 			
 			case IRON_LEGGINGS:
-				event.getView().setItem(40, getItem(Material.IRON_LEGGINGS, "§b§lKit sélectionné : §7§lNormal"));
+				event.getView().setItem(40, getItem(Material.IRON_LEGGINGS, "Â§bÂ§lKit sÃ©lectionnÃ© : Â§7Â§lNormal"));
 				break;
 				
 			case GOLDEN_APPLE:
-				event.getView().setItem(40, getItem(Material.GOLDEN_APPLE, "§b§lKit sélectionné : §6§lOP"));
+				event.getView().setItem(40, getItem(Material.GOLDEN_APPLE, "Â§bÂ§lKit sÃ©lectionnÃ© : Â§6Â§lOP"));
 				break;
 				
 			case BOW:
-				event.getView().setItem(40, getItem(Material.BOW, "§b§lKit sélectionné : §2§lArcher"));
+				event.getView().setItem(40, getItem(Material.BOW, "Â§bÂ§lKit sÃ©lectionnÃ© : Â§2Â§lArcher"));
 				break;
 				
 			case SPLASH_POTION:
-				event.getView().setItem(40, getItem(Material.SPLASH_POTION, "§b§lKit sélectionné : §d§lIntense"));
+				event.getView().setItem(40, getItem(Material.SPLASH_POTION, "Â§bÂ§lKit sÃ©lectionnÃ© : Â§dÂ§lIntense"));
 				break;
 				
 			case ENDER_EYE:
 				event.getView().close();
 				player.sendMessage("");
-				if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("§b§lKit sélectionné : §8§lAucun")) {
+				if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("Â§bÂ§lKit sÃ©lectionnÃ© : Â§8Â§lAucun")) {
 					player.sendMessage("");
-					player.sendMessage("§cVous n'avez pas choisis de kit !");
+					player.sendMessage("Â§cVous n'avez pas choisis de kit !");
 				} else if(!duel.isEmpty()){
 					player.sendMessage("");
-					player.sendMessage("§cUne partie est déjà en cours !");
+					player.sendMessage("Â§cUne partie est dÃ©jÃ  en cours !");
 				} else {
 					duel.add(player);
-					if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("§b§lKit sélectionné : §7§lNormal")) {
+					if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("Â§bÂ§lKit sÃ©lectionnÃ© : Â§7Â§lNormal")) {
 						kitS = 1;
-						Bukkit.broadcastMessage("§8[§6DUEL§8] §6§l" + player.getName() + " §edéfi qui conque dans un combat §6§lsérieux §eavec le kit §7§lNormal §e!");
-					} else if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("§b§lKit sélectionné : §6§lOP")) {
+						Bukkit.broadcastMessage("Â§8[Â§6DUELÂ§8] Â§6Â§l" + player.getName() + " Â§edÃ©fi qui conque dans un combat Â§6Â§lsÃ©rieux Â§eavec le kit Â§7Â§lNormal Â§e!");
+					} else if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("Â§bÂ§lKit sÃ©lectionnÃ© : Â§6Â§lOP")) {
 						kitS = 2;
-						Bukkit.broadcastMessage("§8[§6DUEL§8] §6§l" + player.getName() + " §edéfi qui conque dans un combat §6§lsérieux §eavec le kit §6§lOP §e!");
-					} else if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("§b§lKit sélectionné : §2§lArcher")) {
+						Bukkit.broadcastMessage("Â§8[Â§6DUELÂ§8] Â§6Â§l" + player.getName() + " Â§edÃ©fi qui conque dans un combat Â§6Â§lsÃ©rieux Â§eavec le kit Â§6Â§lOP Â§e!");
+					} else if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("Â§bÂ§lKit sÃ©lectionnÃ© : Â§2Â§lArcher")) {
 						kitS = 3;
-						Bukkit.broadcastMessage("§8[§6DUEL§8] §6§l" + player.getName() + " §edéfi qui conque dans un combat §6§lsérieux §eavec le kit §2§lArcher §e!");
-					} else if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("§b§lKit sélectionné : §d§lIntense")) {
+						Bukkit.broadcastMessage("Â§8[Â§6DUELÂ§8] Â§6Â§l" + player.getName() + " Â§edÃ©fi qui conque dans un combat Â§6Â§lsÃ©rieux Â§eavec le kit Â§2Â§lArcher Â§e!");
+					} else if(event.getInventory().getItem(40).getItemMeta().getDisplayName().equalsIgnoreCase("Â§bÂ§lKit sÃ©lectionnÃ© : Â§dÂ§lIntense")) {
 						kitS = 4;
-						Bukkit.broadcastMessage("§8[§6DUEL§8] §6§l" + player.getName() + " §edéfi qui conque dans un combat §6§lsérieux §eavec le kit §d§lIntense §e!");
+						Bukkit.broadcastMessage("Â§8[Â§6DUELÂ§8] Â§6Â§l" + player.getName() + " Â§edÃ©fi qui conque dans un combat Â§6Â§lsÃ©rieux Â§eavec le kit Â§dÂ§lIntense Â§e!");
 					}
 					player.getInventory().clear();
-					player.getInventory().setItem(8, getItem(Material.BARRIER, "§6§lAnnuler la demande"));
+					player.getInventory().setItem(8, getItem(Material.BARRIER, "Â§6Â§lAnnuler la demande"));
 					player.updateInventory();
 					new BukkitRunnable() {
 						double i = 200;
@@ -105,19 +105,19 @@ public class onInventoryClick implements Listener {
 						}
 						if(i == 0 || demandeCancel.equalsIgnoreCase("true")) {
 							player.sendMessage("");
-				        	player.sendMessage("§c§lLa demande a expiré !");
+				        	player.sendMessage("Â§cÂ§lLa demande a expirÃ© !");
 				        	player.getInventory().clear();
 				            duel.remove(player);
 				            ItemStack seriousPVP = new ItemStack(Material.DIAMOND_SWORD, 1);
 							ItemMeta seriousPVPMeta = seriousPVP.getItemMeta();
-							seriousPVPMeta.setDisplayName("§2§lPvP Sérieux");
+							seriousPVPMeta.setDisplayName("Â§2Â§lPvP SÃ©rieux");
 							seriousPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 							seriousPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 							seriousPVP.setItemMeta(seriousPVPMeta);
 							player.getInventory().setItem(2, seriousPVP);
 							ItemStack funPVP = new ItemStack(Material.TNT, 1);
 							ItemMeta funPVPMeta = funPVP.getItemMeta();
-							funPVPMeta.setDisplayName("§a§lPvP Fun §8(WIP)");
+							funPVPMeta.setDisplayName("Â§aÂ§lPvP Fun Â§8(WIP)");
 							funPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 							funPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 							funPVP.setItemMeta(funPVPMeta);
@@ -153,21 +153,21 @@ public class onInventoryClick implements Listener {
 			}
 		}
 		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lTP > Mini jeux")) {
+		if(event.getView().getTitle().equalsIgnoreCase("Â§2Â§lTP > Mini jeux")) {
 			event.setCancelled(true);
 			if(current.getType() == Material.IRON_SWORD) {
 				if(!player.hasPermission("server.duelAcces")) return;
 				player.getInventory().clear();
 				ItemStack seriousPVP = new ItemStack(Material.DIAMOND_SWORD, 1);
 				ItemMeta seriousPVPMeta = seriousPVP.getItemMeta();
-				seriousPVPMeta.setDisplayName("§2§lPvP Sérieux");
+				seriousPVPMeta.setDisplayName("Â§2Â§lPvP SÃ©rieux");
 				seriousPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 				seriousPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				seriousPVP.setItemMeta(seriousPVPMeta);
 				player.getInventory().setItem(2, seriousPVP);
 				ItemStack funPVP = new ItemStack(Material.TNT, 1);
 				ItemMeta funPVPMeta = funPVP.getItemMeta();
-				funPVPMeta.setDisplayName("§a§lPvP Fun§8(WIP)");
+				funPVPMeta.setDisplayName("Â§aÂ§lPvP FunÂ§8(WIP)");
 				funPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 				funPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				funPVP.setItemMeta(funPVPMeta);

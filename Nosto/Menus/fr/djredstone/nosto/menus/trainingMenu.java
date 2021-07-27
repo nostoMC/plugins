@@ -12,11 +12,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class trainingMenu {
 
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Training");
+		Inventory inv = Bukkit.createInventory(null, 27, "Â§2Â§lMenu > TP > Training");
 		
-		inv.setItem(11, getItem(Material.BARRIER , "§7§oSoon..."));
-		inv.setItem(15, getItem(Material.BARRIER , "§7§oSoon..."));
-		inv.setItem(22, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, getItem(Material.BARRIER , "Â§7Â§oSoon..."));
+		inv.setItem(15, getItem(Material.BARRIER , "Â§7Â§oSoon..."));
+		inv.setItem(22, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

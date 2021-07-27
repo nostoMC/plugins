@@ -54,8 +54,8 @@ public class Main extends JavaPlugin {
 		
 		new djGlowing(this);
 		
-		off.add("§c§loff");
-		on.add("§a§lon");
+		off.add("Â§cÂ§loff");
+		on.add("Â§aÂ§lon");
 		
 	}
 	

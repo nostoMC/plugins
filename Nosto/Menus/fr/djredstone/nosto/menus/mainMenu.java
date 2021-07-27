@@ -32,15 +32,15 @@ public class mainMenu {
 		
 		double playerMoney = configSection.getDouble(player.getUniqueId().toString());
 
-		Inventory inv = Bukkit.createInventory(null, 54, "§2§lMenu");
+		Inventory inv = Bukkit.createInventory(null, 54, "Â§2Â§lMenu");
 	
 		ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta) skull.getItemMeta();
 		meta.setOwningPlayer(player);
-		meta.setDisplayName("§6§l" + player.getName());
+		meta.setDisplayName("Â§6Â§l" + player.getName());
 		
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add("§eMoney : §6§l" + playerMoney);
+		lore.add("Â§eMoney : Â§6Â§l" + playerMoney);
 		
 		meta.setLore(lore);
 		
@@ -49,9 +49,9 @@ public class mainMenu {
 		
 		inv.setItem(13, skull);
 		
-		inv.setItem(37, getItem(Material.BLAZE_POWDER , "§6§lParticules"));
-		inv.setItem(31, getItem(Material.COMPASS , "§2§lTP"));
-		inv.setItem(43, getItem(Material.GOLD_INGOT , "§e§lBoutique"));
+		inv.setItem(37, getItem(Material.BLAZE_POWDER , "Â§6Â§lParticules"));
+		inv.setItem(31, getItem(Material.COMPASS , "Â§2Â§lTP"));
+		inv.setItem(43, getItem(Material.GOLD_INGOT , "Â§eÂ§lBoutique"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

@@ -12,11 +12,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class mondeOuvertMenu {
 
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Monde Ouvert");
+		Inventory inv = Bukkit.createInventory(null, 27, "Â§2Â§lMenu > TP > Monde Ouvert");
 		
-		inv.setItem(11, getItem(Material.IRON_SWORD , "§c§lSurvival"));
-		inv.setItem(15, getItem(Material.CYAN_WOOL , "§b§lSkyblock"));
-		inv.setItem(22, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, getItem(Material.IRON_SWORD , "Â§cÂ§lSurvival"));
+		inv.setItem(15, getItem(Material.CYAN_WOOL , "Â§bÂ§lSkyblock"));
+		inv.setItem(22, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

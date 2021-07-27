@@ -36,7 +36,7 @@ public class onInteractListener implements Listener {
 	            		{
 	                		event.setCancelled(true);
 	                		player.sendMessage("");
-	                		player.sendMessage("§cCe chunk a été claim. Tu ne peut donc rien faire dans cette zone.");
+	                		player.sendMessage("Â§cCe chunk a Ã©tÃ© claim. Tu ne peut donc rien faire dans cette zone.");
 	            		}
 	        		}
 	        	}
@@ -46,7 +46,7 @@ public class onInteractListener implements Listener {
         
         if(player.getWorld() == Bukkit.getWorld("world")) {
         
-        		if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
+        		if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("Â§bÂ§lClick pour ouvrire le menu de tÃ©lÃ©portation")) {
         			tpMenu.openMenu(player);
         		}
         		

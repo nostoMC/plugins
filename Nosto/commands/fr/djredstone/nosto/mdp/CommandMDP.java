@@ -29,25 +29,25 @@ public class CommandMDP implements CommandExecutor {
         	
         	if(args.length == 0) {
         		player.sendMessage("");
-        		player.sendMessage("§cUtilisation : /mdp reset");
+        		player.sendMessage("Â§cUtilisation : /mdp reset");
         	} else {
         		if(args[0].equalsIgnoreCase("reset")) {
         			menuPlayers = Main.getMenuPlayersList();
         			if(menuPlayers.contains(player)) {
         				
         				player.sendMessage("");
-        				player.sendMessage("§cVous devez vous connecter ! (/login <Mot de passe>)");
+        				player.sendMessage("Â§cVous devez vous connecter ! (/login <Mot de passe>)");
         				
         			} else {
         				
         				Main.getInstance().getConfig().set("password." + player.getUniqueId() + ".valide", null);
         				Main.getInstance().getConfig().set("password." + player.getUniqueId().toString() + ".password", null);
-        				player.kickPlayer("§eMot de passe réinisialisé !");
+        				player.kickPlayer("Â§eMot de passe rÃ©inisialisÃ© !");
         				
         			}
         		} else {
         			player.sendMessage("");
-            		player.sendMessage("§cUtilisation : /mdp reset");
+            		player.sendMessage("Â§cUtilisation : /mdp reset");
         		}
         	}
         	
@@ -56,18 +56,18 @@ public class CommandMDP implements CommandExecutor {
         if(cmd.getName().equalsIgnoreCase("register")) {
 			if(Main.getInstance().getConfig().contains("password." + player.getUniqueId().toString() + ".password")) {
 				player.sendMessage("");
-				player.sendMessage("§cVous avez déjà mis un mot de passe !");
+				player.sendMessage("Â§cVous avez dÃ©jÃ  mis un mot de passe !");
 			} else {
 				if(args.length < 1) {
 					player.sendMessage("");
-					player.sendMessage("§cUtilisation : /register <MotDePasse>");
+					player.sendMessage("Â§cUtilisation : /register <MotDePasse>");
 				} else if(args.length > 1) {
 					player.sendMessage("");
-					player.sendMessage("§cUtilisation : /register <MotDePasse>");
+					player.sendMessage("Â§cUtilisation : /register <MotDePasse>");
 				} else {
 					Main.getInstance().getConfig().set("password." + player.getUniqueId().toString() + ".password", args[0]);
 					player.sendMessage("");
-					player.sendMessage("§aVous avez mis §2§l" + args[0] + " §aen tant que mot de passe ! Vérifier votre mot de passe avec §2§l/valide <MotDePasse>");
+					player.sendMessage("Â§aVous avez mis Â§2Â§l" + args[0] + " Â§aen tant que mot de passe ! VÃ©rifier votre mot de passe avec Â§2Â§l/valide <MotDePasse>");
 					Main.getInstance().saveConfig();
 				}
 			}
@@ -78,16 +78,16 @@ public class CommandMDP implements CommandExecutor {
         		if(args.length == 1) {
         			if(!Main.getInstance().getConfig().contains("password." + player.getUniqueId().toString() + ".password")) {
         				player.sendMessage("");
-        				player.sendMessage("§cVous n'avez pas mis de mot de passe ! (/register <Mot de passe>)");
+        				player.sendMessage("Â§cVous n'avez pas mis de mot de passe ! (/register <Mot de passe>)");
         			} else {
         				if(Main.getInstance().getConfig().getBoolean("password." + player.getUniqueId().toString() + ".valide") == true) {
         					if(args[0].equals(Main.getInstance().getConfig().getString("password." + player.getUniqueId().toString() + ".password"))) {
         						player.sendMessage("");
-        						player.sendMessage("§aMot de passe correct ! §eBienvenue sur le serveur !");
-        						player.sendTitle("§6§lBienvenue sur le serveur !", "§eConnection sous le pseudonime §6§l" + player.getName(), 0, 60, 5);
+        						player.sendMessage("Â§aMot de passe correct ! Â§eBienvenue sur le serveur !");
+        						player.sendTitle("Â§6Â§lBienvenue sur le serveur !", "Â§eConnection sous le pseudonime Â§6Â§l" + player.getName(), 0, 60, 5);
         						ItemStack compassLobby = new ItemStack(Material.COMPASS, 1);
         						ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
-        						compassLobbyMeta.setDisplayName("§b§lClick pour ouvrire le menu de téléportation");
+        						compassLobbyMeta.setDisplayName("Â§bÂ§lClick pour ouvrire le menu de tÃ©lÃ©portation");
         						compassLobbyMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
         						compassLobbyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         						compassLobby.setItemMeta(compassLobbyMeta);
@@ -96,23 +96,23 @@ public class CommandMDP implements CommandExecutor {
         						String[] messages = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
         						Bukkit.broadcastMessage("");
         						if(messages[new Random().nextInt(messages.length)] == "1") {
-        							Bukkit.broadcastMessage("§eSalut §6§l" + player.getName() + "§e ! Bienvenue sur le serveur !");
+        							Bukkit.broadcastMessage("Â§eSalut Â§6Â§l" + player.getName() + "Â§e ! Bienvenue sur le serveur !");
         						} else if(messages[new Random().nextInt(messages.length)] == "2") {
-        							Bukkit.broadcastMessage("§eBon retour parmi nous §6§l" + player.getName() + "§e !");
+        							Bukkit.broadcastMessage("Â§eBon retour parmi nous Â§6Â§l" + player.getName() + "Â§e !");
         						} else if(messages[new Random().nextInt(messages.length)] == "3") {
-        							Bukkit.broadcastMessage("§6§l" + player.getName() + "§e est de retour !");
+        							Bukkit.broadcastMessage("Â§6Â§l" + player.getName() + "Â§e est de retour !");
         						} else if(messages[new Random().nextInt(messages.length)] == "4") {
-        							Bukkit.broadcastMessage("§6§l" + player.getName() + "§e nous a rejoint !");
+        							Bukkit.broadcastMessage("Â§6Â§l" + player.getName() + "Â§e nous a rejoint !");
         						} else if(messages[new Random().nextInt(messages.length)] == "5") {
-        							Bukkit.broadcastMessage("§eOh bas ! Qui vois là je ? C'est §6§l" + player.getName() + "§e !");
+        							Bukkit.broadcastMessage("Â§eOh bas ! Qui vois lÃ  je ? C'est Â§6Â§l" + player.getName() + "Â§e !");
         						} else if(messages[new Random().nextInt(messages.length)] == "6") {
-        							Bukkit.broadcastMessage("§6§l" + player.getName() + "§e est là ! J'AIME BIEN !");
+        							Bukkit.broadcastMessage("Â§6Â§l" + player.getName() + "Â§e est lÃ  ! J'AIME BIEN !");
         						} else if(messages[new Random().nextInt(messages.length)] == "7") {
-        							Bukkit.broadcastMessage("§eOh.. It's you §6§l" + player.getName() + "§e .. It's been a looong time.. How have you been ?");
+        							Bukkit.broadcastMessage("Â§eOh.. It's you Â§6Â§l" + player.getName() + "Â§e .. It's been a looong time.. How have you been ?");
         						} else if(messages[new Random().nextInt(messages.length)] == "8") {
-        							Bukkit.broadcastMessage("§eAh ! Un nouveau joueur de connecter ! Et il s'agit de... §6§l" + player.getName() + "§e !");
+        							Bukkit.broadcastMessage("Â§eAh ! Un nouveau joueur de connecter ! Et il s'agit de... Â§6Â§l" + player.getName() + "Â§e !");
         						} else if(messages[new Random().nextInt(messages.length)] == "9") {
-        							Bukkit.broadcastMessage("§eHello §6§l" + player.getName() + "§e ! Bon cube sur le serveur !");
+        							Bukkit.broadcastMessage("Â§eHello Â§6Â§l" + player.getName() + "Â§e ! Bon cube sur le serveur !");
         						}
         						if(player.getUniqueId().toString().equalsIgnoreCase("a9cf67ad-7b27-4ca3-a428-c6d5beb9b038") || player.getUniqueId().toString().equalsIgnoreCase("f2d404ac-19f2-4365-b11a-6f9d32d3db26") || player.getUniqueId().toString().equalsIgnoreCase("aff99f6d-a86b-447e-ac3f-0cb88a100145")) {
         							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " parent add administrateur");
@@ -126,20 +126,20 @@ public class CommandMDP implements CommandExecutor {
         						}
         					} else {
         						player.sendMessage("");
-        						player.sendMessage("§cLe mot de passe est incorect !");
+        						player.sendMessage("Â§cLe mot de passe est incorect !");
         					}
         				} else {
         					player.sendMessage("");
-        					player.sendMessage("§cVous n'avez pas validé votre mot de passe ! (/valide <MotDePasse>)");
+        					player.sendMessage("Â§cVous n'avez pas validÃ© votre mot de passe ! (/valide <MotDePasse>)");
         				}
         			}
         		} else {
         			player.sendMessage("");
-        			player.sendMessage("§cUtilisation : /login <MotDePasse>");
+        			player.sendMessage("Â§cUtilisation : /login <MotDePasse>");
         		}
         	} else {
         		player.sendMessage("");
-        		player.sendMessage("§cVous êtes déjà connecté !");
+        		player.sendMessage("Â§cVous Ãªtes dÃ©jÃ  connectÃ© !");
         	}
         }
         
@@ -148,25 +148,25 @@ public class CommandMDP implements CommandExecutor {
         		if(args.length == 1) {
         			if(!Main.getInstance().getConfig().contains("password." + player.getUniqueId().toString() + ".password")) {
         				player.sendMessage("");
-        				player.sendMessage("§cVous n'avez pas mis de mot de passe ! (/register <Mot de passe>)");
+        				player.sendMessage("Â§cVous n'avez pas mis de mot de passe ! (/register <Mot de passe>)");
         			} else {
         				if(args[0].equalsIgnoreCase(Main.getInstance().getConfig().getString("password." + player.getUniqueId().toString() + ".password"))) {
         					player.sendMessage("");
-        					player.sendMessage("§aMot de passe validé !");
+        					player.sendMessage("Â§aMot de passe validÃ© !");
         					Main.getInstance().getConfig().set("password." + player.getUniqueId() + ".valide", true);
         					Main.getInstance().saveConfig();
         				} else {
        						player.sendMessage("");
-       						player.sendMessage("§cLe mot de passe est incorect !");
+       						player.sendMessage("Â§cLe mot de passe est incorect !");
        					}
         			}
         		} else {
         			player.sendMessage("");
-        			player.sendMessage("§cUtilisation : /valide <MotDePasse>");
+        			player.sendMessage("Â§cUtilisation : /valide <MotDePasse>");
         		}
         	} else {
         		player.sendMessage("");
-        		player.sendMessage("§cVous avez déjà validé votre mot de passe !");
+        		player.sendMessage("Â§cVous avez dÃ©jÃ  validÃ© votre mot de passe !");
         	}
         }
 		

@@ -25,39 +25,39 @@ public class CommandSpawn implements CommandExecutor {
 		
 		if(player.getWorld() == Bukkit.getWorld("survie")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(SurvivalLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("skyworld")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(skyblockLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("Freebuild")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(freebuildLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("Hunt")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(huntLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("event")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(pvpLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("lg")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(lgLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("RoueDeLaChance")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(roueLobby);
 		} else if(player.getWorld() == Bukkit.getWorld("show")) {
 			player.sendMessage("");
-			player.sendMessage("§eTéléportation au spawn !");
+			player.sendMessage("Â§eTÃ©lÃ©portation au spawn !");
 			player.teleport(showLobby);
 		} else {
 			player.sendMessage("");
-			player.sendMessage("§cAucun spawn n'existe pour ce monde !");
+			player.sendMessage("Â§cAucun spawn n'existe pour ce monde !");
 		}
 		
 		return false;

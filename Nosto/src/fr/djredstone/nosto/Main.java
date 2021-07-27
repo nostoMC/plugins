@@ -68,7 +68,7 @@ public class Main extends JavaPlugin implements Listener {
 		instance = this;
 		super.onEnable();
 		
-		System.out.println("§b[Nosto] Plugin Custom Chargé !");
+		System.out.println("Â§b[Nosto] Plugin Custom ChargÃ© !");
 		
 		getServer().getPluginManager().registerEvents(this, this);
 		getCommand("annonce").setExecutor(new CommandAnnonce());
@@ -131,7 +131,7 @@ public class Main extends JavaPlugin implements Listener {
 
 	@Override
 	public void onDisable() {
-		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
+		System.out.println("Â§b[Nosto] Plugin Custom DÃ©chargÃ© !");
 	}
 	
 	public static void vanishPlayer(Player player) {

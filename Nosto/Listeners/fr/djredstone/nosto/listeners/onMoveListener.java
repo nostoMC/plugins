@@ -32,22 +32,22 @@ public class onMoveListener implements Listener {
 			player.teleport(lobby);
 			player.setGameMode(GameMode.ADVENTURE);
 			if(player.getInventory().contains(Material.COMPASS)) {
-				player.sendTitle("§eUtilisez la boussole", "§ePour vous téléporter quelque part !", 0, 60, 5);
+				player.sendTitle("Â§eUtilisez la boussole", "Â§ePour vous tÃ©lÃ©porter quelque part !", 0, 60, 5);
 			} else {
-				player.sendTitle("§c§lVeuillez vous connecter", "§6§l/login <Mot de passe>", 0, 60, 5);
+				player.sendTitle("Â§cÂ§lVeuillez vous connecter", "Â§6Â§l/login <Mot de passe>", 0, 60, 5);
 			}
 		}
 		frozen = Main.getFreezList();
 		if(frozen.contains(player)) {
 			player.sendMessage("");
-			player.sendMessage("§cVous ne pouvez pas bouger !");
+			player.sendMessage("Â§cVous ne pouvez pas bouger !");
 			event.setCancelled(true);
 		}
 		afks = Main.getAfksList();
 		if(afks.contains(player)) {
 			afks.remove(player);
 			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§7§l" + player.getName() + " §7n'est plus AFK");
+			Bukkit.broadcastMessage("Â§7Â§l" + player.getName() + " Â§7n'est plus AFK");
 			player.setCustomName(player.getName());
 		}
 	}

@@ -21,13 +21,13 @@ public class tpMenu {
 		
 		if(menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP");
+		Inventory inv = Bukkit.createInventory(null, 27, "Â§2Â§lMenu > TP");
 		
-		inv.setItem(10, getItem(Material.GRASS_BLOCK , "§2§lMonde ouvert"));
-		inv.setItem(12, getItem(Material.IRON_SWORD , "§6§lMini jeux"));
-		inv.setItem(14, getItem(Material.BOW , "§c§lTraning"));
-		inv.setItem(16, getItem(Material.FIREWORK_ROCKET , "§e§lEvent"));
-		inv.setItem(22, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(10, getItem(Material.GRASS_BLOCK , "Â§2Â§lMonde ouvert"));
+		inv.setItem(12, getItem(Material.IRON_SWORD , "Â§6Â§lMini jeux"));
+		inv.setItem(14, getItem(Material.BOW , "Â§cÂ§lTraning"));
+		inv.setItem(16, getItem(Material.FIREWORK_ROCKET , "Â§eÂ§lEvent"));
+		inv.setItem(22, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

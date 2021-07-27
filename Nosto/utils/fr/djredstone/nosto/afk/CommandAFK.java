@@ -21,17 +21,17 @@ public class CommandAFK implements CommandExecutor {
 			player.setCustomName(player.getName());
 			player.setCustomNameVisible(true);
 			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("ง7งl" + player.getName() + " ง7n'est plus AFK");
+			Bukkit.broadcastMessage("ยง7ยงl" + player.getName() + " ยง7n'est plus AFK");
 			afks.remove(player);
 			player.setCustomName(player.getName());
 		} else {
-			player.setCustomName(player.getName() + " ง7งl(AFK)");
+			player.setCustomName(player.getName() + " ยง7ยงl(AFK)");
 			player.setCustomNameVisible(true);
 			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("ง8งl" + player.getName() + " ง8est AFK");
+			Bukkit.broadcastMessage("ยง8ยงl" + player.getName() + " ยง8est AFK");
 			afks.add(player);
 			String playerName = player.getName();
-			player.setCustomName(playerName + " ง7งl(AFK)");
+			player.setCustomName(playerName + " ยง7ยงl(AFK)");
 		}
 		return false;
 	}

@@ -39,11 +39,11 @@ public class CommandNightclub implements CommandExecutor {
 			if(args.length == 1) {
 				if(args[0].equalsIgnoreCase("menu")) {
 					// if(dj.contains(player)) {
-						Inventory inv = Bukkit.createInventory(null, 54, "§2§lGestioraire des effets");
+						Inventory inv = Bukkit.createInventory(null, 54, "Â§2Â§lGestioraire des effets");
 						
 						ItemStack it = new ItemStack(Material.STRING, 1);
 						ItemMeta itM = it.getItemMeta();
-						itM.setDisplayName("§7§lFloor Smoke");
+						itM.setDisplayName("Â§7Â§lFloor Smoke");
 						
 						djLaser1 = Main.getfloorSmoke();
 						if(djLaser1 == false ) {
@@ -58,7 +58,7 @@ public class CommandNightclub implements CommandExecutor {
 						
 						it = new ItemStack(Material.REDSTONE_LAMP, 1);
 						itM = it.getItemMeta();
-						itM.setDisplayName("§8§lStrobe");
+						itM.setDisplayName("Â§8Â§lStrobe");
 						
 						strobe = Main.getStrobe();
 						if(strobe == false ) {
@@ -73,7 +73,7 @@ public class CommandNightclub implements CommandExecutor {
 						
 						it = new ItemStack(Material.FIREWORK_ROCKET, 1);
 						itM = it.getItemMeta();
-						itM.setDisplayName("§8§lFeux d'artifices");
+						itM.setDisplayName("Â§8Â§lFeux d'artifices");
 						
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 						it.setItemMeta(itM);
@@ -81,7 +81,7 @@ public class CommandNightclub implements CommandExecutor {
 						
 						it = new ItemStack(Material.END_CRYSTAL, 1);
 						itM = it.getItemMeta();
-						itM.setDisplayName("§5§lLight Bottom");
+						itM.setDisplayName("Â§5Â§lLight Bottom");
 						
 						lightBottom = Main.getLightBottom();
 						if(lightBottom == false ) {
@@ -96,7 +96,7 @@ public class CommandNightclub implements CommandExecutor {
 						
 						it = new ItemStack(Material.BEACON, 1);
 						itM = it.getItemMeta();
-						itM.setDisplayName("§5§lRandom Beam");
+						itM.setDisplayName("Â§5Â§lRandom Beam");
 						
 						randomBeacon = Main.getRandomBeacon();
 						if(randomBeacon == false ) {
@@ -131,15 +131,15 @@ public class CommandNightclub implements CommandExecutor {
 							Main.setPlayerDjList(player);
 							player.teleport(new Location(Bukkit.getWorld("Nightclub"), 0.5, 67, 12.5, 180, 0));
 							Bukkit.broadcastMessage("");
-							Bukkit.broadcastMessage("§6§l" + player.getName() + " §eest notre nouveau DJ !");
+							Bukkit.broadcastMessage("Â§6Â§l" + player.getName() + " Â§eest notre nouveau DJ !");
 						} else {
 							if(dj.contains(player)) {
 								player.teleport(new Location(Bukkit.getWorld("Nightclub"), 0.5, 67, 12.5, 180, 0));
 								player.sendMessage("");
-								player.sendMessage("§eDe nouveau sur la scène !");
+								player.sendMessage("Â§eDe nouveau sur la scÃ¨ne !");
 							} else {
 								player.sendMessage("");
-								player.sendMessage("§cUn DJ est déjà là !");
+								player.sendMessage("Â§cUn DJ est dÃ©jÃ  lÃ  !");
 							}
 						}
 					} else if(args[0].equalsIgnoreCase("leave")) {
@@ -147,7 +147,7 @@ public class CommandNightclub implements CommandExecutor {
 							dj.remove(player);
 							player.teleport(new Location(Bukkit.getWorld("Nightclub"), 0.5, 64, 0.5, 0, 0));
 							Bukkit.broadcastMessage("");
-							Bukkit.broadcastMessage("§6§l" + player.getName() + " §en'est plus DJ !");
+							Bukkit.broadcastMessage("Â§6Â§l" + player.getName() + " Â§en'est plus DJ !");
 						}
 					}
 				}

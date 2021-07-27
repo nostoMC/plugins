@@ -29,15 +29,15 @@ public class onPlayerDeath implements Listener {
 			Player killer = playerDeath.getKiller();
 			
 			if(speedRunner.contains(playerDeath)) {
-				event.setDeathMessage("§eLe §b§lSpeedRunner §eest mort ! (§6§l" + killer.getName() + " §c☠ §4§l" + playerDeath.getName() + "§e)");
+				event.setDeathMessage("Â§eLe Â§bÂ§lSpeedRunner Â§eest mort ! (Â§6Â§l" + killer.getName() + " Â§câ  Â§4Â§l" + playerDeath.getName() + "Â§e)");
 				loc = playerDeath.getLocation();
 			} else if(hunter.contains(playerDeath)) {
-				event.setDeathMessage("§eLe §b§lSpeedRunner §ea tuer un §c§lhunter §e! (§6§l" + killer.getName() + " §c☠ §4§l" + playerDeath.getName() + "§e)");
+				event.setDeathMessage("Â§eLe Â§bÂ§lSpeedRunner Â§ea tuer un Â§cÂ§lhunter Â§e! (Â§6Â§l" + killer.getName() + " Â§câ  Â§4Â§l" + playerDeath.getName() + "Â§e)");
 				playerDeath.setGameMode(GameMode.SPECTATOR);
 				for(Player players : Bukkit.getOnlinePlayers()) {
 					if(players.getWorld().getName().startsWith("Hunt")) {
 						players.setGameMode(GameMode.SPECTATOR);
-						players.sendTitle("§eLes §c§lHunters §e gagnent !", "", 10, 40, 20);
+						players.sendTitle("Â§eLes Â§cÂ§lHunters Â§e gagnent !", "", 10, 40, 20);
 					}
 				}
 			}

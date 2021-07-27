@@ -21,17 +21,17 @@ public class onLeaveListener implements Listener {
 	public void onLeave(PlayerQuitEvent event) {
 		Bukkit.broadcastMessage("");
 		if(messages[new Random().nextInt(messages.length)] == "1") {
-			event.setQuitMessage("§6§l" + event.getPlayer().getName() + "§e est parti...");
+			event.setQuitMessage("Â§6Â§l" + event.getPlayer().getName() + "Â§e est parti...");
 		} else if(messages[new Random().nextInt(messages.length)] == "2") {
-			event.setQuitMessage("§6§l" + event.getPlayer().getName() + "§e fait une pose.");
+			event.setQuitMessage("Â§6Â§l" + event.getPlayer().getName() + "Â§e fait une pose.");
 		} else if(messages[new Random().nextInt(messages.length)] == "3") {
-			event.setQuitMessage("§6§l" + event.getPlayer().getName() + "§e est reparti !");
+			event.setQuitMessage("Â§6Â§l" + event.getPlayer().getName() + "Â§e est reparti !");
 		} else if(messages[new Random().nextInt(messages.length)] == "4") {
-			event.setQuitMessage("§eUne personne est parti, elle s'agit de §6§l" + event.getPlayer().getName() + "§e !");
+			event.setQuitMessage("Â§eUne personne est parti, elle s'agit de Â§6Â§l" + event.getPlayer().getName() + "Â§e !");
 		} else if(messages[new Random().nextInt(messages.length)] == "5") {
-			event.setQuitMessage("§eBye bye §6§l" + event.getPlayer().getName() + "§e !");
+			event.setQuitMessage("Â§eBye bye Â§6Â§l" + event.getPlayer().getName() + "Â§e !");
 		} else if(messages[new Random().nextInt(messages.length)] == "6") {
-			event.setQuitMessage("§6§l" + event.getPlayer().getName() + "§e retourne au monde réel !");
+			event.setQuitMessage("Â§6Â§l" + event.getPlayer().getName() + "Â§e retourne au monde rÃ©el !");
 		}
 	}
 

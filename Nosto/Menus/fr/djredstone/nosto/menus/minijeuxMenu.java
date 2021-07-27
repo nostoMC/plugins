@@ -12,13 +12,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class minijeuxMenu {
 
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Mini jeux");
+		Inventory inv = Bukkit.createInventory(null, 27, "Â§2Â§lMenu > TP > Mini jeux");
 		
-		inv.setItem(10, getItem(Material.DIAMOND_SWORD , "§6§lDuel"));
-		inv.setItem(12, getItem(Material.BARRIER , "§f§kSheepwars"));
-		inv.setItem(14, getItem(Material.BARRIER , "§c§kDungeon"));
-		inv.setItem(16, getItem(Material.BARRIER , "§7§kTower Battle"));
-		inv.setItem(22, getItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(10, getItem(Material.DIAMOND_SWORD , "Â§6Â§lDuel"));
+		inv.setItem(12, getItem(Material.BARRIER , "Â§fÂ§kSheepwars"));
+		inv.setItem(14, getItem(Material.BARRIER , "Â§cÂ§kDungeon"));
+		inv.setItem(16, getItem(Material.BARRIER , "Â§7Â§kTower Battle"));
+		inv.setItem(22, getItem(Material.ARROW , "Â§6Â§lRetour"));
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();

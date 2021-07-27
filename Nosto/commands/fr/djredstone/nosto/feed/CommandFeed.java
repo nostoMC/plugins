@@ -16,20 +16,20 @@ public class CommandFeed implements CommandExecutor {
 		if (args.length == 0) {
             player.setFoodLevel(20);
             player.sendMessage("");
-            player.sendMessage("§2Votre barre de nourriture a été restaurer !");
+            player.sendMessage("Â§2Votre barre de nourriture a Ã©tÃ© restaurer !");
             return true;
         }
         Player target = Bukkit.getServer().getPlayer(args[0]);
         if (target == null) {
         	player.sendMessage("");
-            player.sendMessage("§cJoueur innconu");
+            player.sendMessage("Â§cJoueur innconu");
             return true;
         }
         target.setFoodLevel(20);
         target.sendMessage("");
-        target.sendMessage("§2Votre barre de nourriture a été restaurer !");
+        target.sendMessage("Â§2Votre barre de nourriture a Ã©tÃ© restaurer !");
         player.sendMessage("");
-        player.sendMessage("§2La barre de nourriture de §a§l" + target.getName() + " §2a été restaurer !");
+        player.sendMessage("Â§2La barre de nourriture de Â§aÂ§l" + target.getName() + " Â§2a Ã©tÃ© restaurer !");
 		
 		return false;
 	}

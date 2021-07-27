@@ -30,13 +30,13 @@ public class CommandSit implements CommandExecutor {
 		
 		if(!player.isOnGround()) {
     		player.sendMessage("");
-    		player.sendMessage("§cVous ne pouvez pas vous assoir en l'air !");
+    		player.sendMessage("Â§cVous ne pouvez pas vous assoir en l'air !");
     		return true;
     	}
     	
     	if(sitting.contains(player)) {
     		player.sendMessage("");
-    		player.sendMessage("§cVous êtes déjà assis !");
+    		player.sendMessage("Â§cVous Ãªtes dÃ©jÃ  assis !");
     		return true;
     	}
     	

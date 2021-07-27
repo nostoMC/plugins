@@ -53,7 +53,7 @@ public class onJoinListener implements Listener {
 			player.getInventory().clear();
 			player.sendMessage("");
 			player.sendMessage("");
-			player.sendMessage("	§eSalut §6§l" + player.getName() + " §e! Afin de garentir une sécurité maximale sur ton compte, nous te demandons de te connecter avec §6§l/login§e. Si c'est la première fois que tu te connecte, il faudra créer un mot de passe avec §6§l/register §epuis le validé avec §6§l/valide §e!");
+			player.sendMessage("	Â§eSalut Â§6Â§l" + player.getName() + " Â§e! Afin de garentir une sÃ©curitÃ© maximale sur ton compte, nous te demandons de te connecter avec Â§6Â§l/loginÂ§e. Si c'est la premiÃ¨re fois que tu te connecte, il faudra crÃ©er un mot de passe avec Â§6Â§l/register Â§epuis le validÃ© avec Â§6Â§l/valide Â§e!");
 			player.sendMessage("");
 			player.sendMessage("");
 			menuPlayers.add(player);

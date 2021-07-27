@@ -34,14 +34,14 @@ public class onRespawn implements Listener {
 			player.getInventory().clear();
 			ItemStack seriousPVP = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta seriousPVPMeta = seriousPVP.getItemMeta();
-			seriousPVPMeta.setDisplayName("§2§lPvP Sérieux");
+			seriousPVPMeta.setDisplayName("Â§2Â§lPvP SÃ©rieux");
 			seriousPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			seriousPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			seriousPVP.setItemMeta(seriousPVPMeta);
 			player.getInventory().setItem(2, seriousPVP);
 			ItemStack funPVP = new ItemStack(Material.TNT, 1);
 			ItemMeta funPVPMeta = funPVP.getItemMeta();
-			funPVPMeta.setDisplayName("§a§lPvP Fun§8(WIP)");
+			funPVPMeta.setDisplayName("Â§aÂ§lPvP FunÂ§8(WIP)");
 			funPVPMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			funPVPMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			funPVP.setItemMeta(funPVPMeta);
