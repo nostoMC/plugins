@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.djredstone.nostoNC.commands.CommandNightclub;
-import fr.djredstone.nostoNC.commands.nightclubTab;
-import fr.djredstone.nostoNC.listeners.onInventoryClickListener;
-import fr.djredstone.nostoNC.listeners.onPlayerDamageListener;
-import fr.djredstone.nostoNC.tasks.djGlowing;
-import fr.djredstone.nostoNC.tasks.floorSmokeEffect;
-import fr.djredstone.nostoNC.tasks.lightBottom;
-import fr.djredstone.nostoNC.tasks.randomBeaconEffect;
-import fr.djredstone.nostoNC.tasks.strobeEffect;
+import fr.djredstone.nostoNC.commands.TabNightclub;
+import fr.djredstone.nostoNC.listeners.OnInventoryClickListener;
+import fr.djredstone.nostoNC.listeners.OnPlayerDamageListener;
+import fr.djredstone.nostoNC.tasks.DjGlowing;
+import fr.djredstone.nostoNC.tasks.FloorSmokeEffect;
+import fr.djredstone.nostoNC.tasks.LightBottom;
+import fr.djredstone.nostoNC.tasks.RandomBeaconEffect;
+import fr.djredstone.nostoNC.tasks.StrobeEffect;
 
 public class Main extends JavaPlugin {
 	
@@ -42,17 +42,17 @@ public class Main extends JavaPlugin {
 		super.onEnable();
 		
 		getCommand("nightclub").setExecutor(new CommandNightclub());
-		getCommand("nightclub").setTabCompleter(new nightclubTab());
+		getCommand("nightclub").setTabCompleter(new TabNightclub());
 		
-		new onInventoryClickListener(this);
-		new onPlayerDamageListener(this);
+		new OnInventoryClickListener(this);
+		new OnPlayerDamageListener(this);
 		
-		new floorSmokeEffect(this);
-		new strobeEffect(this);
-		new lightBottom(this);
-		new randomBeaconEffect(this);
+		new FloorSmokeEffect(this);
+		new StrobeEffect(this);
+		new LightBottom(this);
+		new RandomBeaconEffect(this);
 		
-		new djGlowing(this);
+		new DjGlowing(this);
 		
 		off.add("§c§loff");
 		on.add("§a§lon");

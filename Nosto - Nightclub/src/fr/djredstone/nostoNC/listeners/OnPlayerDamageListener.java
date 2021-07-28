@@ -8,9 +8,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 import fr.djredstone.nostoNC.Main;
 
-public class onPlayerDamageListener implements Listener {
+public class OnPlayerDamageListener implements Listener {
 
-	public onPlayerDamageListener(Main main) {
+	public OnPlayerDamageListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 

@@ -10,11 +10,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Main;
 
-public class djGlowing {
+public class DjGlowing {
 	
 	ArrayList<Player> dj = Main.getDjList();
 
-	public djGlowing(Main main) {
+	public DjGlowing(Main main) {
 		
 		new BukkitRunnable() {
 			

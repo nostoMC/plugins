@@ -9,13 +9,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Main;
 
-public class randomBeaconEffect {
+public class RandomBeaconEffect {
 	
 	static Boolean randomBeacon = Main.getRandomBeacon();
 	
 	Random r = new Random();
 
-	public randomBeaconEffect(Main main) {
+	public RandomBeaconEffect(Main main) {
 		
 		Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 64, 14)).setType(Material.REDSTONE_BLOCK);
 		

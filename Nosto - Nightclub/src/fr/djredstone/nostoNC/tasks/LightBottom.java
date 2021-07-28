@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Main;
 
-public class lightBottom {
+public class LightBottom {
 	
 	World w = Bukkit.getWorld("Nightclub");
 	
@@ -19,7 +19,7 @@ public class lightBottom {
 	
 	Boolean lightBottom = Main.getLightBottom();
 	
-	public lightBottom(Main main) {
+	public LightBottom(Main main) {
 		
 		new BukkitRunnable() {
 			

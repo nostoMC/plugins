@@ -6,11 +6,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Main;
 
-public class floorSmokeEffect {
+public class FloorSmokeEffect {
 	
 	static Boolean floorSmoke = Main.getfloorSmoke();
 
-	public floorSmokeEffect(Main main) {
+	public FloorSmokeEffect(Main main) {
 		
 		new BukkitRunnable() {
 

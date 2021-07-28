@@ -11,11 +11,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Main;
 
-public class strobeEffect {
+public class StrobeEffect {
 	
 	static Boolean strobe = Main.getStrobe();
 
-	public strobeEffect(Main main) {
+	public StrobeEffect(Main main) {
 		
 		new BukkitRunnable() {
 			

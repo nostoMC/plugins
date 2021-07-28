@@ -20,7 +20,7 @@ import org.bukkit.util.Vector;
 
 import fr.djredstone.nostoNC.Main;
 
-public class onInventoryClickListener implements Listener {
+public class OnInventoryClickListener implements Listener {
 	
 	static Boolean floorSmoke = Main.getfloorSmoke();
 	static Boolean strobe = Main.getStrobe();
@@ -29,7 +29,7 @@ public class onInventoryClickListener implements Listener {
 	static ArrayList<String> on = Main.getOnLore();
 	static ArrayList<String> off = Main.getOffLore();
 
-	public onInventoryClickListener(Main main) {
+	public OnInventoryClickListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 

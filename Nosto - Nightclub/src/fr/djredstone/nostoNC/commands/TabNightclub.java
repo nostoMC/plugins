@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-public class nightclubTab implements TabCompleter {
+public class TabNightclub implements TabCompleter {
 
 	List<String> arguments = new ArrayList<String>();
 	List<String> arguments2 = new ArrayList<String>();
