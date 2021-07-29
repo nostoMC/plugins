@@ -8,12 +8,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoMCNF.Main;
-import fr.djredstone.nostoMCNF.fleches.bleu;
-import fr.djredstone.nostoMCNF.fleches.red;
-import fr.djredstone.nostoMCNF.fleches.rose;
-import fr.djredstone.nostoMCNF.fleches.vert;
+import fr.djredstone.nostoMCNF.fleches.Bleu;
+import fr.djredstone.nostoMCNF.fleches.Red;
+import fr.djredstone.nostoMCNF.fleches.Rose;
+import fr.djredstone.nostoMCNF.fleches.Vert;
 
-public class tutorial {
+public class Tutorial {
 
 	public static void start(String string, Location arrowRose1, Location arrowBleu1, Location arrowVert1, Location arrowRouge1, Location arrowRose2, Location arrowBleu2, Location arrowVert2, Location arrowRouge2) {
 
@@ -61,23 +61,23 @@ public class tutorial {
 					
 					if(musicNormal.get(i).startsWith("P1_")) {
 						if(musicNormal.get(i).endsWith("red_simple")) {
-							red.simple(arrowRouge1);
+							Red.simple(arrowRouge1);
 						} else if(musicNormal.get(i).endsWith("rose_simple")) {
-							rose.simple(arrowRose1);
+							Rose.simple(arrowRose1);
 						} else if(musicNormal.get(i).endsWith("bleu_simple")) {
-							bleu.simple(arrowBleu1);
+							Bleu.simple(arrowBleu1);
 						} else if(musicNormal.get(i).endsWith("vert_simple")) {
-							vert.simple(arrowVert1);
+							Vert.simple(arrowVert1);
 						}
 					} else {
 						if(musicNormal.get(i).endsWith("red_simple")) {
-							red.simple(arrowRouge2);
+							Red.simple(arrowRouge2);
 						} else if(musicNormal.get(i).endsWith("rose_simple")) {
-							rose.simple(arrowRose2);
+							Rose.simple(arrowRose2);
 						} else if(musicNormal.get(i).endsWith("bleu_simple")) {
-							bleu.simple(arrowBleu2);
+							Bleu.simple(arrowBleu2);
 						} else if(musicNormal.get(i).endsWith("vert_simple")) {
-							vert.simple(arrowVert2);
+							Vert.simple(arrowVert2);
 						}
 					}
 				} else {

@@ -17,15 +17,15 @@ import com.mojang.authlib.properties.Property;
 
 import fr.djredstone.nostoMCNF.Main;
 
-public class vert {
-
+public class Bleu {
+	
 	@SuppressWarnings("deprecation")
 	public static void simple(Location location) {
 		ArmorStand simple_rose = (ArmorStand) Bukkit.getWorld("McNightFunkin").spawnEntity(new Location(location.getWorld(), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch()), EntityType.ARMOR_STAND);
 		simple_rose.setGravity(false);
 		simple_rose.setArms(true);
 		simple_rose.setVisible(false);
-		String value = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0=";
+		String value = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjBkMWRmODA0NmYwYjVkOTM0YzNlMDU3OThlYWNmZWVhNmQ3YjU5NWRiZTI2ZGViZjdkYjlhY2M4YzRmYTc5OCJ9fX0=";
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
         gameProfile.getProperties().put("textures", new Property("textures", value));
 
@@ -61,5 +61,5 @@ public class vert {
 			}
 		}.runTaskTimer(Main.getInstance(), 0, 0);
 	}
-	
+
 }

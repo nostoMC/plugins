@@ -17,7 +17,7 @@ import com.mojang.authlib.properties.Property;
 
 import fr.djredstone.nostoMCNF.Main;
 
-public class rose {
+public class Rose {
 	
 	@SuppressWarnings("deprecation")
 	public static void simple(Location location) {

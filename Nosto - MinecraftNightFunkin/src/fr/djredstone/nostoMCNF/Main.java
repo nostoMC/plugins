@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.djredstone.nostoMCNF.Main;
 import fr.djredstone.nostoMCNF.commands.CommandMCNF;
-import fr.djredstone.nostoMCNF.commands.MCNFTab;
+import fr.djredstone.nostoMCNF.commands.TabMCNF;
 
 public class Main extends JavaPlugin {
 	
@@ -23,7 +23,7 @@ public class Main extends JavaPlugin {
 		super.onEnable();
 		
 		getCommand("mcnf").setExecutor(new CommandMCNF());
-		getCommand("mcnf").setTabCompleter(new MCNFTab());
+		getCommand("mcnf").setTabCompleter(new TabMCNF());
 		
 		getConfig().set("test", true);
 		

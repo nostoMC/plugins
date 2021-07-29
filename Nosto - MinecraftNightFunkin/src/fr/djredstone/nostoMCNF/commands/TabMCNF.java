@@ -10,7 +10,7 @@ import org.bukkit.command.TabCompleter;
 
 import fr.djredstone.nostoMCNF.Main;
 
-public class MCNFTab implements TabCompleter {
+public class TabMCNF implements TabCompleter {
 	
 	List<String> arguments = new ArrayList<String>();
 	List<String> arguments2 = new ArrayList<String>();

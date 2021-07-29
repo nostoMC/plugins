@@ -17,15 +17,15 @@ import com.mojang.authlib.properties.Property;
 
 import fr.djredstone.nostoMCNF.Main;
 
-public class red {
+public class Vert {
 
 	@SuppressWarnings("deprecation")
 	public static void simple(Location location) {
-		ArmorStand simple_rouge = (ArmorStand) Bukkit.getWorld("McNightFunkin").spawnEntity(new Location(location.getWorld(), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch()), EntityType.ARMOR_STAND);
-		simple_rouge.setGravity(false);
-		simple_rouge.setArms(true);
-		simple_rouge.setVisible(false);
-		String value = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmNmZTg4NDVhOGQ1ZTYzNWZiODc3MjhjY2M5Mzg5NWQ0MmI0ZmMyZTZhNTNmMWJhNzhjODQ1MjI1ODIyIn19fQ==";
+		ArmorStand simple_rose = (ArmorStand) Bukkit.getWorld("McNightFunkin").spawnEntity(new Location(location.getWorld(), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch()), EntityType.ARMOR_STAND);
+		simple_rose.setGravity(false);
+		simple_rose.setArms(true);
+		simple_rose.setVisible(false);
+		String value = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0=";
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
         gameProfile.getProperties().put("textures", new Property("textures", value));
 
@@ -40,7 +40,7 @@ public class red {
             exception.printStackTrace();
         }
         skull.setItemMeta(skullMeta);
-        simple_rouge.setHelmet(skull);
+        simple_rose.setHelmet(skull);
 		
 		new BukkitRunnable() {
 			
@@ -49,12 +49,12 @@ public class red {
 			@Override
 			public void run() {
 
-				simple_rouge.teleport(new Location(Bukkit.getWorld("McNightFunkin"), simple_rouge.getLocation().getX(), simple_rouge.getLocation().getY() + 0.1, simple_rouge.getLocation().getZ()));
+				simple_rose.teleport(new Location(Bukkit.getWorld("McNightFunkin"), simple_rose.getLocation().getX(), simple_rose.getLocation().getY() + 0.1, simple_rose.getLocation().getZ()));
 				
 				i++;
 				
 				if(i == 80) {
-					simple_rouge.remove();
+					simple_rose.remove();
 					cancel();
 				}
 				
@@ -62,6 +62,4 @@ public class red {
 		}.runTaskTimer(Main.getInstance(), 0, 0);
 	}
 	
-	
-
 }
