@@ -6,9 +6,9 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 import fr.djredstone.nostoSRVSH.Main;
 
-public class onPlayerChangeWorld implements Listener {
+public class OnPlayerChangeWorld implements Listener {
 	
-	public onPlayerChangeWorld(Main main) {
+	public OnPlayerChangeWorld(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 

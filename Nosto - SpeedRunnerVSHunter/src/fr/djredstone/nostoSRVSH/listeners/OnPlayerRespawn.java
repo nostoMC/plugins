@@ -10,13 +10,13 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.djredstone.nostoSRVSH.Main;
 
-public class onPlayerRespawn implements Listener {
+public class OnPlayerRespawn implements Listener {
 	
 	ArrayList<Player> speedRunner = Main.getSpeedRunnerList();
 	ArrayList<Player> hunter = Main.getHunterList();
-	Location deathLocation = onPlayerDeath.getDeathLocation();
+	Location deathLocation = OnPlayerDeath.getDeathLocation();
 
-	public onPlayerRespawn(Main main) {
+	public OnPlayerRespawn(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 	

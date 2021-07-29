@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class welcomeMenu {
+public class WelcomeMenu {
 
 	public static void openMenu(Player player) {
 		Inventory inv = Bukkit.createInventory(null, 9, "§2§lTP > Events > Hunt");

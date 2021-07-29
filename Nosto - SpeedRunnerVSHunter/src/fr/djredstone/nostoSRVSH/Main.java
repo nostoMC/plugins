@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.djredstone.nostoSRVSH.listeners.onInventoryClickListener;
-import fr.djredstone.nostoSRVSH.listeners.onPlayerChangeWorld;
-import fr.djredstone.nostoSRVSH.listeners.onPlayerDeath;
-import fr.djredstone.nostoSRVSH.listeners.onPlayerRespawn;
+import fr.djredstone.nostoSRVSH.listeners.OnInventoryClickListener;
+import fr.djredstone.nostoSRVSH.listeners.OnPlayerChangeWorld;
+import fr.djredstone.nostoSRVSH.listeners.OnPlayerDeath;
+import fr.djredstone.nostoSRVSH.listeners.OnPlayerRespawn;
 
 public class Main extends JavaPlugin {
 	
@@ -17,10 +17,10 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		new onPlayerDeath(this);
-		new onPlayerRespawn(this);
-		new onInventoryClickListener(this);
-		new onPlayerChangeWorld(this);
+		new OnPlayerDeath(this);
+		new OnPlayerRespawn(this);
+		new OnInventoryClickListener(this);
+		new OnPlayerChangeWorld(this);
 	}
 	
 	@Override

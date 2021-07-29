@@ -12,13 +12,13 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.djredstone.nostoSRVSH.Main;
 
-public class onPlayerDeath implements Listener {
+public class OnPlayerDeath implements Listener {
 	
 	ArrayList<Player> speedRunner = Main.getSpeedRunnerList();
 	ArrayList<Player> hunter = Main.getHunterList();
 	static Location loc;
 
-	public onPlayerDeath(Main main) {
+	public OnPlayerDeath(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 	

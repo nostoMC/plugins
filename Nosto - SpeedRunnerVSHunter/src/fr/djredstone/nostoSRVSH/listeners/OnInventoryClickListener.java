@@ -13,15 +13,15 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.djredstone.nostoSRVSH.Main;
-import fr.djredstone.nostoSRVSH.menus.welcomeMenu;
+import fr.djredstone.nostoSRVSH.menus.WelcomeMenu;
 
 
-public class onInventoryClickListener implements Listener {
+public class OnInventoryClickListener implements Listener {
 	
 	ArrayList<Player> speedRunner = Main.getSpeedRunnerList();
 	ArrayList<Player> hunter = Main.getHunterList();
 	
-	public onInventoryClickListener(Main main) {
+	public OnInventoryClickListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 
@@ -36,7 +36,7 @@ public class onInventoryClickListener implements Listener {
 			
 			if(current.getType() == Material.FLINT_AND_STEEL) {
 				if(!player.hasPermission("server.huntAcces")) return;
-				welcomeMenu.openMenu(player);
+				WelcomeMenu.openMenu(player);
 			}
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lTP > Events > Hunt")) {
 			event.setCancelled(true);
