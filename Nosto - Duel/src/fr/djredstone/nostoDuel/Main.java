@@ -10,15 +10,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoDuel.Main;
 import fr.djredstone.nostoDuel.commands.CommandDuel;
-import fr.djredstone.nostoDuel.commands.duelTab;
-import fr.djredstone.nostoDuel.listeners.onDisconnect;
-import fr.djredstone.nostoDuel.listeners.onInteractListener;
-import fr.djredstone.nostoDuel.listeners.onInventoryClick;
-import fr.djredstone.nostoDuel.listeners.onItemDropListener;
-import fr.djredstone.nostoDuel.listeners.onMoveItemInventoryListener;
-import fr.djredstone.nostoDuel.listeners.onPlayerDamageListener;
-import fr.djredstone.nostoDuel.listeners.onRespawn;
-import fr.djredstone.nostoDuel.listeners.onplayerDeathListener;
+import fr.djredstone.nostoDuel.commands.TabDuel;
+import fr.djredstone.nostoDuel.listeners.OnDisconnect;
+import fr.djredstone.nostoDuel.listeners.OnInteractListener;
+import fr.djredstone.nostoDuel.listeners.OnInventoryClick;
+import fr.djredstone.nostoDuel.listeners.OnItemDropListener;
+import fr.djredstone.nostoDuel.listeners.OnMoveItemInventoryListener;
+import fr.djredstone.nostoDuel.listeners.OnPlayerDamageListener;
+import fr.djredstone.nostoDuel.listeners.OnRespawn;
+import fr.djredstone.nostoDuel.listeners.OnplayerDeathListener;
 
 public class Main extends JavaPlugin implements Listener {
 	
@@ -35,15 +35,15 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		getCommand("duel").setExecutor(new CommandDuel());
-		getCommand("duel").setTabCompleter(new duelTab());
-		new onInventoryClick(this);
-		new onItemDropListener(this);
-		new onMoveItemInventoryListener(this);
-		new onPlayerDamageListener(this);
-		new onInteractListener(this);
-		new onplayerDeathListener(this);
-		new onRespawn(this);
-		new onDisconnect(this);
+		getCommand("duel").setTabCompleter(new TabDuel());
+		new OnInventoryClick(this);
+		new OnItemDropListener(this);
+		new OnMoveItemInventoryListener(this);
+		new OnPlayerDamageListener(this);
+		new OnInteractListener(this);
+		new OnplayerDeathListener(this);
+		new OnRespawn(this);
+		new OnDisconnect(this);
 		instance = this;
 		super.onEnable();
 		

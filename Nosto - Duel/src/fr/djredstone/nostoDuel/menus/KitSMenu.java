@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class kitSMenu {
+public class KitSMenu {
 
 	public static void openMenu(Player player) {
 		Inventory invEvent = Bukkit.createInventory(null, 54, "§9§lChoisissez votre kit !");

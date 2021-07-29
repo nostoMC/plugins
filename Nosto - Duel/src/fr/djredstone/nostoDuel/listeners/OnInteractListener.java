@@ -9,14 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.djredstone.nostoDuel.Main;
-import fr.djredstone.nostoDuel.menus.kitSMenu;
+import fr.djredstone.nostoDuel.menus.KitSMenu;
 
-public class onInteractListener implements Listener {
+public class OnInteractListener implements Listener {
 	
 	static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
 	static String demandeCancel = "false";
 
-	public onInteractListener(Main main) {
+	public OnInteractListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 
@@ -32,7 +32,7 @@ public class onInteractListener implements Listener {
 		
 		if(event.getPlayer().getItemInHand().getType() == Material.DIAMOND_SWORD) {
 			if(duelLobby.contains(event.getPlayer())) {
-				kitSMenu.openMenu(event.getPlayer());
+				KitSMenu.openMenu(event.getPlayer());
 			}
 		}
 		

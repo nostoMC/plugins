@@ -17,20 +17,20 @@ import org.bukkit.scheduler.BukkitTask;
 
 import fr.djredstone.nostoDuel.Main;
 import fr.djredstone.nostoDuel.commands.CommandDuel;
-import fr.djredstone.nostoDuel.tasks.duelStart;
+import fr.djredstone.nostoDuel.tasks.DuelStart;
 
-public class onInventoryClick implements Listener {
+public class OnInventoryClick implements Listener {
 	
 	static Boolean duelStart = Main.getDuelStart();
 	static ArrayList<Player> duel = Main.getDuelList();
 	static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
-	static String demandeCancel = onInteractListener.getDemandeCancel();
+	static String demandeCancel = OnInteractListener.getDemandeCancel();
 	static String demandeAccepted = CommandDuel.getDemandeAccepted();
 	static int kitS;
 	
 	static BukkitRunnable demandeExpire;
 	
-	public onInventoryClick(Main main) {
+	public OnInventoryClick(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 
@@ -94,7 +94,7 @@ public class onInventoryClick implements Listener {
 						double i = 200;
 						@Override
 						public void run() {
-						demandeCancel = onInteractListener.getDemandeCancel();
+						demandeCancel = OnInteractListener.getDemandeCancel();
 						demandeAccepted = CommandDuel.getDemandeAccepted();
 						i = i - 1;
 						for(Player players : Bukkit.getOnlinePlayers()) {
@@ -124,7 +124,7 @@ public class onInventoryClick implements Listener {
 							player.getInventory().setItem(6, funPVP);
 							player.updateInventory();
 							duelLobby.add(player);
-							onInteractListener.reset();
+							OnInteractListener.reset();
 							for(Player players : Bukkit.getOnlinePlayers()) {
 								if(duelLobby.contains(players)) {
 									players.setExp(0);
@@ -133,7 +133,7 @@ public class onInventoryClick implements Listener {
 							cancel();
 						}
 						if(demandeAccepted.equalsIgnoreCase("true")) {
-							duelStart task = new duelStart();
+							DuelStart task = new DuelStart();
 							task.runTaskTimer(Main.getInstance(), 0, 0);
 							for(Player players : Bukkit.getOnlinePlayers()) {
 								if(duelLobby.contains(players)) {

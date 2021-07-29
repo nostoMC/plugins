@@ -9,30 +9,30 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.djredstone.nostoDuel.Main;
 
-public class onplayerDeathListener implements Listener {
+public class OnDisconnect implements Listener {
 	
 	static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
 	static ArrayList<Player> duel = Main.getDuelList();
-	static Boolean endDuel = false;
 
-	public onplayerDeathListener(Main main) {
+	public OnDisconnect(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 
 	@EventHandler
-	public void onPlayerDeath(PlayerDeathEvent event) {
-		endDuel = true;
-		Player player = event.getEntity();
+	public void onDisconnectEvent(PlayerQuitEvent event) {
+		Player player = event.getPlayer(); 
 		if(duel.contains(player)) {
-			Player playerWin = player.getKiller().getPlayer();
-			event.setDeathMessage("§8[§6DUEL§8] §6§l" + playerWin.getName() + " §egagne face à §6§l" + player.getName() + " §e!");
+			duel.remove(player);
+			duelLobby.add(player);
+			event.setQuitMessage("§6§l" + player.getName() + " §es'est déconnecté ! §6§lMatch nul !");
+			Player playerWin = duel.get(0);
 			duel.remove(playerWin);
 			playerWin.teleport(new Location(Bukkit.getWorld("duel"), 136.5, 71.0, -230.5, 0f, 0f));
 			playerWin.getInventory().clear();
@@ -54,22 +54,7 @@ public class onplayerDeathListener implements Listener {
 			playerWin.updateInventory();
 			duelLobby.add(playerWin);
 			playerWin.setHealth(20);
-			for(Player players : Bukkit.getOnlinePlayers()) {
-				if(duelLobby.contains(players)) {
-					players.setExp(0);
-					players.setLevel(0);
-				}
-			}
 		}
-	}
-	
-	public static Boolean getEndDuel() {
-		return endDuel;
-	}
-	
-	public static Boolean resetEndDuel() {
-		endDuel = false;
-		return null;
 	}
 	
 }

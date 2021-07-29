@@ -10,11 +10,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.djredstone.nostoDuel.Main;
 
-public class onMoveItemInventoryListener implements Listener {
+public class OnMoveItemInventoryListener implements Listener {
 	
 static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
 	
-	public onMoveItemInventoryListener(Main main) {
+	public OnMoveItemInventoryListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 

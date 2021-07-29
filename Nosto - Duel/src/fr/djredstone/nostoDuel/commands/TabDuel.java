@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-public class duelTab implements TabCompleter {
+public class TabDuel implements TabCompleter {
 
 	List<String> arguments = new ArrayList<String>();
 	

@@ -9,11 +9,11 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 import fr.djredstone.nostoDuel.Main;
 
-public class onPlayerDamageListener implements Listener {
+public class OnPlayerDamageListener implements Listener {
 	
 	static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
 
-	public onPlayerDamageListener(Main main) {
+	public OnPlayerDamageListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 

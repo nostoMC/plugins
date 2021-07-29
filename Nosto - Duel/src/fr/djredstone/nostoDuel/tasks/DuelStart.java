@@ -15,22 +15,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoDuel.Main;
 import fr.djredstone.nostoDuel.commands.CommandDuel;
-import fr.djredstone.nostoDuel.listeners.onInventoryClick;
-import fr.djredstone.nostoDuel.listeners.onplayerDeathListener;
+import fr.djredstone.nostoDuel.listeners.OnInventoryClick;
+import fr.djredstone.nostoDuel.listeners.OnplayerDeathListener;
 
-public class duelStart extends BukkitRunnable {
+public class DuelStart extends BukkitRunnable {
 
-	static int kitS = onInventoryClick.getKitS();
+	static int kitS = OnInventoryClick.getKitS();
 	static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
 	static ArrayList<Player> duel = Main.getDuelList();
-	static Boolean endDuel = onplayerDeathListener.getEndDuel();
+	static Boolean endDuel = OnplayerDeathListener.getEndDuel();
 	int timer = 0;
 	Player player1 = duel.get(0);
 	Player player2 = duel.get(1);
 	
 	@Override
 	public void run() {
-		endDuel = onplayerDeathListener.getEndDuel();
+		endDuel = OnplayerDeathListener.getEndDuel();
 		for(Player players : Bukkit.getOnlinePlayers()) {
 			if(duel.contains(players)) {
 				if(timer == 0) {
@@ -60,7 +60,7 @@ public class duelStart extends BukkitRunnable {
 					player1.teleport(new Location(Bukkit.getWorld("duel"), 136.5, 26, -146.5, 180, 0));
 					player2.teleport(new Location(Bukkit.getWorld("duel"), 136.5, 26, -316.5, 180, 0));
 				}
-				kitS = onInventoryClick.getKitS();
+				kitS = OnInventoryClick.getKitS();
 				if(kitS == 1) {// KIT NORMAL
 					players.getInventory().setItem(EquipmentSlot.HEAD, new ItemStack(Material.DIAMOND_HELMET));
 					players.getInventory().setItem(EquipmentSlot.CHEST, new ItemStack(Material.IRON_CHESTPLATE));
@@ -96,7 +96,7 @@ public class duelStart extends BukkitRunnable {
 					
 				}
 				if(endDuel == true) {
-					onplayerDeathListener.resetEndDuel();
+					OnplayerDeathListener.resetEndDuel();
 					cancel();
 				}
 			}

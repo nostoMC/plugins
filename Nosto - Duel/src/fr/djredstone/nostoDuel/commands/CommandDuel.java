@@ -10,13 +10,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
 import fr.djredstone.nostoDuel.Main;
-import fr.djredstone.nostoDuel.listeners.onInventoryClick;
+import fr.djredstone.nostoDuel.listeners.OnInventoryClick;
 
 public class CommandDuel implements CommandExecutor {
 	
 	static Boolean duelStart = Main.getDuelStart();
 	static ArrayList<Player> duel = Main.getDuelList();
-	static BukkitTask demandeExpire = onInventoryClick.getDemandeExpire();
+	static BukkitTask demandeExpire = OnInventoryClick.getDemandeExpire();
 	static String demandeAccepted = "false";
 
 	@Override

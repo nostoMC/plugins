@@ -10,13 +10,13 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 
 import fr.djredstone.nostoDuel.Main;
 
-public class onItemDropListener implements Listener {
+public class OnItemDropListener implements Listener {
 	
 	static Boolean duelStart = Main.getDuelStart();
 	static ArrayList<Player> duel = Main.getDuelList();
 	static ArrayList<Player> duelLobby = Main.getDuelLobbyList();
 	
-	public onItemDropListener(Main main) {
+	public OnItemDropListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
 
