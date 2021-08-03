@@ -100,7 +100,7 @@ public class LightBottom {
 					if(crystal22 != null) crystal22.remove();
 					if(crystal24 != null) crystal24.remove();
 					
-					w.getBlockAt(new Location(w, 0, 65, 13)).setType(Material.REDSTONE_BLOCK);
+					if(w.getBlockAt(new Location(w, 0, 63, 13)) != null) w.getBlockAt(new Location(w, 0, 65, 13)).setType(Material.REDSTONE_BLOCK);
 				}
 				
 			}
