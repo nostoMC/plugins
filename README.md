@@ -7,5 +7,5 @@ Plugins on Minecraft server
  - NostoDuel ==> Mini jeu duel
  - NostoMCNF ==> MinecraftNightFunkin
  - NostoNC ==> Nightclub
- - NostoSRVH ==> 
+ - NostoSRVH ==> Speedrunner VS Hunter
  - NostoSW ==> Sheepwars
