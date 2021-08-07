@@ -3,7 +3,7 @@ Plugins on Minecraft server
 
 # Listes des plugins
  - Nosto ==> Main Plugin
- - NostoCC ==>
+ - NostoCC ==> Custom Chat
  - NostoDuel ==> Mini jeu duel
  - NostoMCNF ==> MinecraftNightFunkin
  - NostoNC ==> Nightclub
