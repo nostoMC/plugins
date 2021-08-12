@@ -39,6 +39,10 @@ public class OnInventoryClickListener implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
+		if(current.getType() == null) {
+			return;
+		}
+		
 		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
 			event.setCancelled(true);
 			
