@@ -1,7 +1,6 @@
 package fr.djredstone.nosto.commands.mdp;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -93,27 +92,6 @@ public class CommandMDP implements CommandExecutor {
         						compassLobby.setItemMeta(compassLobbyMeta);
         						player.getInventory().setItem(4, compassLobby);
         						player.updateInventory();
-        						String[] messages = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        						Bukkit.broadcastMessage("");
-        						if(messages[new Random().nextInt(messages.length)] == "1") {
-        							Bukkit.broadcastMessage("§eSalut §6§l" + player.getName() + "§e ! Bienvenue sur le serveur !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "2") {
-        							Bukkit.broadcastMessage("§eBon retour parmi nous §6§l" + player.getName() + "§e !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "3") {
-        							Bukkit.broadcastMessage("§6§l" + player.getName() + "§e est de retour !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "4") {
-        							Bukkit.broadcastMessage("§6§l" + player.getName() + "§e nous a rejoint !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "5") {
-        							Bukkit.broadcastMessage("§eOh bas ! Qui vois là je ? C'est §6§l" + player.getName() + "§e !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "6") {
-        							Bukkit.broadcastMessage("§6§l" + player.getName() + "§e est là ! J'AIME BIEN !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "7") {
-        							Bukkit.broadcastMessage("§eOh.. It's you §6§l" + player.getName() + "§e .. It's been a looong time.. How have you been ?");
-        						} else if(messages[new Random().nextInt(messages.length)] == "8") {
-        							Bukkit.broadcastMessage("§eAh ! Un nouveau joueur de connecter ! Et il s'agit de... §6§l" + player.getName() + "§e !");
-        						} else if(messages[new Random().nextInt(messages.length)] == "9") {
-        							Bukkit.broadcastMessage("§eHello §6§l" + player.getName() + "§e ! Bon cube sur le serveur !");
-        						}
         						if(player.getUniqueId().toString().equalsIgnoreCase("a9cf67ad-7b27-4ca3-a428-c6d5beb9b038") || player.getUniqueId().toString().equalsIgnoreCase("f2d404ac-19f2-4365-b11a-6f9d32d3db26") || player.getUniqueId().toString().equalsIgnoreCase("aff99f6d-a86b-447e-ac3f-0cb88a100145")) {
         							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " parent add administrateur");
         							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "op " + player.getName());

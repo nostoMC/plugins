@@ -1,10 +1,17 @@
 package fr.djredstone.nosto;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.security.auth.login.LoginException;
+
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.djredstone.nosto.commands.annonce.CommandAnnonce;
@@ -49,8 +56,15 @@ import fr.djredstone.nosto.utils.sit.CommandSit;
 import fr.djredstone.nosto.utils.sit.SitListeners;
 import fr.djredstone.nosto.utils.vanish.CommandVanish;
 import fr.djredstone.nosto.utils.vanish.VanishLoop;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements Listener, EventListener, CommandExecutor {
 
 	static ArrayList<Player> frozen = new ArrayList<Player>();
 	static ArrayList<Player> menuPlayers = new ArrayList<Player>();
@@ -63,6 +77,11 @@ public class Main extends JavaPlugin {
 	public static JavaPlugin getInstance() {
 		return instance;
 	}
+	
+	public static String token;
+	public static JDA jda;
+	
+	public boolean isAReload = false;
 	
 	@Override
 	public void onEnable() {
@@ -114,7 +133,6 @@ public class Main extends JavaPlugin {
 		new OnItemDropListener(this);
 		new OnMoveItemInventoryListener(this);
 		new OnInventoryClickListener(this);
-		new OnMessageListener(this);
 		new OnLeaveListener(this);
 		new OnJoinListener(this);
 		new OnMoveListener(this);
@@ -128,11 +146,71 @@ public class Main extends JavaPlugin {
 		new PluginListTask(this);
 		new RandomBroadcastTask(this);
 		new ParticleEffectTask(this);
+		
+		if(!this.getConfig().contains("token")) {
+			this.getConfig().set("token", "YOUR TOKEN HERE");
+		}
+		
+		this.saveConfig();
+		
+		token = this.getConfig().getString("token");
+		
+		try {
+			jda = JDABuilder.createDefault(token).build();
+		} catch (LoginException e) {
+			e.printStackTrace();
+		}
+		
+		JDABuilder builder = JDABuilder.createDefault(token);
+	    
+	    builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
+	    try {
+			builder.build();
+		} catch (LoginException e) {
+			e.printStackTrace();
+		}
+	    
+	    try {
+			jda.awaitReady();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    Bukkit.getPluginManager().registerEvents(this, this);
+	    Bukkit.getPluginManager().registerEvents(new OnMessageListener(), this);
+	    jda.addEventListener(new OnMessageListener());
+		
 	}
 
 	@Override
 	public void onDisable() {
 		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
+		
+		EmbedBuilder embed = new EmbedBuilder();
+		if(isAReload) {
+			embed.setTitle("Reload !");
+			embed.setColor(Color.ORANGE);
+		} else {
+			embed.setTitle("Serveur déconecté !");
+			embed.setColor(Color.RED);
+		}
+			
+		Main.jda.getTextChannelById("875315182556053524").sendMessage(embed.build()).queue();
+		
+		jda.shutdown();
+	}
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		
+		if(cmd.getName().equalsIgnoreCase("reload") || cmd.getName().equalsIgnoreCase("rl")) {
+			
+			isAReload = true;
+			
+		}
+		
+		return true;
 	}
 	
 	public static void vanishPlayer(Player player) {
@@ -165,5 +243,11 @@ public class Main extends JavaPlugin {
 
 	public static HashMap<Player, PlayerTrailsStats> getPlayerTrailsMap() {
 		return playerTrails;
+	}
+
+	@Override
+	public void onEvent(GenericEvent event) {
+		if (event instanceof ReadyEvent) System.out.println("§cBot discord synchronisé avec minecraft prêt !");
+		
 	}
 }
