@@ -16,6 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.djredstone.nosto.Main;
+import fr.djredstone.nosto.particleEffects.PlayerTrailsStats;
 
 public class OnJoinListener implements Listener {
 	
@@ -71,6 +72,10 @@ public class OnJoinListener implements Listener {
 			player.teleport(lg);
 			player.teleport(lg);
 			player.setGameMode(GameMode.ADVENTURE);
+		}
+
+		if (Main.getPlayerTrailsMap().get(player) == null) {
+			Main.setPlayerTrailStats(player, new PlayerTrailsStats(player));
 		}
 	}
 
