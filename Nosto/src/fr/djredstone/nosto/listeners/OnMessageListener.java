@@ -1,7 +1,6 @@
 package fr.djredstone.nosto.listeners;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -17,15 +16,12 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class OnMessageListener extends ListenerAdapter implements Listener {
 	
-	ArrayList<Player> menuPlayers = Main.getMenuPlayersList();
-	
 	@EventHandler
 	public void onMessage(AsyncPlayerChatEvent event) {
 		
 		Player player = event.getPlayer();
 		
-		menuPlayers = Main.getMenuPlayersList();
-		if(menuPlayers.contains(player)) {
+		if(Main.menuPlayers.contains(player)) {
 			event.setCancelled(true);
 			return;
 		}

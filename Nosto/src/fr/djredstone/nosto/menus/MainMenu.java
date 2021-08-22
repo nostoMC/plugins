@@ -18,12 +18,10 @@ import org.bukkit.inventory.meta.SkullMeta;
 import fr.djredstone.nosto.Main;
 
 public class MainMenu {
-	
-	static ArrayList<Player> menuPlayers = Main.getMenuPlayersList();
 
 	public static void openMenu(Player player) {
 		
-		if(menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
+		if(Main.menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 		
 		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);

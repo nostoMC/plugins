@@ -2,7 +2,6 @@ package fr.djredstone.nosto.listeners;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -24,8 +23,6 @@ import fr.djredstone.nosto.Main;
 import fr.djredstone.nosto.particleEffects.PlayerTrailsStats;
 
 public class OnJoinListener implements Listener {
-	
-	ArrayList<Player> menuPlayers = Main.getMenuPlayersList();
 
 	public OnJoinListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
@@ -56,9 +53,9 @@ public class OnJoinListener implements Listener {
 			player.teleport(lobby);
 			player.setMaxHealth(20);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1, 200));
-			Main.vanishPlayer(player);
+			Main.vanishList.add(player);
 			player.getInventory().clear();
-			menuPlayers.add(player);
+			Main.menuPlayers.add(player);
 			player.setGameMode(GameMode.ADVENTURE);
 			player.sendMessage("");
 			player.sendTitle("§6§lBienvenue sur le serveur !", "" + player.getName(), 0, 60, 5);

@@ -1,7 +1,5 @@
 package fr.djredstone.nosto.menus;
 
-import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,12 +12,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import fr.djredstone.nosto.Main;
 
 public class ShopMenu {
-	
-	static ArrayList<Player> menuPlayers = Main.getMenuPlayersList();
 
 	public static void openMenu(Player player) {
 		
-		if(menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
+		if(Main.menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
 		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > Boutique");
 		

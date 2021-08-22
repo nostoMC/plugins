@@ -1,7 +1,5 @@
 package fr.djredstone.nosto.listeners;
 
-import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -25,8 +23,6 @@ import fr.djredstone.nosto.menus.TrailsMenu;
 import fr.djredstone.nosto.menus.TrainingMenu;
 
 public class OnInventoryClickListener implements Listener {
-	
-	ArrayList<Player> menuPlayers = Main.getMenuPlayersList();
 
 	public OnInventoryClickListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
@@ -105,8 +101,8 @@ public class OnInventoryClickListener implements Listener {
 			case IRON_SWORD:
 				if(!player.hasPermission("server.survivalAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
 				player.teleport(SurvivalLobby);
 				player.setGameMode(GameMode.SURVIVAL);
@@ -115,8 +111,8 @@ public class OnInventoryClickListener implements Listener {
 			case GRASS_BLOCK:
 				if(!player.hasPermission("server.skyblockAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
 				player.teleport(skyblockLobby);
 				player.setGameMode(GameMode.SURVIVAL);
@@ -139,8 +135,8 @@ public class OnInventoryClickListener implements Listener {
 			case IRON_SWORD:
 				if(!player.hasPermission("server.duelAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location duelLobby = new Location(Bukkit.getWorld("duel"), 136.5, 71.0, -230.5, 0f, 0f);
 				player.teleport(duelLobby);
 				player.teleport(duelLobby);
@@ -150,8 +146,8 @@ public class OnInventoryClickListener implements Listener {
 			case ZOMBIE_HEAD:
 				if(!player.hasPermission("server.dungeonsAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location dungeonLobby = new Location(Bukkit.getWorld("dungeonLobby"), 8.5, 11.5, 8.5, 0f, 0f);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(dungeonLobby);
@@ -189,8 +185,8 @@ public class OnInventoryClickListener implements Listener {
 			case SHIELD:
 				if(!player.hasPermission("server.PvPAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location pvpLobby = new Location(Bukkit.getWorld("event"), 136, 70, -231, 0f, 0f);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(pvpLobby);
@@ -199,8 +195,8 @@ public class OnInventoryClickListener implements Listener {
 			case PLAYER_HEAD:
 				if(!player.hasPermission("server.lgAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location lgLobby = new Location(Bukkit.getWorld("lg"), 2841, 72, 3536, 0f, 0f);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(lgLobby);
@@ -209,8 +205,8 @@ public class OnInventoryClickListener implements Listener {
 			case DIAMOND:
 				if(!player.hasPermission("server.roueDeLaChanceAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location roueLobby = new Location(Bukkit.getWorld("RoueDeLaChance"), 0, 229, 50, 0f, 0f);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(roueLobby);
@@ -219,8 +215,8 @@ public class OnInventoryClickListener implements Listener {
 			case FIREWORK_ROCKET:
 				if(!player.hasPermission("server.showAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location showLobby = new Location(Bukkit.getWorld("show"), 0.5, 65, 0.5, 0f, 0f);
 				player.teleport(showLobby);
 				player.teleport(showLobby);
@@ -230,8 +226,8 @@ public class OnInventoryClickListener implements Listener {
 			case MUSIC_DISC_BLOCKS:
 				if(!player.hasPermission("server.nightclubAcces")) break;
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 				Location nightClubLobby = new Location(Bukkit.getWorld("Nightclub"), 0.5, 64.0, 0.5, 0f, 0f);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(nightClubLobby);
@@ -247,8 +243,8 @@ public class OnInventoryClickListener implements Listener {
 
 			if(current.getType() == Material.LEATHER_BOOTS || current.getType() == Material.IRON_SWORD || current.getType() == Material.ENDER_EYE) {
 				event.getView().close();
-				menuPlayers.remove(player);
-				Main.unVanishPlayer(player);
+				Main.menuPlayers.remove(player);
+				Main.vanishList.remove(player);
 			}
 
 //		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Particules")) {

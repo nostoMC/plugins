@@ -1,7 +1,5 @@
 package fr.djredstone.nosto.utils.vanish;
 
-import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,8 +9,6 @@ import org.bukkit.entity.Player;
 import fr.djredstone.nosto.Main;
 
 public class CommandVanish implements CommandExecutor {
-	
-	ArrayList<Player> vanishList = Main.getVanishList();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -20,26 +16,25 @@ public class CommandVanish implements CommandExecutor {
 		Player player = (Player) sender;
 		
 		if(args.length == 0) {
-			vanishList = Main.getVanishList();
-			if(vanishList.contains(player)) {
-				Main.unVanishPlayer(player);
+			if(Main.vanishList.contains(player)) {
+				Main.vanishList.remove(player);
 				player.sendMessage("");
 				player.sendMessage("§7Vous êtes maintenant visible !");
 			} else {
-				Main.vanishPlayer(player);
+				Main.vanishList.add(player);
 				player.sendMessage("");
 				player.sendMessage("§7Vous êtes maintenant invisible !");
 			}
 		} else {
 			Player target = Bukkit.getPlayer(args[0]);
-			if(vanishList.contains(target)) {
-				Main.unVanishPlayer(target);
+			if(Main.vanishList.contains(target)) {
+				Main.vanishList.remove(target);
 				player.sendMessage("");
 				player.sendMessage("§7Vous avez mis " + target.getName() + " visible !");
 				target.sendMessage("");
 				target.sendMessage("§7Vous êtes maintenant visible !");
 			} else {
-				Main.vanishPlayer(target);
+				Main.vanishList.add(target);
 				player.sendMessage("");
 				player.sendMessage("§7Vous avez mis " + target.getName() + " en invisible !");
 				target.sendMessage("");

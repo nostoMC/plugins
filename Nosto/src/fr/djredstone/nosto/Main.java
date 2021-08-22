@@ -65,10 +65,10 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 public class Main extends JavaPlugin implements Listener, EventListener, CommandExecutor {
 
-	static ArrayList<Player> frozen = new ArrayList<Player>();
-	static ArrayList<Player> menuPlayers = new ArrayList<Player>();
-	static ArrayList<Player> vanishList = new ArrayList<Player>();
-	static ArrayList<Player> afks = new ArrayList<Player>();
+	public static ArrayList<Player> frozen = new ArrayList<Player>();
+	public static ArrayList<Player> menuPlayers = new ArrayList<Player>();
+	public static ArrayList<Player> vanishList = new ArrayList<Player>();
+	public static ArrayList<Player> afks = new ArrayList<Player>();
 	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<Player, PlayerTrailsStats>();
 	
 	public static Main instance;
@@ -206,30 +206,6 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		}
 		
 		return true;
-	}
-	
-	public static void vanishPlayer(Player player) {
-		vanishList.add(player);
-	}
-	
-	public static void unVanishPlayer(Player player) {
-		vanishList.remove(player);
-	}
-	
-	public static ArrayList<Player> getVanishList() {
-		return vanishList;
-	}
-
-	public static ArrayList<Player> getMenuPlayersList() {
-		return menuPlayers;
-	}
-	
-	public static ArrayList<Player> getFreezList() {
-		return frozen;
-	}
-	
-	public static ArrayList<Player> getAfksList() {
-		return afks;
 	}
 	
 	public static void setPlayerTrailStats(Player player, PlayerTrailsStats stats) {

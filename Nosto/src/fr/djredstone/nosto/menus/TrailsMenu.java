@@ -23,13 +23,12 @@ import net.md_5.bungee.api.ChatColor;
 
 public class TrailsMenu implements Listener {
 	
-	private static ArrayList<Player> menuPlayers = Main.getMenuPlayersList();
 	private static String noPermLore = "§cTu n'as pas acheté cette particule !";
 	private static String equipedLore = "§aÉquipé";
 	private static String availableLore = "§eClique pour équiper";
 
 	public static void openMenu(Player player) {
-		if (menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
+		if (Main.menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
 		openPage1(player);
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
