@@ -1,7 +1,5 @@
 package fr.djredstone.nostoNC.commands;
 
-import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,14 +16,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import fr.djredstone.nostoNC.Main;
 
 public class CommandNightclub implements CommandExecutor {
-	
-	static Boolean djLaser1 = Main.getfloorSmoke();
-	static Boolean strobe = Main.getStrobe();
-	static Boolean lightBottom = Main.getLightBottom();
-	static Boolean randomBeacon = Main.getRandomBeacon();
-	static ArrayList<String> on = Main.getOnLore();
-	static ArrayList<String> off = Main.getOffLore();
-	static ArrayList<Player> dj = Main.getDjList();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -45,11 +35,10 @@ public class CommandNightclub implements CommandExecutor {
 						ItemMeta itM = it.getItemMeta();
 						itM.setDisplayName("§7§lFloor Smoke");
 						
-						djLaser1 = Main.getfloorSmoke();
-						if(djLaser1 == false ) {
-							itM.setLore(off);
+						if(Main.floorSmoke == false ) {
+							itM.setLore(Main.off);
 						} else {
-							itM.setLore(on);
+							itM.setLore(Main.on);
 						}
 						
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -60,11 +49,10 @@ public class CommandNightclub implements CommandExecutor {
 						itM = it.getItemMeta();
 						itM.setDisplayName("§8§lStrobe");
 						
-						strobe = Main.getStrobe();
-						if(strobe == false ) {
-							itM.setLore(off);
+						if(Main.strobe == false ) {
+							itM.setLore(Main.off);
 						} else {
-							itM.setLore(on);
+							itM.setLore(Main.on);
 						}
 						
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -83,11 +71,10 @@ public class CommandNightclub implements CommandExecutor {
 						itM = it.getItemMeta();
 						itM.setDisplayName("§5§lLight Bottom");
 						
-						lightBottom = Main.getLightBottom();
-						if(lightBottom == false ) {
-							itM.setLore(off);
+						if(Main.lightBottom == false ) {
+							itM.setLore(Main.off);
 						} else {
-							itM.setLore(on);
+							itM.setLore(Main.on);
 						}
 						
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -98,11 +85,10 @@ public class CommandNightclub implements CommandExecutor {
 						itM = it.getItemMeta();
 						itM.setDisplayName("§5§lRandom Beam");
 						
-						randomBeacon = Main.getRandomBeacon();
-						if(randomBeacon == false ) {
-							itM.setLore(off);
+						if(Main.randomBeacon == false ) {
+							itM.setLore(Main.off);
 						} else {
-							itM.setLore(on);
+							itM.setLore(Main.on);
 						}
 						
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -127,13 +113,13 @@ public class CommandNightclub implements CommandExecutor {
 			} else if(args.length == 2) {
 				if(args[1].equalsIgnoreCase("dj")) {
 					if(args[0].equalsIgnoreCase("join")) {
-						if(dj.size() != 1) {
-							Main.setPlayerDjList(player);
+						if(Main.dj.size() != 1) {
+							Main.dj.add(player);
 							player.teleport(new Location(Bukkit.getWorld("Nightclub"), 0.5, 67, 12.5, 180, 0));
 							Bukkit.broadcastMessage("");
 							Bukkit.broadcastMessage("§6§l" + player.getName() + " §eest notre nouveau DJ !");
 						} else {
-							if(dj.contains(player)) {
+							if(Main.dj.contains(player)) {
 								player.teleport(new Location(Bukkit.getWorld("Nightclub"), 0.5, 67, 12.5, 180, 0));
 								player.sendMessage("");
 								player.sendMessage("§eDe nouveau sur la scène !");
@@ -143,8 +129,8 @@ public class CommandNightclub implements CommandExecutor {
 							}
 						}
 					} else if(args[0].equalsIgnoreCase("leave")) {
-						if(dj.contains(player)) {
-							dj.remove(player);
+						if(Main.dj.contains(player)) {
+							Main.dj.remove(player);
 							player.teleport(new Location(Bukkit.getWorld("Nightclub"), 0.5, 64, 0.5, 0, 0));
 							Bukkit.broadcastMessage("");
 							Bukkit.broadcastMessage("§6§l" + player.getName() + " §en'est plus DJ !");

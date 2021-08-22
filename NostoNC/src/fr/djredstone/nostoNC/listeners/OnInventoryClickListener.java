@@ -1,13 +1,11 @@
 package fr.djredstone.nostoNC.listeners;
 
-import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.FireworkEffect.Type;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.event.EventHandler;
@@ -21,13 +19,6 @@ import org.bukkit.util.Vector;
 import fr.djredstone.nostoNC.Main;
 
 public class OnInventoryClickListener implements Listener {
-	
-	static Boolean floorSmoke = Main.getfloorSmoke();
-	static Boolean strobe = Main.getStrobe();
-	static Boolean lightBottom = Main.getLightBottom();
-	static Boolean randomBeacon = Main.getRandomBeacon();
-	static ArrayList<String> on = Main.getOnLore();
-	static ArrayList<String> off = Main.getOffLore();
 
 	public OnInventoryClickListener(Main main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
@@ -46,28 +37,26 @@ public class OnInventoryClickListener implements Listener {
 			if(current.getType() == Material.STRING) {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
-				floorSmoke = Main.getfloorSmoke();
-				if(floorSmoke == false ) {
-					itM.setLore(on);
+				if(Main.floorSmoke == false ) {
+					itM.setLore(Main.on);
 					it.setItemMeta(itM);
-					Main.setfloorSmoke(true);
+					Main.floorSmoke = true;
 				} else {
-					itM.setLore(off);
+					itM.setLore(Main.off);
 					it.setItemMeta(itM);
-					Main.setfloorSmoke(false);
+					Main.floorSmoke = false;
 				}
 			} else if(current.getType() == Material.REDSTONE_LAMP) {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
-				strobe = Main.getStrobe();
-				if(strobe == false ) {
-					itM.setLore(on);
+				if(Main.strobe == false ) {
+					itM.setLore(Main.on);
 					it.setItemMeta(itM);
-					Main.setStrobe(true);
+					Main.strobe = true;
 				} else {
-					itM.setLore(off);
+					itM.setLore(Main.off);
 					it.setItemMeta(itM);
-					Main.setStrobe(false);
+					Main.strobe = false;
 				}
 			} else if(current.getType() == Material.FIREWORK_ROCKET) {
 				Firework fw1 = (Firework) Bukkit.getWorld("Nightclub").spawnEntity(new Location(Bukkit.getWorld("Nightclub"), 9.5, 65.7, 11.5), EntityType.FIREWORK);
@@ -102,28 +91,26 @@ public class OnInventoryClickListener implements Listener {
 			} else if(current.getType() == Material.END_CRYSTAL) {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
-				lightBottom = Main.getLightBottom();
-				if(lightBottom == false ) {
-					itM.setLore(on);
+				if(Main.lightBottom == false ) {
+					itM.setLore(Main.on);
 					it.setItemMeta(itM);
-					Main.setlightBottom(true);
+					Main.lightBottom = true;
 				} else {
-					itM.setLore(off);
+					itM.setLore(Main.off);
 					it.setItemMeta(itM);
-					Main.setlightBottom(false);
+					Main.lightBottom = false;
 				}
 			} else if(current.getType() == Material.BEACON) {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
-				randomBeacon = Main.getRandomBeacon();
-				if(randomBeacon == false ) {
-					itM.setLore(on);
+				if(Main.randomBeacon == false ) {
+					itM.setLore(Main.on);
 					it.setItemMeta(itM);
-					Main.setRandomBeacon(true);
+					Main.randomBeacon = true;
 				} else {
-					itM.setLore(off);
+					itM.setLore(Main.off);
 					it.setItemMeta(itM);
-					Main.setRandomBeacon(false);
+					Main.randomBeacon = false;
 				}
 			}
 		}

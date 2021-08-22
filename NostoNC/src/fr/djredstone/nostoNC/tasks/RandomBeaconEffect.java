@@ -11,8 +11,6 @@ import fr.djredstone.nostoNC.Main;
 
 public class RandomBeaconEffect {
 	
-	static Boolean randomBeacon = Main.getRandomBeacon();
-	
 	Random r = new Random();
 
 	public RandomBeaconEffect(Main main) {
@@ -61,9 +59,7 @@ public class RandomBeaconEffect {
 					@Override
 					public void run() {
 						
-						randomBeacon = Main.getRandomBeacon();
-						
-						if(randomBeacon == true) {
+						if(Main.randomBeacon == true) {
 							if(stade == 0) {
 								for(int i = 0; i < 50; i++) {
 									Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, r.nextInt(16 + 16) - 16, 63, r.nextInt(8 + 26) - 26)).setType(Material.GLASS);

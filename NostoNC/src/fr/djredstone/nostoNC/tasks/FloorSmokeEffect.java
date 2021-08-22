@@ -7,8 +7,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.djredstone.nostoNC.Main;
 
 public class FloorSmokeEffect {
-	
-	static Boolean floorSmoke = Main.getfloorSmoke();
 
 	public FloorSmokeEffect(Main main) {
 		
@@ -17,8 +15,7 @@ public class FloorSmokeEffect {
 			@Override
 			public void run() {
 				
-				floorSmoke = Main.getfloorSmoke();
-				if(floorSmoke == true) {
+				if(Main.floorSmoke == true) {
 					Bukkit.getWorld("Nightclub").spawnParticle(Particle.SMOKE_LARGE, 0, 64, -8, 500, 10, 0, 10, 0.1);
 				}
 				

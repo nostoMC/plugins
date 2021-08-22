@@ -17,8 +17,6 @@ public class LightBottom {
 	EnderCrystal crystal1 = null, crystal2 = null, crystal3 = null, crystal4 = null, crystal5 = null, crystal6 = null;
 	EnderCrystal crystal21 = null, crystal22 = null, crystal23 = null, crystal24 = null;
 	
-	Boolean lightBottom = Main.getLightBottom();
-	
 	public LightBottom(Main main) {
 		
 		new BukkitRunnable() {
@@ -41,8 +39,7 @@ public class LightBottom {
 				if(crystal22 != null) crystal22.remove();
 				if(crystal24 != null) crystal24.remove();
 				
-				lightBottom = Main.getLightBottom();
-				if(lightBottom == true) {
+				if(Main.lightBottom == true) {
 					if(start == true) {
 						crystal1 = (EnderCrystal) w.spawnEntity(new Location(w, 11, 70, 4), EntityType.ENDER_CRYSTAL);
 						crystal1.setBeamTarget(new Location(w, 9, 63, 11));

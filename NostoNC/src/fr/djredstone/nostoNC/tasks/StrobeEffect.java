@@ -12,8 +12,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.djredstone.nostoNC.Main;
 
 public class StrobeEffect {
-	
-	static Boolean strobe = Main.getStrobe();
 
 	public StrobeEffect(Main main) {
 		
@@ -30,8 +28,7 @@ public class StrobeEffect {
 					i = 0;
 				}
 				
-				strobe = Main.getStrobe();
-				if(strobe == true) {
+				if(Main.strobe == true) {
 					for(Player players : Bukkit.getOnlinePlayers()) {
 						if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
 							if(i == 1) {

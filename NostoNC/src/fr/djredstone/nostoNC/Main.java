@@ -19,15 +19,15 @@ import fr.djredstone.nostoNC.tasks.StrobeEffect;
 
 public class Main extends JavaPlugin {
 	
-	static ArrayList<String> on = new ArrayList<String>();
-	static ArrayList<String> off = new ArrayList<String>();
-	static ArrayList<Player> dj = new ArrayList<Player>();
+	public static ArrayList<String> on = new ArrayList<String>();
+	public static ArrayList<String> off = new ArrayList<String>();
+	public static ArrayList<Player> dj = new ArrayList<Player>();
 	
-	static boolean floorSmoke = false;
-	static boolean strobe = false;
-	static boolean lightBottom = false;
-	static boolean lightTop = false;
-	static boolean randomBeacon = false;
+	public static boolean floorSmoke = false;
+	public static boolean strobe = false;
+	public static boolean lightBottom = false;
+	public static boolean lightTop = false;
+	public static boolean randomBeacon = false;
 	
 	public static Main instance;
 	
@@ -75,68 +75,6 @@ public class Main extends JavaPlugin {
 	            }
 	        }, 1L*i);
 	    }
-	}
-	
-	public static Boolean getfloorSmoke() {
-		return floorSmoke;
-	}
-	
-	public static Boolean setfloorSmoke(Boolean bool) {
-		floorSmoke = bool;
-		return null;
-	}
-	
-	public static Boolean getStrobe() {
-		return strobe;
-	}
-	
-	public static Boolean setStrobe(Boolean bool) {
-		strobe = bool;
-		return null;
-	}
-	
-	public static Boolean getLightBottom() {
-		return lightBottom;
-	}
-	
-	public static Boolean setlightBottom(Boolean bool) {
-		lightBottom = bool;
-		return null;
-	}
-	
-	public static Boolean getLightTop() {
-		return lightTop;
-	}
-	
-	public static Boolean setlightTop(Boolean bool) {
-		lightTop = bool;
-		return null;
-	}
-	
-	public static Boolean getRandomBeacon() {
-		return randomBeacon;
-	}
-	
-	public static Boolean setRandomBeacon(Boolean bool) {
-		randomBeacon = bool;
-		return null;
-	}
-	
-	public static ArrayList<String> getOnLore() {
-		return on;
-	}
-	
-	public static ArrayList<String> getOffLore() {
-		return off;
-	}
-	
-	public static ArrayList<Player> getDjList() {
-		return dj;
-	}
-	
-	public static ArrayList<Player> setPlayerDjList(Player player) {
-		dj.add(player);
-		return null;
 	}
 	
 }
