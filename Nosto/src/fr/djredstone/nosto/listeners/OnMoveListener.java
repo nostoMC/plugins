@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import fr.djredstone.nosto.Main;
+import fr.djredstone.nosto.tasks.ParticleEffectTask;
 
 public class OnMoveListener implements Listener {
 	
@@ -49,6 +50,11 @@ public class OnMoveListener implements Listener {
 			Bukkit.broadcastMessage("");
 			Bukkit.broadcastMessage("§7§l" + player.getName() + " §7n'est plus AFK");
 			player.setCustomName(player.getName());
+		}
+
+		if (!event.getFrom().toVector().equals(event.getTo().toVector())
+				&& ParticleEffectTask.bigEffects.containsKey(player.getUniqueId())) {
+			ParticleEffectTask.bigEffects.get(player.getUniqueId()).startCoolDown();
 		}
 	}
 

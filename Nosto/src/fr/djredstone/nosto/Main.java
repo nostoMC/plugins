@@ -1,8 +1,15 @@
 package fr.djredstone.nosto;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.security.auth.login.LoginException;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,29 +45,43 @@ import fr.djredstone.nosto.listeners.OnMessageListener;
 import fr.djredstone.nosto.listeners.OnMoveItemInventoryListener;
 import fr.djredstone.nosto.listeners.OnMoveListener;
 import fr.djredstone.nosto.listeners.OnServerListPingListener;
+import fr.djredstone.nosto.menus.TrailsMenu;
+import fr.djredstone.nosto.particleEffects.PlayerTrailsStats;
+import fr.djredstone.nosto.tasks.ParticleEffectTask;
 import fr.djredstone.nosto.tasks.PluginListTask;
 import fr.djredstone.nosto.tasks.RandomBroadcastTask;
-import fr.djredstone.nosto.tasks.trails.FlameTrails;
 import fr.djredstone.nosto.utils.afk.AFKListeners;
 import fr.djredstone.nosto.utils.afk.CommandAFK;
 import fr.djredstone.nosto.utils.sit.CommandSit;
 import fr.djredstone.nosto.utils.sit.SitListeners;
 import fr.djredstone.nosto.utils.vanish.CommandVanish;
 import fr.djredstone.nosto.utils.vanish.VanishLoop;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin implements Listener, EventListener, CommandExecutor {
 
 	static ArrayList<Player> frozen = new ArrayList<Player>();
 	static ArrayList<Player> menuPlayers = new ArrayList<Player>();
 	static ArrayList<Player> vanishList = new ArrayList<Player>();
 	static ArrayList<Player> afks = new ArrayList<Player>();
-	static HashMap<Player, Boolean> trailsFlame = new HashMap<Player, Boolean>();
+	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<Player, PlayerTrailsStats>();
 	
 	public static Main instance;
 	
 	public static JavaPlugin getInstance() {
 		return instance;
 	}
+	
+	public static String token;
+	public static JDA jda;
+	
+	public boolean isAReload = false;
 	
 	@Override
 	public void onEnable() {
@@ -70,7 +91,6 @@ public class Main extends JavaPlugin implements Listener {
 		
 		System.out.println("§b[Nosto] Plugin Custom Chargé !");
 		
-		getServer().getPluginManager().registerEvents(this, this);
 		getCommand("annonce").setExecutor(new CommandAnnonce());
 		getCommand("fly").setExecutor(new CommandFly());
 		getCommand("speed").setExecutor(new CommandSpeed());
@@ -106,32 +126,91 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("trails").setExecutor(new CommandTrails());
 		getCommand("menu").setExecutor(new CommandMenu());
 		
+		// Listeners
 		new SitListeners(this);
 		new AFKListeners(this);
 		AFKListeners.onAFKLoop(this);
 		new OnItemDropListener(this);
 		new OnMoveItemInventoryListener(this);
 		new OnInventoryClickListener(this);
-		new OnMessageListener(this);
 		new OnLeaveListener(this);
 		new OnJoinListener(this);
 		new OnMoveListener(this);
 		new OnInteractListener(this);
 		new OnServerListPingListener(this);
+		// Gui Listeners
+		Bukkit.getPluginManager().registerEvents(new TrailsMenu(), this);
 		
+		// Tasks
 		new VanishLoop(this);
-		
 		new PluginListTask(this);
-		
 		new RandomBroadcastTask(this);
+		new ParticleEffectTask(this);
 		
-		new FlameTrails(this);
+		if(!this.getConfig().contains("token")) {
+			this.getConfig().set("token", "YOUR TOKEN HERE");
+		}
+		
+		this.saveConfig();
+		
+		token = this.getConfig().getString("token");
+		
+		try {
+			jda = JDABuilder.createDefault(token).build();
+		} catch (LoginException e) {
+			e.printStackTrace();
+		}
+		
+		JDABuilder builder = JDABuilder.createDefault(token);
+	    
+	    builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
+	    try {
+			builder.build();
+		} catch (LoginException e) {
+			e.printStackTrace();
+		}
+	    
+	    try {
+			jda.awaitReady();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    Bukkit.getPluginManager().registerEvents(this, this);
+	    Bukkit.getPluginManager().registerEvents(new OnMessageListener(), this);
+	    jda.addEventListener(new OnMessageListener());
 		
 	}
 
 	@Override
 	public void onDisable() {
 		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
+		
+		EmbedBuilder embed = new EmbedBuilder();
+		if(isAReload) {
+			embed.setTitle("Reload !");
+			embed.setColor(Color.ORANGE);
+		} else {
+			embed.setTitle("Serveur déconecté !");
+			embed.setColor(Color.RED);
+		}
+			
+		Main.jda.getTextChannelById("875315182556053524").sendMessage(embed.build()).queue();
+		
+		jda.shutdown();
+	}
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		
+		if(cmd.getName().equalsIgnoreCase("reload") || cmd.getName().equalsIgnoreCase("rl")) {
+			
+			isAReload = true;
+			
+		}
+		
+		return true;
 	}
 	
 	public static void vanishPlayer(Player player) {
@@ -158,11 +237,17 @@ public class Main extends JavaPlugin implements Listener {
 		return afks;
 	}
 	
-	public static void setPlayerFlameTrails(Player player, Boolean bool) {
-		trailsFlame.put(player, bool);
+	public static void setPlayerTrailStats(Player player, PlayerTrailsStats stats) {
+		playerTrails.put(player, stats);
 	}
-	
-	public static HashMap<Player, Boolean> getPlayerFlameTrails() {
-		return trailsFlame;
+
+	public static HashMap<Player, PlayerTrailsStats> getPlayerTrailsMap() {
+		return playerTrails;
+	}
+
+	@Override
+	public void onEvent(GenericEvent event) {
+		if (event instanceof ReadyEvent) System.out.println("§cBot discord synchronisé avec minecraft prêt !");
+		
 	}
 }

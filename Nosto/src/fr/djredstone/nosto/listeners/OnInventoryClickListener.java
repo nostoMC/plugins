@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,13 +15,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.djredstone.nosto.Main;
+import fr.djredstone.nosto.menus.EventMenu;
+import fr.djredstone.nosto.menus.MainMenu;
 import fr.djredstone.nosto.menus.MinijeuxMenu;
 import fr.djredstone.nosto.menus.MondeOuvertMenu;
 import fr.djredstone.nosto.menus.ShopMenu;
 import fr.djredstone.nosto.menus.TpMenu;
 import fr.djredstone.nosto.menus.TrailsMenu;
-import fr.djredstone.nosto.menus.EventMenu;
-import fr.djredstone.nosto.menus.MainMenu;
 import fr.djredstone.nosto.menus.TrainingMenu;
 
 public class OnInventoryClickListener implements Listener {
@@ -38,6 +37,10 @@ public class OnInventoryClickListener implements Listener {
 		
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
+		
+		if(current.getType() == null) {
+			return;
+		}
 		
 		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
 			event.setCancelled(true);
@@ -89,6 +92,7 @@ public class OnInventoryClickListener implements Listener {
 			default:
 				break;
 			}
+
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Monde Ouvert")) {
 			event.setCancelled(true);
 			
@@ -122,6 +126,7 @@ public class OnInventoryClickListener implements Listener {
 				break;
 			
 			}
+
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Mini jeux")) {
 			event.setCancelled(true);
 
@@ -157,6 +162,7 @@ public class OnInventoryClickListener implements Listener {
 				break;
 			
 			}
+
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Training")) {
 			event.setCancelled(true);
 
@@ -170,6 +176,7 @@ public class OnInventoryClickListener implements Listener {
 				break;
 			
 			}
+
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Events")) {
 			event.setCancelled(true);
 
@@ -234,6 +241,7 @@ public class OnInventoryClickListener implements Listener {
 				break;
 			
 			}
+
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Events > Hunt")) {
 			event.setCancelled(true);
 
@@ -242,40 +250,42 @@ public class OnInventoryClickListener implements Listener {
 				menuPlayers.remove(player);
 				Main.unVanishPlayer(player);
 			}
-		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Particules")) {
-			event.setCancelled(true);
+
+//		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Particules")) {
+//			event.setCancelled(true);
+//			
+//			if(current.getType() == null) {
+//				return;
+//			}
+//			
+//			switch(current.getType()) {
+//			
+//			case ARROW:
+//				MainMenu.openMenu(player);
+//				break;
+//				
+//			case BLAZE_POWDER:
+//				if(!player.hasPermission("nosto.trails.flame")) break;
+//				int slot = event.getRawSlot();
+//				ItemStack it = event.getView().getItem(slot);
+//				ItemMeta itM = event.getCurrentItem().getItemMeta();
+//				if(Main.getPlayerFlameTrails().get(player) != null && Main.getPlayerFlameTrails().get(player) == false) {
+//					Main.setPlayerFlameTrails(player, true);
+//					itM.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
+//					it.setItemMeta(itM);
+//					event.getView().setItem(slot, it);
+//				} else {
+//					Main.setPlayerFlameTrails(player, false);
+//					itM.removeEnchant(Enchantment.DAMAGE_ALL);
+//					it.setItemMeta(itM);
+//					event.getView().setItem(slot, it);
+//				}
+//				break;
+//			
+//			default:
+//				break;
+//			}
 			
-			if(current.getType() == null) {
-				return;
-			}
-			
-			switch(current.getType()) {
-			
-			case ARROW:
-				MainMenu.openMenu(player);
-				break;
-				
-			case BLAZE_POWDER:
-				if(!player.hasPermission("nosto.trails.flame")) break;
-				int slot = event.getRawSlot();
-				ItemStack it = event.getView().getItem(slot);
-				ItemMeta itM = event.getCurrentItem().getItemMeta();
-				if(Main.getPlayerFlameTrails().get(player) != null && Main.getPlayerFlameTrails().get(player) == false) {
-					Main.setPlayerFlameTrails(player, true);
-					itM.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
-					it.setItemMeta(itM);
-					event.getView().setItem(slot, it);
-				} else {
-					Main.setPlayerFlameTrails(player, false);
-					itM.removeEnchant(Enchantment.DAMAGE_ALL);
-					it.setItemMeta(itM);
-					event.getView().setItem(slot, it);
-				}
-				break;
-			
-			default:
-				break;
-			}
 		} else if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Boutique")) {
 			event.setCancelled(true);
 			

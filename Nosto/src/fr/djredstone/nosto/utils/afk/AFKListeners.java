@@ -1,5 +1,6 @@
 package fr.djredstone.nosto.utils.afk;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,6 +13,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nosto.Main;
+import net.dv8tion.jda.api.EmbedBuilder;
 
 public class AFKListeners implements Listener {
 	
@@ -43,6 +45,21 @@ public class AFKListeners implements Listener {
 						players.setCustomNameVisible(true);
 						Bukkit.broadcastMessage("");
 						Bukkit.broadcastMessage("§8§l" + players.getName() + " §8est AFK");
+						EmbedBuilder embed = new EmbedBuilder();
+						String groupDiscord = "";
+						if(players.hasPermission("group.dev")) {
+							groupDiscord = "Developper ";
+						}
+						if(players.hasPermission("group.buildeur")) {
+							groupDiscord = "Buildeur ";
+						}
+						if(players.hasPermission("group.administrateur")) {
+							groupDiscord = "Administrateur ";
+						}
+						embed.setAuthor(groupDiscord + "| " + players.getName(), null, "https://mc-heads.net/avatar/" + players.getName());
+						embed.setColor(Color.GRAY);
+						embed.addField("est AFK", "", false);
+						Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 					}
 				}
 				
@@ -54,6 +71,18 @@ public class AFKListeners implements Listener {
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
+		EmbedBuilder embed = new EmbedBuilder();
+		String groupDiscord = "";
+		if(player.hasPermission("group.dev")) {
+			groupDiscord = "Developper ";
+		}
+		if(player.hasPermission("group.buildeur")) {
+			groupDiscord = "Buildeur ";
+		}
+		if(player.hasPermission("group.administrateur")) {
+			groupDiscord = "Administrateur ";
+		}
+		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		time.put(player, 0);
 		if(afks.contains(player)) {
 			afks.remove(player);
@@ -62,6 +91,9 @@ public class AFKListeners implements Listener {
 			Bukkit.broadcastMessage("");
 			Bukkit.broadcastMessage("§7§l" + player.getName() + " §7n'est plus AFK");
 			player.setCustomName(player.getName());
+			embed.setColor(Color.LIGHT_GRAY);
+			embed.addField("n'est plus AFK", "", false);
+			Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 		}
 	}
 	
