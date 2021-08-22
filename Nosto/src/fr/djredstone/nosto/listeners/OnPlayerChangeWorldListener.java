@@ -17,12 +17,8 @@ public class OnPlayerChangeWorldListener {
 	public void onWorldChange(PlayerChangedWorldEvent event){
 
 		Player player = event.getPlayer();
-		
-		if(player.getWorld() == Bukkit.getWorld("survie")) {
 			
-			if(event.getFrom() == Bukkit.getWorld("survie_nether") || event.getFrom() == Bukkit.getWorld("survie_the_end")) {
-				return;
-			}
+		if((event.getFrom() != Bukkit.getWorld("survie_nether") || event.getFrom() != Bukkit.getWorld("survie_the_end") || event.getFrom() != Bukkit.getWorld("survie")) && (player.getWorld() == Bukkit.getWorld("survie")) || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
 			
 			for(Player players : Bukkit.getOnlinePlayers()) {
 				if(players.getWorld() == Bukkit.getWorld("survie") || players.getWorld() == Bukkit.getWorld("survie_nether") || players.getWorld() == Bukkit.getWorld("survie_the_end")) {

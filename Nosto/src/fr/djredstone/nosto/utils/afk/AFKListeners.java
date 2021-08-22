@@ -36,7 +36,7 @@ public class AFKListeners implements Listener {
 			public void run() {
 				
 				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(players.getWorld() != Bukkit.getWorld("world")) {
+					if(players.getWorld() != Bukkit.getWorld("world") && (players.getWorld() == Bukkit.getWorld("survie") || players.getWorld() == Bukkit.getWorld("survie_nether") || players.getWorld() == Bukkit.getWorld("survie_the_end"))) {
 						time.put(players, time.get(players) + 1);
 					}
 					if(time.get(players) == 60) {

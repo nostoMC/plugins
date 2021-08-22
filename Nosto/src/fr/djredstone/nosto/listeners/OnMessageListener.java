@@ -56,10 +56,13 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		
 		if(player.getWorld() == Bukkit.getWorld("survie") || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
 			
-			Main.jda.getGuildById("782248081381916696").getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
+			Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
+			
+		} else if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
+			
+			Main.jda.getTextChannelById("877675571193200670").sendMessage(embed.build()).queue();
 			
 		}
-		
 	}
 	
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
@@ -82,13 +85,31 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		}
 		
         String format = "§f[§5Discord§f] <" + group + " §f" + event.getAuthor().getName() + "> " + event.getMessage().getContentDisplay();
+		
+		if(!event.getChannel().getId().equalsIgnoreCase("832554910301290506")) {
+			return;
+		}
         
         if(!Bukkit.getOnlinePlayers().isEmpty()) {
         	for(Player player : Bukkit.getOnlinePlayers()) {
-    			if(player.getWorld() == Bukkit.getWorld("survie")) {
-    				player.sendMessage("");
-    				player.sendMessage(format);
-    			}
+        		
+        		if(event.getChannel().getId().equalsIgnoreCase("832554910301290506")) {
+        			
+        			if(player.getWorld() == Bukkit.getWorld("survie") || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
+        				player.sendMessage("");
+        				player.sendMessage(format);
+        			}
+        			
+        		} else if(event.getChannel().getId().equalsIgnoreCase("877675571193200670")) {
+        			
+        			if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
+        				player.sendMessage("");
+        				player.sendMessage(format);
+        			}
+        			
+        		}
+        		
+    			
     		}
         }
         
