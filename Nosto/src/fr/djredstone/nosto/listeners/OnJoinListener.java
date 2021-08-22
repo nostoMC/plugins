@@ -7,11 +7,16 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -46,27 +51,25 @@ public class OnJoinListener implements Listener {
 		}
 		
 		if(!Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
+			Location lobby = new Location(Bukkit.getWorld("world"), 0.5, 252, 0.5, 0f, 0f);
+			player.teleport(lobby);
+			player.teleport(lobby);
 			player.setMaxHealth(20);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1, 200));
 			Main.vanishPlayer(player);
-			Location lobby = new Location(Bukkit.getWorld("world"), 0.5, 252, 0.5, 0f, 0f);
-			player.teleport(lobby);
 			player.getInventory().clear();
-			player.sendMessage("");
-			player.sendMessage("");
-			player.sendMessage("	§eSalut §6§l" + player.getName() + " §e! Afin de garentir une sécurité maximale sur ton compte, nous te demandons de te connecter avec §6§l/login§e. Si c'est la première fois que tu te connecte, il faudra créer un mot de passe avec §6§l/register §epuis le validé avec §6§l/valide §e!");
-			player.sendMessage("");
-			player.sendMessage("");
 			menuPlayers.add(player);
 			player.setGameMode(GameMode.ADVENTURE);
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " parent remove administrateur");
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "deop " + player.getName());
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " parent remove builder");
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "deop " + player.getName());
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " parent remove dev");
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "deop " + player.getName());
-			player.teleport(lobby);
-			player.setGameMode(GameMode.ADVENTURE);
+			player.sendMessage("");
+			player.sendTitle("§6§lBienvenue sur le serveur !", "" + player.getName(), 0, 60, 5);
+			ItemStack compassLobby = new ItemStack(Material.COMPASS, 1);
+			ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
+			compassLobbyMeta.setDisplayName("§b§lClick pour ouvrire le menu de téléportation");
+			compassLobbyMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
+			compassLobbyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			compassLobby.setItemMeta(compassLobbyMeta);
+			player.getInventory().setItem(4, compassLobby);
+			player.updateInventory();
 		} else {
 			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
 			player.teleport(lg);

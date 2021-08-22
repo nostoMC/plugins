@@ -28,7 +28,6 @@ import fr.djredstone.nosto.commands.heal.CommandHeal;
 import fr.djredstone.nosto.commands.home.CommandHome;
 import fr.djredstone.nosto.commands.home.TabHome;
 import fr.djredstone.nosto.commands.lobby.CommandLobby;
-import fr.djredstone.nosto.commands.mdp.CommandMDP;
 import fr.djredstone.nosto.commands.menu.CommandMenu;
 import fr.djredstone.nosto.commands.msg.CommandMsg;
 import fr.djredstone.nosto.commands.spawn.CommandSpawn;
@@ -112,10 +111,6 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		getCommand("sit").setExecutor(new CommandSit());
 		getCommand("afk").setExecutor(new CommandAFK());
 		getCommand("vanish").setExecutor(new CommandVanish());
-		getCommand("mdp").setExecutor(new CommandMDP());
-		getCommand("login").setExecutor(new CommandMDP());
-		getCommand("register").setExecutor(new CommandMDP());
-		getCommand("valide").setExecutor(new CommandMDP());
 		getCommand("freeze").setExecutor(new CommandFreeze());
 		getCommand("nosto").setExecutor(new CommandNosto());
 		getCommand("heal").setExecutor(new CommandHeal());
