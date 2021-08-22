@@ -1,9 +1,0 @@
-api-version: 1.13
-name: Nosto-MinecraftNightFunkin
-version: 0.0.1
-author: djredstone
-main: fr.djredstone.nostoMCNF.Main
-commands:
-  mcnf:
-    description: Commande Officielle
-    permission: nosto.mcnf
