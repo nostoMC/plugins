@@ -10,7 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.djredstone.nostoNC.commands.CommandNightclub;
 import fr.djredstone.nostoNC.commands.TabNightclub;
 import fr.djredstone.nostoNC.listeners.OnInventoryClickListener;
+import fr.djredstone.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.djredstone.nostoNC.listeners.OnPlayerDamageListener;
+import fr.djredstone.nostoNC.listeners.OnResourcepackStatusListener;
 import fr.djredstone.nostoNC.tasks.DjGlowing;
 import fr.djredstone.nostoNC.tasks.FloorSmokeEffect;
 import fr.djredstone.nostoNC.tasks.LightBottom;
@@ -46,6 +48,8 @@ public class Main extends JavaPlugin {
 		
 		new OnInventoryClickListener(this);
 		new OnPlayerDamageListener(this);
+		new OnPlayerChangeWorldListener(this);
+		new OnResourcepackStatusListener(this);
 		
 		new FloorSmokeEffect(this);
 		new StrobeEffect(this);

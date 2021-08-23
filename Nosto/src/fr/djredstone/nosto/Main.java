@@ -7,11 +7,10 @@ import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.djredstone.nosto.commands.annonce.CommandAnnonce;
@@ -196,10 +195,9 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		jda.shutdown();
 	}
 	
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onServerCommand(ServerCommandEvent event) {
 		
-		if(cmd.getName().equalsIgnoreCase("reload") || cmd.getName().equalsIgnoreCase("rl")) {
+		if(event.getCommand().equalsIgnoreCase("reload") || event.getCommand().equalsIgnoreCase("rl")) {
 			
 			isAReload = true;
 			

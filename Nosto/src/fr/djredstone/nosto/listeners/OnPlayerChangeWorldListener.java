@@ -1,7 +1,9 @@
 package fr.djredstone.nosto.listeners;
 
 import java.awt.Color;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -17,33 +19,41 @@ public class OnPlayerChangeWorldListener {
 	public void onWorldChange(PlayerChangedWorldEvent event){
 
 		Player player = event.getPlayer();
+		
+		Set<String> survies_names = new HashSet<String>();
+		survies_names.add("survie");
+		survies_names.add("survie_the_end");
+		survies_names.add("survie_nether");
 			
-		if((event.getFrom() != Bukkit.getWorld("survie_nether") || event.getFrom() != Bukkit.getWorld("survie_the_end") || event.getFrom() != Bukkit.getWorld("survie")) && (player.getWorld() == Bukkit.getWorld("survie")) || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
+		if (!survies_names.contains(event.getFrom().getName()) && survies_names.contains(player.getWorld().getName())) {
+			
+			String[] messages = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+			String message = "";
+			
+			if(messages[new Random().nextInt(messages.length)] == "1") {
+				message = "§eSalut §6§l" + player.getName() + "§e ! Bienvenue sur le survival !";
+			} else if(messages[new Random().nextInt(messages.length)] == "2") {
+				message = "§eBon retour parmi nous §6§l" + player.getName() + "§e !";
+			} else if(messages[new Random().nextInt(messages.length)] == "3") {
+				message = "§6§l" + player.getName() + "§e est de retour !";
+			} else if(messages[new Random().nextInt(messages.length)] == "4") {
+				message = "§6§l" + player.getName() + "§e nous a rejoint !";
+			} else if(messages[new Random().nextInt(messages.length)] == "5") {
+				message = "§eOh bas ! Qui vois là je ? C'est §6§l" + player.getName() + "�e !";
+			} else if(messages[new Random().nextInt(messages.length)] == "6") {
+				message = "§6§l" + player.getName() + "§e est là ! J'AIME BIEN !";
+			} else if(messages[new Random().nextInt(messages.length)] == "7") {
+				message = "§eOh.. It's you §6§l" + player.getName() + "§e .. It's been a looong time.. How have you been ?";
+			} else if(messages[new Random().nextInt(messages.length)] == "8") {
+				message = "§eAh ! Un nouveau joueur de connecter ! Et il s'agit de... §6§l" + player.getName() + "§e !";
+			} else if(messages[new Random().nextInt(messages.length)] == "9") {
+				message = "§eHello §6§l" + player.getName() + "§e ! Bon cube sur le survival !";
+			}
 			
 			for(Player players : Bukkit.getOnlinePlayers()) {
 				if(players.getWorld() == Bukkit.getWorld("survie") || players.getWorld() == Bukkit.getWorld("survie_nether") || players.getWorld() == Bukkit.getWorld("survie_the_end")) {
-					String[] messages = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-					String message = "";
+					
 					players.sendMessage("");
-					if(messages[new Random().nextInt(messages.length)] == "1") {
-						message = "§eSalut §6§l" + player.getName() + "§e ! Bienvenue sur le survival !";
-					} else if(messages[new Random().nextInt(messages.length)] == "2") {
-						message = "§eBon retour parmi nous §6§l" + player.getName() + "§e !";
-					} else if(messages[new Random().nextInt(messages.length)] == "3") {
-						message = "§6§l" + player.getName() + "§e est de retour !";
-					} else if(messages[new Random().nextInt(messages.length)] == "4") {
-						message = "§6§l" + player.getName() + "§e nous a rejoint !";
-					} else if(messages[new Random().nextInt(messages.length)] == "5") {
-						message = "§eOh bas ! Qui vois là je ? C'est §6§l" + player.getName() + "�e !";
-					} else if(messages[new Random().nextInt(messages.length)] == "6") {
-						message = "§6§l" + player.getName() + "§e est là ! J'AIME BIEN !";
-					} else if(messages[new Random().nextInt(messages.length)] == "7") {
-						message = "§eOh.. It's you §6§l" + player.getName() + "§e .. It's been a looong time.. How have you been ?";
-					} else if(messages[new Random().nextInt(messages.length)] == "8") {
-						message = "§eAh ! Un nouveau joueur de connecter ! Et il s'agit de... §6§l" + player.getName() + "§e !";
-					} else if(messages[new Random().nextInt(messages.length)] == "9") {
-						message = "§eHello §6§l" + player.getName() + "§e ! Bon cube sur le survival !";
-					}
 					players.sendMessage(message);
 					
 					EmbedBuilder embed = new EmbedBuilder();

@@ -486,6 +486,7 @@ public class Laser {
 			return packetTeleport.newInstance(entity);
 		}
 		
+		@SuppressWarnings("deprecation")
 		public static Object createPacketTeamCreate(String teamName, UUID squidUUID, UUID guardianUUID) throws ReflectiveOperationException {
 			Object packet;
 			if (version < 17) {
