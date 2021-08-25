@@ -9,15 +9,17 @@ import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.djredstone.nosto.Main;
 
-public class MainMenu {
+public class MainMenu implements Listener {
 
 	public static void openMenu(Player player) {
 		
@@ -47,32 +49,49 @@ public class MainMenu {
 		
 		inv.setItem(13, skull);
 		
-		inv.setItem(37, getItem(Material.BLAZE_POWDER , "§6§lParticules"));
-		inv.setItem(31, getItem(Material.COMPASS , "§2§lTP"));
-		inv.setItem(43, getItem(Material.GOLD_INGOT , "§e§lBoutique"));
+		inv.setItem(37, Main.createItem(Material.BLAZE_POWDER , "§6§lParticules"));
+		inv.setItem(31, Main.createItem(Material.COMPASS , "§2§lTP"));
+		inv.setItem(43, Main.createItem(Material.GOLD_INGOT , "§e§lBoutique"));
 		
-		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
-		clearSlotMeta.setDisplayName(" ");
-		clearSlot.setItemMeta(clearSlotMeta);
-		
-		for(int i = 0; i < inv.getSize(); i++) {
-			if(inv.getItem(i) == null) {
-				inv.setItem(i, clearSlot);
-			}
-		}
+		Main.fillEmplyItem(inv);
 	
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
 	}
 	
-	public static ItemStack getItem(Material material, String customName) {
-		ItemStack it = new ItemStack(material, 1);
-		ItemMeta itM = it.getItemMeta();
-		if(customName != null) itM.setDisplayName(customName);
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		return it;
+	@EventHandler
+	public void onClick(InventoryClickEvent event) {
+		
+		Player player = (Player) event.getWhoClicked();
+		ItemStack current = event.getCurrentItem();
+		
+		if(current.getType() == null) {
+			return;
+		}
+		
+		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
+			event.setCancelled(true);
+			
+			switch(current.getType()) {
+			
+			case COMPASS:
+				TpMenu.openMenu(player);
+				break;
+				
+			case BLAZE_POWDER:
+				TrailsMenu.openMenu(player);
+				break;
+				
+			case GOLD_INGOT:
+				ShopMenu.openMenu(player);
+				break;
+			
+			default:
+				break;
+			}
+			
+		}
+		
 	}
 
 }

@@ -7,10 +7,15 @@ import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerCommandEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.djredstone.nosto.commands.annonce.CommandAnnonce;
@@ -35,7 +40,6 @@ import fr.djredstone.nosto.commands.speed.TabSpeed;
 import fr.djredstone.nosto.commands.staffChat.CommandStaffChat;
 import fr.djredstone.nosto.commands.trails.CommandTrails;
 import fr.djredstone.nosto.listeners.OnInteractListener;
-import fr.djredstone.nosto.listeners.OnInventoryClickListener;
 import fr.djredstone.nosto.listeners.OnItemDropListener;
 import fr.djredstone.nosto.listeners.OnJoinListener;
 import fr.djredstone.nosto.listeners.OnLeaveListener;
@@ -43,7 +47,14 @@ import fr.djredstone.nosto.listeners.OnMessageListener;
 import fr.djredstone.nosto.listeners.OnMoveItemInventoryListener;
 import fr.djredstone.nosto.listeners.OnMoveListener;
 import fr.djredstone.nosto.listeners.OnServerListPingListener;
+import fr.djredstone.nosto.menus.EventMenu;
+import fr.djredstone.nosto.menus.MainMenu;
+import fr.djredstone.nosto.menus.MinijeuxMenu;
+import fr.djredstone.nosto.menus.MondeOuvertMenu;
+import fr.djredstone.nosto.menus.ShopMenu;
+import fr.djredstone.nosto.menus.TpMenu;
 import fr.djredstone.nosto.menus.TrailsMenu;
+import fr.djredstone.nosto.menus.TrainingMenu;
 import fr.djredstone.nosto.particleEffects.PlayerTrailsStats;
 import fr.djredstone.nosto.tasks.ParticleEffectTask;
 import fr.djredstone.nosto.tasks.PluginListTask;
@@ -126,14 +137,21 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		AFKListeners.onAFKLoop(this);
 		new OnItemDropListener(this);
 		new OnMoveItemInventoryListener(this);
-		new OnInventoryClickListener(this);
 		new OnLeaveListener(this);
 		new OnJoinListener(this);
 		new OnMoveListener(this);
 		new OnInteractListener(this);
 		new OnServerListPingListener(this);
 		// Gui Listeners
-		Bukkit.getPluginManager().registerEvents(new TrailsMenu(), this);
+		Bukkit.getPluginManager().registerEvents(new MainMenu(), this);
+			Bukkit.getPluginManager().registerEvents(new TrailsMenu(), this);
+			Bukkit.getPluginManager().registerEvents(new ShopMenu(), this);
+			Bukkit.getPluginManager().registerEvents(new TpMenu(), this);
+				Bukkit.getPluginManager().registerEvents(new MondeOuvertMenu(), this);
+				Bukkit.getPluginManager().registerEvents(new TrainingMenu(), this);
+				Bukkit.getPluginManager().registerEvents(new EventMenu(), this);
+				Bukkit.getPluginManager().registerEvents(new MinijeuxMenu(), this);
+				Bukkit.getPluginManager().registerEvents(new TrailsMenu(), this);
 		
 		// Tasks
 		new VanishLoop(this);
@@ -219,4 +237,28 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		if (event instanceof ReadyEvent) System.out.println("§cBot discord synchronisé avec minecraft prêt !");
 		
 	}
+	
+	public static Inventory fillEmplyItem(Inventory inv) {
+		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
+		clearSlotMeta.setDisplayName(" ");
+		clearSlot.setItemMeta(clearSlotMeta);
+		
+		for(int i = 0; i < inv.getSize(); i++) {
+			if(inv.getItem(i) == null) {
+				inv.setItem(i, clearSlot);
+			}
+		}
+		return inv;
+	}
+	
+	public static ItemStack createItem(Material material, String customName) {
+		ItemStack it = new ItemStack(material, 1);
+		ItemMeta itM = it.getItemMeta();
+		if(customName != null) itM.setDisplayName(customName);
+		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		it.setItemMeta(itM);
+		return it;
+	}
+	
 }
