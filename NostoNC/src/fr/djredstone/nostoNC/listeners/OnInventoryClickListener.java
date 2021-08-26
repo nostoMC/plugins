@@ -1,15 +1,20 @@
 package fr.djredstone.nostoNC.listeners;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -28,6 +33,7 @@ public class OnInventoryClickListener implements Listener {
 	public void onClick(InventoryClickEvent event) {
 		
 		ItemStack current = event.getCurrentItem();
+		Player player = (Player) event.getWhoClicked();
 		
 		if(current == null) return;
 		
@@ -38,10 +44,12 @@ public class OnInventoryClickListener implements Listener {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
 				if(Main.floorSmoke == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
 					itM.setLore(Main.on);
 					it.setItemMeta(itM);
 					Main.floorSmoke = true;
 				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
 					itM.setLore(Main.off);
 					it.setItemMeta(itM);
 					Main.floorSmoke = false;
@@ -50,10 +58,12 @@ public class OnInventoryClickListener implements Listener {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
 				if(Main.strobe == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
 					itM.setLore(Main.on);
 					it.setItemMeta(itM);
 					Main.strobe = true;
 				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
 					itM.setLore(Main.off);
 					it.setItemMeta(itM);
 					Main.strobe = false;
@@ -88,29 +98,91 @@ public class OnInventoryClickListener implements Listener {
 	            fw4.detonate();
 	            fw5.detonate();
 	            fw6.detonate();
-			} else if(current.getType() == Material.END_CRYSTAL) {
+			} else if(current.getType() == Material.END_CRYSTAL && current.getItemMeta().getDisplayName().equalsIgnoreCase("§5§lLight Bottom")) {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
 				if(Main.lightBottom == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
 					itM.setLore(Main.on);
 					it.setItemMeta(itM);
 					Main.lightBottom = true;
 				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
 					itM.setLore(Main.off);
 					it.setItemMeta(itM);
 					Main.lightBottom = false;
 				}
+			} else if(current.getType() == Material.END_CRYSTAL && current.getItemMeta().getDisplayName().equalsIgnoreCase("§5§lLight Top")) {
+				ItemStack it = current;
+				ItemMeta itM = it.getItemMeta();
+				if(Main.lightTop == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
+					itM.setLore(Main.on);
+					it.setItemMeta(itM);
+					Main.lightTop = true;
+				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
+					itM.setLore(Main.off);
+					it.setItemMeta(itM);
+					Main.lightTop = false;
+				}
+			} else if(current.getType() == Material.CLOCK) {
+				ItemStack it = current;
+				ItemMeta itM = it.getItemMeta();
+				if(event.getAction() == InventoryAction.PICKUP_HALF) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 1);
+					if(Main.cadence != 2) Main.cadence = Main.cadence - 1;
+				} else if(event.getAction() == InventoryAction.PICKUP_ALL) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
+					Main.cadence = Main.cadence + 1;
+				}
+				ArrayList<String> lore = new ArrayList<String>();
+				lore.add("§eLa cadence est actuellement à §6§l" + Main.cadence + " §eticks !");
+				lore.add("§cClick droit pour retirer du temps");
+				lore.add("§aClick gauche pour ajouter du temps");
+				itM.setLore(lore);
+				it.setItemMeta(itM);
 			} else if(current.getType() == Material.BEACON) {
 				ItemStack it = current;
 				ItemMeta itM = it.getItemMeta();
 				if(Main.randomBeacon == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
 					itM.setLore(Main.on);
 					it.setItemMeta(itM);
 					Main.randomBeacon = true;
 				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
 					itM.setLore(Main.off);
 					it.setItemMeta(itM);
 					Main.randomBeacon = false;
+				}
+			} else if(current.getType() == Material.SEA_LANTERN) {
+				ItemStack it = current;
+				ItemMeta itM = it.getItemMeta();
+				if(Main.sphere == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
+					itM.setLore(Main.on);
+					it.setItemMeta(itM);
+					Main.sphere = true;
+				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
+					itM.setLore(Main.off);
+					it.setItemMeta(itM);
+					Main.sphere = false;
+				}
+			} else if(current.getType() == Material.CRYING_OBSIDIAN) {
+				ItemStack it = current;
+				ItemMeta itM = it.getItemMeta();
+				if(Main.wave == false ) {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
+					itM.setLore(Main.on);
+					it.setItemMeta(itM);
+					Main.wave = true;
+				} else {
+					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
+					itM.setLore(Main.off);
+					it.setItemMeta(itM);
+					Main.wave = false;
 				}
 			}
 		}

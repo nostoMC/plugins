@@ -19,6 +19,8 @@ public class OnPlayerChangeWorldListener implements Listener {
 		
 		if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
 			
+			System.out.println(player.getName() + " est dans la boîte de nuit !");
+			
 			player.setResourcePack("https://www.dropbox.com/sh/s22qs07ad57visv/AADTQzJw8ze296BzD1HJxsh7a?dl=1");
 			
 		}

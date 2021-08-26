@@ -15,7 +15,7 @@ public class RandomBeaconEffect {
 
 	public RandomBeaconEffect(Main main) {
 		
-		Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 64, 14)).setType(Material.REDSTONE_BLOCK);
+		Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -8, 62, 9)).setType(Material.REDSTONE_BLOCK);
 		
 		new BukkitRunnable() {
 			
@@ -24,22 +24,26 @@ public class RandomBeaconEffect {
 			@Override
 			public void run() {
 				
-				color = r.nextInt(5);
-				
-				if(color == 0) {
-					Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 33, 64, -16)).setType(Material.REDSTONE_BLOCK);
-				} else if(color == 1) {
-					Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 33, 64, -14)).setType(Material.REDSTONE_BLOCK);
-				} else if(color == 2) {
-					Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 33, 64, -12)).setType(Material.REDSTONE_BLOCK);
-				} else if(color == 3) {
-					Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 33, 64, -10)).setType(Material.REDSTONE_BLOCK);
-				} else if(color == 4) {
-					Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 33, 64, -8)).setType(Material.REDSTONE_BLOCK);
-				} else if(color == 5) {
-					Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 33, 64, -6)).setType(Material.REDSTONE_BLOCK);
-				} else {
-					color = 0;
+				if(Main.randomBeacon) {
+					color = r.nextInt(5);
+					
+					if(color == 0) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -25)).setType(Material.REDSTONE_BLOCK);
+					} else if(color == 0) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -23)).setType(Material.REDSTONE_BLOCK);
+					} else if(color == 1) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -21)).setType(Material.REDSTONE_BLOCK);
+					} else if(color == 2) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -19)).setType(Material.REDSTONE_BLOCK);
+					} else if(color == 3) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -17)).setType(Material.REDSTONE_BLOCK);
+					} else if(color == 4) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -15)).setType(Material.REDSTONE_BLOCK);
+					} else if(color == 5) {
+						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -13)).setType(Material.REDSTONE_BLOCK);
+					} else {
+						color = 0;
+					}
 				}
 				
 			}
@@ -62,15 +66,15 @@ public class RandomBeaconEffect {
 						if(Main.randomBeacon == true) {
 							if(stade == 0) {
 								for(int i = 0; i < 50; i++) {
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, r.nextInt(16 + 16) - 16, 63, r.nextInt(8 + 26) - 26)).setType(Material.GLASS);
+									Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, r.nextInt(16 + 16) - 16, 63, r.nextInt(8 + 26) - 26)).setType(Material.HOPPER);
 								}
 								stade = 1;
 							} else {
-								Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, 22, 64, 14)).setType(Material.REDSTONE_BLOCK);
+								Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, 0, 62, 9)).setType(Material.REDSTONE_BLOCK);
 								stade = 0;
 							}
 						} else {
-							Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, 22, 64, 14)).setType(Material.REDSTONE_BLOCK);
+							Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, 0, 62, 9)).setType(Material.REDSTONE_BLOCK);
 						}
 					}
 				}.runTaskTimer(main, 0, 7);

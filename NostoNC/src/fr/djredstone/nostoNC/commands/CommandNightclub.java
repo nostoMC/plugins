@@ -1,5 +1,7 @@
 package fr.djredstone.nostoNC.commands;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -45,6 +47,8 @@ public class CommandNightclub implements CommandExecutor {
 						it.setItemMeta(itM);
 						inv.setItem(10, it);
 						
+						// ---------------------------------------------------------
+						
 						it = new ItemStack(Material.REDSTONE_LAMP, 1);
 						itM = it.getItemMeta();
 						itM.setDisplayName("§8§lStrobe");
@@ -59,6 +63,8 @@ public class CommandNightclub implements CommandExecutor {
 						it.setItemMeta(itM);
 						inv.setItem(19, it);
 						
+						// ---------------------------------------------------------
+						
 						it = new ItemStack(Material.FIREWORK_ROCKET, 1);
 						itM = it.getItemMeta();
 						itM.setDisplayName("§8§lFeux d'artifices");
@@ -66,6 +72,8 @@ public class CommandNightclub implements CommandExecutor {
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 						it.setItemMeta(itM);
 						inv.setItem(12, it);
+						
+						// ---------------------------------------------------------
 						
 						it = new ItemStack(Material.END_CRYSTAL, 1);
 						itM = it.getItemMeta();
@@ -79,7 +87,41 @@ public class CommandNightclub implements CommandExecutor {
 						
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 						it.setItemMeta(itM);
+						inv.setItem(32, it);
+						
+						// ---------------------------------------------------------
+						
+						it = new ItemStack(Material.END_CRYSTAL, 1);
+						itM = it.getItemMeta();
+						itM.setDisplayName("§5§lLight Top");
+						
+						if(Main.lightTop == false ) {
+							itM.setLore(Main.off);
+						} else {
+							itM.setLore(Main.on);
+						}
+						
+						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+						it.setItemMeta(itM);
 						inv.setItem(14, it);
+						
+						// ---------------------------------------------------------
+						
+						it = new ItemStack(Material.CLOCK, 1);
+						itM = it.getItemMeta();
+						itM.setDisplayName("§6§lCadence");
+						
+						ArrayList<String> lore = new ArrayList<String>();
+						lore.add("§eLa cadence est actuellement à §6§l" + Main.cadence + " §eticks !");
+						lore.add("§cClick droit pour retirer du temps");
+						lore.add("§aClick gauche pour ajouter du temps");
+						itM.setLore(lore);
+						
+						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+						it.setItemMeta(itM);
+						inv.setItem(41, it);
+						
+						// ---------------------------------------------------------
 						
 						it = new ItemStack(Material.BEACON, 1);
 						itM = it.getItemMeta();
@@ -94,6 +136,40 @@ public class CommandNightclub implements CommandExecutor {
 						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 						it.setItemMeta(itM);
 						inv.setItem(16, it);
+						
+						// ---------------------------------------------------------
+						
+						it = new ItemStack(Material.SEA_LANTERN, 1);
+						itM = it.getItemMeta();
+						itM.setDisplayName("§5§lSphere");
+						
+						if(Main.sphere == false ) {
+							itM.setLore(Main.off);
+						} else {
+							itM.setLore(Main.on);
+						}
+						
+						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+						it.setItemMeta(itM);
+						inv.setItem(28, it);
+						
+						// ---------------------------------------------------------
+						
+						it = new ItemStack(Material.CRYING_OBSIDIAN, 1);
+						itM = it.getItemMeta();
+						itM.setDisplayName("§f§lWave");
+						
+						if(Main.wave == false ) {
+							itM.setLore(Main.off);
+						} else {
+							itM.setLore(Main.on);
+						}
+						
+						itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+						it.setItemMeta(itM);
+						inv.setItem(37, it);
+						
+						// ---------------------------------------------------------
 						
 						ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 						ItemMeta clearSlotMeta = clearSlot.getItemMeta();

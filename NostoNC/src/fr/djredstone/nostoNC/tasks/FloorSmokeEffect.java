@@ -16,7 +16,7 @@ public class FloorSmokeEffect {
 			public void run() {
 				
 				if(Main.floorSmoke == true) {
-					Bukkit.getWorld("Nightclub").spawnParticle(Particle.SMOKE_LARGE, 0, 64, -8, 500, 10, 0, 10, 0.1);
+					Bukkit.getWorld("Nightclub").spawnParticle(Particle.CLOUD, 0, 64, -8, 500, 10, 0, 10, 0.1);
 				}
 				
 			}
