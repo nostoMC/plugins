@@ -12,11 +12,7 @@ public class OnResourcepackStatusListener implements Listener {
 		
 		if(event.getStatus() == Status.DECLINED) {
 			
-			event.getPlayer().kickPlayer("Vous n'avez pas accépter le resource pack !");
-			
-		} else if(event.getStatus() == Status.FAILED_DOWNLOAD) {
-			
-			event.getPlayer().kickPlayer("Téléchargement interompu du resource pack !");
+			event.getPlayer().kickPlayer("Vous n'avez pas accépté le resource pack !");
 			
 		}
 		
