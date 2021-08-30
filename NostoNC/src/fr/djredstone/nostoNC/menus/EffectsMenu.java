@@ -11,6 +11,7 @@ import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -41,153 +42,69 @@ public class EffectsMenu implements Listener {
 		
 		Inventory inv = Bukkit.createInventory(null, 54, "§2§lGestioraire des effets");
 		
-		ItemStack it = new ItemStack(Material.STRING, 1);
+		createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 10);
+		
+		createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 19);
+		
+		createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 12);
+		
+		createAndCheckActiveEffectItem(inv, Material.END_CRYSTAL, "§5§lLight Bottom", "lightBottom", 32);
+		
+		createAndCheckActiveEffectItem(inv, Material.END_CRYSTAL, "§5§lLight Top", "lightTop", 14);
+		
+		createAndCheckActiveEffectItem(inv, Material.BEACON, "§5§lRandom Beam", "randomBeacon", 16);
+		
+		createAndCheckActiveEffectItem(inv, Material.SEA_LANTERN, "§5§lSphere", "sphere", 28);
+		
+		createAndCheckActiveEffectItem(inv, Material.CRYING_OBSIDIAN, "§f§lWave", "wave", 37);
+		
+		createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 21);
+		
+		// ---------------------------------------------------------
+		
+		ItemStack it = new ItemStack(Material.CLOCK, 1);
 		ItemMeta itM = it.getItemMeta();
-		itM.setDisplayName("§7§lFloor Smoke");
-		
-		if(Main.floorSmoke == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(10, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.REDSTONE_LAMP, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§8§lStrobe");
-		
-		if(Main.strobe == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(19, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.FIREWORK_ROCKET, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§8§lFeux d'artifices");
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(12, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.END_CRYSTAL, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§5§lLight Bottom");
-		
-		if(Main.lightBottom == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(32, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.END_CRYSTAL, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§5§lLight Top");
-		
-		if(Main.lightTop == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(14, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.CLOCK, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§6§lCadence");
-		
+		itM.setDisplayName("");
+				
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add("§eLa cadence est actuellement à §6§l" + Main.cadence + " §eticks !");
+		lore.add("§eLa cadence est actuellement à §6§l" + Main.activeEffects.get("cadence") + " §eticks !");
 		lore.add("§cClick droit pour retirer du temps");
 		lore.add("§aClick gauche pour ajouter du temps");
 		itM.setLore(lore);
-		
+				
 		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		it.setItemMeta(itM);
 		inv.setItem(41, it);
-		
+				
 		// ---------------------------------------------------------
 		
-		it = new ItemStack(Material.BEACON, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§5§lRandom Beam");
+		fillEmptyItem(inv);
 		
-		if(Main.randomBeacon == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
+		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
+		player.openInventory(inv);
+	}
+	
+	private static void createAndCheckActiveEffectItem(Inventory inv, Material material, String itName, String var, int slot) {
+		ItemStack it = new ItemStack(material, 1);
+		ItemMeta itM = it.getItemMeta();
+		itM.setDisplayName(itName);
+		
+		if(var != null) {
+			if(Main.activeEffects.get(var) == false ) {
+				itM.setLore(off);
+			} else {
+				itM.setLore(on);
+				itM.addEnchant(Enchantment.LUCK, 1, false);
+			}
 		}
 		
 		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		it.setItemMeta(itM);
-		inv.setItem(16, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.SEA_LANTERN, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§5§lSphere");
-		
-		if(Main.sphere == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(28, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.CRYING_OBSIDIAN, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§f§lWave");
-		
-		if(Main.wave == false ) {
-			itM.setLore(off);
-		} else {
-			itM.setLore(on);
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(37, it);
-		
-		// ---------------------------------------------------------
-		
-		it = new ItemStack(Material.PUMPKIN_SEEDS, 1);
-		itM = it.getItemMeta();
-		itM.setDisplayName("§f§lParticules aléatoires");
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(21, it);
-		
-		// ---------------------------------------------------------
+		inv.setItem(slot, it);
+	}
+	
+	private static void fillEmptyItem(Inventory inv) {
 		
 		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
@@ -199,9 +116,6 @@ public class EffectsMenu implements Listener {
 				inv.setItem(i, clearSlot);
 			}
 		}
-		
-		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
-		player.openInventory(inv);
 	}
 	
 	@EventHandler

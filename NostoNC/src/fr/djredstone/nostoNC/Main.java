@@ -1,6 +1,7 @@
 package fr.djredstone.nostoNC;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -31,15 +32,9 @@ public class Main extends JavaPlugin {
 	public static ArrayList<Player> dj = new ArrayList<Player>();
 	public static ArrayList<Player> vip = new ArrayList<Player>();
 	
-	public static boolean floorSmoke = false;
-	public static boolean strobe = false;
-	public static boolean lightBottom = false;
-	public static boolean lightTop = false;
+	public static HashMap<String, Boolean> activeEffects = new HashMap<String, Boolean>();
+	
 	public static int cadence = 10;
-	public static boolean randomBeacon = false;
-	public static boolean sphere = false;
-	public static boolean wave = false;
-	public static boolean dragonDeathAnimation = false;
 	
 	public static Main instance;
 	
@@ -84,6 +79,14 @@ public class Main extends JavaPlugin {
 		}
 		
 		new Location(Bukkit.getWorld("Nightclub"), 20, 64, 7).getBlock().setType(Material.REDSTONE_BLOCK);
+		
+		activeEffects.put("floorSmoke", false);
+		activeEffects.put("strobe", false);
+		activeEffects.put("lightBottom", false);
+		activeEffects.put("lightTop", false);
+		activeEffects.put("randomBeacon", false);
+		activeEffects.put("sphere", false);
+		activeEffects.put("wave", false);
 		
 	}
 	

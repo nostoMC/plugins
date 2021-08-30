@@ -11,7 +11,7 @@ public class OnPlayerInteractListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		
 		if(event.getPlayer().getWorld() == Bukkit.getWorld("Nightclub")) {
-			if(!event.getPlayer().isOp()) {
+			if(!event.getPlayer().hasPermission("nosto.nightclub.interact")) {
 				event.setCancelled(true);
 			}
 		}
