@@ -17,7 +17,7 @@ public class LightBottom {
 	World w = Bukkit.getWorld("Nightclub");
 	
 	EnderCrystal crystal1 = null, crystal2 = null, crystal3 = null, crystal4 = null, crystal5 = null, crystal6 = null;
-	EnderCrystal crystal21 = null, crystal22 = null, crystal23 = null, crystal24 = null;
+	EnderCrystal crystal21 = null, crystal22 = null, crystal23 = null, crystal24 = null, crystal25 = null;
 	
 	public LightBottom(Main main) {
 		
@@ -60,13 +60,15 @@ public class LightBottom {
 								i = 1;
 								
 								crystal21 = (EnderCrystal) w.spawnEntity(new Location(w, 6, 73, 8), EntityType.ENDER_CRYSTAL);
-								crystal21.setBeamTarget(new Location(w, 2.0, 66.5, 16.5));
-								crystal23 = (EnderCrystal) w.spawnEntity(new Location(w, -2, 73, 7), EntityType.ENDER_CRYSTAL);
-								crystal23.setBeamTarget(new Location(w, 0.0, 66.5, 16.5));
-								crystal22 = (EnderCrystal) w.spawnEntity(new Location(w, 2, 73, 7), EntityType.ENDER_CRYSTAL);
-								crystal22.setBeamTarget(new Location(w, 1.0, 66.5, 16.5));
-								crystal24 = (EnderCrystal) w.spawnEntity(new Location(w, -6, 73, 8), EntityType.ENDER_CRYSTAL);
-								crystal24.setBeamTarget(new Location(w, -1.0, 66.5, 16.5));
+								crystal21.setBeamTarget(new Location(w, 2.5, 66.5, 16.5));
+								crystal22 = (EnderCrystal) w.spawnEntity(new Location(w, 3, 73, 7), EntityType.ENDER_CRYSTAL);
+								crystal22.setBeamTarget(new Location(w, 1.5, 66.5, 16.5));
+								crystal23 = (EnderCrystal) w.spawnEntity(new Location(w, 0, 73, 7), EntityType.ENDER_CRYSTAL);
+								crystal23.setBeamTarget(new Location(w, 0.5, 66.5, 16.5));
+								crystal24 = (EnderCrystal) w.spawnEntity(new Location(w, -2, 73, 7), EntityType.ENDER_CRYSTAL);
+								crystal24.setBeamTarget(new Location(w, -0.5, 66.5, 16.5));
+								crystal25 = (EnderCrystal) w.spawnEntity(new Location(w, -5, 73, 8), EntityType.ENDER_CRYSTAL);
+								crystal25.setBeamTarget(new Location(w, -1.5, 66.5, 16.5));
 							} else if(i == 1) {
 								i = 0;
 								crystal1 = (EnderCrystal) w.spawnEntity(new Location(w, 11, 70, 4), EntityType.ENDER_CRYSTAL);
@@ -90,10 +92,10 @@ public class LightBottom {
 						}
 						
 					}
-				}.runTaskLater(main, Main.cadence);
+				}.runTaskLater(main, 5);
 				
 			}
-		}.runTaskTimer(main, 0, Main.cadence);
+		}.runTaskTimer(main, 0, 10);
 		
 	}
 

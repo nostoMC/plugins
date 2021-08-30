@@ -77,7 +77,7 @@ public class LightTop {
 				}
 				
 			}
-		}.runTaskTimer(main, 0, Main.cadence);
+		}.runTaskTimer(main, 0, 10);
 		
 	}
 

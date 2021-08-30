@@ -20,6 +20,7 @@ public class TabNightclub implements TabCompleter {
 		}
 		if(arguments2.isEmpty()) {
 			arguments2.add("dj");
+			arguments2.add("vip");
 		}
 		
 		List<String> result = new ArrayList<String>();
@@ -31,12 +32,14 @@ public class TabNightclub implements TabCompleter {
 			}
 			return result;
 		} else if(args.length == 2) {
-			for (String a : arguments2) {
-				if(a.toLowerCase().startsWith(args[1].toLowerCase())) {
-					result.add(a);
+			if(args[0].equalsIgnoreCase("join") || args[0].equalsIgnoreCase("leave")) {
+				for (String a : arguments2) {
+					if(a.toLowerCase().startsWith(args[1].toLowerCase())) {
+						result.add(a);
+					}
 				}
+				return result;
 			}
-			return result;
 		}
 	
 	return null;

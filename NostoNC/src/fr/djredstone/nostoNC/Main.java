@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.djredstone.nostoNC.commands.CommandNightclub;
 import fr.djredstone.nostoNC.commands.TabNightclub;
-import fr.djredstone.nostoNC.listeners.OnInventoryClickListener;
 import fr.djredstone.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.djredstone.nostoNC.listeners.OnPlayerDamageListener;
 import fr.djredstone.nostoNC.listeners.OnResourcepackStatusListener;
+import fr.djredstone.nostoNC.menus.EffectsMenu;
 import fr.djredstone.nostoNC.tasks.DjGlowing;
 import fr.djredstone.nostoNC.tasks.FloorSmokeEffect;
 import fr.djredstone.nostoNC.tasks.LightBottom;
@@ -25,9 +27,8 @@ import fr.djredstone.nostoNC.tasks.WaveEffect;
 
 public class Main extends JavaPlugin {
 	
-	public static ArrayList<String> on = new ArrayList<String>();
-	public static ArrayList<String> off = new ArrayList<String>();
 	public static ArrayList<Player> dj = new ArrayList<Player>();
+	public static ArrayList<Player> vip = new ArrayList<Player>();
 	
 	public static boolean floorSmoke = false;
 	public static boolean strobe = false;
@@ -56,10 +57,10 @@ public class Main extends JavaPlugin {
 		getCommand("nightclub").setExecutor(new CommandNightclub());
 		getCommand("nightclub").setTabCompleter(new TabNightclub());
 		
-		new OnInventoryClickListener(this);
-		new OnPlayerDamageListener(this);
-		new OnPlayerChangeWorldListener(this);
-		new OnResourcepackStatusListener(this);
+		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
+		Bukkit.getPluginManager().registerEvents(new OnPlayerDamageListener(), this);
+		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
+		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 		
 		new FloorSmokeEffect(this);
 		new StrobeEffect(this);
@@ -71,9 +72,6 @@ public class Main extends JavaPlugin {
 		
 		new DjGlowing(this);
 		
-		off.add("§c§loff");
-		on.add("§a§lon");
-		
 		try {
 			test = new Laser(new Location(Bukkit.getWorld("Nightclub"), 0, 80, -6), new Location(Bukkit.getWorld("Nightclub"), 0, 70, -6), 200, 100);
 			test.start(this);
@@ -82,11 +80,20 @@ public class Main extends JavaPlugin {
 			e.printStackTrace();
 		}
 		
+		new Location(Bukkit.getWorld("Nightclub"), 20, 64, 7).getBlock().setType(Material.REDSTONE_BLOCK);
+		
 	}
 	
 	@Override
 	public void onDisable() {
 		if(test.isStarted()) test.stop();
+		for(Entity e : Bukkit.getWorld("Nightclub").getEntities()) {
+			if(e instanceof ArmorStand) {
+				if(e.getScoreboardTags().contains("spot")) {
+					e.remove();
+				}
+			}
+		}
 	}
 	
 	public void smoothMove(Entity entity, Location toLoc, Integer time) {
