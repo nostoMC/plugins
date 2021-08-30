@@ -14,6 +14,7 @@ import fr.djredstone.nostoNC.commands.CommandNightclub;
 import fr.djredstone.nostoNC.commands.TabNightclub;
 import fr.djredstone.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.djredstone.nostoNC.listeners.OnPlayerDamageListener;
+import fr.djredstone.nostoNC.listeners.OnPlayerInteractListener;
 import fr.djredstone.nostoNC.listeners.OnResourcepackStatusListener;
 import fr.djredstone.nostoNC.menus.EffectsMenu;
 import fr.djredstone.nostoNC.tasks.DjGlowing;
@@ -58,9 +59,11 @@ public class Main extends JavaPlugin {
 		getCommand("nightclub").setTabCompleter(new TabNightclub());
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
+		
 		Bukkit.getPluginManager().registerEvents(new OnPlayerDamageListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
+		Bukkit.getPluginManager().registerEvents(new OnPlayerInteractListener(), this);
 		
 		new FloorSmokeEffect(this);
 		new StrobeEffect(this);
