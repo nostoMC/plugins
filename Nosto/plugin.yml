@@ -67,14 +67,6 @@ commands:
     description: Permet de claim des chunk
   unclaim:
     description: Permet d'unclaim des chunk
-  register:
-    description: Permet de se register
-  login:
-    description: Permet de se login
-  valide:
-    descrption: Permet de valide son mot de passe
-  mdp:
-    description: Permet de changer de mot de passe
   clearTchat:
     description: Permet de clear le tchat
     permission: nosto.admin.cleartchat
