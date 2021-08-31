@@ -19,7 +19,7 @@ public class OnPlayerChangeWorldListener implements Listener {
 			
 			System.out.println(player.getName() + " est dans la boîte de nuit !");
 			
-			player.setResourcePack("");
+			player.setResourcePack("https://www.dropbox.com/sh/hwhqynt5xvhvyj1/AAAki-6eHwpMLNlsMS6p4ySfa?dl=1");
 			
 		}
 		
