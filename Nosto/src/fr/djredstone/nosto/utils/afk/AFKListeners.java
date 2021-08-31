@@ -39,7 +39,7 @@ public class AFKListeners implements Listener {
 					if(players.getWorld() != Bukkit.getWorld("world") && (players.getWorld() == Bukkit.getWorld("survie") || players.getWorld() == Bukkit.getWorld("survie_nether") || players.getWorld() == Bukkit.getWorld("survie_the_end"))) {
 						time.put(players, time.get(players) + 1);
 					}
-					if(time.get(players) == 60) {
+					if(time.get(players) == 300) { // 5 MIN
 						afks.add(players);
 						players.setCustomName(players.getName() + " §7§l(AFK)");
 						players.setCustomNameVisible(true);

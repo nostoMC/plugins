@@ -1,7 +1,5 @@
 package fr.djredstone.nosto.listeners;
 
-import java.awt.Color;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,17 +40,14 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 			groupDiscord = "Administrateur ";
 		}
 		
-		String format = "§f<" + group + "§f" + player.getName() + "> " + event.getMessage();
+		String format = "§f<" + group + "§f"+ player.getName() + "> " + event.getMessage();
 		Bukkit.broadcastMessage("");
 		event.setFormat(format);
 		event.setMessage(event.getMessage().replaceAll("&", "§"));
 		
 		EmbedBuilder embed = new EmbedBuilder();
 		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
-		embed.addField(event.getMessage(), "", false);
-		embed.setColor(Color.GREEN);
-		
-		System.out.println("Test");
+		embed.setDescription(event.getMessage());
 		
 		if(player.getWorld() == Bukkit.getWorld("survie") || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
 			
