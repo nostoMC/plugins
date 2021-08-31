@@ -26,7 +26,7 @@ public class SphereEffect {
 					double y = r * Math.cos(phi) + 1.5;
 					double z = r * Math.sin(theta) * Math.sin(phi);
 					loc.add(x, y, z);
-					if(Main.sphere) {
+					if(Main.activeEffects.get("sphere")) {
 						Bukkit.getWorld("Nightclub").spawnParticle(Particle.DRAGON_BREATH, loc, 0, 0, 0, 0);
 					}
 					loc.subtract(x, y, z);

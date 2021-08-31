@@ -28,7 +28,7 @@ public class StrobeEffect {
 					i = 0;
 				}
 				
-				if(Main.strobe == true) {
+				if(Main.activeEffects.get("strobe") == true) {
 					for(Player players : Bukkit.getOnlinePlayers()) {
 						if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
 							if(i == 1) {

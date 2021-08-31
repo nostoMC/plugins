@@ -21,11 +21,11 @@ public class CommandFreeze implements CommandExecutor {
         		if(!Main.frozen.contains(target)) {
         			Main.frozen.add(target);
         			player.sendMessage("");
-        			player.sendMessage("Vous avez freeze " + target.getPlayer());
+        			player.sendMessage("§eVous avez freeze §6§l" + target.getPlayer());
         		} else {
         			Main.frozen.remove(target);
         			player.sendMessage("");
-        			player.sendMessage("Vous avez défreeze " + target.getPlayer());
+        			player.sendMessage("§eVous avez défreeze §6§l" + target.getPlayer());
             	}
 			}
         }

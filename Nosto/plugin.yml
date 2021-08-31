@@ -4,9 +4,6 @@ version: 0.0.1
 author: djredstone
 main: fr.djredstone.nosto.Main
 commands:
-  test:
-    description: Commande Test
-    permission: nosto.admin.test
   annonce:
     description: Commande annonce
     permission: nosto.admin.annonce
@@ -26,8 +23,6 @@ commands:
     permission: nosto.admin.chat
   spawn:
     description: Permet de se TP au spawn du monde
-  lobby:
-    description: Permet d'ouvrir le menu de teleportation
   feed:
     description: Permet de manger
     permission: nosto.feed
@@ -42,21 +37,12 @@ commands:
     permission: nosto.admin.godmode
   msg:
     description: Permet d'envoyer des message privees
-  ban:
-    description: Permet de ban quelqu'un de pas gentils
-    permission: nosto.admin.ban
-  kick:
-    description: Permet de kick quelqu'un de pas gentils
-    permission: nosto.admin.kick
   nosto:
     description: Reload Custom
     permission: nosto.admin.reload
   freeze:
     description: Permet de freeze un joueur
     permission: nosto.admin.freeze
-  unban:
-    description: Permet de pardoner
-    permission: nosto.admin.unban
   sethome:
     decription: Permet de faire des homes
   home:
@@ -73,9 +59,6 @@ commands:
   ct:
     description: Permet de clear le tchat
     permission: nosto.admin.cleartchat
-  openinv:
-    description: Permet de faire des betises dans les inv des autre
-    permission: nosto.admin.openinv
   sit:
     description: Permet de s'assoir
   vanish:

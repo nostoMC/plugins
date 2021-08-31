@@ -15,7 +15,7 @@ public class FloorSmokeEffect {
 			@Override
 			public void run() {
 				
-				if(Main.floorSmoke == true) {
+				if(Main.activeEffects.get("floorSmoke") == true) {
 					Bukkit.getWorld("Nightclub").spawnParticle(Particle.CLOUD, 0, 64, -8, 500, 10, 0, 10, 0.1);
 				}
 				

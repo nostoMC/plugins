@@ -84,40 +84,6 @@ public class EffectsMenu implements Listener {
 		player.openInventory(inv);
 	}
 	
-	private static void createAndCheckActiveEffectItem(Inventory inv, Material material, String itName, String var, int slot) {
-		ItemStack it = new ItemStack(material, 1);
-		ItemMeta itM = it.getItemMeta();
-		itM.setDisplayName(itName);
-		
-		if(var != null) {
-			if(Main.activeEffects.get(var) == false ) {
-				itM.setLore(off);
-			} else {
-				itM.setLore(on);
-				itM.addEnchant(Enchantment.LUCK, 1, false);
-			}
-		}
-		
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		it.setItemMeta(itM);
-		inv.setItem(slot, it);
-	}
-	
-	private static void fillEmptyItem(Inventory inv) {
-		
-		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
-		clearSlotMeta.setDisplayName(" ");
-		clearSlot.setItemMeta(clearSlotMeta);
-		
-		for(int i = 0; i < inv.getSize(); i++) {
-			if(inv.getItem(i) == null) {
-				inv.setItem(i, clearSlot);
-			}
-		}
-	}
-	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		
@@ -135,35 +101,11 @@ public class EffectsMenu implements Listener {
 			switch(current.getType()) {
 			
 			case STRING:
-				it = current;
-				itM = it.getItemMeta();
-				if(Main.floorSmoke == false ) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-					itM.setLore(on);
-					it.setItemMeta(itM);
-					Main.floorSmoke = true;
-				} else {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-					itM.setLore(off);
-					it.setItemMeta(itM);
-					Main.floorSmoke = false;
-				}
+				checkActiveEffectItem(current, player, "floorSmoke");
 				break;
 				
 			case REDSTONE_LAMP:
-				it = current;
-				itM = it.getItemMeta();
-				if(Main.strobe == false ) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-					itM.setLore(on);
-					it.setItemMeta(itM);
-					Main.strobe = true;
-				} else {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-					itM.setLore(off);
-					it.setItemMeta(itM);
-					Main.strobe = false;
-				}
+				checkActiveEffectItem(current, player, "strobe");
 				break;
 				
 			case FIREWORK_ROCKET:
@@ -201,33 +143,9 @@ public class EffectsMenu implements Listener {
 				
 			case END_CRYSTAL:
 				if(current.getItemMeta().getDisplayName().equalsIgnoreCase("§5§lLight Bottom")) {
-					it = current;
-					itM = it.getItemMeta();
-					if(Main.lightBottom == false ) {
-						player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-						itM.setLore(on);
-						it.setItemMeta(itM);
-						Main.lightBottom = true;
-					} else {
-						player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-						itM.setLore(off);
-						it.setItemMeta(itM);
-						Main.lightBottom = false;
-					}
+					checkActiveEffectItem(current, player, "lightBottom");
 				} else if(current.getItemMeta().getDisplayName().equalsIgnoreCase("§5§lLight Top")) {
-					it = current;
-					itM = it.getItemMeta();
-					if(Main.lightTop == false ) {
-						player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-						itM.setLore(on);
-						it.setItemMeta(itM);
-						Main.lightTop = true;
-					} else {
-						player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-						itM.setLore(off);
-						it.setItemMeta(itM);
-						Main.lightTop = false;
-					}
+					checkActiveEffectItem(current, player, "lightTop");
 				}
 				break;
 				
@@ -250,56 +168,69 @@ public class EffectsMenu implements Listener {
 				break;
 				
 			case BEACON:
-				it = current;
-				itM = it.getItemMeta();
-				if(Main.randomBeacon == false ) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-					itM.setLore(on);
-					it.setItemMeta(itM);
-					Main.randomBeacon = true;
-				} else {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-					itM.setLore(off);
-					it.setItemMeta(itM);
-					Main.randomBeacon = false;
-				}
+				checkActiveEffectItem(current, player, "randomBeacon");
 				break;
 				
 			case SEA_LANTERN:
-				it = current;
-				itM = it.getItemMeta();
-				if(Main.sphere == false ) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-					itM.setLore(on);
-					it.setItemMeta(itM);
-					Main.sphere = true;
-				} else {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-					itM.setLore(off);
-					it.setItemMeta(itM);
-					Main.sphere = false;
-				}
+				checkActiveEffectItem(current, player, "sphere");
 				break;
 				
 			case CRYING_OBSIDIAN:
-				it = current;
-				itM = it.getItemMeta();
-				if(Main.wave == false ) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-					itM.setLore(on);
-					it.setItemMeta(itM);
-					Main.wave = true;
-				} else {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-					itM.setLore(off);
-					it.setItemMeta(itM);
-					Main.wave = false;
-				}
+				checkActiveEffectItem(current, player, "wave");
 				break;
 			
 			default:
 				break;
 			
+			}
+		}
+	}
+	
+	private static void createAndCheckActiveEffectItem(Inventory inv, Material material, String itName, String var, int slot) {
+		ItemStack it = new ItemStack(material, 1);
+		ItemMeta itM = it.getItemMeta();
+		itM.setDisplayName(itName);
+		
+		if(var != null) {
+			if(Main.activeEffects.get(var) == false ) {
+				itM.setLore(off);
+			} else {
+				itM.setLore(on);
+				itM.addEnchant(Enchantment.LUCK, 1, false);
+			}
+		}
+		
+		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		it.setItemMeta(itM);
+		inv.setItem(slot, it);
+	}
+	
+	private static void checkActiveEffectItem(ItemStack current, Player player, String var) {
+		ItemMeta itM = current.getItemMeta();
+		if(Main.activeEffects.get(var) == false ) {
+			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
+			itM.setLore(on);
+			current.setItemMeta(itM);
+			Main.activeEffects.put(var, true);
+		} else {
+			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
+			itM.setLore(off);
+			current.setItemMeta(itM);
+			Main.activeEffects.put(var, false);
+		}
+	}
+	
+	private static void fillEmptyItem(Inventory inv) {
+		
+		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
+		clearSlotMeta.setDisplayName(" ");
+		clearSlot.setItemMeta(clearSlotMeta);
+		
+		for(int i = 0; i < inv.getSize(); i++) {
+			if(inv.getItem(i) == null) {
+				inv.setItem(i, clearSlot);
 			}
 		}
 	}

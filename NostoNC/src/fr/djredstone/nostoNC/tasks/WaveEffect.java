@@ -23,7 +23,7 @@ public class WaveEffect {
                     double y = 2*Math.exp(-0.1*t) * Math.sin(t) + 1.5;
                     double z = t*Math.sin(theta);
                     loc.add(x,y,z);
-                    if(Main.wave) {
+                    if(Main.activeEffects.get("wave")) {
                     	world.spawnParticle(Particle.FIREWORKS_SPARK, loc, 1, 0, 0, 0, 0);
                     }
                     loc.subtract(x,y,z);
@@ -34,7 +34,7 @@ public class WaveEffect {
                     y = 2*Math.exp(-0.1*t) * Math.sin(t) + 1.5;
                     z = t*Math.sin(theta);
                     loc.add(x,y,z);
-                    if(Main.wave) {
+                    if(Main.activeEffects.get("wave")) {
                     	world.spawnParticle(Particle.SPELL_WITCH, loc, 1, 0, 0, 0);
                     }
                     loc.subtract(x,y,z);

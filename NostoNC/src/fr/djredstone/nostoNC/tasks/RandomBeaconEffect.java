@@ -24,7 +24,7 @@ public class RandomBeaconEffect {
 			@Override
 			public void run() {
 				
-				if(Main.randomBeacon) {
+				if(Main.activeEffects.get("randomBeacon")) {
 					color = r.nextInt(5);
 					
 					if(color == 0) {
@@ -63,7 +63,7 @@ public class RandomBeaconEffect {
 					@Override
 					public void run() {
 						
-						if(Main.randomBeacon == true) {
+						if(Main.activeEffects.get("randomBeacon") == true) {
 							if(stade == 0) {
 								for(int i = 0; i < 50; i++) {
 									Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, r.nextInt(16 + 16) - 16, 63, r.nextInt(8 + 26) - 26)).setType(Material.HOPPER);

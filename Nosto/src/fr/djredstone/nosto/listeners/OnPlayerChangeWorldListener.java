@@ -8,12 +8,13 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 import fr.djredstone.nosto.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 
-public class OnPlayerChangeWorldListener {
+public class OnPlayerChangeWorldListener implements Listener {
 	
 	@EventHandler
 	public void onWorldChange(PlayerChangedWorldEvent event){
@@ -50,56 +51,62 @@ public class OnPlayerChangeWorldListener {
 				message = "§eHello §6§l" + player.getName() + "§e ! Bon cube sur le survival !";
 			}
 			
-			for(Player players : Bukkit.getOnlinePlayers()) {
-				if(players.getWorld() == Bukkit.getWorld("survie") || players.getWorld() == Bukkit.getWorld("survie_nether") || players.getWorld() == Bukkit.getWorld("survie_the_end")) {
+			if(!Bukkit.getOnlinePlayers().isEmpty()) {
+				for(Player players : Bukkit.getOnlinePlayers()) {
+					if(survies_names.contains(player.getWorld().getName())) {
 					
-					players.sendMessage("");
-					players.sendMessage(message);
+						players.sendMessage("");
+						players.sendMessage(message);
 					
-					EmbedBuilder embed = new EmbedBuilder();
-					embed.setTitle("[+] " + player.getName());
-					embed.setImage("https://mc-heads.net/avatar/" + player.getName());
-					embed.setColor(Color.GREEN);
-					
-					Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
-					
+					}
 				}
 			}
+			
+			EmbedBuilder embed = new EmbedBuilder();
+			embed.setTitle("[+] " + player.getName());
+			embed.setImage("https://mc-heads.net/avatar/" + player.getName());
+			embed.setColor(Color.GREEN);
+			
+			Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 			
 		}
-		if(event.getFrom() == Bukkit.getWorld("survie")) {
+		if(survies_names.contains(event.getFrom().getName()) && !survies_names.contains(player.getWorld().getName())) {
 			
-			if(player.getWorld() == Bukkit.getWorld("survie") || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
-				return;
+			String[] messages = {"1", "2", "3", "4", "5", "6"};
+			
+			String message = "";
+			
+			if(messages[new Random().nextInt(messages.length)] == "1") {
+				message = ("§6§l" + event.getPlayer().getName() + "§e est parti...");
+			} else if(messages[new Random().nextInt(messages.length)] == "2") {
+				message = ("§6§l" + event.getPlayer().getName() + "§e fait une pose.");
+			} else if(messages[new Random().nextInt(messages.length)] == "3") {
+				message = ("§6§l" + event.getPlayer().getName() + "§e est reparti !");
+			} else if(messages[new Random().nextInt(messages.length)] == "4") {
+				message = ("§eUne personne est parti, elle s'agit de §6§l" + event.getPlayer().getName() + "§e !");
+			} else if(messages[new Random().nextInt(messages.length)] == "5") {
+				message = ("§eBye bye §6§l" + event.getPlayer().getName() + "§e !");
+			} else if(messages[new Random().nextInt(messages.length)] == "6") {
+				message = ("§6§l" + event.getPlayer().getName() + "§e retourne au monde réél !");
 			}
 			
-			for(Player players : Bukkit.getOnlinePlayers()) {
-				if(players.getWorld() == Bukkit.getWorld("survie") || players.getWorld() == Bukkit.getWorld("survie_nether") || players.getWorld() == Bukkit.getWorld("survie_the_end")) {
-					String[] messages = {"1", "2", "3", "4", "5", "6"};
-					players.sendMessage("");
-					if(messages[new Random().nextInt(messages.length)] == "1") {
-						players.sendMessage("§6§l" + event.getPlayer().getName() + "§e est parti...");
-					} else if(messages[new Random().nextInt(messages.length)] == "2") {
-						players.sendMessage("§6§l" + event.getPlayer().getName() + "§e fait une pose.");
-					} else if(messages[new Random().nextInt(messages.length)] == "3") {
-						players.sendMessage("§6§l" + event.getPlayer().getName() + "§e est reparti !");
-					} else if(messages[new Random().nextInt(messages.length)] == "4") {
-						players.sendMessage("§eUne personne est parti, elle s'agit de §6§l" + event.getPlayer().getName() + "§e !");
-					} else if(messages[new Random().nextInt(messages.length)] == "5") {
-						players.sendMessage("§eBye bye §6§l" + event.getPlayer().getName() + "§e !");
-					} else if(messages[new Random().nextInt(messages.length)] == "6") {
-						players.sendMessage("§6§l" + event.getPlayer().getName() + "§e retourne au monde réél !");
+			if(!Bukkit.getOnlinePlayers().isEmpty()) {
+				for(Player players : Bukkit.getOnlinePlayers()) {
+					if(survies_names.contains(player.getWorld().getName())) {
+						
+						players.sendMessage("");
+						players.sendMessage(message);
+						
 					}
-					
-					EmbedBuilder embed = new EmbedBuilder();
-					embed.setTitle("[-] " + player.getName());
-					embed.setImage("https://mc-heads.net/avatar/" + player.getName());
-					embed.setColor(Color.RED);
-					
-					Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
-					
 				}
 			}
+			
+			EmbedBuilder embed = new EmbedBuilder();
+			embed.setTitle("[-] " + player.getName());
+			embed.setImage("https://mc-heads.net/avatar/" + player.getName());
+			embed.setColor(Color.RED);
+			
+			Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 			
 		}
 		

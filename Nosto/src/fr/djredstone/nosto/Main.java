@@ -31,7 +31,6 @@ import fr.djredstone.nosto.commands.godmode.CommandGodmode;
 import fr.djredstone.nosto.commands.heal.CommandHeal;
 import fr.djredstone.nosto.commands.home.CommandHome;
 import fr.djredstone.nosto.commands.home.TabHome;
-import fr.djredstone.nosto.commands.lobby.CommandLobby;
 import fr.djredstone.nosto.commands.menu.CommandMenu;
 import fr.djredstone.nosto.commands.msg.CommandMsg;
 import fr.djredstone.nosto.commands.spawn.CommandSpawn;
@@ -46,6 +45,7 @@ import fr.djredstone.nosto.listeners.OnLeaveListener;
 import fr.djredstone.nosto.listeners.OnMessageListener;
 import fr.djredstone.nosto.listeners.OnMoveItemInventoryListener;
 import fr.djredstone.nosto.listeners.OnMoveListener;
+import fr.djredstone.nosto.listeners.OnPlayerChangeWorldListener;
 import fr.djredstone.nosto.listeners.OnServerListPingListener;
 import fr.djredstone.nosto.menus.EventMenu;
 import fr.djredstone.nosto.menus.MainMenu;
@@ -81,6 +81,8 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 	public static ArrayList<Player> afks = new ArrayList<Player>();
 	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<Player, PlayerTrailsStats>();
 	
+	EmbedBuilder decoEmbed = new EmbedBuilder();
+	
 	public static Main instance;
 	
 	public static JavaPlugin getInstance() {
@@ -103,7 +105,7 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		getCommand("annonce").setExecutor(new CommandAnnonce());
 		getCommand("fly").setExecutor(new CommandFly());
 		getCommand("speed").setExecutor(new CommandSpeed());
-		getCommand("speed").setTabCompleter(new TabSpeed());
+			getCommand("speed").setTabCompleter(new TabSpeed());
 		getCommand("staffChat").setExecutor(new CommandStaffChat());
 		getCommand("sc").setExecutor(new CommandStaffChat());
 		getCommand("god").setExecutor(new CommandGodmode());
@@ -111,7 +113,7 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		getCommand("msg").setExecutor(new CommandMsg());
 		getCommand("sethome").setExecutor(new CommandHome());
 		getCommand("home").setExecutor(new CommandHome());
-		getCommand("home").setTabCompleter(new TabHome());
+			getCommand("home").setTabCompleter(new TabHome());
 		getCommand("delhome").setExecutor(new CommandHome());
 		getCommand("spawn").setExecutor(new CommandSpawn());
 		getCommand("clearTchat").setExecutor(new CommandClearTchat());
@@ -125,9 +127,8 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		getCommand("nosto").setExecutor(new CommandNosto());
 		getCommand("heal").setExecutor(new CommandHeal());
 		getCommand("feed").setExecutor(new CommandFeed());
-		getCommand("lobby").setExecutor(new CommandLobby());
 		getCommand("event").setExecutor(new CommandEvent());
-		getCommand("event").setTabCompleter(new TabEvent());
+			getCommand("event").setTabCompleter(new TabEvent());
 		getCommand("trails").setExecutor(new CommandTrails());
 		getCommand("menu").setExecutor(new CommandMenu());
 		
@@ -189,26 +190,22 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 			e.printStackTrace();
 		}
 	    
+	    decoEmbed.setTitle("Serveur déconecté !");
+		decoEmbed.setColor(Color.RED);
+	    
 	    Bukkit.getPluginManager().registerEvents(this, this);
 	    Bukkit.getPluginManager().registerEvents(new OnMessageListener(), this);
+	    Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 	    jda.addEventListener(new OnMessageListener());
+	    jda.addEventListener(this);
 		
 	}
 
 	@Override
 	public void onDisable() {
 		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
-		
-		EmbedBuilder embed = new EmbedBuilder();
-		if(isAReload) {
-			embed.setTitle("Reload !");
-			embed.setColor(Color.ORANGE);
-		} else {
-			embed.setTitle("Serveur déconecté !");
-			embed.setColor(Color.RED);
-		}
 			
-		Main.jda.getTextChannelById("875315182556053524").sendMessage(embed.build()).queue();
+		Main.jda.getTextChannelById("875315182556053524").sendMessage(decoEmbed.build()).queue();
 		
 		jda.shutdown();
 	}
@@ -218,6 +215,9 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 		if(event.getCommand().equalsIgnoreCase("reload") || event.getCommand().equalsIgnoreCase("rl")) {
 			
 			isAReload = true;
+			
+			decoEmbed.setTitle("Reload !");
+			decoEmbed.setColor(Color.ORANGE);
 			
 		}
 		

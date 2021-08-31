@@ -41,7 +41,7 @@ public class LightBottom {
 							}
 						}
 						
-						if(Main.lightBottom == true) {
+						if(Main.activeEffects.get("lightBottom") == true) {
 							if(start == true) {
 								crystal1 = (EnderCrystal) w.spawnEntity(new Location(w, 11, 70, 4), EntityType.ENDER_CRYSTAL);
 								crystal1.setBeamTarget(new Location(w, 9, 63, 11));
