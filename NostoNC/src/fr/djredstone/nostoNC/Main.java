@@ -25,6 +25,7 @@ import fr.djredstone.nostoNC.tasks.LightTop;
 import fr.djredstone.nostoNC.tasks.RandomBeaconEffect;
 import fr.djredstone.nostoNC.tasks.SphereEffect;
 import fr.djredstone.nostoNC.tasks.StrobeEffect;
+import fr.djredstone.nostoNC.tasks.VIPpass;
 import fr.djredstone.nostoNC.tasks.WaveEffect;
 
 public class Main extends JavaPlugin {
@@ -67,6 +68,8 @@ public class Main extends JavaPlugin {
 		new WaveEffect(this);
 		
 		new DjGlowing(this);
+		
+		new VIPpass(this);
 		
 		new Location(Bukkit.getWorld("Nightclub"), 20, 64, 7).getBlock().setType(Material.REDSTONE_BLOCK);
 		

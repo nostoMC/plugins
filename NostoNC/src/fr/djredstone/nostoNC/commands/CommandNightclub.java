@@ -54,28 +54,6 @@ public class CommandNightclub implements CommandExecutor {
 							Bukkit.broadcastMessage("§6§l" + player.getName() + " §en'est plus DJ !");
 						}
 					}
-				} else if(args[1].equalsIgnoreCase("vip")) {
-					if(args[0].equalsIgnoreCase("join")) {
-						if(!player.hasPermission("nosto.nightclub.vip")) return true;
-						if(Main.vip.contains(player)) {
-							player.teleport(new Location(Bukkit.getWorld("Nightclub"), -9.0, 64, -45.7, 0, 0));
-							player.sendMessage("");
-							player.sendMessage("§eDe nouveau dans la zone VIP !");
-						} else {
-							Main.vip.add(player);
-							player.teleport(new Location(Bukkit.getWorld("Nightclub"), -9.0, 64, -45.7, 0, 0));
-							player.sendMessage("");
-							player.sendMessage("§eBienvenue dans la zone VIP !");
-						}
-						
-					} else if(args[0].equalsIgnoreCase("leave")) {
-						if(Main.vip.contains(player)) {
-							Main.vip.remove(player);
-							player.teleport(new Location(Bukkit.getWorld("Nightclub"), -8.9, 64, -47.3, 180, 0));
-							player.sendMessage("");
-							player.sendMessage("§eA bientôt dans la zone VIP !");
-						}
-					}
 				}
 			}
 		}
