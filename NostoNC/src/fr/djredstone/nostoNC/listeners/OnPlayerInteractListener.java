@@ -29,8 +29,8 @@ public class OnPlayerInteractListener implements Listener {
 	
 	@EventHandler
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-		if(event.getEntity().getWorld() == Bukkit.getWorld("Nightclub")) {
-			if(!event.getEntity().hasPermission("nosto.nightclub.interact")) {
+		if(event.getDamager().getWorld() == Bukkit.getWorld("Nightclub")) {
+			if(!event.getDamager().hasPermission("nosto.nightclub.interact")) {
 				event.setCancelled(true);
 			}
 		}

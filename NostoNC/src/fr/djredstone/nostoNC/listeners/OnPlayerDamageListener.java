@@ -12,8 +12,11 @@ public class OnPlayerDamageListener implements Listener {
 	public void onPlayerDamage(EntityDamageEvent event) {
 		if(event.getEntity() instanceof Player) {
 			if(event.getEntity().getWorld() == Bukkit.getWorld("Nightclub")) {
-		        event.setCancelled(true);
-		    }
+				if(!event.getEntity().hasPermission("nosto.nightclub.interact")) {
+			        event.setCancelled(true);
+			    }
+			}
+			
 		}
 	    
 	}

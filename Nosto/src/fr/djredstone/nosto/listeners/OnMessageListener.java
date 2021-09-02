@@ -1,5 +1,8 @@
 package fr.djredstone.nosto.listeners;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,10 +20,11 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 	@EventHandler
 	public void onMessage(AsyncPlayerChatEvent event) {
 		
+		event.setCancelled(true);
+		
 		Player player = event.getPlayer();
 		
 		if(Main.menuPlayers.contains(player)) {
-			event.setCancelled(true);
 			return;
 		}
 		
@@ -41,13 +45,17 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		}
 		
 		String format = "§f<" + group + "§f"+ player.getName() + "> " + event.getMessage();
-		Bukkit.broadcastMessage("");
-		event.setFormat(format);
+		event.setFormat("");
 		event.setMessage(event.getMessage().replaceAll("&", "§"));
 		
 		EmbedBuilder embed = new EmbedBuilder();
 		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		embed.setDescription(event.getMessage());
+		
+		Set<String> survival_worlds = new HashSet<String>();
+		survival_worlds.add("survie");
+		survival_worlds.add("survie_nether");
+		survival_worlds.add("survie_the_end");
 		
 		if(player.getWorld() == Bukkit.getWorld("survie") || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
 			
@@ -58,6 +66,27 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 			Main.jda.getTextChannelById("877675571193200670").sendMessage(embed.build()).queue();
 			
 		}
+		
+		for(Player players : Bukkit.getOnlinePlayers()) {
+			
+			if(survival_worlds.contains(player.getWorld().getName())) {
+				
+				if(survival_worlds.contains(players.getWorld().getName())) {
+					players.sendMessage("");
+					players.sendMessage(format);
+				}
+				
+			} else if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
+				
+				if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
+					players.sendMessage("");
+					players.sendMessage(format);
+				}
+				
+			}
+			
+		}
+		
 	}
 	
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {

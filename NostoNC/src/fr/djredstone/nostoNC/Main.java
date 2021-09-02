@@ -38,8 +38,6 @@ public class Main extends JavaPlugin {
 	
 	public static Main instance;
 	
-	public static Laser test;
-	
 	public static JavaPlugin getInstance() {
 		return instance;
 	}
@@ -70,14 +68,6 @@ public class Main extends JavaPlugin {
 		
 		new DjGlowing(this);
 		
-		try {
-			test = new Laser(new Location(Bukkit.getWorld("Nightclub"), 0, 80, -6), new Location(Bukkit.getWorld("Nightclub"), 0, 70, -6), 200, 100);
-			test.start(this);
-		} catch (ReflectiveOperationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		new Location(Bukkit.getWorld("Nightclub"), 20, 64, 7).getBlock().setType(Material.REDSTONE_BLOCK);
 		
 		activeEffects.put("floorSmoke", false);
@@ -92,7 +82,6 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		if(test.isStarted()) test.stop();
 		for(Entity e : Bukkit.getWorld("Nightclub").getEntities()) {
 			if(e instanceof ArmorStand) {
 				if(e.getScoreboardTags().contains("spot")) {
