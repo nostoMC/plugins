@@ -65,8 +65,7 @@ public class OnLeaveListener implements Listener {
 			}
 			
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("[-] " + player.getName());
-			embed.setImage("https://mc-heads.net/avatar/" + player.getName());
+			embed.setAuthor("[-] " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 			embed.setColor(Color.RED);
 			
 			Main.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
