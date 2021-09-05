@@ -17,7 +17,6 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -27,6 +26,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import fr.djredstone.nostoNC.Main;
+import fr.djredstone.nostoNC.tasks.DjLaserEffect;
 
 public class EffectsMenu implements Listener {
 	
@@ -42,41 +42,39 @@ public class EffectsMenu implements Listener {
 		
 		Inventory inv = Bukkit.createInventory(null, 54, "§2§lGestioraire des effets");
 		
+		// ----------------------------------------------------------------------------------------------------------------------
+		
 		createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 10);
 		
 		createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 19);
-		
-		createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 12);
-		
-		createAndCheckActiveEffectItem(inv, Material.END_CRYSTAL, "§5§lLight Bottom", "lightBottom", 32);
-		
-		createAndCheckActiveEffectItem(inv, Material.END_CRYSTAL, "§5§lLight Top", "lightTop", 14);
-		
-		createAndCheckActiveEffectItem(inv, Material.BEACON, "§5§lRandom Beam", "randomBeacon", 16);
-		
+
 		createAndCheckActiveEffectItem(inv, Material.SEA_LANTERN, "§5§lSphere", "sphere", 28);
 		
 		createAndCheckActiveEffectItem(inv, Material.CRYING_OBSIDIAN, "§f§lWave", "wave", 37);
 		
+		// ----------------------------------------------------------------------------------------------------------------------
+		
+		createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 12);
+		
 		createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 21);
 		
-		// ---------------------------------------------------------
+		// ----------------------------------------------------------------------------------------------------------------------
 		
-		ItemStack it = new ItemStack(Material.CLOCK, 1);
-		ItemMeta itM = it.getItemMeta();
-		itM.setDisplayName("");
-				
-		ArrayList<String> lore = new ArrayList<String>();
-		lore.add("§eLa cadence est actuellement à §6§l" + Main.activeEffects.get("cadence") + " §eticks !");
-		lore.add("§cClick droit pour retirer du temps");
-		lore.add("§aClick gauche pour ajouter du temps");
-		itM.setLore(lore);
-				
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		it.setItemMeta(itM);
-		inv.setItem(41, it);
-				
-		// ---------------------------------------------------------
+		createAndCheckActiveEffectItem(inv, Material.END_CRYSTAL, "§5§lLight Top", "lightTop", 14);
+		
+		createAndCheckActiveEffectItem(inv, Material.END_CRYSTAL, "§5§lLight Bottom", "lightBottom", 23);
+		
+		createAndCheckActiveEffectItem(inv, Material.BEACON, "§5§lRandom Beam", "randomBeacon", 32);
+		
+		// ----------------------------------------------------------------------------------------------------------------------
+		
+		createAndCheckActiveEffectItem(inv, Material.LEVER, "§a§lLaser UP/DOWN", "djLaser", 16);
+		
+		createAndCheckActiveEffectItem(inv, Material.LEVER, "§a§lLaser gobo", "goboLaser", 25);
+		
+		createAndCheckActiveEffectItem(inv, Material.LEVER, "§a§lLaser random", "randomLaser", 34);
+		
+		// ----------------------------------------------------------------------------------------------------------------------
 		
 		fillEmptyItem(inv);
 		
@@ -94,9 +92,6 @@ public class EffectsMenu implements Listener {
 		
 		if(event.getView().getTitle().equalsIgnoreCase("§2§lGestioraire des effets")) {
 			event.setCancelled(true);
-			
-			ItemStack it;
-			ItemMeta itM;
 			
 			switch(current.getType()) {
 			
@@ -149,24 +144,6 @@ public class EffectsMenu implements Listener {
 				}
 				break;
 				
-			case CLOCK:
-				it = current;
-				itM = it.getItemMeta();
-				if(event.getAction() == InventoryAction.PICKUP_HALF) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 1);
-					if(Main.cadence != 2) Main.cadence = Main.cadence - 1;
-				} else if(event.getAction() == InventoryAction.PICKUP_ALL) {
-					player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-					Main.cadence = Main.cadence + 1;
-				}
-				ArrayList<String> lore = new ArrayList<String>();
-				lore.add("§eLa cadence est actuellement à §6§l" + Main.cadence + " §eticks !");
-				lore.add("§cClick droit pour retirer du temps");
-				lore.add("§aClick gauche pour ajouter du temps");
-				itM.setLore(lore);
-				it.setItemMeta(itM);
-				break;
-				
 			case BEACON:
 				checkActiveEffectItem(current, player, "randomBeacon");
 				break;
@@ -177,6 +154,29 @@ public class EffectsMenu implements Listener {
 				
 			case CRYING_OBSIDIAN:
 				checkActiveEffectItem(current, player, "wave");
+				break;
+				
+			case LEVER:
+				if(current.getItemMeta().getDisplayName().equalsIgnoreCase("§a§lLaser UP/DOWN")) {
+					if(!Main.activeEffects.get("djLaser")) {
+						DjLaserEffect.light1.start(Main.getInstance());
+						DjLaserEffect.light2.start(Main.getInstance());
+						DjLaserEffect.light3.start(Main.getInstance());
+						DjLaserEffect.light4.start(Main.getInstance());
+						DjLaserEffect.light5.start(Main.getInstance());
+					} else {
+						if(DjLaserEffect.light1.isStarted()) DjLaserEffect.light1.stop();
+						if(DjLaserEffect.light2.isStarted()) DjLaserEffect.light2.stop();
+						if(DjLaserEffect.light3.isStarted()) DjLaserEffect.light3.stop();
+						if(DjLaserEffect.light4.isStarted()) DjLaserEffect.light4.stop();
+						if(DjLaserEffect.light5.isStarted()) DjLaserEffect.light5.stop();
+					}
+					checkActiveEffectItem(current, player, "djLaser");
+				} else if(current.getItemMeta().getDisplayName().equalsIgnoreCase("§a§lLaser gobo")) {
+					checkActiveEffectItem(current, player, "goboLaser");
+				} else if(current.getItemMeta().getDisplayName().equalsIgnoreCase("§a§lLaser random")) {
+					checkActiveEffectItem(current, player, "randomLaser");
+				}
 				break;
 			
 			default:

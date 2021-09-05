@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -18,15 +17,7 @@ import fr.djredstone.nostoNC.listeners.OnPlayerDamageListener;
 import fr.djredstone.nostoNC.listeners.OnPlayerInteractListener;
 import fr.djredstone.nostoNC.listeners.OnResourcepackStatusListener;
 import fr.djredstone.nostoNC.menus.EffectsMenu;
-import fr.djredstone.nostoNC.tasks.DjGlowing;
-import fr.djredstone.nostoNC.tasks.FloorSmokeEffect;
-import fr.djredstone.nostoNC.tasks.LightBottom;
-import fr.djredstone.nostoNC.tasks.LightTop;
-import fr.djredstone.nostoNC.tasks.RandomBeaconEffect;
-import fr.djredstone.nostoNC.tasks.SphereEffect;
-import fr.djredstone.nostoNC.tasks.StrobeEffect;
-import fr.djredstone.nostoNC.tasks.VIPpass;
-import fr.djredstone.nostoNC.tasks.WaveEffect;
+import fr.djredstone.nostoNC.tasks.StartTask;
 
 public class Main extends JavaPlugin {
 	
@@ -59,27 +50,13 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerInteractListener(), this);
 		
-		new FloorSmokeEffect(this);
-		new StrobeEffect(this);
-		new LightBottom(this);
-		new LightTop(this);
-		new RandomBeaconEffect(this);
-		new SphereEffect(this);
-		new WaveEffect(this);
+		new StartTask(this);
 		
-		new DjGlowing(this);
-		
-		new VIPpass(this);
-		
-		new Location(Bukkit.getWorld("Nightclub"), 20, 64, 7).getBlock().setType(Material.REDSTONE_BLOCK);
-		
-		activeEffects.put("floorSmoke", false);
-		activeEffects.put("strobe", false);
-		activeEffects.put("lightBottom", false);
-		activeEffects.put("lightTop", false);
-		activeEffects.put("randomBeacon", false);
-		activeEffects.put("sphere", false);
-		activeEffects.put("wave", false);
+		//fix
+		/*
+        WorldData worldData = ((CraftWorld) w).getHandle().getWorldData();
+        Reflection.getField(worldData.getClass(), long.class, 0).set(worldData, 0);
+        */
 		
 	}
 	
