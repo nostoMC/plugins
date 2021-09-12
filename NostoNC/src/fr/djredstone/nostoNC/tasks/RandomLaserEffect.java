@@ -20,7 +20,7 @@ public class RandomLaserEffect {
 		
 		int timing = 40;
 		
-		for(int i = 0; i < 51; i++) {
+		for(int i = 0; i < 30; i++) {
 			
 			try {
 				Laser light = new Laser.GuardianLaser(new Location(Bukkit.getWorld("Nightclub"), 0.5, 76.5, -12.5), new Location(Bukkit.getWorld("Nightclub"), -20 + (20 - -20) * random.nextDouble(), 62, -30 + (8 - -30) * random.nextDouble()), duration, distance);

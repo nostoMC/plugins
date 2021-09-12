@@ -26,6 +26,9 @@ public class Main extends JavaPlugin {
 	
 	public static HashMap<String, Boolean> activeEffects = new HashMap<String, Boolean>();
 	
+	public static Location goboLaserLeft = new Location(Bukkit.getWorld("Nightclub"), 13, 75, -20);
+	public static Location goboLaserRight = new Location(Bukkit.getWorld("Nightclub"), -12, 75, -20);
+	
 	public static int cadence = 10;
 	
 	public static Main instance;
