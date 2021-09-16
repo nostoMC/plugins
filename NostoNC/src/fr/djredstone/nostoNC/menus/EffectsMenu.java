@@ -27,6 +27,7 @@ import org.bukkit.util.Vector;
 
 import fr.djredstone.nostoNC.Main;
 import fr.djredstone.nostoNC.tasks.DjLaserEffect;
+import fr.djredstone.nostoNC.tasks.RandomParticleEffect;
 
 public class EffectsMenu implements Listener {
 	
@@ -133,7 +134,7 @@ public class EffectsMenu implements Listener {
 				break;
 				
 			case PUMPKIN_SEEDS:
-				new Location(Bukkit.getWorld("Nightclub"), -12, 62, 11).getBlock().setType(Material.REDSTONE_BLOCK);
+				new RandomParticleEffect(Main.instance);
 				break;
 				
 			case END_CRYSTAL:

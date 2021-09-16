@@ -15,7 +15,7 @@ public class RandomBeaconEffect {
 
 	public RandomBeaconEffect(Main main) {
 		
-		Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -8, 62, 9)).setType(Material.REDSTONE_BLOCK);
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 63 8 minecraft:hopper");
 		
 		new BukkitRunnable() {
 			
@@ -28,19 +28,17 @@ public class RandomBeaconEffect {
 					color = r.nextInt(5);
 					
 					if(color == 0) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -25)).setType(Material.REDSTONE_BLOCK);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 62 8 minecraft:red_stained_glass");
 					} else if(color == 0) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -23)).setType(Material.REDSTONE_BLOCK);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 62 8 minecraft:orange_stained_glass");
 					} else if(color == 1) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -21)).setType(Material.REDSTONE_BLOCK);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 62 8 minecraft:yellow_stained_glass");
 					} else if(color == 2) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -19)).setType(Material.REDSTONE_BLOCK);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 62 8 minecraft:green_stained_glass");
 					} else if(color == 3) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -17)).setType(Material.REDSTONE_BLOCK);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 62 8 minecraft:blue_stained_glass");
 					} else if(color == 4) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -15)).setType(Material.REDSTONE_BLOCK);
-					} else if(color == 5) {
-						Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 20, 60, -13)).setType(Material.REDSTONE_BLOCK);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 62 -26 16 62 8 minecraft:purple_stained_glass");
 					} else {
 						color = 0;
 					}
@@ -53,8 +51,6 @@ public class RandomBeaconEffect {
 			
 			@Override
 			public void run() {
-				
-				Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 18, 64, 14)).setType(Material.REDSTONE_BLOCK);
 				
 				new BukkitRunnable() {
 					
@@ -70,11 +66,11 @@ public class RandomBeaconEffect {
 								}
 								stade = 1;
 							} else {
-								Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, 0, 62, 9)).setType(Material.REDSTONE_BLOCK);
+								Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 63 -26 16 63 8 minecraft:gray_concrete");
 								stade = 0;
 							}
 						} else {
-							Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, 0, 62, 9)).setType(Material.REDSTONE_BLOCK);
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 63 -26 16 63 8 minecraft:gray_concrete");
 						}
 					}
 				}.runTaskTimer(main, 0, 7);

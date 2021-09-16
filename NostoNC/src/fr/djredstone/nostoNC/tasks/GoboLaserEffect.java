@@ -10,6 +10,9 @@ import fr.djredstone.nostoNC.Main;
 
 public class GoboLaserEffect {
 	
+	Location goboLaserLeft = new Location(Bukkit.getWorld("Nightclub"), 13, 75, -20);
+	Location goboLaserRight = new Location(Bukkit.getWorld("Nightclub"), -12, 75, -20);
+	
 	private int duration = -1;
 	private int distance = -1;
 
@@ -33,13 +36,14 @@ public class GoboLaserEffect {
 			                double x = r*Math.cos(t);
 			                double y = r*Math.sin(t);
 			                double z = 0;
-			                Main.goboLaserLeft.add(x, y, z);
+			                Location loc = goboLaserLeft;
+			                loc.add(x, y, z);
 			                try {
-			                	if(light1.isStarted()) light1.moveEnd(Main.goboLaserLeft);
+			                	if(light1.isStarted()) light1.moveEnd(loc);
 							} catch (ReflectiveOperationException e) {
 								e.printStackTrace();
 							}
-			                Main.goboLaserLeft.subtract(x, y, z);
+			                loc.subtract(x, y, z);
 			                if (t > Math.PI*8){
 			                	t = 0;
 			                }
@@ -68,13 +72,14 @@ public class GoboLaserEffect {
 			                double x = r*Math.cos(t);
 			                double y = r*Math.sin(t);
 			                double z = 0;
-			                Main.goboLaserRight.add(x, y, z);
+			                Location loc = goboLaserRight;
+			                loc.add(x, y, z);
 			                try {
-			                	if(light2.isStarted()) light2.moveEnd(Main.goboLaserRight);
+			                	if(light2.isStarted()) light2.moveEnd(loc);
 							} catch (ReflectiveOperationException e) {
 								e.printStackTrace();
 							}
-			                Main.goboLaserRight.subtract(x, y, z);
+			                loc.subtract(x, y, z);
 			                if (t > Math.PI*8){
 			                	t = 0;
 			                }
@@ -116,7 +121,7 @@ public class GoboLaserEffect {
                 z = 0;
                 loc1.add(x, y, z);
                 Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLAME, loc1, 0, 0, 0, 0, 1);
-                Main.goboLaserLeft = loc1;
+                goboLaserLeft = loc1;
                 loc1.subtract(x, y, z);
                 
                 x = r*Math.sin(t);
@@ -124,7 +129,7 @@ public class GoboLaserEffect {
                 z = 0;
                 loc2.add(x, y, z);
                 Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLAME, loc2, 0, 0, 0, 0, 1);
-                Main.goboLaserRight = loc2;
+                goboLaserRight = loc2;
                 loc2.subtract(x, y, z);
                 
             }
