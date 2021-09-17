@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.djredstone.nosto.animatedTab.TabManager;
 import fr.djredstone.nosto.commands.annonce.CommandAnnonce;
 import fr.djredstone.nosto.commands.claim.CommandClaim;
 import fr.djredstone.nosto.commands.clearTchat.CommandClearTchat;
@@ -84,6 +85,8 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 	EmbedBuilder decoEmbed = new EmbedBuilder();
 	
 	public static Main instance;
+	
+	private TabManager tab;
 	
 	public static JavaPlugin getInstance() {
 		return instance;
@@ -198,6 +201,12 @@ public class Main extends JavaPlugin implements Listener, EventListener, Command
 	    Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 	    jda.addEventListener(new OnMessageListener());
 	    jda.addEventListener(this);
+	    
+	    this.tab = new TabManager(this);
+	    tab.addHeader("\n§8⋙ &b&lNosto §8⋘\n");
+	    tab.addFooter("\n&9&lDiscord : discord.io/nosto\n                                             ");
+	    
+	    tab.showTab();
 		
 	}
 

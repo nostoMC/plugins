@@ -32,19 +32,19 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		String groupDiscord = "";
 		
 		if(player.hasPermission("group.dev")) {
-			group = "§bDevelopper ";
+			group = "§b";
 			groupDiscord = "Developper ";
 		}
 		if(player.hasPermission("group.buildeur")) {
-			group = "§aBuildeur ";
+			group = "§a";
 			groupDiscord = "Buildeur ";
 		}
 		if(player.hasPermission("group.administrateur")) {
-			group = "§cAdministrateur ";
+			group = "§c";
 			groupDiscord = "Administrateur ";
 		}
 		
-		String format = "§f<" + group + "§f"+ player.getName() + "> " + event.getMessage();
+		String format = group + "§l" + player.getName() + "§f • " + event.getMessage();
 		event.setFormat("");
 		event.setMessage(event.getMessage().replaceAll("&", "§"));
 		
