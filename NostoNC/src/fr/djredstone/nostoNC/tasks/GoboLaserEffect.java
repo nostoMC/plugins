@@ -2,7 +2,6 @@ package fr.djredstone.nostoNC.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Laser;
@@ -103,37 +102,6 @@ public class GoboLaserEffect {
 				
 			}
 		}.runTaskTimer(main, 0, 2);
-		
-		new BukkitRunnable(){
-            Location loc1 = new Location(Bukkit.getWorld("Nightclub"), -5, 70, -23);
-            Location loc2 = new Location(Bukkit.getWorld("Nightclub"), 6, 70, -23);
-            double t = 0;
-            double r = 6;
-            public void run(){
-                t = t + Math.PI/64;
-                
-                double x;
-                double y;
-                double z;
-                
-                x = r*Math.cos(t);
-                y = r*Math.sin(t);
-                z = 0;
-                loc1.add(x, y, z);
-                Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLAME, loc1, 0, 0, 0, 0, 1);
-                goboLaserLeft = loc1;
-                loc1.subtract(x, y, z);
-                
-                x = r*Math.sin(t);
-                y = r*Math.cos(t);
-                z = 0;
-                loc2.add(x, y, z);
-                Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLAME, loc2, 0, 0, 0, 0, 1);
-                goboLaserRight = loc2;
-                loc2.subtract(x, y, z);
-                
-            }
-        }.runTaskTimer(main, 0, 1);
 		
 	}
 

@@ -1,6 +1,9 @@
 package fr.djredstone.nostoNC.tasks;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Particle;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.djredstone.nostoNC.Main;
@@ -16,7 +19,7 @@ public class RandomParticleEffect {
 			@Override
 			public void run() {
 
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run summon minecraft:bat 0 71 15 {Attributes:[{Name:\"generic.movementSpeed\",Base:0.5f}],ActiveEffects:[{Id:14,Amplifier:0,Duration:2147483647,ShowParticles:0b}],Tags:[\"randomParticle\"]}");
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run summon minecraft:bat 0 71 15 {ActiveEffects:[{Id:14,Amplifier:0,Duration:2147483647,ShowParticles:0b}]}");
 				i++;
 				if(i == 20) this.cancel();
 				
@@ -29,8 +32,12 @@ public class RandomParticleEffect {
 			
 			@Override
 			public void run() {
-
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute at @e[type=minecraft:bat,distance=..200,tag=randomParticle] run particle minecraft:flame ~ ~ ~ 0 0 0 0 1 force");
+				
+				for(Entity entity : Bukkit.getWorld("Nightclub").getEntities()) {
+					if(entity.getType() == EntityType.BAT) {
+						Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLAME, entity.getLocation().getX(), entity.getLocation().getY(), entity.getLocation().getZ(), 0, 0, 0, 0, 1, true);
+					}
+				}
 				i++;
 				if(i == 200) this.cancel();
 				
