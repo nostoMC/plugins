@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Material;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -15,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.nosto.tasks.particles.PlayerTrailsStats;
 
-public class Main extends JavaPlugin implements Listener, CommandExecutor {
+public class Main extends JavaPlugin {
 
 	public static ArrayList<Player> frozen = new ArrayList<Player>();
 	public static ArrayList<Player> menuPlayers = new ArrayList<Player>();

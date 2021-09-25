@@ -10,9 +10,10 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class DiscordSetup {
+public class DiscordSetup implements EventListener {
 	
 	public static String token;
 	public static JDA jda;

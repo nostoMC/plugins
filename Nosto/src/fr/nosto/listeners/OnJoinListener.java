@@ -73,6 +73,15 @@ public class OnJoinListener implements Listener {
 		if (Main.getPlayerTrailsMap().get(player) == null) {
 			Main.setPlayerTrailStats(player, new PlayerTrailsStats(player));
 		}
+		
+		// ADMIN MESSAGE
+		for(Player players : Bukkit.getOnlinePlayers()) {
+			if(players.isOp()) {
+				players.sendMessage("");
+				players.sendMessage("§5[LOG] §d" + player.getName() + "§5 joined the server");
+			}
+		}
+		
 	}
 
 }
