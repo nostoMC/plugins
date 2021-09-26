@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.tasks;
+package fr.nostoNC.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import fr.djredstone.nostoNC.Main;
+import fr.nostoNC.Main;
 
 public class VIPpass {
 

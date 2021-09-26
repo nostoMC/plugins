@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC;
+package fr.nostoNC.tasks;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

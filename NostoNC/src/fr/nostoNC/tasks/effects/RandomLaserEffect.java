@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.tasks;
+package fr.nostoNC.tasks.effects;
 
 import java.util.Random;
 
@@ -6,8 +6,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.djredstone.nostoNC.Laser;
-import fr.djredstone.nostoNC.Main;
+import fr.nostoNC.Main;
+import fr.nostoNC.tasks.Laser;
 
 public class RandomLaserEffect {
 	

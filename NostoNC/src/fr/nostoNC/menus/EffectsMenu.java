@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.menus;
+package fr.nostoNC.menus;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,9 +25,9 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-import fr.djredstone.nostoNC.Main;
-import fr.djredstone.nostoNC.tasks.DjLaserEffect;
-import fr.djredstone.nostoNC.tasks.RandomParticleEffect;
+import fr.nostoNC.Main;
+import fr.nostoNC.tasks.effects.DjLaserEffect;
+import fr.nostoNC.tasks.effects.RandomParticleEffect;
 
 public class EffectsMenu implements Listener {
 	

@@ -1,4 +1,4 @@
-main: fr.djredstone.nostoNC.Main
+main: fr.nostoNC.Main
 api-version: 1.16
 name: Nosto-Nightclub
 version: 0.0.1

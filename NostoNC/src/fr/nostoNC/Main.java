@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC;
+package fr.nostoNC;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,14 +10,13 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.djredstone.nostoNC.commands.CommandNightclub;
-import fr.djredstone.nostoNC.commands.TabNightclub;
-import fr.djredstone.nostoNC.listeners.OnPlayerChangeWorldListener;
-import fr.djredstone.nostoNC.listeners.OnPlayerDamageListener;
-import fr.djredstone.nostoNC.listeners.OnPlayerInteractListener;
-import fr.djredstone.nostoNC.listeners.OnResourcepackStatusListener;
-import fr.djredstone.nostoNC.menus.EffectsMenu;
-import fr.djredstone.nostoNC.tasks.StartTask;
+import fr.nostoNC.commands.CommandNightclub;
+import fr.nostoNC.commands.TabNightclub;
+import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
+import fr.nostoNC.listeners.OnPlayerDamageListener;
+import fr.nostoNC.listeners.OnPlayerInteractListener;
+import fr.nostoNC.listeners.OnResourcepackStatusListener;
+import fr.nostoNC.menus.EffectsMenu;
 
 public class Main extends JavaPlugin {
 	
@@ -50,7 +49,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerInteractListener(), this);
 		
-		new StartTask(this);
+		new Startup(this);
 		
 		//fix
 		/*

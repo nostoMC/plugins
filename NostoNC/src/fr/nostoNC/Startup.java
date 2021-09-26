@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.tasks;
+package fr.nostoNC;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,12 +6,22 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.djredstone.nostoNC.Lasers;
-import fr.djredstone.nostoNC.Main;
+import fr.nostoNC.tasks.VIPpass;
+import fr.nostoNC.tasks.effects.DjGlowing;
+import fr.nostoNC.tasks.effects.DjLaserEffect;
+import fr.nostoNC.tasks.effects.FloorSmokeEffect;
+import fr.nostoNC.tasks.effects.GoboLaserEffect;
+import fr.nostoNC.tasks.effects.LightBottom;
+import fr.nostoNC.tasks.effects.LightTop;
+import fr.nostoNC.tasks.effects.RandomBeaconEffect;
+import fr.nostoNC.tasks.effects.RandomLaserEffect;
+import fr.nostoNC.tasks.effects.SphereEffect;
+import fr.nostoNC.tasks.effects.StrobeEffect;
+import fr.nostoNC.tasks.effects.WaveEffect;
 
-public class StartTask {
+public class Startup {
 
-	public StartTask(Main main) {
+	public Startup(Main main) {
 
 		new BukkitRunnable() {
 			
@@ -45,8 +55,6 @@ public class StartTask {
 				new DjGlowing(main);
 				
 				new VIPpass(main);
-				
-				new Lasers();
 				
 				Set<String> commands = new HashSet<String>();
 				

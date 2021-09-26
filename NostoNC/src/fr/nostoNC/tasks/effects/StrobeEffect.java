@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.tasks;
+package fr.nostoNC.tasks.effects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -9,7 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.djredstone.nostoNC.Main;
+import fr.nostoNC.Main;
 
 public class StrobeEffect {
 

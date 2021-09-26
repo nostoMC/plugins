@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.tasks;
+package fr.nostoNC.tasks.effects;
 
 import java.util.Random;
 
@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.djredstone.nostoNC.Main;
+import fr.nostoNC.Main;
 
 public class RandomBeaconEffect {
 	

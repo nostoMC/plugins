@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.listeners;
+package fr.nostoNC.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

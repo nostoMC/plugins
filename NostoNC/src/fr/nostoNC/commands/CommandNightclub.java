@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.commands;
+package fr.nostoNC.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -7,8 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.djredstone.nostoNC.Main;
-import fr.djredstone.nostoNC.menus.EffectsMenu;
+import fr.nostoNC.Main;
+import fr.nostoNC.menus.EffectsMenu;
 
 public class CommandNightclub implements CommandExecutor {
 

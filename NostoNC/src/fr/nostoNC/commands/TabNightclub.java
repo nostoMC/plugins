@@ -1,4 +1,4 @@
-package fr.djredstone.nostoNC.commands;
+package fr.nostoNC.commands;
 
 import java.util.ArrayList;
 import java.util.List;
