@@ -34,11 +34,11 @@ public class CommandNosto implements CommandExecutor {
 									Bukkit.broadcastMessage("");
 									Bukkit.broadcastMessage("§4§lReload !");
 									Bukkit.reload();
-									cancel();
+									this.cancel();
 								}
 								timer = timer - 1;
 							}
-						}.runTaskTimer(Main.getInstance(), 0, 20);
+						}.runTaskTimer(Main.instance, 0, 20);
 					} else if(args[1].equalsIgnoreCase("config")) {
 						Main.getInstance().reloadConfig();
 						sender.sendMessage("Config reload !");

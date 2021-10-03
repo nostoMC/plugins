@@ -24,6 +24,7 @@ import fr.nosto.commands.CommandTrails;
 import fr.nosto.commands.CommandVanish;
 import fr.nosto.commands.TabEvent;
 import fr.nosto.commands.TabHome;
+import fr.nosto.commands.TabNosto;
 import fr.nosto.commands.TabSpeed;
 import fr.nosto.listeners.AFKListeners;
 import fr.nosto.listeners.OnInteractListener;
@@ -45,6 +46,7 @@ import fr.nosto.menus.TpMenu;
 import fr.nosto.menus.TrailsMenu;
 import fr.nosto.menus.TrainingMenu;
 import fr.nosto.tasks.MainLobbyParticles;
+import fr.nosto.tasks.MainLobbyUtils;
 import fr.nosto.tasks.ParticleEffectTask;
 import fr.nosto.tasks.PluginListTask;
 import fr.nosto.tasks.RandomBroadcastTask;
@@ -83,6 +85,7 @@ public class Setup {
 		main.getCommand("vanish").setExecutor(new CommandVanish());
 		main.getCommand("freeze").setExecutor(new CommandFreeze());
 		main.getCommand("nosto").setExecutor(new CommandNosto());
+			main.getCommand("nosto").setTabCompleter(new TabNosto());
 		main.getCommand("heal").setExecutor(new CommandHeal());
 		main.getCommand("feed").setExecutor(new CommandFeed());
 		main.getCommand("event").setExecutor(new CommandEvent());
@@ -120,6 +123,7 @@ public class Setup {
 		new RandomBroadcastTask(main);
 		new ParticleEffectTask(main);
 		new MainLobbyParticles(main);
+		new MainLobbyUtils(main);
 		
 		// Tab
 		tab = new TabManager(main);
