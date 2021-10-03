@@ -44,6 +44,7 @@ import fr.nosto.menus.ShopMenu;
 import fr.nosto.menus.TpMenu;
 import fr.nosto.menus.TrailsMenu;
 import fr.nosto.menus.TrainingMenu;
+import fr.nosto.tasks.MainLobbyParticles;
 import fr.nosto.tasks.ParticleEffectTask;
 import fr.nosto.tasks.PluginListTask;
 import fr.nosto.tasks.RandomBroadcastTask;
@@ -118,6 +119,7 @@ public class Setup {
 		new PluginListTask(main);
 		new RandomBroadcastTask(main);
 		new ParticleEffectTask(main);
+		new MainLobbyParticles(main);
 		
 		// Tab
 		tab = new TabManager(main);
