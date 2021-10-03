@@ -28,7 +28,6 @@ public class TrailsMenu implements Listener {
 	private static String availableLore = "§eClique pour équiper";
 
 	public static void openMenu(Player player) {
-		if (Main.menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
 		openPage1(player);
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);

@@ -15,8 +15,6 @@ import fr.nosto.Main;
 public class TpMenu implements Listener {
 
 	public static void openMenu(Player player) {
-		
-		if(Main.menuPlayers.contains(player) && !player.getInventory().contains(Material.COMPASS)) return;
 
 		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP");
 		

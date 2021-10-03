@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.nosto.DiscordSetup;
-import fr.nosto.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -27,10 +26,6 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		event.setMessage(ChatColor.translateAlternateColorCodes('&', event.getMessage()));
 		
 		Player player = event.getPlayer();
-		
-		if(Main.menuPlayers.contains(player)) {
-			return;
-		}
 		
 		String group = "§7";
 		String groupDiscord = "";

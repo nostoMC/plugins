@@ -40,7 +40,7 @@ public class OnInteractListener implements Listener {
 			}
 		}
         
-        if(player.getWorld() == Bukkit.getWorld("world")) {
+        if(player.getWorld() == Bukkit.getWorld("MainLobby")) {
         
         		if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
         			TpMenu.openMenu(player);

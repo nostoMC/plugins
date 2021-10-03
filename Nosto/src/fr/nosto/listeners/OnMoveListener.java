@@ -1,9 +1,6 @@
 package fr.nosto.listeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,16 +14,6 @@ public class OnMoveListener implements Listener {
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
-		Location lobby = new Location(Bukkit.getWorld("world"), 0.5, 252, 0.5, 0f, 0f);
-		if(Main.menuPlayers.contains(player)) {
-			player.teleport(lobby);
-			player.setGameMode(GameMode.ADVENTURE);
-			if(player.getInventory().contains(Material.COMPASS)) {
-				player.sendTitle("§eUtilisez la boussole", "§ePour vous téléporter quelque part !", 0, 60, 5);
-			} else {
-				player.sendTitle("§c§lVeuillez vous connecter", "§6§l/login <Mot de passe>", 0, 60, 5);
-			}
-		}
 		if(Main.frozen.contains(player)) {
 			player.sendMessage("");
 			player.sendMessage("§cVous ne pouvez pas bouger !");
