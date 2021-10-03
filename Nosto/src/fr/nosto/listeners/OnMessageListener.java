@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,6 +23,8 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 	public void onMessage(AsyncPlayerChatEvent event) {
 		
 		event.setCancelled(true);
+		
+		event.setMessage(ChatColor.translateAlternateColorCodes('&', event.getMessage()));
 		
 		Player player = event.getPlayer();
 		
@@ -80,6 +83,13 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 			} else if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
 				
 				if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
+					players.sendMessage("");
+					players.sendMessage(format);
+				}
+				
+			} else if(player.getWorld() == Bukkit.getWorld("MainLobby")) {
+				
+				if(players.getWorld() == Bukkit.getWorld("MainLobby")) {
 					players.sendMessage("");
 					players.sendMessage(format);
 				}
