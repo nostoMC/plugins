@@ -77,9 +77,9 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 					players.sendMessage(format);
 				}
 				
-			} else if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
+			} else {
 				
-				if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
+				if(players.getWorld() == player.getWorld()) {
 					players.sendMessage("");
 					players.sendMessage(format);
 				}
@@ -121,13 +121,6 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
         		if(event.getChannel().getId().equalsIgnoreCase("832554910301290506")) {
         			
         			if(player.getWorld() == Bukkit.getWorld("survie") || player.getWorld() == Bukkit.getWorld("survie_nether") || player.getWorld() == Bukkit.getWorld("survie_the_end")) {
-        				player.sendMessage("");
-        				player.sendMessage(format);
-        			}
-        			
-        		} else if(event.getChannel().getId().equalsIgnoreCase("877675571193200670")) {
-        			
-        			if(player.getWorld() == Bukkit.getWorld("Nightclub")) {
         				player.sendMessage("");
         				player.sendMessage(format);
         			}
