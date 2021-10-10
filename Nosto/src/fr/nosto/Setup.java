@@ -32,7 +32,6 @@ import fr.nosto.listeners.OnItemDropListener;
 import fr.nosto.listeners.OnJoinListener;
 import fr.nosto.listeners.OnLeaveListener;
 import fr.nosto.listeners.OnMessageListener;
-import fr.nosto.listeners.OnMoveItemInventoryListener;
 import fr.nosto.listeners.OnMoveListener;
 import fr.nosto.listeners.OnPlayerChangeWorldListener;
 import fr.nosto.listeners.OnPlayerDamageListener;
@@ -99,7 +98,6 @@ public class Setup {
 		Bukkit.getPluginManager().registerEvents(new AFKListeners(), main);
 		AFKListeners.onAFKLoop(main);
 		Bukkit.getPluginManager().registerEvents(new OnItemDropListener(), main);
-		Bukkit.getPluginManager().registerEvents(new OnMoveItemInventoryListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnLeaveListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnJoinListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnMoveListener(), main);

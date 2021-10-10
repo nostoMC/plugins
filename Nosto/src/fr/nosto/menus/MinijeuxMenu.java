@@ -34,24 +34,27 @@ public class MinijeuxMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
+		try {
+			
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Mini jeux")) {
+				event.setCancelled(true);
+
+				switch(current.getType()) {
+				
+				case ARROW:
+					TpMenu.openMenu(player);
+					break;
+				
+				default:
+					break;
+				
+				}
+
+			}
+			
+		} catch (NullPointerException e) {
 			return;
 		}
 		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Mini jeux")) {
-			event.setCancelled(true);
-
-			switch(current.getType()) {
-			
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
-			
-			default:
-				break;
-			
-			}
-
-		}
 	}
 }

@@ -32,15 +32,15 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		
 		if(player.hasPermission("group.dev")) {
 			group = "§b";
-			groupDiscord = "Developper ";
+			groupDiscord = "Developper | ";
 		}
 		if(player.hasPermission("group.buildeur")) {
 			group = "§a";
-			groupDiscord = "Buildeur ";
+			groupDiscord = "Buildeur | ";
 		}
 		if(player.hasPermission("group.administrateur")) {
 			group = "§c";
-			groupDiscord = "Administrateur ";
+			groupDiscord = "Administrateur | ";
 		}
 		
 		String format = group + "§l" + player.getName() + "§f • " + event.getMessage();
@@ -48,7 +48,7 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		event.setMessage(event.getMessage().replaceAll("&", "§"));
 		
 		EmbedBuilder embed = new EmbedBuilder();
-		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
+		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		embed.setDescription(event.getMessage());
 		
 		Set<String> survival_worlds = new HashSet<String>();

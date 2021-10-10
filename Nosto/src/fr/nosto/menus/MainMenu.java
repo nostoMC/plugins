@@ -63,31 +63,33 @@ public class MainMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
-			return;
-		}
-		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
-			event.setCancelled(true);
+		try {
 			
-			switch(current.getType()) {
-			
-			case COMPASS:
-				TpMenu.openMenu(player);
-				break;
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
+				event.setCancelled(true);
 				
-			case BLAZE_POWDER:
-				TrailsMenu.openMenu(player);
-				break;
+				switch(current.getType()) {
 				
-			case GOLD_INGOT:
-				ShopMenu.openMenu(player);
-				break;
-			
-			default:
-				break;
+				case COMPASS:
+					TpMenu.openMenu(player);
+					break;
+					
+				case BLAZE_POWDER:
+					TrailsMenu.openMenu(player);
+					break;
+					
+				case GOLD_INGOT:
+					ShopMenu.openMenu(player);
+					break;
+				
+				default:
+					break;
+				}
+				
 			}
 			
+		} catch (NullPointerException e) {
+			return;
 		}
 		
 	}

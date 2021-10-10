@@ -35,40 +35,42 @@ public class MondeOuvertMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
-			return;
-		}
-		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Monde Ouvert")) {
-			event.setCancelled(true);
+		try {
 			
-			switch(current.getType()) {
-			
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Monde Ouvert")) {
+				event.setCancelled(true);
 				
-			case COOKED_BEEF:
-				if(!player.hasPermission("server.survivalAcces")) break;
-				event.getView().close();
-				Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
-				player.teleport(SurvivalLobby);
-				player.setGameMode(GameMode.SURVIVAL);
-				break;
+				switch(current.getType()) {
 				
-			case WHITE_WOOL:
-				if(!player.hasPermission("server.skyblockAcces")) break;
-				event.getView().close();
-				Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
-				player.teleport(skyblockLobby);
-				player.setGameMode(GameMode.SURVIVAL);
-				break;
-			
-			default:
-				break;
-			
-			}
+				case ARROW:
+					TpMenu.openMenu(player);
+					break;
+					
+				case COOKED_BEEF:
+					if(!player.hasPermission("server.survivalAcces")) break;
+					event.getView().close();
+					Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
+					player.teleport(SurvivalLobby);
+					player.setGameMode(GameMode.SURVIVAL);
+					break;
+					
+				case WHITE_WOOL:
+					if(!player.hasPermission("server.skyblockAcces")) break;
+					event.getView().close();
+					Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
+					player.teleport(skyblockLobby);
+					player.setGameMode(GameMode.SURVIVAL);
+					break;
+				
+				default:
+					break;
+				
+				}
 
+			}
+			
+		} catch (NullPointerException e) {
+			return;
 		}
 	}
 

@@ -33,24 +33,26 @@ public class TrainingMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
-			return;
-		}
-		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Training")) {
-			event.setCancelled(true);
+		try {
+			
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Training")) {
+				event.setCancelled(true);
 
-			switch(current.getType()) {
-			
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
-			
-			default:
-				break;
-			
+				switch(current.getType()) {
+				
+				case ARROW:
+					TpMenu.openMenu(player);
+					break;
+				
+				default:
+					break;
+				
+				}
+
 			}
-
+			
+		} catch (NullPointerException e) {
+			return;
 		}
 		
 	}

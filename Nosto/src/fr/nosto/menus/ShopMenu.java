@@ -34,22 +34,24 @@ public class ShopMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
-			return;
-		}
-		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Boutique")) {
-			event.setCancelled(true);
+		try {
 			
-			switch(current.getType()) {
-			
-				case ARROW:
-					MainMenu.openMenu(player);
-					break;
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Boutique")) {
+				event.setCancelled(true);
 				
-				default:
-					break;
+				switch(current.getType()) {
+				
+					case ARROW:
+						MainMenu.openMenu(player);
+						break;
+					
+					default:
+						break;
+				}
 			}
+			
+		} catch (NullPointerException e) {
+			return;
 		}
 		
 	}

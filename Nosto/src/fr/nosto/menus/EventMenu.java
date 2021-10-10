@@ -36,32 +36,34 @@ public class EventMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
-			return;
-		}
-		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Events")) {
-			event.setCancelled(true);
-
-			switch(current.getType()) {
+		try {
 			
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Events")) {
+				event.setCancelled(true);
+
+				switch(current.getType()) {
 				
-			case MUSIC_DISC_BLOCKS:
-				if(!player.hasPermission("server.nightclubAcces")) break;
-				event.getView().close();
-				Location nightClubLobby = new Location(Bukkit.getWorld("Nightclub"), 0.5, 64.0, 0.5, 0f, 0f);
-				player.setGameMode(GameMode.ADVENTURE);
-				player.teleport(nightClubLobby);
-				break;
-			
-			default:
-				break;
-			
-			}
+				case ARROW:
+					TpMenu.openMenu(player);
+					break;
+					
+				case MUSIC_DISC_BLOCKS:
+					if(!player.hasPermission("server.nightclubAcces")) break;
+					event.getView().close();
+					Location nightClubLobby = new Location(Bukkit.getWorld("Nightclub"), 0.5, 64.0, 0.5, 0f, 0f);
+					player.setGameMode(GameMode.ADVENTURE);
+					player.teleport(nightClubLobby);
+					break;
+				
+				default:
+					break;
+				
+				}
 
+			}
+			
+		} catch (NullPointerException e) {
+			return;
 		}
 	}
 

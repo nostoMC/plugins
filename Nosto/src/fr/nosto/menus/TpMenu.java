@@ -36,39 +36,41 @@ public class TpMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		
-		if(current.getType() == null) {
-			return;
-		}
-		
-		if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP")) {
-			event.setCancelled(true);
+		try {
 			
-			switch(current.getType()){
-			
-			case ARROW:
-				MainMenu.openMenu(player);
-				break;
-			
-			case GRASS_BLOCK:
-				MondeOuvertMenu.openMenu(player);
-				break;
+			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP")) {
+				event.setCancelled(true);
 				
-			case FISHING_ROD:
-				MinijeuxMenu.openMenu(player);
-				break;
+				switch(current.getType()){
 				
-			case WOODEN_SWORD:
-				TrainingMenu.openMenu(player);
-				break;
+				case ARROW:
+					MainMenu.openMenu(player);
+					break;
 				
-			case FIREWORK_ROCKET:
-				EventMenu.openMenu(player);
-				break;
-				
-			default:
-				break;
-			}
+				case GRASS_BLOCK:
+					MondeOuvertMenu.openMenu(player);
+					break;
+					
+				case FISHING_ROD:
+					MinijeuxMenu.openMenu(player);
+					break;
+					
+				case WOODEN_SWORD:
+					TrainingMenu.openMenu(player);
+					break;
+					
+				case FIREWORK_ROCKET:
+					EventMenu.openMenu(player);
+					break;
+					
+				default:
+					break;
+				}
 
+			}
+			
+		} catch (NullPointerException e) {
+			return;
 		}
 	}
 	
