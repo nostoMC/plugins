@@ -82,13 +82,6 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 					players.sendMessage(format);
 				}
 				
-			} else if(player.getWorld() == Bukkit.getWorld("MainLobby")) {
-				
-				if(players.getWorld() == Bukkit.getWorld("MainLobby")) {
-					players.sendMessage("");
-					players.sendMessage(format);
-				}
-				
 			}
 			
 		}
