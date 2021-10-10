@@ -16,7 +16,6 @@ import fr.nosto.tasks.particles.PlayerTrailsStats;
 public class Main extends JavaPlugin {
 
 	public static ArrayList<Player> frozen = new ArrayList<Player>();
-	public static ArrayList<Player> menuPlayers = new ArrayList<Player>();
 	public static ArrayList<Player> vanishList = new ArrayList<Player>();
 	public static ArrayList<Player> afks = new ArrayList<Player>();
 	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<Player, PlayerTrailsStats>();

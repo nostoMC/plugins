@@ -51,8 +51,6 @@ public class MondeOuvertMenu implements Listener {
 			case COOKED_BEEF:
 				if(!player.hasPermission("server.survivalAcces")) break;
 				event.getView().close();
-				Main.menuPlayers.remove(player);
-				Main.vanishList.remove(player);
 				Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
 				player.teleport(SurvivalLobby);
 				player.setGameMode(GameMode.SURVIVAL);
@@ -61,8 +59,6 @@ public class MondeOuvertMenu implements Listener {
 			case WHITE_WOOL:
 				if(!player.hasPermission("server.skyblockAcces")) break;
 				event.getView().close();
-				Main.menuPlayers.remove(player);
-				Main.vanishList.remove(player);
 				Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
 				player.teleport(skyblockLobby);
 				player.setGameMode(GameMode.SURVIVAL);

@@ -52,8 +52,6 @@ public class EventMenu implements Listener {
 			case MUSIC_DISC_BLOCKS:
 				if(!player.hasPermission("server.nightclubAcces")) break;
 				event.getView().close();
-				Main.menuPlayers.remove(player);
-				Main.vanishList.remove(player);
 				Location nightClubLobby = new Location(Bukkit.getWorld("Nightclub"), 0.5, 64.0, 0.5, 0f, 0f);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(nightClubLobby);

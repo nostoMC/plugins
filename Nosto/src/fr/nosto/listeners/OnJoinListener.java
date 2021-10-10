@@ -44,14 +44,12 @@ public class OnJoinListener implements Listener {
 		}
 		
 		if(!Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
-			Location lobby = new Location(Bukkit.getWorld("world"), 0.5, 252, 0.5, 0f, 0f);
+			Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f);
 			player.teleport(lobby);
 			player.teleport(lobby);
 			player.setMaxHealth(20);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1, 200));
-			Main.vanishList.add(player);
 			player.getInventory().clear();
-			Main.menuPlayers.add(player);
 			player.setGameMode(GameMode.ADVENTURE);
 			player.sendMessage("");
 			player.sendTitle("§6§lBienvenue sur le serveur !", "" + player.getName(), 0, 60, 5);

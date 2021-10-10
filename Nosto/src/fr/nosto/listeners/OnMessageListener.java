@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.nosto.DiscordSetup;
-import fr.nosto.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -23,11 +23,9 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		
 		event.setCancelled(true);
 		
-		Player player = event.getPlayer();
+		event.setMessage(ChatColor.translateAlternateColorCodes('&', event.getMessage()));
 		
-		if(Main.menuPlayers.contains(player)) {
-			return;
-		}
+		Player player = event.getPlayer();
 		
 		String group = "§7";
 		String groupDiscord = "";
@@ -80,6 +78,13 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 			} else {
 				
 				if(players.getWorld() == player.getWorld()) {
+					players.sendMessage("");
+					players.sendMessage(format);
+				}
+				
+			} else if(player.getWorld() == Bukkit.getWorld("MainLobby")) {
+				
+				if(players.getWorld() == Bukkit.getWorld("MainLobby")) {
 					players.sendMessage("");
 					players.sendMessage(format);
 				}
