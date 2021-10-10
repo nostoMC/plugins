@@ -13,8 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
-import fr.nostoNC.listeners.OnPlayerDamageListener;
-import fr.nostoNC.listeners.OnPlayerInteractListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
 import fr.nostoNC.menus.EffectsMenu;
 
@@ -44,10 +42,8 @@ public class Main extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
 		
-		Bukkit.getPluginManager().registerEvents(new OnPlayerDamageListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
-		Bukkit.getPluginManager().registerEvents(new OnPlayerInteractListener(), this);
 		
 		new Startup(this);
 		

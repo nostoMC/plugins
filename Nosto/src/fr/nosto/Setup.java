@@ -35,6 +35,7 @@ import fr.nosto.listeners.OnMessageListener;
 import fr.nosto.listeners.OnMoveItemInventoryListener;
 import fr.nosto.listeners.OnMoveListener;
 import fr.nosto.listeners.OnPlayerChangeWorldListener;
+import fr.nosto.listeners.OnPlayerDamageListener;
 import fr.nosto.listeners.OnServerListPingListener;
 import fr.nosto.listeners.SitListeners;
 import fr.nosto.menus.EventMenu;
@@ -106,6 +107,7 @@ public class Setup {
 		Bukkit.getPluginManager().registerEvents(new OnServerListPingListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnMessageListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), main);
+		Bukkit.getPluginManager().registerEvents(new OnPlayerDamageListener(), main);
 		// Gui Listeners
 		Bukkit.getPluginManager().registerEvents(new MainMenu(), main);
 			Bukkit.getPluginManager().registerEvents(new TrailsMenu(), main);

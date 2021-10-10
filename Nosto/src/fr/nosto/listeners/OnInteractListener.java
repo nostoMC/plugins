@@ -2,9 +2,15 @@ package fr.nosto.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.nosto.Main;
@@ -40,13 +46,48 @@ public class OnInteractListener implements Listener {
 			}
 		}
         
-        if(player.getWorld() == Bukkit.getWorld("MainLobby")) {
+        if(player.getWorld().getName().endsWith("Lobby")) {
         
-        		if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
-        			TpMenu.openMenu(player);
-        		}
+        	if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
+        		TpMenu.openMenu(player);
+        	}
+        	
+        	if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
+        		if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+        		if(event.getClickedBlock().getType() == Material.OAK_WALL_SIGN) event.setCancelled(false);
+        		if(event.getClickedBlock().getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
+        	}
         		
         }
+	}
+	
+	@EventHandler
+	public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+		if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
+			if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+		if(event.getDamager().getWorld().getName().endsWith("Lobby")) {
+			if(!event.getDamager().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+			if(event.getEntity() instanceof ArmorStand) event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+		if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
+			if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+		}
+    }
+	
+	@EventHandler
+	public void onArmorStandInteract(PlayerArmorStandManipulateEvent event) {
+		if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
+			if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+		}
 	}
 
 }
