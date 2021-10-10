@@ -38,7 +38,6 @@ public class OnJoinListener implements Listener {
 			try {
 				config.save(file);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -52,7 +51,7 @@ public class OnJoinListener implements Listener {
 			player.getInventory().clear();
 			player.setGameMode(GameMode.ADVENTURE);
 			player.sendMessage("");
-			player.sendTitle("§6§lBienvenue sur le serveur !", "" + player.getName(), 0, 60, 5);
+			player.sendTitle("§l§3≪ §l§bNosto §l§3≫", "§f§k§l|| §l§7Bienvenue " + player.getName() +  " §f§k§l||", 0, 100, 5);
 			ItemStack compassLobby = new ItemStack(Material.COMPASS, 1);
 			ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
 			compassLobbyMeta.setDisplayName("§b§lClick pour ouvrire le menu de téléportation");
