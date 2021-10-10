@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 import fr.nosto.Main;
@@ -26,8 +27,7 @@ public class MainLobbyUtils {
 					
 					if(player.getWorld() == Bukkit.getWorld("MainLobby")) {
 						
-						if(new Location(Bukkit.getWorld("MainLobby"), -5.5, 94, 12.5).distance(player.getLocation()) < 2 || 
-								new Location(Bukkit.getWorld("MainLobby"), 6.5, 94, 12.5).distance(player.getLocation()) < 2) {
+						if (BoundingBox.of(new Location(Bukkit.getWorld("MainLobby"), -8, 93, 10), new Location(Bukkit.getWorld("MainLobby"), -4, 95, 14)).contains(player.getLocation().toVector())) {
 							
 							if(!cooldown.contains("" + player.getUniqueId())) {
 								

@@ -48,14 +48,17 @@ public class OnInteractListener implements Listener {
         
         if(player.getWorld().getName().endsWith("Lobby")) {
         
-        	if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
+        	if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName() != null && player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
         		TpMenu.openMenu(player);
         	}
         	
         	if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
         		if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
-        		if(event.getClickedBlock().getType() == Material.OAK_WALL_SIGN) event.setCancelled(false);
-        		if(event.getClickedBlock().getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
+        		if(event.getClickedBlock().getType() != null) {
+        			if(event.getClickedBlock().getType() == Material.OAK_WALL_SIGN) event.setCancelled(false);
+            		if(event.getClickedBlock().getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
+        		}
+        		
         	}
         		
         }
