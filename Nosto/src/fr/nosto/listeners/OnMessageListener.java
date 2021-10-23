@@ -123,6 +123,10 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
         				player.sendMessage(format);
         			}
         			
+        		} else if(event.getChannel().getId().equalsIgnoreCase("827280062311038986")) {
+        			
+        			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), event.getMessage().getContentRaw());
+        			
         		}
         		
     			

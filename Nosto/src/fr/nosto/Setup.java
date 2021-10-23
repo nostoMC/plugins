@@ -1,5 +1,9 @@
 package fr.nosto;
 
+import java.util.Date;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+
 import org.bukkit.Bukkit;
 
 import fr.nosto.commands.CommandAFK;
@@ -124,6 +128,20 @@ public class Setup {
 		new ParticleEffectTask(main);
 		new MainLobbyParticles(main);
 		new MainLobbyUtils(main);
+		
+		// Logger
+		Bukkit.getServer().getLogger().addHandler(new Handler() {
+            @Override
+            public void close() throws SecurityException {/*Ignore this method*/}
+ 
+            @Override
+            public void flush() {/*Ignore this method*/}
+ 
+            @Override
+            public void publish(LogRecord log) {
+            	DiscordSetup.jda.getTextChannelById("827280062311038986").sendMessage("**[" + new Date((long)log.getMillis()*1000) + "] [" + log.getLevel().toString() + "]** `" + log.getMessage() + "`").queue();
+            }
+        });
 		
 		// Tab
 		tab = new TabManager(main);
