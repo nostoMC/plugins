@@ -3,6 +3,7 @@ package fr.nosto.listeners;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.nosto.Main;
 import fr.nosto.menus.TpMenu;
@@ -47,26 +49,18 @@ public class OnInteractListener implements Listener {
 		}
         
         if(player.getWorld().getName().endsWith("Lobby")) {
-        
-        	try {
-				
-        		if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
-            		TpMenu.openMenu(player);
-            	}
-        		
-			} catch (NullPointerException e) {
+
+			ItemMeta meta = player.getInventory().getItemInMainHand().getItemMeta();
+			if (meta != null && meta.getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
+				TpMenu.openMenu(player);
 			}
-        	
-        	if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
-        		if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
-        		try {
-        			if(event.getClickedBlock().getType() == Material.OAK_WALL_SIGN) event.setCancelled(false);
-            		if(event.getClickedBlock().getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
-				} catch (NullPointerException e) {
-				}
-        		
-        	}
-        		
+
+			if(!player.hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+
+			Block block = event.getClickedBlock();
+			if (block != null) {
+				if(block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
+			}
         }
 	}
 	
