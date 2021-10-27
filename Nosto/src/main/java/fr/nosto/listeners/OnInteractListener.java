@@ -13,7 +13,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.nosto.Main;
 import fr.nosto.menus.TpMenu;
@@ -50,8 +49,8 @@ public class OnInteractListener implements Listener {
         
         if(player.getWorld().getName().endsWith("Lobby")) {
 
-			ItemMeta meta = player.getInventory().getItemInMainHand().getItemMeta();
-			if (meta != null && meta.getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
+			if (player.getOpenInventory().getTitle().equals("Crafting")
+					&& event.getMaterial() == Material.COMPASS) {
 				TpMenu.openMenu(player);
 			}
 
