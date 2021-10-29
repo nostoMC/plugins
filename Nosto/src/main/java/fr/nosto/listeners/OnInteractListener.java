@@ -3,6 +3,7 @@ package fr.nosto.listeners;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -47,26 +48,18 @@ public class OnInteractListener implements Listener {
 		}
         
         if(player.getWorld().getName().endsWith("Lobby")) {
-        
-        	try {
-				
-        		if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lClick pour ouvrire le menu de téléportation")) {
-            		TpMenu.openMenu(player);
-            	}
-        		
-			} catch (NullPointerException e) {
+
+			if (player.getOpenInventory().getTitle().equals("Crafting")
+					&& event.getMaterial() == Material.COMPASS) {
+				TpMenu.openMenu(player);
 			}
-        	
-        	if(event.getPlayer().getWorld().getName().endsWith("Lobby")) {
-        		if(!event.getPlayer().hasPermission("nosto.lobby.interact")) event.setCancelled(true);
-        		try {
-        			if(event.getClickedBlock().getType() == Material.OAK_WALL_SIGN) event.setCancelled(false);
-            		if(event.getClickedBlock().getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
-				} catch (NullPointerException e) {
-				}
-        		
-        	}
-        		
+
+			if(!player.hasPermission("nosto.lobby.interact")) event.setCancelled(true);
+
+			Block block = event.getClickedBlock();
+			if (block != null) {
+				if(block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.DARK_OAK_DOOR) event.setCancelled(false);
+			}
         }
 	}
 	
