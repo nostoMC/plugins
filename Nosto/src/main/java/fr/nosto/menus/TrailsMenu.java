@@ -1,6 +1,7 @@
 package fr.nosto.menus;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -60,7 +61,7 @@ public class TrailsMenu implements Listener {
 			if (itM.hasLore())
 				lore = itM.getLore();
 			else
-				lore = new ArrayList<String>();
+				lore = new ArrayList<>();
 
 			lore.add(0, itM.getDisplayName());
 			lore.add("");
@@ -84,7 +85,7 @@ public class TrailsMenu implements Listener {
 			if (itM.hasLore())
 				lore = itM.getLore();
 			else
-				lore = new ArrayList<String>();
+				lore = new ArrayList<>();
 
 			lore.add(0, itM.getDisplayName());
 			lore.add("");
@@ -120,7 +121,7 @@ public class TrailsMenu implements Listener {
 			if (itM.hasLore())
 				lore = itM.getLore();
 			else
-				lore = new ArrayList<String>();
+				lore = new ArrayList<>();
 
 			lore.add("");
 
@@ -169,7 +170,7 @@ public class TrailsMenu implements Listener {
 			if (itM.hasLore())
 				lore = itM.getLore();
 			else
-				lore = new ArrayList<String>();
+				lore = new ArrayList<>();
 
 			lore.add("");
 
@@ -229,10 +230,8 @@ public class TrailsMenu implements Listener {
 
 		if(customName != null) itM.setDisplayName(customName);
 
-		List<String> itemLore = new ArrayList<String>();
-		for (String s : lore) {
-			itemLore.add(s);
-		}
+		List<String> itemLore = new ArrayList<>();
+		Collections.addAll(itemLore, lore);
 		itM.setLore(itemLore);
 
 		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);

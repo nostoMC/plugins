@@ -37,7 +37,7 @@ public class MainMenu implements Listener {
 		meta.setOwningPlayer(player);
 		meta.setDisplayName("§6§l" + player.getName());
 		
-		ArrayList<String> lore = new ArrayList<String>();
+		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§eMoney : §6§l" + playerMoney);
 		
 		meta.setLore(lore);
