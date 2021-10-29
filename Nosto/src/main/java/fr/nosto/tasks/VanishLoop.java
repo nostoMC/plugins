@@ -16,11 +16,7 @@ public class VanishLoop {
 			public void run() {
 				
 				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(Main.vanishList.contains(players)) {
-						players.setInvisible(true);
-					} else {
-						players.setInvisible(false);
-					}
+					players.setInvisible(Main.vanishList.contains(players));
 				}
 				
 			}

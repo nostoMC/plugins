@@ -15,19 +15,17 @@ import fr.nosto.tasks.particles.PlayerTrailsStats;
 
 public class Main extends JavaPlugin {
 
-	public static ArrayList<Player> frozen = new ArrayList<Player>();
-	public static ArrayList<Player> vanishList = new ArrayList<Player>();
-	public static ArrayList<Player> afks = new ArrayList<Player>();
-	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<Player, PlayerTrailsStats>();
+	public static ArrayList<Player> frozen = new ArrayList<>();
+	public static ArrayList<Player> vanishList = new ArrayList<>();
+	public static ArrayList<Player> afks = new ArrayList<>();
+	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<>();
 	
 	public static Main instance;
 	
 	public static JavaPlugin getInstance() {
 		return instance;
 	}
-	
-	public boolean isAReload = false;
-	
+
 	@Override
 	public void onEnable() {
 		

@@ -139,7 +139,7 @@ public class Setup {
  
             @Override
             public void publish(LogRecord log) {
-            	DiscordSetup.jda.getTextChannelById("827280062311038986").sendMessage("**[" + new Date((long)log.getMillis()*1000) + "] [" + log.getLevel().toString() + "]** `" + log.getMessage() + "`").queue();
+				DiscordSetup.jda.getTextChannelById("827280062311038986").sendMessage("**[" + new Date(log.getMillis()*1000) + "] [" + log.getLevel().toString() + "]** `" + log.getMessage() + "`").queue();
             }
         });
 		

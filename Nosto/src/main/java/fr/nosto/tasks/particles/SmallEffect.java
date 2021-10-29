@@ -5,7 +5,7 @@ public enum SmallEffect {
 
 	public int price;
 
-	private SmallEffect(int price) {
+	SmallEffect(int price) {
 		this.price = price;
 	}
 }

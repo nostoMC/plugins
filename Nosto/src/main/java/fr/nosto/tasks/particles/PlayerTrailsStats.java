@@ -14,8 +14,8 @@ import fr.nosto.tasks.particles.small.FrostWalker;
 public class PlayerTrailsStats {
 
 	public UUID uuid;
-	private Set<BigEffect> unlockedBig = new HashSet<BigEffect>();
-	private Set<SmallEffect> unlockedSmall = new HashSet<SmallEffect>();
+	private Set<BigEffect> unlockedBig = new HashSet<>();
+	private Set<SmallEffect> unlockedSmall = new HashSet<>();
 	private BigEffect equipedBig;
 	private SmallEffect equipedSmall;
 

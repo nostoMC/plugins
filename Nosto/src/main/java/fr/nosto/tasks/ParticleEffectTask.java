@@ -12,8 +12,8 @@ import fr.nosto.tasks.particles.SmallEffectRenderer;
 
 public class ParticleEffectTask {
 
-	public static Map<UUID, SmallEffectRenderer> smallEffects = new HashMap<UUID, SmallEffectRenderer>();
-	public static Map<UUID, BigEffectRenderer> bigEffects = new HashMap<UUID, BigEffectRenderer>();
+	public static Map<UUID, SmallEffectRenderer> smallEffects = new HashMap<>();
+	public static Map<UUID, BigEffectRenderer> bigEffects = new HashMap<>();
 	private static int loop;
 	private static boolean inited = false;
 

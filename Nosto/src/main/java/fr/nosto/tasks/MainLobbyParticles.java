@@ -24,8 +24,8 @@ public class MainLobbyParticles {
 				loop += .05;
 				
 				double yOffset = Math.cos(loop);
-				double xOffset = Math.sin(loop * 4)/1f;
-				double zOffset = Math.cos(loop * 4)/1f;
+				double xOffset = Math.sin(loop * 4);
+				double zOffset = Math.cos(loop * 4);
 				
 				Bukkit.getWorld("MainLobby").spawnParticle(Particle.REDSTONE, loc.getX() + xOffset, loc.getY() + yOffset, loc.getZ() + zOffset, 1, 0, 0, 0, 0, 
 						new Particle.DustOptions(Color.fromRGB(127, 0, 230), 1.2f), true);
