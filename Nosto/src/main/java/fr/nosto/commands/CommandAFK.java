@@ -14,7 +14,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 
 public class CommandAFK implements CommandExecutor {
 	
-	static ArrayList<Player> afks = new ArrayList<Player>();
+	static ArrayList<Player> afks = new ArrayList<>();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -44,7 +44,6 @@ public class CommandAFK implements CommandExecutor {
 			
 			embed.setColor(Color.LIGHT_GRAY);
 			embed.addField("n'est plus AFK", "", false);
-			DiscordSetup.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 		} else {
 			player.setCustomName(player.getName() + " §7§l(AFK)");
 			player.setCustomNameVisible(true);
@@ -56,8 +55,8 @@ public class CommandAFK implements CommandExecutor {
 
 			embed.setColor(Color.GRAY);
 			embed.addField("est AFK", "", false);
-			DiscordSetup.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 		}
+		DiscordSetup.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
 		return false;
 	}
 	

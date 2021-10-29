@@ -18,7 +18,7 @@ public class CommandMsg implements CommandExecutor {
 			if(args.length == 0) {
 				player.sendMessage("");
 				player.sendMessage("§cUtilisation : /msg <joueur> <message>");
-			} else if(args.length == 1 && Bukkit.getPlayer(args[0]) instanceof Player) {
+			} else if(args.length == 1 && Bukkit.getPlayer(args[0]) != null) {
 				target = Bukkit.getPlayer(args[0]);
 				player.sendMessage("");
 				player.sendMessage("§eVous avez poke §6§l" + target.getName() + " §e!");
@@ -29,7 +29,7 @@ public class CommandMsg implements CommandExecutor {
 				target = Bukkit.getPlayer(args[0]);
 				StringBuilder argsMessage = new StringBuilder();
 				for(String part : args) {
-					argsMessage.append(part + " ");
+					argsMessage.append(part).append(" ");
 				}
 				int max = player.getName().length();
 				max = max + 1;
@@ -37,9 +37,9 @@ public class CommandMsg implements CommandExecutor {
 				int maxMessage = argsMessage.length();
 				argsMessage.delete(maxMessage - 1, maxMessage);
 				player.sendMessage("");
-				player.sendMessage("§eVous avez envoyer : §a" + argsMessage.toString() + " §eà §6§l" + target.getName());
+				player.sendMessage("§eVous avez envoyer : §a" + argsMessage + " §eà §6§l" + target.getName());
 				target.sendMessage("");
-				target.sendMessage("§eVous avez reçu un message de §6§l" + player.getName() + "§e : §a" + argsMessage.toString());
+				target.sendMessage("§eVous avez reçu un message de §6§l" + player.getName() + "§e : §a" + argsMessage);
 				target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 			}
 		}

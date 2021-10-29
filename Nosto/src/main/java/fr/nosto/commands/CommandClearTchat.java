@@ -18,7 +18,7 @@ public class CommandClearTchat implements CommandExecutor {
 		
 		Bukkit.broadcastMessage("§e----------------------------------------------");
 		Bukkit.broadcastMessage("");
-		Bukkit.broadcastMessage("§eTchat clear par §6§l" + sender.getName().toString() + " §e!");
+		Bukkit.broadcastMessage("§eTchat clear par §6§l" + sender.getName() + " §e!");
 		Bukkit.broadcastMessage("");
 		Bukkit.broadcastMessage("§e----------------------------------------------");
 		

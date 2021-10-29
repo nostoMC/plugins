@@ -45,8 +45,8 @@ public class CommandClaim implements CommandExecutor
             	if (Main.getInstance().getConfig().getString("claim." + chunkID).equals(player.getUniqueId().toString())) {
 
             		if (Main.getInstance().getConfig().contains("claim." + chunkID)) {
-            			Main.getInstance().getConfig().set("claim." + chunkID, null);;
-            			Main.getInstance().saveConfig();
+            			Main.getInstance().getConfig().set("claim." + chunkID, null);
+						Main.getInstance().saveConfig();
             			player.sendMessage("");
                 		player.sendMessage("§eVous avez unclaim ce chunk !");
             		} else {

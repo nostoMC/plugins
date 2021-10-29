@@ -18,7 +18,7 @@ public class CommandFly implements CommandExecutor {
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 			if(args.length == 0) {
-				if(list.contains(player) || player.getAllowFlight() == true) {
+				if(list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");
@@ -29,9 +29,9 @@ public class CommandFly implements CommandExecutor {
 					player.sendMessage("");
 					player.sendMessage("§aVous pouvez voler !");
 				}
-			} else if(args.length >= 1) {
+			} else {
 				player = Bukkit.getPlayer(args[0]);
-				if(list.contains(player) || player.getAllowFlight() == true) {
+				if(list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");
