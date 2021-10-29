@@ -3,7 +3,6 @@ package fr.nostoNC.tasks.effects;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -54,29 +53,34 @@ public class RandomBeaconEffect {
 				
 				new BukkitRunnable() {
 					
-					int stade = 0;
-					
 					@Override
 					public void run() {
 						
 						if(Main.activeEffects.get("randomBeacon") == true) {
-							if(stade == 0) {
-								for(int i = 0; i < 50; i++) {
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(null, r.nextInt(16 + 16) - 16, 63, r.nextInt(8 + 26) - 26)).setType(Material.HOPPER);
-								}
-								stade = 1;
-							} else {
-								Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 63 -26 16 63 8 minecraft:gray_concrete");
-								stade = 0;
+							for(int i = 0; i < 50; i++) {
+								showBeacon(r.nextInt(16 + 16) - 16, 63, r.nextInt(8 + 26) - 26);
 							}
-						} else {
-							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run fill -16 63 -26 16 63 8 minecraft:gray_concrete");
 						}
 					}
 				}.runTaskTimer(main, 0, 7);
 				
 			}
 		}.runTaskLater(main, 200);
+		
+	}
+	
+	private void showBeacon(int x, int y, int z) {
+		Bukkit.getWorld("Nightclub").getBlockAt(x, y, z).setType(Material.HOPPER);
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+
+				Bukkit.getWorld("Nightclub").getBlockAt(x, y, z).setType(Material.GRAY_CONCRETE);
+				
+			}
+		}.runTaskLater(Main.instance, 6);
 		
 	}
 
