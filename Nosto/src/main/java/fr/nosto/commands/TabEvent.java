@@ -9,8 +9,8 @@ import org.bukkit.command.TabCompleter;
 
 public class TabEvent implements TabCompleter {
 	
-	List<String> arguments = new ArrayList<String>();
-	List<String> arguments2 = new ArrayList<String>();
+	List<String> arguments = new ArrayList<>();
+	List<String> arguments2 = new ArrayList<>();
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
@@ -26,7 +26,7 @@ public class TabEvent implements TabCompleter {
 			arguments2.add("nightclub");
 		}
 		
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		if(args.length == 1) {
 			for (String a : arguments) {
 				if(a.toLowerCase().startsWith(args[0].toLowerCase())) {

@@ -14,13 +14,13 @@ import org.bukkit.entity.Player;
 public class CommandSit implements CommandExecutor {
 	
 
-	static ArrayList<Player> sitting = new ArrayList<Player>();
+	static ArrayList<Player> sitting = new ArrayList<>();
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		Player player = null;
+		Player player;
 		
 		if(sender instanceof Player) {
 			player = (Player) sender;

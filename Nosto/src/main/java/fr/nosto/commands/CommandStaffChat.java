@@ -30,14 +30,14 @@ public class CommandStaffChat implements CommandExecutor {
         }
         
         p.sendMessage("");
-        String mess = "§c[StaffChat]§5 " + p.getDisplayName() + ": ";
+        StringBuilder mess = new StringBuilder("§c[StaffChat]§5 " + p.getDisplayName() + ": ");
         for (String s : args) {
-            mess = mess + s + " ";
+            mess.append(s).append(" ");
         }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.hasPermission("nosto.admin.chat")) {
-                player.sendMessage(Color(mess));
+                player.sendMessage(Color(mess.toString()));
             }
         }
 		

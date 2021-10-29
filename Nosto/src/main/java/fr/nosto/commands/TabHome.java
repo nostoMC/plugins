@@ -12,7 +12,7 @@ import fr.nosto.Main;
 
 public class TabHome implements TabCompleter {
 	
-	List<String> arguments = new ArrayList<String>();
+	List<String> arguments = new ArrayList<>();
 	
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args){
 		
@@ -20,12 +20,12 @@ public class TabHome implements TabCompleter {
 		
 		if(arguments.isEmpty()) {
 			List<Character> list = Main.getInstance().getConfig().getCharacterList("home." + player.getUniqueId());
-			for(int i = 0; i < list.size(); i++) {
-				arguments.add(list.get(i).toString());
+			for (Character character : list) {
+				arguments.add(character.toString());
 			}
 		}
 		
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		if(args.length == 1) {
 			for (String a : arguments) {
 				if(a.toLowerCase().startsWith(args[0].toLowerCase())) {
