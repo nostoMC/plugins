@@ -8,11 +8,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.nosto.Main;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandClaim implements CommandExecutor
 {
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args)
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args)
     {
         if (sender instanceof Player)
         {

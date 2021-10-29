@@ -7,13 +7,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TabEvent implements TabCompleter {
 	
 	List<String> arguments = new ArrayList<>();
 	List<String> arguments2 = new ArrayList<>();
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+	public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
 		if(arguments.isEmpty()) {
 			arguments.add("add");

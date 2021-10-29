@@ -7,10 +7,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandStaffChat implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
 		if (!(sender instanceof Player)) {
             sender.sendMessage("Only for players");

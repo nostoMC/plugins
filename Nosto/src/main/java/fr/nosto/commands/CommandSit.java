@@ -11,6 +11,8 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandSit implements CommandExecutor {
 	
 
@@ -18,7 +20,7 @@ public class CommandSit implements CommandExecutor {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
 		Player player;
 		

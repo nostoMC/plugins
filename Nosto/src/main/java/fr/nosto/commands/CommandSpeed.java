@@ -6,16 +6,18 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandSpeed implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] strings) {
 		
-		if (!(commandSender instanceof Player)) {
-            commandSender.sendMessage("Player only command!");
+		if (!(sender instanceof Player)) {
+            sender.sendMessage("Player only command!");
             return false;
         }
-        Player p = (Player) commandSender;
+        Player p = (Player) sender;
         if (!p.hasPermission("nosto.speed")) {
             p.sendMessage(Color("&cVous n'avez pas les permissions !"));
             return false;

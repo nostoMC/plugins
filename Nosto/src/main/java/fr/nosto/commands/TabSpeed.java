@@ -7,11 +7,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TabSpeed implements TabCompleter {
-	
+
 	List<String> arguments = new ArrayList<>();
-	
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+
+	public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		if(arguments.isEmpty()) {
 			arguments.add("1");
 			arguments.add("2");
@@ -28,9 +30,8 @@ public class TabSpeed implements TabCompleter {
 			}
 			return result;
 		}
-	
-	return null;
-		
+
+		return null;
 	}
 
 }

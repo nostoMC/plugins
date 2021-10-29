@@ -11,13 +11,14 @@ import org.bukkit.entity.Player;
 
 import fr.nosto.DiscordSetup;
 import net.dv8tion.jda.api.EmbedBuilder;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandAFK implements CommandExecutor {
 	
 	static ArrayList<Player> afks = new ArrayList<>();
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
 		Player player = (Player) sender;
 		

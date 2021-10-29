@@ -9,12 +9,13 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import fr.nosto.Main;
+import org.jetbrains.annotations.NotNull;
 
 public class TabHome implements TabCompleter {
 	
 	List<String> arguments = new ArrayList<>();
 	
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args){
+	public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
 		Player player = (Player) sender;
 		
