@@ -33,8 +33,8 @@ public class OnJoinListener implements Listener {
 		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 		
-		if(config.getConfigurationSection("money." + player.getUniqueId().toString()) == null) {
-			config.set("money." + player.getUniqueId().toString(), 0);
+		if(config.getConfigurationSection("money." + player.getUniqueId()) == null) {
+			config.set("money." + player.getUniqueId(), 0);
 			try {
 				config.save(file);
 			} catch (IOException e) {

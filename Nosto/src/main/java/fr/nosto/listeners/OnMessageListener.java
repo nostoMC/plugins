@@ -51,7 +51,7 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		embed.setDescription(event.getMessage());
 		
-		Set<String> survival_worlds = new HashSet<String>();
+		Set<String> survival_worlds = new HashSet<>();
 		survival_worlds.add("survie");
 		survival_worlds.add("survie_nether");
 		survival_worlds.add("survie_the_end");

@@ -15,16 +15,14 @@ import fr.nosto.DiscordSetup;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class OnLeaveListener implements Listener {
-	
-	String[] messages = {"1", "2", "3", "4", "5", "6"};
-	
+
 	@EventHandler
 	public void onLeave(PlayerQuitEvent event) {
 		event.setQuitMessage("");
 		
 		Player player = event.getPlayer();
 		
-		Set<String> survies_names = new HashSet<String>();
+		Set<String> survies_names = new HashSet<>();
 		survies_names.add("survie");
 		survies_names.add("survie_the_end");
 		survies_names.add("survie_nether");
@@ -35,17 +33,17 @@ public class OnLeaveListener implements Listener {
 			
 			String message = "";
 			
-			if(messages[new Random().nextInt(messages.length)] == "1") {
+			if(messages[new Random().nextInt(messages.length)].equals("1")) {
 				message = ("§6§l" + event.getPlayer().getName() + "§e est parti...");
-			} else if(messages[new Random().nextInt(messages.length)] == "2") {
+			} else if(messages[new Random().nextInt(messages.length)].equals("2")) {
 				message = ("§6§l" + event.getPlayer().getName() + "§e fait une pose.");
-			} else if(messages[new Random().nextInt(messages.length)] == "3") {
+			} else if(messages[new Random().nextInt(messages.length)].equals("3")) {
 				message = ("§6§l" + event.getPlayer().getName() + "§e est reparti !");
-			} else if(messages[new Random().nextInt(messages.length)] == "4") {
+			} else if(messages[new Random().nextInt(messages.length)].equals("4")) {
 				message = ("§eUne personne est parti, elle s'agit de §6§l" + event.getPlayer().getName() + "§e !");
-			} else if(messages[new Random().nextInt(messages.length)] == "5") {
+			} else if(messages[new Random().nextInt(messages.length)].equals("5")) {
 				message = ("§eBye bye §6§l" + event.getPlayer().getName() + "§e !");
-			} else if(messages[new Random().nextInt(messages.length)] == "6") {
+			} else if(messages[new Random().nextInt(messages.length)].equals("6")) {
 				message = ("§6§l" + event.getPlayer().getName() + "§e retourne au monde réél !");
 			}
 			

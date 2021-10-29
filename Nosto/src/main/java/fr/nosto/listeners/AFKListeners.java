@@ -19,7 +19,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 
 public class AFKListeners implements Listener {
 	
-	static HashMap<Player, Integer> time = new HashMap<Player, Integer>();
+	static HashMap<Player, Integer> time = new HashMap<>();
 	static ArrayList<Player> afks = CommandAFK.getAFKS();
 	
 	public static void onAFKLoop(Main setup) {
