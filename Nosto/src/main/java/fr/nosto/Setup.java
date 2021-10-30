@@ -50,7 +50,7 @@ import fr.nosto.menus.TpMenu;
 import fr.nosto.menus.TrailsMenu;
 import fr.nosto.menus.TrainingMenu;
 import fr.nosto.tasks.MainLobbyParticles;
-import fr.nosto.tasks.MainLobbyUtils;
+import fr.nosto.tasks.MainLobbyTask;
 import fr.nosto.tasks.ParticleEffectTask;
 import fr.nosto.tasks.PluginListTask;
 import fr.nosto.tasks.RandomBroadcastTask;
@@ -126,7 +126,7 @@ public class Setup {
 		new RandomBroadcastTask(main);
 		new ParticleEffectTask(main);
 		new MainLobbyParticles(main);
-		new MainLobbyUtils(main);
+		MainLobbyTask.init(main);
 		
 		// Logger
 		Bukkit.getServer().getLogger().addHandler(new Handler() {
