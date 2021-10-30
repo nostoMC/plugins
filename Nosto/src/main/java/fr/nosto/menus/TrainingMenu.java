@@ -14,8 +14,10 @@ import fr.nosto.Main;
 
 public class TrainingMenu implements Listener {
 
+	private static final String title = "§2§lMenu > TP > Training";
+
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Training");
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Main.createItem(Material.SANDSTONE , "§e§l§kBridge"));
 		inv.setItem(15, Main.createItem(Material.DIAMOND_SWORD , "§b§l§kPVP"));
@@ -29,32 +31,22 @@ public class TrainingMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
+		if (!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
 		
-		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
-		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Training")) {
-				event.setCancelled(true);
+		if (current == null) return;
+		Player player = (Player) event.getWhoClicked();
 
-				switch(current.getType()) {
-				
-				case ARROW:
-					TpMenu.openMenu(player);
-					break;
-				
-				default:
-					break;
-				
-				}
+		switch(current.getType()) {
 
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+			case ARROW:
+				TpMenu.openMenu(player);
+				break;
+
+			default:
+				break;
 		}
-		
 	}
 
 }

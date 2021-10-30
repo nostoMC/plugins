@@ -16,8 +16,10 @@ import fr.nosto.Main;
 
 public class MondeOuvertMenu implements Listener {
 
+	public static final String title = "§2§lMenu > TP > Monde Ouvert";
+
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Monde Ouvert");
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Main.createItem(Material.COOKED_BEEF , "§c§lSurvival"));
 		inv.setItem(15, Main.createItem(Material.WHITE_WOOL , "§b§lSkyblock"));
@@ -31,46 +33,37 @@ public class MondeOuvertMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if(!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
-		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Monde Ouvert")) {
-				event.setCancelled(true);
-				
-				switch(current.getType()) {
-				
-				case ARROW:
-					TpMenu.openMenu(player);
-					break;
-					
-				case COOKED_BEEF:
-					if(!player.hasPermission("server.survivalAcces")) break;
-					event.getView().close();
-					Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
-					player.teleport(SurvivalLobby);
-					player.setGameMode(GameMode.SURVIVAL);
-					break;
-					
-				case WHITE_WOOL:
-					if(!player.hasPermission("server.skyblockAcces")) break;
-					event.getView().close();
-					Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
-					player.teleport(skyblockLobby);
-					player.setGameMode(GameMode.SURVIVAL);
-					break;
-				
-				default:
-					break;
-				
-				}
+		if (current == null) return;
 
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+		switch(current.getType()) {
+
+			case ARROW:
+				TpMenu.openMenu(player);
+				break;
+
+			case COOKED_BEEF:
+				if(!player.hasPermission("server.survivalAcces")) break;
+				event.getView().close();
+				Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
+				player.teleport(SurvivalLobby);
+				player.setGameMode(GameMode.SURVIVAL);
+				break;
+
+			case WHITE_WOOL:
+				if(!player.hasPermission("server.skyblockAcces")) break;
+				event.getView().close();
+				Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
+				player.teleport(skyblockLobby);
+				player.setGameMode(GameMode.SURVIVAL);
+				break;
+
+			default:
+				break;
 		}
 	}
 

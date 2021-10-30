@@ -14,9 +14,11 @@ import fr.nosto.Main;
 
 public class TpMenu implements Listener {
 
+	public static final String title = "§2§lMenu > TP";
+
 	public static void openMenu(Player player) {
 
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP");
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(10, Main.createItem(Material.GRASS_BLOCK , "§2§lMonde ouvert"));
 		inv.setItem(12, Main.createItem(Material.WOODEN_SWORD , "§c§lTraining"));
@@ -32,45 +34,37 @@ public class TpMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if (!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
-		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP")) {
-				event.setCancelled(true);
+		if (current == null) return;
 				
-				switch(current.getType()){
-				
-				case ARROW:
-					MainMenu.openMenu(player);
-					break;
-				
-				case GRASS_BLOCK:
-					MondeOuvertMenu.openMenu(player);
-					break;
-					
-				case FISHING_ROD:
-					MinijeuxMenu.openMenu(player);
-					break;
-					
-				case WOODEN_SWORD:
-					TrainingMenu.openMenu(player);
-					break;
-					
-				case FIREWORK_ROCKET:
-					EventMenu.openMenu(player);
-					break;
-					
-				default:
-					break;
-				}
+		switch(current.getType()){
 
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+			case ARROW:
+				MainMenu.openMenu(player);
+				break;
+
+			case GRASS_BLOCK:
+				MondeOuvertMenu.openMenu(player);
+				break;
+				
+			case FISHING_ROD:
+				MinijeuxMenu.openMenu(player);
+				break;
+
+			case WOODEN_SWORD:
+				TrainingMenu.openMenu(player);
+				break;
+
+			case FIREWORK_ROCKET:
+				EventMenu.openMenu(player);
+				break;
+
+			default:
+				break;
 		}
 	}
 	

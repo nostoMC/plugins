@@ -14,9 +14,11 @@ import fr.nosto.Main;
 
 public class ShopMenu implements Listener {
 
+	public static final String title = "§2§lMenu > Boutique";
+
 	public static void openMenu(Player player) {
 
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > Boutique");
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Main.createItem(Material.BLAZE_POWDER , "§e§lParticules"));
 		inv.setItem(15, Main.createItem(Material.ELYTRA , "§6§lPouvoir"));
@@ -30,28 +32,21 @@ public class ShopMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if(!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
-		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Boutique")) {
-				event.setCancelled(true);
+		if (current == null) return;
 				
-				switch(current.getType()) {
-				
-					case ARROW:
-						MainMenu.openMenu(player);
-						break;
-					
-					default:
-						break;
-				}
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+		switch(current.getType()) {
+
+			case ARROW:
+				MainMenu.openMenu(player);
+				break;
+
+			default:
+				break;
 		}
 		
 	}

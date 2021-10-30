@@ -15,9 +15,12 @@ import org.bukkit.inventory.ItemStack;
 import fr.nosto.Main;
 
 public class EventMenu implements Listener {
-	
+
+	public static final String title = "§2§lMenu > TP > Events";
+
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Events");
+
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Main.createItem(Material.MUSIC_DISC_BLOCKS , "§e§lNostoClub"));
 		inv.setItem(13, Main.createItem(Material.BARRIER , " "));
@@ -32,7 +35,7 @@ public class EventMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		if (!event.getView().getTitle().equals("§2§lMenu > TP > Events")) return;
+		if (!event.getView().getTitle().equals(title)) return;
 		event.setCancelled(true);
 
 		Player player = (Player) event.getWhoClicked();

@@ -14,8 +14,10 @@ import fr.nosto.Main;
 
 public class MinijeuxMenu implements Listener {
 
+	public static final String title = "§2§lMenu > TP > Mini jeux";
+
 	public static void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > TP > Mini jeux");
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Main.createItem(Material.SPRUCE_PLANKS , "§6§l§kMoyen âge"));
 		inv.setItem(13, Main.createItem(Material.BRICKS , "§5§l§kSteampunk"));
@@ -30,31 +32,22 @@ public class MinijeuxMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if(!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
-		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > TP > Mini jeux")) {
-				event.setCancelled(true);
+		if (current == null) return;
 
-				switch(current.getType()) {
-				
-				case ARROW:
-					TpMenu.openMenu(player);
-					break;
-				
-				default:
-					break;
-				
-				}
+		switch(current.getType()) {
 
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+			case ARROW:
+				TpMenu.openMenu(player);
+				break;
+
+			default:
+				break;
+
 		}
-		
 	}
 }

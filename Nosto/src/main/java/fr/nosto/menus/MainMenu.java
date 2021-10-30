@@ -21,6 +21,8 @@ import fr.nosto.Main;
 
 public class MainMenu implements Listener {
 
+	public static final String title = "§2§lMenu";
+
 	public static void openMenu(Player player) {
 		
 		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
@@ -30,7 +32,7 @@ public class MainMenu implements Listener {
 		
 		double playerMoney = configSection.getDouble(player.getUniqueId().toString());
 
-		Inventory inv = Bukkit.createInventory(null, 54, "§2§lMenu");
+		Inventory inv = Bukkit.createInventory(null, 54, title);
 	
 		ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta) skull.getItemMeta();
@@ -59,39 +61,30 @@ public class MainMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if (!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
+		if (current == null) return;
 		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
-				event.setCancelled(true);
-				
-				switch(current.getType()) {
-				
-				case COMPASS:
-					TpMenu.openMenu(player);
-					break;
-					
-				case BLAZE_POWDER:
-					TrailsMenu.openMenu(player);
-					break;
-					
-				case GOLD_INGOT:
-					ShopMenu.openMenu(player);
-					break;
-				
-				default:
-					break;
-				}
-				
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+		switch(current.getType()) {
+
+			case COMPASS:
+				TpMenu.openMenu(player);
+				break;
+
+			case BLAZE_POWDER:
+				TrailsMenu.openMenu(player);
+				break;
+
+			case GOLD_INGOT:
+				ShopMenu.openMenu(player);
+				break;
+
+			default:
+				break;
 		}
-		
 	}
 
 }
