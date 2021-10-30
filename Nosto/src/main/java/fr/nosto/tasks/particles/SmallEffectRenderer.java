@@ -10,10 +10,10 @@ public abstract class SmallEffectRenderer {
 		this.player = player;
 	}
 
-	public void run() {
-		this.render();
+	public void run(int loop) {
+		this.render(loop);
 	}
 
-	public abstract void render();
+	public abstract void render(int loop);
 
 }

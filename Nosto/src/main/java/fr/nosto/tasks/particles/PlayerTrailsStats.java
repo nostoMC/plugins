@@ -8,14 +8,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import fr.nosto.tasks.ParticleEffectTask;
+import fr.nosto.tasks.particles.big.FireCrown;
 import fr.nosto.tasks.particles.big.WitchCircle;
+import fr.nosto.tasks.particles.small.Fireworks;
+import fr.nosto.tasks.particles.small.Flames;
 import fr.nosto.tasks.particles.small.FrostWalker;
 
 public class PlayerTrailsStats {
 
 	public UUID uuid;
-	private Set<BigEffect> unlockedBig = new HashSet<>();
-	private Set<SmallEffect> unlockedSmall = new HashSet<>();
+	private final Set<BigEffect> unlockedBig = new HashSet<>();
+	private final Set<SmallEffect> unlockedSmall = new HashSet<>();
 	private BigEffect equipedBig;
 	private SmallEffect equipedSmall;
 
@@ -49,6 +52,7 @@ public class PlayerTrailsStats {
 			case FIREWORK_CAPE:
 				break;
 			case FIRE_CROWN:
+				renderer = new FireCrown(player);
 				break;
 			case WITCH_CIRCLE:
 				renderer = new WitchCircle(player);
@@ -72,8 +76,10 @@ public class PlayerTrailsStats {
 			SmallEffectRenderer renderer = null;
 			switch (effect) {
 			case FIREWORKS:
+				renderer = new Fireworks(player);
 				break;
 			case FLAMES:
+				renderer = new Flames(player);
 				break;
 			case FROST_WALKER:
 				renderer = new FrostWalker(player);

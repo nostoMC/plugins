@@ -14,7 +14,7 @@ public class ParticleEffectTask {
 
 	public static Map<UUID, SmallEffectRenderer> smallEffects = new HashMap<>();
 	public static Map<UUID, BigEffectRenderer> bigEffects = new HashMap<>();
-	private static int loop;
+	private static int loop = 0;
 	private static boolean inited = false;
 
 	public ParticleEffectTask(Main main) {
@@ -28,10 +28,9 @@ public class ParticleEffectTask {
 			public void run() {
 
 				loop++;
-				if (loop == Integer.MAX_VALUE || loop < 0) loop = 0;
 
 				for (SmallEffectRenderer renderer : smallEffects.values()) {
-					renderer.run();
+					renderer.run(loop);
 				}
 				for (BigEffectRenderer renderer : bigEffects.values()) {
 					renderer.run(loop);

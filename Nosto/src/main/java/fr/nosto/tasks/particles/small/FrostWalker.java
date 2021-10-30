@@ -13,7 +13,7 @@ public class FrostWalker extends SmallEffectRenderer {
 	}
 
 	@Override
-	public void render() {
+	public void render(int loop) {
 		player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 1, .2, 0, 0.2,
 				new Particle.DustOptions(Color.fromRGB(178, 217, 255), 1));
 	}
