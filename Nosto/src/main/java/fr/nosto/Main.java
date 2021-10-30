@@ -39,8 +39,8 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		
-		new Shutdown(this);
 		new DiscordShutdown(this);
+		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
 		
 	}
 	
