@@ -119,7 +119,6 @@ public class Setup {
 				Bukkit.getPluginManager().registerEvents(new TrainingMenu(), main);
 				Bukkit.getPluginManager().registerEvents(new EventMenu(), main);
 				Bukkit.getPluginManager().registerEvents(new MinijeuxMenu(), main);
-				Bukkit.getPluginManager().registerEvents(new TrailsMenu(), main);
 		
 		// Tasks
 		new VanishLoop(main);
