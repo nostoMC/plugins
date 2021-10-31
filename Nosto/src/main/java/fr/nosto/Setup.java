@@ -41,14 +41,14 @@ import fr.nosto.listeners.OnPlayerChangeWorldListener;
 import fr.nosto.listeners.OnPlayerDamageListener;
 import fr.nosto.listeners.OnServerListPingListener;
 import fr.nosto.listeners.SitListeners;
-import fr.nosto.menus.EventMenu;
+import fr.nosto.menus.mainmenu.tpmenu.EventMenu;
 import fr.nosto.menus.MainMenu;
-import fr.nosto.menus.MinijeuxMenu;
-import fr.nosto.menus.MondeOuvertMenu;
-import fr.nosto.menus.ShopMenu;
-import fr.nosto.menus.TpMenu;
-import fr.nosto.menus.TrailsMenu;
-import fr.nosto.menus.TrainingMenu;
+import fr.nosto.menus.mainmenu.tpmenu.MinijeuxMenu;
+import fr.nosto.menus.mainmenu.tpmenu.MondeOuvertMenu;
+import fr.nosto.menus.mainmenu.ShopMenu;
+import fr.nosto.menus.mainmenu.TpMenu;
+import fr.nosto.menus.mainmenu.TrailsMenu;
+import fr.nosto.menus.mainmenu.tpmenu.TrainingMenu;
 import fr.nosto.tasks.MainLobbyParticles;
 import fr.nosto.tasks.MainLobbyJumpPads;
 import fr.nosto.tasks.ParticleEffectTask;
@@ -108,7 +108,7 @@ public class Setup {
 		Bukkit.getPluginManager().registerEvents(new OnMessageListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerDamageListener(), main);
-		// Gui Listeners
+		// Menu Listeners
 		Bukkit.getPluginManager().registerEvents(new MainMenu(), main);
 			Bukkit.getPluginManager().registerEvents(new TrailsMenu(), main);
 			Bukkit.getPluginManager().registerEvents(new ShopMenu(), main);

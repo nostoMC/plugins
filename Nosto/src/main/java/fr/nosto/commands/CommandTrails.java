@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.nosto.menus.TrailsMenu;
+import fr.nosto.menus.mainmenu.TrailsMenu;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandTrails implements CommandExecutor {

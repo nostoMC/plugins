@@ -19,6 +19,9 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.nosto.Main;
 import fr.nosto.Utils;
+import fr.nosto.menus.mainmenu.ShopMenu;
+import fr.nosto.menus.mainmenu.TpMenu;
+import fr.nosto.menus.mainmenu.TrailsMenu;
 
 public class MainMenu implements Listener {
 

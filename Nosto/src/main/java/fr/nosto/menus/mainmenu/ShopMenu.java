@@ -1,4 +1,4 @@
-package fr.nosto.menus;
+package fr.nosto.menus.mainmenu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -11,6 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import fr.nosto.Utils;
+import fr.nosto.menus.MainMenu;
 
 public class ShopMenu implements Listener {
 

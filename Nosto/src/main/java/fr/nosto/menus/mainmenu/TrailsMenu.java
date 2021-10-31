@@ -1,4 +1,4 @@
-package fr.nosto.menus;
+package fr.nosto.menus.mainmenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.nosto.Main;
 import fr.nosto.Utils;
+import fr.nosto.menus.MainMenu;
 import fr.nosto.tasks.particles.BigEffect;
 import fr.nosto.tasks.particles.PlayerTrailsStats;
 import fr.nosto.tasks.particles.SmallEffect;

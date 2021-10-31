@@ -1,4 +1,4 @@
-package fr.nosto.menus;
+package fr.nosto.menus.mainmenu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -11,6 +11,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import fr.nosto.Utils;
+import fr.nosto.menus.*;
+import fr.nosto.menus.mainmenu.tpmenu.EventMenu;
+import fr.nosto.menus.mainmenu.tpmenu.MinijeuxMenu;
+import fr.nosto.menus.mainmenu.tpmenu.MondeOuvertMenu;
+import fr.nosto.menus.mainmenu.tpmenu.TrainingMenu;
 
 public class TpMenu implements Listener {
 

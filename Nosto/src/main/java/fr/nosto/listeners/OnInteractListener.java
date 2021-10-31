@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.nosto.Main;
-import fr.nosto.menus.TpMenu;
+import fr.nosto.menus.mainmenu.TpMenu;
 
 public class OnInteractListener implements Listener {
 
