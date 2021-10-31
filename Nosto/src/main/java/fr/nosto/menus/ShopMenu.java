@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class ShopMenu implements Listener {
 
@@ -20,11 +20,11 @@ public class ShopMenu implements Listener {
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Main.createItem(Material.BLAZE_POWDER , "§e§lParticules"));
-		inv.setItem(15, Main.createItem(Material.ELYTRA , "§6§lPouvoir"));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
-		
-		Main.fillEmplyItem(inv);
+		inv.setItem(11, Utils.createItem(Material.BLAZE_POWDER , "§e§lParticules"));
+		inv.setItem(15, Utils.createItem(Material.ELYTRA , "§6§lPouvoir"));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
+
+		Utils.fillEmptyItem(inv);
 	
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);

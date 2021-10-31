@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class TrainingMenu implements Listener {
 
@@ -19,11 +19,11 @@ public class TrainingMenu implements Listener {
 	public static void openMenu(Player player) {
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Main.createItem(Material.SANDSTONE , "§e§l§kBridge"));
-		inv.setItem(15, Main.createItem(Material.DIAMOND_SWORD , "§b§l§kPVP"));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, Utils.createItem(Material.SANDSTONE , "§e§l§kBridge"));
+		inv.setItem(15, Utils.createItem(Material.DIAMOND_SWORD , "§b§l§kPVP"));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
 		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);

@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class MainMenu implements Listener {
 
@@ -49,11 +50,11 @@ public class MainMenu implements Listener {
 		
 		inv.setItem(13, skull);
 		
-		inv.setItem(37, Main.createItem(Material.BLAZE_POWDER , "§6§lParticules"));
-		inv.setItem(31, Main.createItem(Material.COMPASS , "§2§lTP"));
-		inv.setItem(43, Main.createItem(Material.GOLD_INGOT , "§e§lBoutique"));
+		inv.setItem(37, Utils.createItem(Material.BLAZE_POWDER , "§6§lParticules"));
+		inv.setItem(31, Utils.createItem(Material.COMPASS , "§2§lTP"));
+		inv.setItem(43, Utils.createItem(Material.GOLD_INGOT , "§e§lBoutique"));
 		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 	
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);

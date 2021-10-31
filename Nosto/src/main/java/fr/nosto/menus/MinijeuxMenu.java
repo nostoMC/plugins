@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class MinijeuxMenu implements Listener {
 
@@ -19,12 +19,12 @@ public class MinijeuxMenu implements Listener {
 	public static void openMenu(Player player) {
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Main.createItem(Material.SPRUCE_PLANKS , "§6§l§kMoyen âge"));
-		inv.setItem(13, Main.createItem(Material.BRICKS , "§5§l§kSteampunk"));
-		inv.setItem(15, Main.createItem(Material.SMOOTH_STONE , "§7§l§kModerne"));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, Utils.createItem(Material.SPRUCE_PLANKS , "§6§l§kMoyen âge"));
+		inv.setItem(13, Utils.createItem(Material.BRICKS , "§5§l§kSteampunk"));
+		inv.setItem(15, Utils.createItem(Material.SMOOTH_STONE , "§7§l§kModerne"));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
 		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);

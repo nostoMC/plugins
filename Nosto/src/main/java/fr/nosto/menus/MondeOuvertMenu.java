@@ -1,10 +1,6 @@
 package fr.nosto.menus;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class MondeOuvertMenu implements Listener {
 
@@ -21,11 +17,11 @@ public class MondeOuvertMenu implements Listener {
 	public static void openMenu(Player player) {
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Main.createItem(Material.COOKED_BEEF , "§c§lSurvival"));
-		inv.setItem(15, Main.createItem(Material.WHITE_WOOL , "§b§lSkyblock"));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, Utils.createItem(Material.COOKED_BEEF , "§c§lSurvival"));
+		inv.setItem(15, Utils.createItem(Material.WHITE_WOOL , "§b§lSkyblock"));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
 		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);

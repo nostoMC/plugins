@@ -1,10 +1,6 @@
 package fr.nosto.menus;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class EventMenu implements Listener {
 
@@ -22,12 +18,12 @@ public class EventMenu implements Listener {
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Main.createItem(Material.MUSIC_DISC_BLOCKS , "§e§lNostoClub"));
-		inv.setItem(13, Main.createItem(Material.BARRIER , " "));
-		inv.setItem(15, Main.createItem(Material.BARRIER , " "));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(11, Utils.createItem(Material.MUSIC_DISC_BLOCKS , "§e§lNostoClub"));
+		inv.setItem(13, Utils.createItem(Material.BARRIER , " "));
+		inv.setItem(15, Utils.createItem(Material.BARRIER , " "));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
 		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);

@@ -1,7 +1,6 @@
 package fr.nosto.menus;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,11 +12,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.nosto.Main;
+import fr.nosto.Utils;
 import fr.nosto.tasks.particles.BigEffect;
 import fr.nosto.tasks.particles.PlayerTrailsStats;
 import fr.nosto.tasks.particles.SmallEffect;
@@ -39,7 +38,7 @@ public class TrailsMenu implements Listener {
 	
 	private static void makeInventoryBody(Inventory inv, PlayerTrailsStats stats) {
 
-		ItemStack clearSlot = createItem(Material.BLACK_STAINED_GLASS_PANE, " ");
+		ItemStack clearSlot = Utils.getClearSlot();
 		for (int i = 0; i < 9; i++) {
 			inv.setItem(i, clearSlot);
 		}
@@ -47,11 +46,11 @@ public class TrailsMenu implements Listener {
 			inv.setItem(i, clearSlot);
 		}
 
-		inv.setItem(53, createItem(Material.ARROW, "§6§lRetour"));
+		inv.setItem(53, Utils.createItem(Material.ARROW, "§6§lRetour"));
 
 		ItemStack smallIt;
 		if (stats.getEquipedSmall() == null) {
-			smallIt = createItem(Material.BARRIER, "§fEffet ambient équipé:", "§7Aucun");
+			smallIt = Utils.createItem(Material.BARRIER, "§fEffet ambient équipé:", "§7Aucun");
 		} else {
 			smallIt = getItemFromEffect(stats.getEquipedSmall());
 			ItemMeta itM = Objects.requireNonNull(smallIt.getItemMeta());
@@ -72,7 +71,7 @@ public class TrailsMenu implements Listener {
 
 		ItemStack bigIt;
 		if (stats.getEquipedBig() == null) {
-			bigIt = createItem(Material.BARRIER, "§bEffet spécial équipé:", "§7Aucun");
+			bigIt = Utils.createItem(Material.BARRIER, "§bEffet spécial équipé:", "§7Aucun");
 		} else {
 			bigIt = getItemFromEffect(stats.getEquipedBig());
 			ItemMeta itM = Objects.requireNonNull(bigIt.getItemMeta());
@@ -99,12 +98,12 @@ public class TrailsMenu implements Listener {
 
 		makeInventoryBody(inv, stats);
 
-		inv.setItem(3, createItem(Material.IRON_INGOT, "§fEffets ambiants",
+		inv.setItem(3, Utils.createItem(Material.IRON_INGOT, "§fEffets ambiants",
 				"§7Des petits effets permanents",
 				"§7qui te suivent partout!",
 				"",
 				"§aTu es déja sur cette page"));
-		inv.setItem(5, createItem(Material.DIAMOND, "§bEffets spéciaux",
+		inv.setItem(5, Utils.createItem(Material.DIAMOND, "§bEffets spéciaux",
 				"§7Des effets stylés qui ne s'activent",
 				"§7que quand tu est immobile!",
 				"",
@@ -145,12 +144,12 @@ public class TrailsMenu implements Listener {
 
 		makeInventoryBody(inv, stats);
 
-		inv.setItem(3, createItem(Material.IRON_INGOT, "§fEffets ambiants",
+		inv.setItem(3, Utils.createItem(Material.IRON_INGOT, "§fEffets ambiants",
 				"§7Des petits effets permanents",
 				"§7qui te suivent partout!",
 				"",
 				"§6Clique pour voir cette page"));
-		inv.setItem(5, createItem(Material.DIAMOND, "§bEffets spéciaux",
+		inv.setItem(5, Utils.createItem(Material.DIAMOND, "§bEffets spéciaux",
 				"§7Des effets stylés qui ne s'activent",
 				"§7que quand tu est immobile!",
 				"",
@@ -187,44 +186,27 @@ public class TrailsMenu implements Listener {
 	private static ItemStack getItemFromEffect(SmallEffect effect) {
 		switch (effect) {
 			case FROST_WALKER:
-				return createItem(Material.DIAMOND_BOOTS, ChatColor.of("#B1FFFC") + "Frost walker");
+				return Utils.createItem(Material.DIAMOND_BOOTS, ChatColor.of("#B1FFFC") + "Frost walker");
 			case FLAMES:
-				return createItem(Material.BLAZE_POWDER, "§6Flammes");
+				return Utils.createItem(Material.BLAZE_POWDER, "§6Flammes");
 			case FIREWORKS:
-				return createItem(Material.BONE_MEAL, "§fÉtincelles");
+				return Utils.createItem(Material.BONE_MEAL, "§fÉtincelles");
 			default:
-				return createItem(Material.BEDROCK, "null");
+				return Utils.createItem(Material.BEDROCK, "null");
 		}
 	}
 
 	private static ItemStack getItemFromEffect(BigEffect effect) {
 		switch (effect) {
 			case FIREWORK_CAPE:
-				return createItem(Material.FIREWORK_ROCKET, "§fCape étincelante");
+				return Utils.createItem(Material.FIREWORK_ROCKET, "§fCape étincelante");
 			case FIRE_CROWN:
-				return createItem(Material.HONEYCOMB, "§6Couronne de feu");
+				return Utils.createItem(Material.HONEYCOMB, "§6Couronne de feu");
 			case WITCH_CIRCLE:
-				return createItem(Material.END_CRYSTAL, "§5Cercle magique");
+				return Utils.createItem(Material.END_CRYSTAL, "§5Cercle magique");
 			default:
-				return createItem(Material.BEDROCK, "null");
+				return Utils.createItem(Material.BEDROCK, "null");
 		}
-	}
-
-	public static ItemStack createItem(Material material, String customName, String... lore) {
-		ItemStack it = new ItemStack(material);
-		ItemMeta itM = Objects.requireNonNull(it.getItemMeta());
-
-		if(customName != null) itM.setDisplayName(customName);
-
-		List<String> itemLore = new ArrayList<>();
-		Collections.addAll(itemLore, lore);
-		itM.setLore(itemLore);
-
-		itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-		it.setItemMeta(itM);
-		return it;
 	}
 	
 	@EventHandler

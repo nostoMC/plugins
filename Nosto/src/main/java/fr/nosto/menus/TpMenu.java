@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class TpMenu implements Listener {
 
@@ -20,13 +20,13 @@ public class TpMenu implements Listener {
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(10, Main.createItem(Material.GRASS_BLOCK , "§2§lMonde ouvert"));
-		inv.setItem(12, Main.createItem(Material.WOODEN_SWORD , "§c§lTraining"));
-		inv.setItem(14, Main.createItem(Material.FIREWORK_ROCKET , "§e§lEvents"));
-		inv.setItem(16, Main.createItem(Material.FISHING_ROD , "§6§lMini jeux"));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(10, Utils.createItem(Material.GRASS_BLOCK , "§2§lMonde ouvert"));
+		inv.setItem(12, Utils.createItem(Material.WOODEN_SWORD , "§c§lTraining"));
+		inv.setItem(14, Utils.createItem(Material.FIREWORK_ROCKET , "§e§lEvents"));
+		inv.setItem(16, Utils.createItem(Material.FISHING_ROD , "§6§lMini jeux"));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
 		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 	
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
