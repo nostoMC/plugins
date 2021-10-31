@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.Main;
@@ -17,9 +18,12 @@ public class ParticleEffectTask {
 	private static int loop = 0;
 	private static boolean inited = false;
 
-	public ParticleEffectTask(Main main) {
+	public static void init(Main main) {
 
-		if (inited) return;
+		if (inited) {
+			Bukkit.getLogger().warning("ParticleEffectTask.init() ran twice!");
+			return;
+		}
 		inited = true;
 
 		new BukkitRunnable() {

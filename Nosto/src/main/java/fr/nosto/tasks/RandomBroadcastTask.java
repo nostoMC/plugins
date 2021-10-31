@@ -12,7 +12,15 @@ import fr.nosto.Main;
 
 public class RandomBroadcastTask {
 
-	public RandomBroadcastTask(Main main) {
+	private static boolean inited = false;
+
+	public static void init(Main main) {
+
+		if (inited) {
+			Bukkit.getLogger().warning("RandomBroadcastTask.init() ran twice!");
+			return;
+		}
+		inited = true;
 		
 		String[] messages = {"1", "2", "3", "4"};
     	

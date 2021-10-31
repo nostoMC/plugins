@@ -50,7 +50,7 @@ import fr.nosto.menus.TpMenu;
 import fr.nosto.menus.TrailsMenu;
 import fr.nosto.menus.TrainingMenu;
 import fr.nosto.tasks.MainLobbyParticles;
-import fr.nosto.tasks.MainLobbyTask;
+import fr.nosto.tasks.MainLobbyJumpPads;
 import fr.nosto.tasks.ParticleEffectTask;
 import fr.nosto.tasks.PluginListTask;
 import fr.nosto.tasks.RandomBroadcastTask;
@@ -58,8 +58,6 @@ import fr.nosto.tasks.TabManager;
 import fr.nosto.tasks.VanishLoop;
 
 public class Setup {
-	
-	private TabManager tab;
 
 	public Setup(Main main) {
 
@@ -121,12 +119,13 @@ public class Setup {
 				Bukkit.getPluginManager().registerEvents(new MinijeuxMenu(), main);
 		
 		// Tasks
-		new VanishLoop(main);
-		new PluginListTask(main);
-		new RandomBroadcastTask(main);
-		new ParticleEffectTask(main);
-		new MainLobbyParticles(main);
-		MainLobbyTask.init(main);
+		PluginListTask.list(main);
+		
+		VanishLoop.init(main);
+		RandomBroadcastTask.init(main);
+		ParticleEffectTask.init(main);
+		MainLobbyParticles.init(main);
+		MainLobbyJumpPads.init(main);
 		
 		// Logger
 		Bukkit.getServer().getLogger().addHandler(new Handler() {
@@ -143,7 +142,7 @@ public class Setup {
         });
 		
 		// Tab
-		tab = new TabManager(main);
+		TabManager tab = new TabManager(main);
 	    tab.addHeader("\n§8⋙ &b&lNosto §8⋘\n");
 	    tab.addFooter("\n&9&lDiscord : discord.io/nosto\n                                             ");
 	    

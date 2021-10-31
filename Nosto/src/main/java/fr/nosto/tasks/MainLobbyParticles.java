@@ -10,11 +10,19 @@ import fr.nosto.Main;
 
 public class MainLobbyParticles {
 
-	public MainLobbyParticles(Main main) {
+	private static boolean inited = false;
+
+	public static void init(Main main) {
+
+		if (inited) {
+			Bukkit.getLogger().warning("MainLobbyParticles.init() ran twice!");
+			return;
+		}
+		inited = true;
 
 		new BukkitRunnable() {
 			
-			Location loc = new Location(Bukkit.getWorld("MainLobby"), 0.5, 104.5, 0.5);
+			final Location loc = new Location(Bukkit.getWorld("MainLobby"), 0.5, 104.5, 0.5);
 			double loop = 0;
 			
 			@Override

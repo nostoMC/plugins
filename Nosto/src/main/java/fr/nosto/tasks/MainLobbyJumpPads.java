@@ -14,14 +14,17 @@ import org.bukkit.util.BoundingBox;
 
 import fr.nosto.Main;
 
-public class MainLobbyTask {
+public class MainLobbyJumpPads {
 
 	private static boolean inited = false;
 	private static World mainLobby;
 
 	public static void init(Main main) {
 
-		if (inited) return;
+		if (inited) {
+			Bukkit.getLogger().warning("MainLobbyJumpPads.init() ran twice!");
+			return;
+		}
 		inited = true;
 
 		new BukkitRunnable() {

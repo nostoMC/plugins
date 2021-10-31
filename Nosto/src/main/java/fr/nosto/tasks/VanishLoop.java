@@ -8,7 +8,15 @@ import fr.nosto.Main;
 
 public class VanishLoop {
 
-	public VanishLoop(Main main) {
+	private static boolean inited = false;
+
+	public static void init(Main main) {
+
+		if (inited) {
+			Bukkit.getLogger().warning("VanishLoop.init() ran twice!");
+			return;
+		}
+		inited = true;
 		
 		new BukkitRunnable() {
 			

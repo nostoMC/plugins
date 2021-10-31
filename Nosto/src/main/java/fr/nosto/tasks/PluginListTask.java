@@ -14,7 +14,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 
 public class PluginListTask {
 
-	public PluginListTask(Main main) {
+	public static void list(Main main) {
 		
 		new BukkitRunnable() {
 			
