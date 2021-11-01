@@ -28,7 +28,7 @@ public class Setup {
 		// Listeners
 		Bukkit.getPluginManager().registerEvents(new SitListeners(), main);
 		Bukkit.getPluginManager().registerEvents(new AFKListeners(), main);
-		AFKListeners.onAFKLoop(main);
+		AFKListeners.initAFKLoop(main);
 		Bukkit.getPluginManager().registerEvents(new OnItemDropListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnLeaveListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnJoinListener(), main);

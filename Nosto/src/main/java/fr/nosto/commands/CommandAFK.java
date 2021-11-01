@@ -1,68 +1,25 @@
 package fr.nosto.commands;
 
-import java.awt.Color;
-import java.util.ArrayList;
-
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.nosto.DiscordSetup;
-import net.dv8tion.jda.api.EmbedBuilder;
+import fr.nosto.listeners.AFKListeners;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandAFK implements CommandExecutor {
-	
-	static ArrayList<Player> afks = new ArrayList<>();
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-		
-		Player player = (Player) sender;
-		
-		EmbedBuilder embed = new EmbedBuilder();
-		String groupDiscord = "";
-		if(player.hasPermission("group.dev")) {
-			groupDiscord = "Developper ";
-		}
-		if(player.hasPermission("group.buildeur")) {
-			groupDiscord = "Buildeur ";
-		}
-		if(player.hasPermission("group.administrateur")) {
-			groupDiscord = "Administrateur ";
-		}
-		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
-		
-		if(afks.contains(player)) {
-			player.setCustomName(player.getName());
-			player.setCustomNameVisible(true);
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§7§l" + player.getName() + " §7n'est plus AFK");
-			afks.remove(player);
-			player.setCustomName(player.getName());
-			
-			embed.setColor(Color.LIGHT_GRAY);
-			embed.addField("n'est plus AFK", "", false);
-		} else {
-			player.setCustomName(player.getName() + " §7§l(AFK)");
-			player.setCustomNameVisible(true);
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§8§l" + player.getName() + " §8est AFK");
-			afks.add(player);
-			String playerName = player.getName();
-			player.setCustomName(playerName + " §7§l(AFK)");
 
-			embed.setColor(Color.GRAY);
-			embed.addField("est AFK", "", false);
-		}
-		DiscordSetup.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
+		if (!(sender instanceof Player)) return false;
+		Player player = (Player) sender;
+
+		if(AFKListeners.afks.contains(player.getUniqueId())) AFKListeners.removeAFK(player);
+		else AFKListeners.setAFK(player);
+		
 		return false;
-	}
-	
-	public static ArrayList<Player> getAFKS() {
-		return afks;
 	}
 	
 }
