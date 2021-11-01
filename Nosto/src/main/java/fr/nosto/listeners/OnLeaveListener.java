@@ -1,9 +1,6 @@
 package fr.nosto.listeners;
 
-import java.awt.Color;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.awt.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -12,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.nosto.DiscordSetup;
+import fr.nosto.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class OnLeaveListener implements Listener {
@@ -21,49 +19,26 @@ public class OnLeaveListener implements Listener {
 		event.setQuitMessage("");
 		
 		Player player = event.getPlayer();
-		
-		Set<String> survies_names = new HashSet<>();
-		survies_names.add("survie");
-		survies_names.add("survie_the_end");
-		survies_names.add("survie_nether");
-		
-		if(survies_names.contains(player.getWorld().getName())) {
+
+		if(Utils.getSurviesNames().contains(player.getWorld().getName())) {
 			
-			String[] messages = {"1", "2", "3", "4", "5", "6"};
-			
+			int nb = (int) Math.floor(Math.random() * 6);
+
 			String message = "";
-			
-			if(messages[new Random().nextInt(messages.length)].equals("1")) {
-				message = ("§6§l" + event.getPlayer().getName() + "§e est parti...");
-			} else if(messages[new Random().nextInt(messages.length)].equals("2")) {
-				message = ("§6§l" + event.getPlayer().getName() + "§e fait une pose.");
-			} else if(messages[new Random().nextInt(messages.length)].equals("3")) {
-				message = ("§6§l" + event.getPlayer().getName() + "§e est reparti !");
-			} else if(messages[new Random().nextInt(messages.length)].equals("4")) {
-				message = ("§eUne personne est parti, elle s'agit de §6§l" + event.getPlayer().getName() + "§e !");
-			} else if(messages[new Random().nextInt(messages.length)].equals("5")) {
-				message = ("§eBye bye §6§l" + event.getPlayer().getName() + "§e !");
-			} else if(messages[new Random().nextInt(messages.length)].equals("6")) {
-				message = ("§6§l" + event.getPlayer().getName() + "§e retourne au monde réél !");
-			}
-			
-			if(!Bukkit.getOnlinePlayers().isEmpty()) {
-				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(survies_names.contains(player.getWorld().getName())) {
-						
-						players.sendMessage("");
-						players.sendMessage(message);
-						
-					}
-				}
-			}
-			
+			if(nb == 0) message = ("§6§l" + event.getPlayer().getName() + "§e est parti...");
+			else if(nb == 1) message = ("§6§l" + event.getPlayer().getName() + "§e fait une pose.");
+			else if(nb == 2) message = ("§6§l" + event.getPlayer().getName() + "§e est reparti !");
+			else if(nb == 3) message = ("§eUne personne est partie, elle s'agit de §6§l" + event.getPlayer().getName() + "§e !");
+			else if(nb == 4) message = ("§eBye bye §6§l" + event.getPlayer().getName() + "§e !");
+			else if(nb == 5) message = ("§6§l" + event.getPlayer().getName() + "§e retourne au monde réél !");
+
+			Utils.sendMessageToSurvival(message);
+
 			EmbedBuilder embed = new EmbedBuilder();
 			embed.setAuthor("[-] " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 			embed.setColor(Color.RED);
 			
-			DiscordSetup.jda.getTextChannelById("832554910301290506").sendMessage(embed.build()).queue();
-			
+			DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
 		}
 		
 		// ADMIN MESSAGE

@@ -1,6 +1,5 @@
 package fr.nosto.tasks;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -9,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.Main;
+import fr.nosto.Utils;
 
 public class RandomBroadcastTask {
 
@@ -24,10 +24,7 @@ public class RandomBroadcastTask {
 		
 		String[] messages = {"1", "2", "3", "4"};
 
-		Set<String> survies_names = new HashSet<>();
-		survies_names.add("survie");
-		survies_names.add("survie_the_end");
-		survies_names.add("survie_nether");
+		Set<String> survies_names = Utils.getSurviesNames();
     	
 		new BukkitRunnable() {
 		    @Override

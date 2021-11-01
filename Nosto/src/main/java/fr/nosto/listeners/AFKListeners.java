@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.DiscordSetup;
 import fr.nosto.Main;
+import fr.nosto.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,10 +29,7 @@ public class AFKListeners implements Listener {
 		if (inited) return;
 		inited = true;
 
-		Set<String> survies_names = new HashSet<>();
-		survies_names.add("survie");
-		survies_names.add("survie_the_end");
-		survies_names.add("survie_nether");
+		Set<String> survies_names = Utils.getSurviesNames();
 
 		new BukkitRunnable() {
 

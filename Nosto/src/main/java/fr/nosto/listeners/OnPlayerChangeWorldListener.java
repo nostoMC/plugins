@@ -1,7 +1,6 @@
 package fr.nosto.listeners;
 
-import java.awt.Color;
-import java.util.HashSet;
+import java.awt.*;
 import java.util.Random;
 import java.util.Set;
 
@@ -12,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 import fr.nosto.DiscordSetup;
+import fr.nosto.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class OnPlayerChangeWorldListener implements Listener {
@@ -20,11 +20,8 @@ public class OnPlayerChangeWorldListener implements Listener {
 	public void onWorldChange(PlayerChangedWorldEvent event){
 
 		Player player = event.getPlayer();
-		
-		Set<String> survies_names = new HashSet<>();
-		survies_names.add("survie");
-		survies_names.add("survie_the_end");
-		survies_names.add("survie_nether");
+
+		Set<String> survies_names = Utils.getSurviesNames();
 			
 		if (!survies_names.contains(event.getFrom().getName()) && survies_names.contains(player.getWorld().getName())) {
 			
@@ -50,14 +47,14 @@ public class OnPlayerChangeWorldListener implements Listener {
 			} else if(messages[new Random().nextInt(messages.length)].equals("9")) {
 				message = "§eHello §6§l" + player.getName() + "§e ! Bon cube sur le survival !";
 			}
-			
+
 			if(!Bukkit.getOnlinePlayers().isEmpty()) {
 				for(Player players : Bukkit.getOnlinePlayers()) {
 					if(survies_names.contains(player.getWorld().getName())) {
-					
+
 						players.sendMessage("");
 						players.sendMessage(message);
-					
+
 					}
 				}
 			}
