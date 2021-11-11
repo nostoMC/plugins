@@ -57,7 +57,7 @@ public class Setup {
 
 		VanishLoop.init(main);
 		RandomBroadcastTask.init(main);
-		ParticleEffectTask.init(main);
+		CosmeticEffectTask.init(main);
 		MainLobbyParticles.init(main);
 		MainLobbyJumpPads.init(main);
 

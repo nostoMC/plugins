@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import fr.nosto.Main;
-import fr.nosto.tasks.ParticleEffectTask;
+import fr.nosto.tasks.CosmeticEffectTask;
 
 public class OnMoveListener implements Listener {
 	
@@ -26,9 +26,9 @@ public class OnMoveListener implements Listener {
 			player.setCustomName(player.getName());
 		}
 
-		if (!event.getFrom().toVector().equals(event.getTo().toVector())
-				&& ParticleEffectTask.bigEffects.containsKey(player.getUniqueId())) {
-			ParticleEffectTask.bigEffects.get(player.getUniqueId()).startCoolDown();
+		if (event.getTo() != null && !event.getFrom().toVector().equals(event.getTo().toVector())
+				&& CosmeticEffectTask.effectRenderers.containsKey(player.getUniqueId())) {
+			CosmeticEffectTask.effectRenderers.get(player.getUniqueId()).startCoolDown();
 		}
 	}
 

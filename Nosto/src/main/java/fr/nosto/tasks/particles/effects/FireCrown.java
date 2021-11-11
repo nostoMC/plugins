@@ -1,13 +1,13 @@
-package fr.nosto.tasks.particles.big;
+package fr.nosto.tasks.particles.effects;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import fr.nosto.tasks.particles.BigEffectRenderer;
+import fr.nosto.tasks.particles.CosmeticEffectRenderer;
 
-public class FireCrown extends BigEffectRenderer {
+public class FireCrown extends CosmeticEffectRenderer {
 
     private int phase = 0;
 
@@ -38,7 +38,7 @@ public class FireCrown extends BigEffectRenderer {
                     loc.getY(),               //posY
                     loc.getZ() + zOffset, //posZ
                     1, //count
-                    0, 0, 0, //particle offset
+                    0, 0, 0, //particle spread
                     0); //speed
         }
     }

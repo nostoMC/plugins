@@ -2,6 +2,7 @@ package fr.nosto.listeners;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -20,6 +21,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.nosto.Main;
+import fr.nosto.tasks.CosmeticEffectTask;
 import fr.nosto.tasks.particles.PlayerTrailsStats;
 
 public class OnJoinListener implements Listener {
@@ -29,12 +31,13 @@ public class OnJoinListener implements Listener {
 	public void onJoin(PlayerJoinEvent event){
 		event.setJoinMessage("");
 		Player player = event.getPlayer();
-		
+		final UUID uuid = player.getUniqueId();
+
 		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-		
-		if(config.getConfigurationSection("money." + player.getUniqueId()) == null) {
-			config.set("money." + player.getUniqueId(), 0);
+
+		if(config.getConfigurationSection("money." + uuid) == null) {
+			config.set("money." + uuid, 0);
 			try {
 				config.save(file);
 			} catch (IOException e) {
@@ -67,10 +70,10 @@ public class OnJoinListener implements Listener {
 			player.setGameMode(GameMode.ADVENTURE);
 		}
 
-		if (Main.getPlayerTrailsMap().get(player) == null) {
-			Main.setPlayerTrailStats(player, new PlayerTrailsStats(player));
-		}
-		
+		PlayerTrailsStats stats = new PlayerTrailsStats(player); // futur: chercher les stats dans un fichier yml
+		CosmeticEffectTask.playerTrails.put(uuid, stats);
+		stats.equip(stats.getEquiped()); // re-updating value
+
 		// ADMIN MESSAGE
 		for(Player players : Bukkit.getOnlinePlayers()) {
 			if(players.isOp()) {

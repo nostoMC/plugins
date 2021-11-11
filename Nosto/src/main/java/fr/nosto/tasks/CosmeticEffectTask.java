@@ -8,13 +8,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.Main;
-import fr.nosto.tasks.particles.BigEffectRenderer;
-import fr.nosto.tasks.particles.SmallEffectRenderer;
+import fr.nosto.tasks.particles.CosmeticEffectRenderer;
+import fr.nosto.tasks.particles.PlayerTrailsStats;
 
-public class ParticleEffectTask {
+public class CosmeticEffectTask {
 
-	public static Map<UUID, SmallEffectRenderer> smallEffects = new HashMap<>();
-	public static Map<UUID, BigEffectRenderer> bigEffects = new HashMap<>();
+	public static final HashMap<UUID, PlayerTrailsStats> playerTrails = new HashMap<>();
+	public static Map<UUID, CosmeticEffectRenderer> effectRenderers = new HashMap<>();
 	private static int loop = 0;
 	private static boolean inited = false;
 
@@ -33,10 +33,7 @@ public class ParticleEffectTask {
 
 				loop++;
 
-				for (SmallEffectRenderer renderer : smallEffects.values()) {
-					renderer.run(loop);
-				}
-				for (BigEffectRenderer renderer : bigEffects.values()) {
+				for (CosmeticEffectRenderer renderer : effectRenderers.values()) {
 					renderer.run(loop);
 				}
 

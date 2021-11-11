@@ -3,7 +3,6 @@ package fr.nosto;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -11,14 +10,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.nosto.tasks.particles.PlayerTrailsStats;
-
 public class Main extends JavaPlugin {
 
 	public static ArrayList<Player> frozen = new ArrayList<>();
 	public static ArrayList<Player> vanishList = new ArrayList<>();
 	public static ArrayList<Player> afks = new ArrayList<>();
-	static HashMap<Player, PlayerTrailsStats> playerTrails = new HashMap<>();
 
 	private FileConfiguration messageConfig;
 
@@ -46,14 +42,6 @@ public class Main extends JavaPlugin {
 		new DiscordShutdown(this);
 		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
 		
-	}
-	
-	public static void setPlayerTrailStats(Player player, PlayerTrailsStats stats) {
-		playerTrails.put(player, stats);
-	}
-
-	public static HashMap<Player, PlayerTrailsStats> getPlayerTrailsMap() {
-		return playerTrails;
 	}
 
 	public FileConfiguration getMessageConfig() {

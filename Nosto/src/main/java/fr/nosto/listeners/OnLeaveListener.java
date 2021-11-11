@@ -1,5 +1,7 @@
 package fr.nosto.listeners;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -9,6 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.nosto.MessageManager;
 import fr.nosto.Utils;
+import fr.nosto.tasks.CosmeticEffectTask;
 
 public class OnLeaveListener implements Listener {
 
@@ -27,6 +30,10 @@ public class OnLeaveListener implements Listener {
 					.replace("%player%", Utils.getGradeColor(player) + playerName);
 			Utils.sendMessageToSurvival("\n" + message);
 		}
+
+		final UUID uuid = player.getUniqueId();
+		CosmeticEffectTask.effectRenderers.remove(uuid);
+		CosmeticEffectTask.playerTrails.remove(uuid);
 		
 		// ADMIN MESSAGE
 		for(Player players : Bukkit.getOnlinePlayers()) {
