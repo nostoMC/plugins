@@ -1,17 +1,14 @@
 package fr.nosto.listeners;
 
-import java.awt.*;
-
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.nosto.DiscordSetup;
 import fr.nosto.MessageManager;
 import fr.nosto.Utils;
-import net.dv8tion.jda.api.EmbedBuilder;
 
 public class OnLeaveListener implements Listener {
 
@@ -24,14 +21,11 @@ public class OnLeaveListener implements Listener {
 
 		if(Utils.getSurviesNames().contains(player.getWorld().getName())) {
 
+			player.teleport(new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f));
+
 			String message = MessageManager.getMessage("leave")
 					.replace("%player%", Utils.getGradeColor(player) + playerName);
 			Utils.sendMessageToSurvival("\n" + message);
-
-			EmbedBuilder embed = new EmbedBuilder();
-			embed.setAuthor("[-] " + playerName, null, "https://mc-heads.net/avatar/" + playerName);
-			embed.setColor(Color.RED);
-			DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
 		}
 		
 		// ADMIN MESSAGE

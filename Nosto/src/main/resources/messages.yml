@@ -1,3 +1,3 @@
-leave: "%player% §rleft."
+leave: "%player% §rleft the server."
 survival.join: "%player% §rjoined survival."
 survival.leave: "%player% §rleft survival."
