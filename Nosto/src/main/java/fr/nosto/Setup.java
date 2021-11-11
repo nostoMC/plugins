@@ -22,6 +22,9 @@ public class Setup {
 
 	public Setup(Main main) {
 
+		// Message manager
+		MessageManager.init(main);
+
 		// Commands
 		registerCommands(main);
 

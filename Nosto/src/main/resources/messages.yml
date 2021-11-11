@@ -1,0 +1,3 @@
+leave: "%player% §rleft."
+survival.join: "%player% §rjoined survival."
+survival.leave: "%player% §rleft survival."

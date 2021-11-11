@@ -3,6 +3,7 @@ package fr.nosto;
 import java.util.*;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -10,6 +11,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import org.jetbrains.annotations.NotNull;
 
 public class Utils {
 
@@ -65,5 +68,14 @@ public class Utils {
 
     public static Set<String> getSurviesNames() {
         return survies_names;
+    }
+
+    @NotNull
+    public static ChatColor getGradeColor(Player player) {
+        ChatColor color = ChatColor.GRAY;
+        if (player.hasPermission("group.administrateur")) color = ChatColor.RED;
+        else if (player.hasPermission("group.dev")) color = ChatColor.AQUA;
+        else if (player.hasPermission("group.buildeur")) color = ChatColor.GREEN;
+        return color;
     }
 }
