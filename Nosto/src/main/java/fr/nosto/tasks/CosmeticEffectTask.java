@@ -34,7 +34,9 @@ public class CosmeticEffectTask {
 				loop++;
 
 				for (CosmeticEffectRenderer renderer : effectRenderers.values()) {
-					renderer.run(loop);
+					if (renderer.player.getWorld().getName().endsWith("Lobby")) {
+						renderer.run(loop);
+					}
 				}
 
 			}

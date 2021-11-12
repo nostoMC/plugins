@@ -52,8 +52,15 @@ public class MainMenu implements Listener {
 		skull.setItemMeta(meta);
 		
 		inv.setItem(13, skull);
-		
-		inv.setItem(37, Utils.createItem(Material.BLAZE_POWDER , "§6§lParticules"));
+
+		ItemStack particleItem;
+		if (player.getWorld().getName().endsWith("Lobby")) {
+			particleItem = Utils.createItem(Material.BLAZE_POWDER, "§6§lParticules");
+		} else {
+			particleItem = Utils.createItem(Material.BLAZE_POWDER, "§8§lParticules",
+					"§cCe menu n'est accessible que dans les lobbys !");
+		}
+		inv.setItem(37, particleItem);
 		inv.setItem(31, Utils.createItem(Material.COMPASS , "§2§lTP"));
 		inv.setItem(43, Utils.createItem(Material.GOLD_INGOT , "§e§lBoutique"));
 		
@@ -79,7 +86,9 @@ public class MainMenu implements Listener {
 				break;
 
 			case BLAZE_POWDER:
-				TrailsMenu.openMenu(player);
+				if (player.getWorld().getName().endsWith("Lobby"))
+					TrailsMenu.openMenu(player);
+				else player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 				break;
 
 			case GOLD_INGOT:

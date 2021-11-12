@@ -67,7 +67,5 @@ commands:
   event:
     description : Permet de creer des events
     permission: nosto.admin.event
-  trails:
-    description: Particules
   menu:
     description: Menu Principal

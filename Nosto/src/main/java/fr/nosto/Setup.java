@@ -116,7 +116,6 @@ public class Setup {
 		main.getCommand("feed").setExecutor(new CommandFeed());
 		main.getCommand("event").setExecutor(new CommandEvent());
 			main.getCommand("event").setTabCompleter(new TabEvent());
-		main.getCommand("trails").setExecutor(new CommandTrails());
 		main.getCommand("menu").setExecutor(new CommandMenu());
 	}
 
