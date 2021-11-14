@@ -8,11 +8,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.nosto.Main;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandClaim implements CommandExecutor
 {
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args)
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args)
     {
         if (sender instanceof Player)
         {
@@ -45,8 +46,8 @@ public class CommandClaim implements CommandExecutor
             	if (Main.getInstance().getConfig().getString("claim." + chunkID).equals(player.getUniqueId().toString())) {
 
             		if (Main.getInstance().getConfig().contains("claim." + chunkID)) {
-            			Main.getInstance().getConfig().set("claim." + chunkID, null);;
-            			Main.getInstance().saveConfig();
+            			Main.getInstance().getConfig().set("claim." + chunkID, null);
+						Main.getInstance().saveConfig();
             			player.sendMessage("");
                 		player.sendMessage("§eVous avez unclaim ce chunk !");
             		} else {

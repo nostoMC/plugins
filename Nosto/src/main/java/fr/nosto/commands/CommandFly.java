@@ -8,17 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandFly implements CommandExecutor {
 	
 	private ArrayList<Player> list = new ArrayList<>();
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 			if(args.length == 0) {
-				if(list.contains(player) || player.getAllowFlight() == true) {
+				if(list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");
@@ -29,9 +31,9 @@ public class CommandFly implements CommandExecutor {
 					player.sendMessage("");
 					player.sendMessage("§aVous pouvez voler !");
 				}
-			} else if(args.length >= 1) {
+			} else {
 				player = Bukkit.getPlayer(args[0]);
-				if(list.contains(player) || player.getAllowFlight() == true) {
+				if(list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);
 					player.setAllowFlight(false);
 					player.sendMessage("");

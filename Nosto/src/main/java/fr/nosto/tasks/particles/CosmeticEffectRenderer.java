@@ -2,12 +2,12 @@ package fr.nosto.tasks.particles;
 
 import org.bukkit.entity.Player;
 
-public abstract class BigEffectRenderer {
+public abstract class CosmeticEffectRenderer {
 
 	public Player player;
 	private int cooldown;
 
-	public BigEffectRenderer(Player player) {
+	public CosmeticEffectRenderer(Player player) {
 		this.player = player;
 	}
 

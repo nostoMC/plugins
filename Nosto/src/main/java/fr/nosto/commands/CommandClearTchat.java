@@ -5,11 +5,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandClearTchat implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+
 		int i = 0;
 		while(i <= 100) {
 			Bukkit.broadcastMessage("");
@@ -18,7 +20,7 @@ public class CommandClearTchat implements CommandExecutor {
 		
 		Bukkit.broadcastMessage("§e----------------------------------------------");
 		Bukkit.broadcastMessage("");
-		Bukkit.broadcastMessage("§eTchat clear par §6§l" + sender.getName().toString() + " §e!");
+		Bukkit.broadcastMessage("§eTchat clear par §6§l" + sender.getName() + " §e!");
 		Bukkit.broadcastMessage("");
 		Bukkit.broadcastMessage("§e----------------------------------------------");
 		

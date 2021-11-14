@@ -11,16 +11,18 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandSit implements CommandExecutor {
 	
 
-	static ArrayList<Player> sitting = new ArrayList<Player>();
+	static ArrayList<Player> sitting = new ArrayList<>();
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
-		Player player = null;
+		Player player;
 		
 		if(sender instanceof Player) {
 			player = (Player) sender;

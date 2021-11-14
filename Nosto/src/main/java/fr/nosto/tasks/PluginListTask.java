@@ -1,30 +1,22 @@
 package fr.nosto.tasks;
 
-import java.awt.Color;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.nosto.DiscordSetup;
 import fr.nosto.Main;
-import net.dv8tion.jda.api.EmbedBuilder;
 
 public class PluginListTask {
 
-	public PluginListTask(Main main) {
+	public static void list(Main main) {
 		
 		new BukkitRunnable() {
 			
 			@Override
 			public void run() {
-				EmbedBuilder embed = new EmbedBuilder();
-				embed.setTitle("Serveur actif !");
-				embed.setColor(Color.GREEN);
-					
-				DiscordSetup.jda.getTextChannelById("875315182556053524").sendMessage(embed.build()).queue();
 				
 				PluginManager pm = Bukkit.getServer().getPluginManager();
 				Logger logger = Bukkit.getLogger();

@@ -7,11 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.Main;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandNosto implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
 		if(cmd.getName().equalsIgnoreCase("nosto")) {
         	if(args.length >= 3) {

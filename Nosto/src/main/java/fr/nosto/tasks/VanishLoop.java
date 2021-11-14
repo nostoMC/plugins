@@ -8,7 +8,15 @@ import fr.nosto.Main;
 
 public class VanishLoop {
 
-	public VanishLoop(Main main) {
+	private static boolean inited = false;
+
+	public static void init(Main main) {
+
+		if (inited) {
+			Bukkit.getLogger().warning("VanishLoop.init() ran twice!");
+			return;
+		}
+		inited = true;
 		
 		new BukkitRunnable() {
 			
@@ -16,11 +24,7 @@ public class VanishLoop {
 			public void run() {
 				
 				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(Main.vanishList.contains(players)) {
-						players.setInvisible(true);
-					} else {
-						players.setInvisible(false);
-					}
+					players.setInvisible(Main.vanishList.contains(players));
 				}
 				
 			}

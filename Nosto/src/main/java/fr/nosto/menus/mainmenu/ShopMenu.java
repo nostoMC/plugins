@@ -1,4 +1,4 @@
-package fr.nosto.menus;
+package fr.nosto.menus.mainmenu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,19 +10,22 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.nosto.Main;
+import fr.nosto.Utils;
+import fr.nosto.menus.MainMenu;
 
 public class ShopMenu implements Listener {
 
+	public static final String title = "§2§lMenu > Boutique";
+
 	public static void openMenu(Player player) {
 
-		Inventory inv = Bukkit.createInventory(null, 27, "§2§lMenu > Boutique");
+		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Main.createItem(Material.BLAZE_POWDER , "§e§lParticules"));
-		inv.setItem(15, Main.createItem(Material.ELYTRA , "§6§lPouvoir"));
-		inv.setItem(22, Main.createItem(Material.ARROW , "§6§lRetour"));
-		
-		Main.fillEmplyItem(inv);
+		inv.setItem(11, Utils.createItem(Material.BLAZE_POWDER , "§e§lParticules"));
+		inv.setItem(15, Utils.createItem(Material.ELYTRA , "§6§lPouvoir"));
+		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
+
+		Utils.fillEmptyItem(inv);
 	
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
@@ -30,28 +33,21 @@ public class ShopMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if(!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
-		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu > Boutique")) {
-				event.setCancelled(true);
+		if (current == null) return;
 				
-				switch(current.getType()) {
-				
-					case ARROW:
-						MainMenu.openMenu(player);
-						break;
-					
-					default:
-						break;
-				}
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+		switch(current.getType()) {
+
+			case ARROW:
+				MainMenu.openMenu(player);
+				break;
+
+			default:
+				break;
 		}
 		
 	}

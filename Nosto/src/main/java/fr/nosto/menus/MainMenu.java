@@ -18,8 +18,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.nosto.Main;
+import fr.nosto.Utils;
+import fr.nosto.menus.mainmenu.ShopMenu;
+import fr.nosto.menus.mainmenu.TpMenu;
+import fr.nosto.menus.mainmenu.TrailsMenu;
 
 public class MainMenu implements Listener {
+
+	public static final String title = "§2§lMenu";
 
 	public static void openMenu(Player player) {
 		
@@ -30,14 +36,14 @@ public class MainMenu implements Listener {
 		
 		double playerMoney = configSection.getDouble(player.getUniqueId().toString());
 
-		Inventory inv = Bukkit.createInventory(null, 54, "§2§lMenu");
+		Inventory inv = Bukkit.createInventory(null, 54, title);
 	
 		ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta) skull.getItemMeta();
 		meta.setOwningPlayer(player);
 		meta.setDisplayName("§6§l" + player.getName());
 		
-		ArrayList<String> lore = new ArrayList<String>();
+		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§eMoney : §6§l" + playerMoney);
 		
 		meta.setLore(lore);
@@ -46,12 +52,19 @@ public class MainMenu implements Listener {
 		skull.setItemMeta(meta);
 		
 		inv.setItem(13, skull);
+
+		ItemStack particleItem;
+		if (player.getWorld().getName().endsWith("Lobby")) {
+			particleItem = Utils.createItem(Material.BLAZE_POWDER, "§6§lParticules");
+		} else {
+			particleItem = Utils.createItem(Material.BLAZE_POWDER, "§8§lParticules",
+					"§cCe menu n'est accessible que dans les lobbys !");
+		}
+		inv.setItem(37, particleItem);
+		inv.setItem(31, Utils.createItem(Material.COMPASS , "§2§lTP"));
+		inv.setItem(43, Utils.createItem(Material.GOLD_INGOT , "§e§lBoutique"));
 		
-		inv.setItem(37, Main.createItem(Material.BLAZE_POWDER , "§6§lParticules"));
-		inv.setItem(31, Main.createItem(Material.COMPASS , "§2§lTP"));
-		inv.setItem(43, Main.createItem(Material.GOLD_INGOT , "§e§lBoutique"));
-		
-		Main.fillEmplyItem(inv);
+		Utils.fillEmptyItem(inv);
 	
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
@@ -59,39 +72,32 @@ public class MainMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		
+		if (!event.getView().getTitle().equals(title)) return;
+		event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
+		if (current == null) return;
 		
-		try {
-			
-			if(event.getView().getTitle().equalsIgnoreCase("§2§lMenu")) {
-				event.setCancelled(true);
-				
-				switch(current.getType()) {
-				
-				case COMPASS:
-					TpMenu.openMenu(player);
-					break;
-					
-				case BLAZE_POWDER:
+		switch(current.getType()) {
+
+			case COMPASS:
+				TpMenu.openMenu(player);
+				break;
+
+			case BLAZE_POWDER:
+				if (player.getWorld().getName().endsWith("Lobby"))
 					TrailsMenu.openMenu(player);
-					break;
-					
-				case GOLD_INGOT:
-					ShopMenu.openMenu(player);
-					break;
-				
-				default:
-					break;
-				}
-				
-			}
-			
-		} catch (NullPointerException e) {
-			return;
+				else player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+				break;
+
+			case GOLD_INGOT:
+				ShopMenu.openMenu(player);
+				break;
+
+			default:
+				break;
 		}
-		
 	}
 
 }

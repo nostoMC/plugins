@@ -7,46 +7,50 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandStaffChat implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		
-		if (!(sender instanceof Player)) {
-            sender.sendMessage("Only for players");
-            return false;
-        }
-        Player p = (Player) sender;
-        if (!(p.hasPermission("nosto.admin.chat"))) {
-        	p.sendMessage("");
-            p.sendMessage(Color("&cVous n'avez pas les permissions !"));
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+
+        if (!(sender.hasPermission("nosto.admin.chat"))) {
+        	sender.sendMessage("");
+            sender.sendMessage("§cVous n'avez pas la permission !");
             return false;
         }
 
         if (args.length < 1) {
-        	p.sendMessage("");
-            p.sendMessage(Color("&cLe message ne peut pas être vide !"));
+        	sender.sendMessage("");
+            sender.sendMessage("§cLe message ne peut pas être vide !");
             return false;
         }
+
+        StringBuilder builder = new StringBuilder("§c[StaffChat] §e");
         
-        p.sendMessage("");
-        String mess = "§c[StaffChat]§5 " + p.getDisplayName() + ": ";
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            builder.append(player.getDisplayName());
+        } else {
+            builder.append("[Console]");
+        }
+        
+        builder.append("§7:§r");
+
         for (String s : args) {
-            mess = mess + s + " ";
+            builder.append(" ").append(s);
         }
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.hasPermission("nosto.admin.chat")) {
-                player.sendMessage(Color(mess));
-            }
-        }
+        String msg = Color(builder.toString());
+
+        Bukkit.getLogger().warning(msg);
+        Bukkit.broadcast(msg, "nosto.admin.chat");
 		
 		return false;
 	}
 	
 	private String Color(String s) {
-	        s = ChatColor.translateAlternateColorCodes('&', s);
-	        return s;
-	    }
+        return ChatColor.translateAlternateColorCodes('&', s);
+    }
 
 }

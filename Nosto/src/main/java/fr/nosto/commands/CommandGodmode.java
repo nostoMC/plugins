@@ -8,14 +8,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-public class CommandGodmode implements CommandExecutor {
+import org.jetbrains.annotations.NotNull;
+
+public class CommandGodmode implements CommandExecutor, Listener {
 	
 	private ArrayList<Player> list = new ArrayList<>();
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
 		if(sender instanceof Player) {
 			Player player = (Player) sender;

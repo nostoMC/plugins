@@ -6,25 +6,27 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CommandAnnonce implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
 		Player player = (Player)sender;
 		
 		if(args.length == 0) {
 			player.sendMessage("§cVeuillez ajouter un message");
-		} else if(args.length >= 1) {
+		} else {
 			StringBuilder argsAnnonce = new StringBuilder();
 			for(String part : args) {
-				argsAnnonce.append(part + " ");
+				argsAnnonce.append(part).append(" ");
 			}
 			Bukkit.broadcastMessage("");
 			Bukkit.broadcastMessage("");
 			Bukkit.broadcastMessage("§6§l-- Annonce de " + player.getName() + " --");
 			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§l" + argsAnnonce.toString());
+			Bukkit.broadcastMessage("§l" + argsAnnonce);
 			Bukkit.broadcastMessage("");
 			Bukkit.broadcastMessage("§6§l---------------------------");
 			Bukkit.broadcastMessage("");
