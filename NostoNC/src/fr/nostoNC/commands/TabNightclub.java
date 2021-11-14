@@ -17,6 +17,7 @@ public class TabNightclub implements TabCompleter {
 			arguments.add("join");
 			arguments.add("leave");
 			arguments.add("menu");
+			arguments.add("bottomlaser");
 		}
 		if(arguments2.isEmpty()) {
 			arguments2.add("dj");

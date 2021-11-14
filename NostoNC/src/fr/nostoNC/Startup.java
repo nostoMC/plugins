@@ -6,6 +6,7 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nostoNC.tasks.BottomLaser;
 import fr.nostoNC.tasks.VIPpass;
 import fr.nostoNC.tasks.effects.DjGlowing;
 import fr.nostoNC.tasks.effects.DjLaserEffect;
@@ -84,6 +85,8 @@ public class Startup {
 				for(String command : commands) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run " + command);
 				}
+				
+				BottomLaser.setup();
 				
 			}
 		}.runTaskLater(main, 1);

@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
 
 public class CommandNightclub implements CommandExecutor {
@@ -17,7 +18,7 @@ public class CommandNightclub implements CommandExecutor {
 		
 		Player player = (Player) sender;
 		
-		if(player.getWorld() != Bukkit.getWorld("Nightclub")) return true;
+		if(player.getWorld() != Main.defaultWorld) return true;
 		
 		if(cmd.getName().equalsIgnoreCase("nightclub")) {
 			
@@ -26,6 +27,8 @@ public class CommandNightclub implements CommandExecutor {
 					// if(dj.contains(player)) {
 						EffectsMenu.openMenu(player);
 					// }
+				} else if(args[0].equalsIgnoreCase("bottomlaser")) {
+					BottomLaserMenu.openMenu(player);
 				}
 			} else if(args.length == 2) {
 				if(args[1].equalsIgnoreCase("dj")) {

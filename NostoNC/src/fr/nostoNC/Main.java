@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,6 +15,7 @@ import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
+import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
 
 public class Main extends JavaPlugin {
@@ -24,6 +26,8 @@ public class Main extends JavaPlugin {
 	public static HashMap<String, Boolean> activeEffects = new HashMap<String, Boolean>();
 	
 	public static int cadence = 10;
+	
+	public static World defaultWorld = Bukkit.getWorld("build");
 	
 	public static Main instance;
 	
@@ -41,6 +45,7 @@ public class Main extends JavaPlugin {
 		getCommand("nightclub").setTabCompleter(new TabNightclub());
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
+		Bukkit.getPluginManager().registerEvents(new BottomLaserMenu(), this);
 		
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
@@ -66,12 +71,12 @@ public class Main extends JavaPlugin {
 		}
 	}
 	
-	public void smoothMove(Entity entity, Location toLoc, Integer time) {
+	public static void smoothMove(Entity entity, Location toLoc, Integer time) {
 	    Location loc = toLoc.subtract(entity.getLocation());
 	    Location locPartial = new Location(loc.getWorld(), loc.getX()/time, loc.getY()/time, loc.getZ()/time);
 
 	    for (int i = 0; i < time; i++) {
-	        getServer().getScheduler().runTaskLater(this, new Runnable() {
+	        Bukkit.getServer().getScheduler().runTaskLater(instance, new Runnable() {
 	            public void run() {
 	                entity.teleport(entity.getLocation().add(locPartial));
 	            }
