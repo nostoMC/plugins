@@ -14,7 +14,6 @@ public class Main extends JavaPlugin {
 
 	public static ArrayList<Player> frozen = new ArrayList<>();
 	public static ArrayList<Player> vanishList = new ArrayList<>();
-	public static ArrayList<Player> afks = new ArrayList<>();
 
 	private FileConfiguration messageConfig;
 
