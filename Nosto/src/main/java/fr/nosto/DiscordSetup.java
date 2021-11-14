@@ -3,6 +3,8 @@ package fr.nosto;
 import javax.security.auth.login.LoginException;
 import java.awt.*;
 
+import org.bukkit.scheduler.BukkitRunnable;
+
 import fr.nosto.listeners.OnMessageListener;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
@@ -66,11 +68,17 @@ public class DiscordSetup implements EventListener {
 
 		decoEmbed.setTitle("Serveur déconnecté !");
 		decoEmbed.setColor(Color.RED);
-		
-		EmbedBuilder embed = new EmbedBuilder();
-		embed.setTitle("Serveur actif !");
-		embed.setColor(Color.GREEN);
-		channel_etat_serveur.sendMessageEmbeds(embed.build()).queue();
+
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				EmbedBuilder embed = new EmbedBuilder();
+				embed.setTitle("Serveur actif !");
+				embed.setColor(Color.GREEN);
+				channel_etat_serveur.sendMessageEmbeds(embed.build()).queue();
+			}
+		}.runTaskLater(main, 40);
 	}
 	
 	public void onEvent(@NotNull GenericEvent event) {
