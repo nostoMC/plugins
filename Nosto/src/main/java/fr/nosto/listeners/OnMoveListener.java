@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import fr.nosto.Main;
+import fr.nosto.commands.CommandFreeze;
 import fr.nosto.tasks.CosmeticEffectTask;
 
 public class OnMoveListener implements Listener {
@@ -13,9 +13,9 @@ public class OnMoveListener implements Listener {
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
-		if(Main.frozen.contains(player)) {
-			player.sendMessage("");
-			player.sendMessage("§cVous ne pouvez pas bouger !");
+		
+		if(CommandFreeze.frozen.contains(player)) {
+			player.sendMessage("§cVous êtes freeze, vous ne pouvez pas bouger !");
 			event.setCancelled(true);
 		}
 

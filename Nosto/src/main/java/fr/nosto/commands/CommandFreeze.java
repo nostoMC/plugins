@@ -1,36 +1,45 @@
 package fr.nosto.commands;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.nosto.Main;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandFreeze implements CommandExecutor {
 
+	public static ArrayList<Player> frozen = new ArrayList<>();
+
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-		
-		Player player = (Player) sender;
 
-		if(cmd.getName().equalsIgnoreCase("freeze")) {
-        	if(args.length == 1){
-        		Player target = Bukkit.getPlayer(args[0]);
-        		if(!Main.frozen.contains(target)) {
-        			Main.frozen.add(target);
-        			player.sendMessage("");
-        			player.sendMessage("§eVous avez freeze §6§l" + target.getPlayer());
-        		} else {
-        			Main.frozen.remove(target);
-        			player.sendMessage("");
-        			player.sendMessage("§eVous avez défreeze §6§l" + target.getPlayer());
-            	}
+		if(args.length == 1) {
+
+			Player target = Bukkit.getPlayer(args[0]);
+
+			if (target == null) {
+				sender.sendMessage("§cImpossible de trouver un joueur avec le nom §6" + args[0]);
+				return false;
 			}
-        }
-		
+
+			if(!CommandFreeze.frozen.contains(target)) {
+				CommandFreeze.frozen.add(target);
+				sender.sendMessage("\n§eVous avez freeze §6§l" + target.getName());
+				target.sendMessage("\n§eVous avez été freeze par un modérateur");
+			} else {
+				CommandFreeze.frozen.remove(target);
+				sender.sendMessage("\n§eVous avez défreeze §6§l" + target.getName());
+				target.sendMessage("\n§eVous avez été défreeze");
+			}
+
+		} else {
+			sender.sendMessage("§cSyntaxe: /freeze <player>");
+		}
+
 		return false;
 	}
 

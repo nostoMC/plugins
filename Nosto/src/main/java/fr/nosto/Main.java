@@ -12,7 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
-	public static ArrayList<Player> frozen = new ArrayList<>();
 	public static ArrayList<Player> vanishList = new ArrayList<>();
 
 	private FileConfiguration messageConfig;
