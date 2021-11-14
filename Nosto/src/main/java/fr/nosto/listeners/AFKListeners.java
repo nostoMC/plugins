@@ -33,6 +33,10 @@ public class AFKListeners implements Listener {
 
 		Set<String> survies_names = Utils.getSurviesNames();
 
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			time.put(player.getUniqueId(), 0);
+		}
+
 		new BukkitRunnable() {
 
 			@Override
