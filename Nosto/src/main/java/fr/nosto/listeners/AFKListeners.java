@@ -1,7 +1,10 @@
 package fr.nosto.listeners;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,7 +18,6 @@ import fr.nosto.DiscordSetup;
 import fr.nosto.Main;
 import fr.nosto.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
-import org.jetbrains.annotations.NotNull;
 
 public class AFKListeners implements Listener {
 
@@ -81,9 +83,9 @@ public class AFKListeners implements Listener {
 
 		EmbedBuilder embed = new EmbedBuilder();
 
-		String groupDiscord = getGroupDiscord(player);
+		String groupDiscord = Utils.getGroupDiscord(player);
 
-		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
+		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		embed.setColor(Color.GRAY);
 		embed.addField("est AFK", "", false);
 
@@ -103,22 +105,13 @@ public class AFKListeners implements Listener {
 
 		EmbedBuilder embed = new EmbedBuilder();
 
-		String groupDiscord = getGroupDiscord(player);
+		String groupDiscord = Utils.getGroupDiscord(player);
 
-		embed.setAuthor(groupDiscord + "| " + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
+		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		embed.setColor(Color.LIGHT_GRAY);
 		embed.addField("n'est plus AFK", "", false);
 
 		DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
-	}
-
-	@NotNull
-	private static String getGroupDiscord(Player player) {
-		String groupDiscord = "";
-		if (player.hasPermission("group.dev")) groupDiscord = "Developpeur ";
-		if (player.hasPermission("group.buildeur")) groupDiscord = "Buildeur ";
-		if (player.hasPermission("group.administrateur")) groupDiscord = "Administrateur ";
-		return groupDiscord;
 	}
 
 }

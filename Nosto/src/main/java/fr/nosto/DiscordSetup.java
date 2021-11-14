@@ -22,6 +22,7 @@ public class DiscordSetup implements EventListener {
 	static EmbedBuilder decoEmbed = new EmbedBuilder();
 
 	private static TextChannel channel_survie;
+	private static TextChannel channel_nightclub;
 	private static TextChannel channel_etat_serveur;
 
 	public DiscordSetup(Main main) {
@@ -60,6 +61,7 @@ public class DiscordSetup implements EventListener {
 		jda.addEventListener(this);
 
 		channel_survie = jda.getTextChannelById("832554910301290506");
+		channel_nightclub = jda.getTextChannelById("877675571193200670");
 		channel_etat_serveur = jda.getTextChannelById("875315182556053524");
 
 		decoEmbed.setTitle("Serveur déconnecté !");
@@ -78,6 +80,10 @@ public class DiscordSetup implements EventListener {
 
 	public static TextChannel getChannelSurvie() {
 		return channel_survie;
+	}
+
+	public static TextChannel getChannelNightclub() {
+		return channel_nightclub;
 	}
 
 	public static TextChannel getChannelEtatServeur() {

@@ -78,4 +78,13 @@ public class Utils {
         else if (player.hasPermission("group.buildeur")) color = ChatColor.GREEN;
         return color;
     }
+
+    @NotNull
+    public static String getGroupDiscord(Player player) {
+        String groupDiscord = "";
+        if(player.hasPermission("group.administrateur")) groupDiscord = "Administrateur | ";
+        else if(player.hasPermission("group.dev")) groupDiscord = "Developpeur | ";
+        else if(player.hasPermission("group.buildeur")) groupDiscord = "Buildeur | ";
+        return groupDiscord;
+    }
 }
