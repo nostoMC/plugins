@@ -5,4 +5,3 @@ Plugins on Minecraft server
  - Nosto ==> Main Plugin
  - NostoNC ==> Nightclub
  - NostoS ==> Survival
- - NostoW ==> Gestion des mondes
