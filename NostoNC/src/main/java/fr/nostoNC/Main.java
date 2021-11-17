@@ -15,6 +15,7 @@ import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
+import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
 
@@ -39,7 +40,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		
 		instance = this;
-		super.onEnable();
+//		super.onEnable();
 		
 		getCommand("nightclub").setExecutor(new CommandNightclub());
 		getCommand("nightclub").setTabCompleter(new TabNightclub());
@@ -49,7 +50,9 @@ public class Main extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
-		
+
+		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
+
 		new Startup(this);
 		
 		//fix
