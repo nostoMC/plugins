@@ -1,11 +1,11 @@
-package fr.djredstone.nostoS.tasks;
+package fr.nostoS.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.djredstone.nostoS.Main;
+import fr.nostoS.Main;
 
 public class clearLag {
 
@@ -17,7 +17,7 @@ public class clearLag {
 			public void run() {
 
 				i++;
-				
+
 				if(i == 180) {
 					Main.sendMessageInSurvivalWorld("§4Attention ! §cLes items à terre vont êtres supprimés dans 60 §csecondes!");
 				}

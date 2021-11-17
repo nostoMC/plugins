@@ -1,4 +1,4 @@
-package fr.djredstone.nostoS;
+package fr.nostoS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.djredstone.nostoS.tasks.clearLag;
+import fr.nostoS.tasks.clearLag;
 
 public class Main extends JavaPlugin {
 	
