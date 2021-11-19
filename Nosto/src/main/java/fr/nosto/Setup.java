@@ -75,7 +75,6 @@ public class Setup {
 		main.getCommand("speed").setExecutor(new CommandSpeed());
 			main.getCommand("speed").setTabCompleter(new TabSpeed());
 		main.getCommand("staffChat").setExecutor(new CommandStaffChat());
-		main.getCommand("sc").setExecutor(new CommandStaffChat());
 		main.getCommand("msg").setExecutor(new CommandMsg());
 		main.getCommand("sethome").setExecutor(new CommandHome());
 		main.getCommand("home").setExecutor(new CommandHome());

@@ -17,13 +17,13 @@ public class CommandStaffChat implements CommandExecutor {
         if (!(sender.hasPermission("nosto.admin.chat"))) {
         	sender.sendMessage("");
             sender.sendMessage("§cVous n'avez pas la permission !");
-            return false;
+            return true;
         }
 
         if (args.length < 1) {
         	sender.sendMessage("");
             sender.sendMessage("§cLe message ne peut pas être vide !");
-            return false;
+            return true;
         }
 
         StringBuilder builder = new StringBuilder("§c[StaffChat] §e");
@@ -46,7 +46,7 @@ public class CommandStaffChat implements CommandExecutor {
         Bukkit.getLogger().warning(msg);
         Bukkit.broadcast(msg, "nosto.admin.chat");
 		
-		return false;
+		return true;
 	}
 	
 	private String Color(String s) {

@@ -16,11 +16,10 @@ commands:
   afk:
     description: Juste AFK
   staffChat:
-    description: Chat pour le staff
+    description: Chat privé pour le staff
+    usage: /staffchat <message>
     permission: nosto.admin.chat
-  sc:
-    description: Chat pour le staff
-    permission: nosto.admin.chat
+    aliases: sc
   spawn:
     description: Permet de se TP au spawn du monde
   feed:
