@@ -24,7 +24,7 @@ public class CommandClearTchat implements CommandExecutor {
 		Bukkit.broadcastMessage("");
 		Bukkit.broadcastMessage("§e----------------------------------------------");
 		
-		return false;
+		return true;
 	}
 
 }

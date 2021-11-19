@@ -46,11 +46,9 @@ commands:
     description: Permet de claim des chunk
   unclaim:
     description: Permet d'unclaim des chunk
-  clearTchat:
+  cleartchat:
     description: Permet de clear le tchat
-    permission: nosto.admin.cleartchat
-  ct:
-    description: Permet de clear le tchat
+    usage: /cleartchat
     permission: nosto.admin.cleartchat
   sit:
     description: Permet de s'assoir

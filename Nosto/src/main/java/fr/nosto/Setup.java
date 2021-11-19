@@ -81,8 +81,7 @@ public class Setup {
 			main.getCommand("home").setTabCompleter(new TabHome());
 		main.getCommand("delhome").setExecutor(new CommandHome());
 		main.getCommand("spawn").setExecutor(new CommandSpawn());
-		main.getCommand("clearTchat").setExecutor(new CommandClearTchat());
-		main.getCommand("ct").setExecutor(new CommandClearTchat());
+		main.getCommand("cleartchat").setExecutor(new CommandClearTchat());
 		main.getCommand("claim").setExecutor(new CommandClaim());
 		main.getCommand("unclaim").setExecutor(new CommandClaim());
 		main.getCommand("sit").setExecutor(new CommandSit());
