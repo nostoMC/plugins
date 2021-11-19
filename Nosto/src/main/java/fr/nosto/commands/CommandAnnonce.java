@@ -1,6 +1,7 @@
 package fr.nosto.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,6 +32,10 @@ public class CommandAnnonce implements CommandExecutor {
 			Bukkit.broadcastMessage("§6§l---------------------------");
 			Bukkit.broadcastMessage("");
 			Bukkit.broadcastMessage("");
+
+			for (Player otherPlayer : Bukkit.getOnlinePlayers()) {
+				otherPlayer.playSound(otherPlayer.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
+			}
 		}
 		
 		return false;
