@@ -29,12 +29,6 @@ commands:
   heal:
     description: Permet de vivre
     permission: nosto.heal
-  god:
-    description: God Mode
-    permission: nosto.admin.godmode
-  godmode:
-    description: God Mode
-    permission: nosto.admin.godmode
   msg:
     description: Permet d'envoyer des message privees
   nosto:
