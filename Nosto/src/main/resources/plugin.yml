@@ -60,3 +60,6 @@ commands:
     permission: nosto.admin.event
   menu:
     description: Menu Principal
+  lobby:
+    description: Revenir au lobby principal
+    usage: /lobby
