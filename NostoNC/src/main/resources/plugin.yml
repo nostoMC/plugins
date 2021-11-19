@@ -2,7 +2,7 @@ main: fr.nostoNC.Main
 api-version: 1.16
 name: Nosto-Nightclub
 version: 0.0.1
-author: djredstone
+authors: [djredstone, itsRed_v2]
 commands:
   nightclub:
     description: Nightclub Command
