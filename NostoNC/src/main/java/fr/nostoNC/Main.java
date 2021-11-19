@@ -10,6 +10,7 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabNightclub;
@@ -28,7 +29,7 @@ public class Main extends JavaPlugin {
 	
 	public static int cadence = 10;
 	
-	public static World defaultWorld = Bukkit.getWorld("build");
+	public static World defaultWorld;
 	
 	public static Main instance;
 	
@@ -40,7 +41,6 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		
 		instance = this;
-//		super.onEnable();
 		
 		getCommand("nightclub").setExecutor(new CommandNightclub());
 		getCommand("nightclub").setTabCompleter(new TabNightclub());
@@ -53,7 +53,15 @@ public class Main extends JavaPlugin {
 
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
 
-		new Startup(this);
+		Main main = this;
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				Main.defaultWorld = Bukkit.getWorld("build");
+				Startup.startup(main);
+			}
+		}.runTaskLater(this, 1);
 		
 		//fix
 		/*

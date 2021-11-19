@@ -6,4 +6,3 @@ author: djredstone
 commands:
   nightclub:
     description: Nightclub Command
-load: POSTWORLD

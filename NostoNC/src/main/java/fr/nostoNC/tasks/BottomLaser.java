@@ -14,7 +14,6 @@ public class BottomLaser {
 	
 	public static int affichageTimer = 20;
 	
-	private static Location defaultLoc = new Location(Main.defaultWorld, -1.99, 4.0, 155.5);
 	private static final int duration = -1;
 	private static final int distance = -1;
 	
@@ -30,6 +29,8 @@ public class BottomLaser {
 	
 	public static void setup() {
 		
+		Location defaultLoc = new Location(Main.defaultWorld, -1.99, 4.0, 155.5);
+
 		try {
 			l1 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 13.5, 10.0, 147.5), defaultLoc, duration, distance);
 			l2 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 15.5, 10.0, 153.5), defaultLoc, duration, distance);
