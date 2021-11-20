@@ -1,7 +1,6 @@
 package fr.nostoNC.listeners;
 
 import fr.nostoNC.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,11 +13,7 @@ public class OnPlayerChangeWorldListener implements Listener {
 		
 		Player player = event.getPlayer();
 		
-		System.out.println(player.getName() + " change de monde !");
-		
 		if(player.getWorld() == Main.defaultWorld) {
-			
-			System.out.println(player.getName() + " est dans la boîte de nuit !");
 			
 			player.setResourcePack("https://www.dropbox.com/sh/hwhqynt5xvhvyj1/AAAki-6eHwpMLNlsMS6p4ySfa?dl=1");
 			
@@ -26,9 +21,7 @@ public class OnPlayerChangeWorldListener implements Listener {
 		
 		if(event.getFrom() == Main.defaultWorld) {
 			
-			System.out.println(player.getName() + " sort de la boîte de nuit !");
-			
-			player.setResourcePack("");
+			player.setResourcePack("https://www.dropbox.com/sh/y64429u85j3nb7p/AADbPee76vWP5XiXGB2MzuRGa?dl=1");
 			
 		}
 		
