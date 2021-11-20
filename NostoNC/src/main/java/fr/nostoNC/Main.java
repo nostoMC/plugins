@@ -58,7 +58,7 @@ public class Main extends JavaPlugin {
 
 			@Override
 			public void run() {
-				Main.defaultWorld = Bukkit.getWorld("build");
+				Main.defaultWorld = Bukkit.getWorld("nostoclub");
 				Startup.startup(main);
 			}
 		}.runTaskLater(this, 1);
@@ -73,26 +73,6 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		for(Entity e : Bukkit.getWorld("Nightclub").getEntities()) {
-			if(e instanceof ArmorStand) {
-				if(e.getScoreboardTags().contains("spot")) {
-					e.remove();
-				}
-			}
-		}
-	}
-	
-	public static void smoothMove(Entity entity, Location toLoc, Integer time) {
-	    Location loc = toLoc.subtract(entity.getLocation());
-	    Location locPartial = new Location(loc.getWorld(), loc.getX()/time, loc.getY()/time, loc.getZ()/time);
-
-	    for (int i = 0; i < time; i++) {
-	        Bukkit.getServer().getScheduler().runTaskLater(instance, new Runnable() {
-	            public void run() {
-	                entity.teleport(entity.getLocation().add(locPartial));
-	            }
-	        }, 1L*i);
-	    }
 	}
 	
 }

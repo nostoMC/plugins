@@ -14,7 +14,7 @@ import fr.nostoNC.Main;
 
 public class LightTop {
 	
-	World w = Bukkit.getWorld("Nightclub");
+	World w = Main.defaultWorld;
 	
 	EnderCrystal crystal1 = null, crystal2 = null, crystal3 = null, crystal4 = null;
 	EnderCrystal crystal21 = null, crystal22 = null, crystal23 = null, crystal24 = null;
@@ -29,7 +29,7 @@ public class LightTop {
 			@Override
 			public void run() {
 				
-				List<Entity> listOfEntity = Bukkit.getWorld("Nightclub").getEntities();
+				List<Entity> listOfEntity = Main.defaultWorld.getEntities();
 				for(Entity e : listOfEntity) {
 					if(e instanceof EnderCrystal) {
 						e.remove();

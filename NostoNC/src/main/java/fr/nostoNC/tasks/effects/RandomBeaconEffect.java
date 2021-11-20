@@ -70,14 +70,14 @@ public class RandomBeaconEffect {
 	}
 	
 	private void showBeacon(int x, int y, int z) {
-		Bukkit.getWorld("Nightclub").getBlockAt(x, y, z).setType(Material.HOPPER);
+		Main.defaultWorld.getBlockAt(x, y, z).setType(Material.HOPPER);
 		
 		new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 
-				Bukkit.getWorld("Nightclub").getBlockAt(x, y, z).setType(Material.GRAY_CONCRETE);
+				Main.defaultWorld.getBlockAt(x, y, z).setType(Material.GRAY_CONCRETE);
 				
 			}
 		}.runTaskLater(Main.instance, 6);

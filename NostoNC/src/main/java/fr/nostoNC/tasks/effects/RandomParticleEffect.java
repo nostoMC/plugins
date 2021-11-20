@@ -33,9 +33,9 @@ public class RandomParticleEffect {
 			@Override
 			public void run() {
 				
-				for(Entity entity : Bukkit.getWorld("Nightclub").getEntities()) {
+				for(Entity entity : Main.defaultWorld.getEntities()) {
 					if(entity.getType() == EntityType.BAT) {
-						Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLAME, entity.getLocation().getX(), entity.getLocation().getY(), entity.getLocation().getZ(), 0, 0, 0, 0, 1, true);
+						Main.defaultWorld.spawnParticle(Particle.FLAME, entity.getLocation().getX(), entity.getLocation().getY(), entity.getLocation().getZ(), 0, 0, 0, 0, 1, true);
 					}
 				}
 				i++;

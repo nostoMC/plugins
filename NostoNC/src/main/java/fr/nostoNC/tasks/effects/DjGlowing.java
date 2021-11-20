@@ -17,7 +17,7 @@ public class DjGlowing {
 			@Override
 			public void run() {
 				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
+					if(players.getWorld() == Main.defaultWorld) {
 						if(Main.dj.contains(players)) {
 							PotionEffect potion = new PotionEffect(PotionEffectType.GLOWING, 2, 1, true);
 							players.addPotionEffect(potion);

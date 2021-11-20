@@ -30,17 +30,17 @@ public class StrobeEffect {
 				
 				if(Main.activeEffects.get("strobe") != null) if(Main.activeEffects.get("strobe")) {
 					for(Player players : Bukkit.getOnlinePlayers()) {
-						if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
+						if(players.getWorld() == Main.defaultWorld) {
 							if(i == 1) {
 								for(int i = 77; i > 69; i--) {
 									i--;
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 16, i, 8)).setType(Material.STONE);
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 14, i, 10)).setType(Material.STONE);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, 16, i, 8)).setType(Material.STONE);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, 14, i, 10)).setType(Material.STONE);
 								}
 								for(int i = 77; i > 69; i--) {
 									i--;
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -16, i, 8)).setType(Material.STONE);
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -14, i, 10)).setType(Material.STONE);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, -16, i, 8)).setType(Material.STONE);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, -14, i, 10)).setType(Material.STONE);
 								}
 								players.removePotionEffect(PotionEffectType.BLINDNESS);
 								PotionEffect potion = new PotionEffect(PotionEffectType.NIGHT_VISION, 10, 255, true);
@@ -48,33 +48,33 @@ public class StrobeEffect {
 							} else {
 								for(int i = 77; i > 69; i--) {
 									i--;
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 16, i, 8)).setType(Material.SEA_LANTERN);
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 14, i, 10)).setType(Material.SEA_LANTERN);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, 16, i, 8)).setType(Material.SEA_LANTERN);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, 14, i, 10)).setType(Material.SEA_LANTERN);
 								}
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 16, 76, 8, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 16, 74, 8, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 16, 72, 8, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 16, 70, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 16, 76, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 16, 74, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 16, 72, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 16, 70, 8, 1, 0, 0, 0, 1);
 								
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 14, 76, 10, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 14, 74, 10, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 14, 72, 10, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, 14, 70, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 14, 76, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 14, 74, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 14, 72, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, 14, 70, 10, 1, 0, 0, 0, 1);
 								
 								for(int i = 77; i > 69; i--) {
 									i--;
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -16, i, 8)).setType(Material.SEA_LANTERN);
-									Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -14, i, 10)).setType(Material.SEA_LANTERN);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, -16, i, 8)).setType(Material.SEA_LANTERN);
+									Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, -14, i, 10)).setType(Material.SEA_LANTERN);
 								}
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -16, 76, 8, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -16, 74, 8, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -16, 72, 8, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -16, 70, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -16, 76, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -16, 74, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -16, 72, 8, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -16, 70, 8, 1, 0, 0, 0, 1);
 								
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -14, 76, 10, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -14, 74, 10, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -14, 72, 10, 1, 0, 0, 0, 1);
-								Bukkit.getWorld("Nightclub").spawnParticle(Particle.FLASH, -14, 70, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -14, 76, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -14, 74, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -14, 72, 10, 1, 0, 0, 0, 1);
+								Main.defaultWorld.spawnParticle(Particle.FLASH, -14, 70, 10, 1, 0, 0, 0, 1);
 								players.removePotionEffect(PotionEffectType.NIGHT_VISION);
 								PotionEffect potion = new PotionEffect(PotionEffectType.BLINDNESS, 10, 255, true);
 								players.addPotionEffect(potion);
@@ -83,16 +83,16 @@ public class StrobeEffect {
 					}
 				} else {
 					for(Player players : Bukkit.getOnlinePlayers()) {
-						if(players.getWorld() == Bukkit.getWorld("Nightclub")) {
+						if(players.getWorld() == Main.defaultWorld) {
 							for(int i = 77; i > 69; i--) {
 								i--;
-								Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 16, i, 8)).setType(Material.STONE);
-								Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), 14, i, 10)).setType(Material.STONE);
+								Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, 16, i, 8)).setType(Material.STONE);
+								Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, 14, i, 10)).setType(Material.STONE);
 							}
 							for(int i = 77; i > 69; i--) {
 								i--;
-								Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -16, i, 8)).setType(Material.STONE);
-								Bukkit.getWorld("Nightclub").getBlockAt(new Location(Bukkit.getWorld("Nightclub"), -14, i, 10)).setType(Material.STONE);
+								Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, -16, i, 8)).setType(Material.STONE);
+								Main.defaultWorld.getBlockAt(new Location(Main.defaultWorld, -14, i, 10)).setType(Material.STONE);
 							}
 							players.removePotionEffect(PotionEffectType.BLINDNESS);
 							players.removePotionEffect(PotionEffectType.NIGHT_VISION);

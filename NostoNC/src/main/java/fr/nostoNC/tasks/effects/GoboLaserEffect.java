@@ -9,8 +9,8 @@ import fr.nostoNC.tasks.Laser;
 
 public class GoboLaserEffect {
 	
-	Location goboLaserLeft = new Location(Bukkit.getWorld("Nightclub"), 13, 75, -20);
-	Location goboLaserRight = new Location(Bukkit.getWorld("Nightclub"), -12, 75, -20);
+	Location goboLaserLeft = new Location(Main.defaultWorld, 13, 75, -20);
+	Location goboLaserRight = new Location(Main.defaultWorld, -12, 75, -20);
 	
 	private int duration = -1;
 	private int distance = -1;
@@ -25,7 +25,7 @@ public class GoboLaserEffect {
 			public void run() {
 				
 				try {
-					Laser light1 = new Laser.GuardianLaser(new Location(Bukkit.getWorld("Nightclub"), 4, 66, 12), new Location(Bukkit.getWorld("Nightclub"), 13, 75, -20), duration, distance);
+					Laser light1 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 4, 66, 12), new Location(Main.defaultWorld, 13, 75, -20), duration, distance);
 					
 					new BukkitRunnable(){
 			            double t = 0;
@@ -61,7 +61,7 @@ public class GoboLaserEffect {
 				}
 				
 				try {
-					Laser light2 = new Laser.GuardianLaser(new Location(Bukkit.getWorld("Nightclub"), -3, 66, 12), new Location(Bukkit.getWorld("Nightclub"), -12, 75, -20), duration, distance);
+					Laser light2 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -3, 66, 12), new Location(Main.defaultWorld, -12, 75, -20), duration, distance);
 					
 					new BukkitRunnable(){
 			            double t = 0;

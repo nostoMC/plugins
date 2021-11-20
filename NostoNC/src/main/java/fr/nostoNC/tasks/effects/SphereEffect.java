@@ -11,7 +11,7 @@ public class SphereEffect {
 
 	public SphereEffect(Main main) {
 		
-		final Location loc = new Location(Bukkit.getWorld("Nightclub"), 0.5, 75, -12.5);
+		final Location loc = new Location(Main.defaultWorld, 0.5, 75, -12.5);
 
 		new BukkitRunnable() {
 			
@@ -27,7 +27,7 @@ public class SphereEffect {
 					double z = r * Math.sin(theta) * Math.sin(phi);
 					loc.add(x, y, z);
 					if(Main.activeEffects.get("sphere")) {
-						Bukkit.getWorld("Nightclub").spawnParticle(Particle.DRAGON_BREATH, loc, 0, 0, 0, 0);
+						Main.defaultWorld.spawnParticle(Particle.DRAGON_BREATH, loc, 0, 0, 0, 0);
 					}
 					loc.subtract(x, y, z);
 				}

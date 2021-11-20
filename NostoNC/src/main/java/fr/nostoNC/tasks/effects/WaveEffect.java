@@ -13,7 +13,7 @@ public class WaveEffect {
 
         new BukkitRunnable(){
             double t = Math.PI/4;
-            Location loc = new Location(Bukkit.getWorld("Nightclub"), 0, 64, -9);
+            Location loc = new Location(Main.defaultWorld, 0, 64, -9);
             public void run(){
                 t = t + 0.1*Math.PI;
                 for (double theta = 0; theta <= 2*Math.PI; theta = theta + Math.PI/32){
@@ -22,7 +22,7 @@ public class WaveEffect {
                     double z = t*Math.sin(theta);
                     loc.add(x,y,z);
                     if(Main.activeEffects.get("wave")) {
-                    	Bukkit.getWorld("Nightclub").spawnParticle(Particle.FIREWORKS_SPARK, loc, 1, 0, 0, 0, 0);
+                    	Main.defaultWorld.spawnParticle(Particle.FIREWORKS_SPARK, loc, 1, 0, 0, 0, 0);
                     }
                     loc.subtract(x,y,z);
                  
@@ -33,13 +33,13 @@ public class WaveEffect {
                     z = t*Math.sin(theta);
                     loc.add(x,y,z);
                     if(Main.activeEffects.get("wave")) {
-                    	Bukkit.getWorld("Nightclub").spawnParticle(Particle.SPELL_WITCH, loc, 1, 0, 0, 0);
+                    	Main.defaultWorld.spawnParticle(Particle.SPELL_WITCH, loc, 1, 0, 0, 0);
                     }
                     loc.subtract(x,y,z);
                 }
                 if (t > 20){
                     t = 0;
-                    loc = new Location(Bukkit.getWorld("Nightclub"), 0, 64, -9);
+                    loc = new Location(Main.defaultWorld, 0, 64, -9);
                 }
             }
                      

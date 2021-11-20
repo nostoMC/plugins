@@ -17,7 +17,7 @@ public class DjLaserEffect {
 
 	public DjLaserEffect(Main main) {
 		
-		World w = Bukkit.getWorld("Nightclub");
+		World w = Main.defaultWorld;
 		
         try {
         	light1 = new Laser.GuardianLaser(new Location(w, 0.5, 67, 11.0), new Location(w, -17.5, 70, -23.9), duration, distance);
