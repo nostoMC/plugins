@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
+import fr.nostoNC.Utils;
+import fr.nostoNC.tasks.effects.StrobeEffect;
+import net.kyori.adventure.text.Component;
+import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -31,8 +30,8 @@ import fr.nostoNC.tasks.effects.RandomParticleEffect;
 
 public class EffectsMenu implements Listener {
 	
-	static final ArrayList<String> on = new ArrayList<String>();
-	static final ArrayList<String> off = new ArrayList<String>();
+	static final ArrayList<String> on = new ArrayList<>();
+	static final ArrayList<String> off = new ArrayList<>();
 	
 	public EffectsMenu() {
 		off.add("§c§loff");
@@ -41,13 +40,18 @@ public class EffectsMenu implements Listener {
 
 	public static void openMenu(Player player) {
 		
-		Inventory inv = Bukkit.createInventory(null, 54, "§2§lGestioraire des effets");
+		Inventory inv = Bukkit.createInventory(null, 54, Component.text("§2§lGestioraire des effets"));
 		
 		// ----------------------------------------------------------------------------------------------------------------------
 		
 		createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 10);
-		
-		createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 19);
+
+		inv.setItem(18, Utils.createItem(Material.CLOCK, "§e§lTiming", "§e§lLa vitesse est actuellement à §6§l" + StrobeEffect.timing));
+		if (Main.activeEffects.get("strobe") != null) if (Main.activeEffects.get("strobe")) {
+			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§a§lon"));
+		} else {
+			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§c§loff"));
+		}
 
 		createAndCheckActiveEffectItem(inv, Material.SEA_LANTERN, "§5§lSphere", "sphere", 28);
 		
@@ -99,14 +103,22 @@ public class EffectsMenu implements Listener {
 			case STRING:
 				checkActiveEffectItem(current, player, "floorSmoke");
 				break;
-				
+
+			case CLOCK:
+				if (event.getAction() == InventoryAction.PICKUP_ALL)
+					StrobeEffect.timing++;
+				if (event.getAction() == InventoryAction.PICKUP_HALF)
+					StrobeEffect.timing--;
+				openMenu(player);
+				break;
+
 			case REDSTONE_LAMP:
 				checkActiveEffectItem(current, player, "strobe");
 				break;
 				
 			case FIREWORK_ROCKET:
 				
-				Set<Firework> setOfFW = new HashSet<Firework>();
+				Set<Firework> setOfFW = new HashSet<>();
 				
 				Firework fw1 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 11.5, 65.7, 13.5), EntityType.FIREWORK);
 				setOfFW.add(fw1);
@@ -193,7 +205,7 @@ public class EffectsMenu implements Listener {
 		itM.setDisplayName(itName);
 		
 		if(var != null) {
-			if(Main.activeEffects.get(var) == false ) {
+			if(!Main.activeEffects.get(var)) {
 				itM.setLore(off);
 			} else {
 				itM.setLore(on);
@@ -209,7 +221,7 @@ public class EffectsMenu implements Listener {
 	
 	private static void checkActiveEffectItem(ItemStack current, Player player, String var) {
 		ItemMeta itM = current.getItemMeta();
-		if(Main.activeEffects.get(var) == false ) {
+		if(!Main.activeEffects.get(var)) {
 			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
 			itM.setLore(on);
 			current.setItemMeta(itM);
