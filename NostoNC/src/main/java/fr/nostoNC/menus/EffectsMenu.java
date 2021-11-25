@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import fr.nostoNC.Utils;
-import fr.nostoNC.tasks.effects.StrobeEffect;
-import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.enchantments.Enchantment;
@@ -25,8 +22,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
 import fr.nostoNC.tasks.effects.DjLaserEffect;
 import fr.nostoNC.tasks.effects.RandomParticleEffect;
+import fr.nostoNC.tasks.effects.StrobeEffect;
 
 public class EffectsMenu implements Listener {
 	
@@ -40,7 +39,7 @@ public class EffectsMenu implements Listener {
 
 	public static void openMenu(Player player) {
 		
-		Inventory inv = Bukkit.createInventory(null, 54, Component.text("§2§lGestioraire des effets"));
+		Inventory inv = Bukkit.createInventory(null, 54, "§2§lGestioraire des effets");
 		
 		// ----------------------------------------------------------------------------------------------------------------------
 		

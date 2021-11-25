@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class CommandLobby implements CommandExecutor {
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] strings) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
 
         if (!(sender instanceof Player)) return true;
 
