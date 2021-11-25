@@ -57,7 +57,7 @@ public class OnJoinListener implements Listener {
 			player.sendTitle("§l§3≪ §l§bNosto §l§3≫", "§f§k§l|| §l§7Bienvenue " + player.getName() +  " §f§k§l||", 0, 100, 5);
 			ItemStack compassLobby = new ItemStack(Material.COMPASS, 1);
 			ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
-			compassLobbyMeta.setDisplayName("§b§lClick pour ouvrire le menu de téléportation");
+			compassLobbyMeta.setDisplayName("§b§lClick pour ouvrir le menu de téléportation");
 			compassLobbyMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			compassLobbyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			compassLobby.setItemMeta(compassLobbyMeta);
