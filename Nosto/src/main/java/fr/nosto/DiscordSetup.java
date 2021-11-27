@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,7 +44,7 @@ public class DiscordSetup implements EventListener {
 			e.printStackTrace();
 		}
 		
-		JDABuilder builder = JDABuilder.createDefault(token);
+		JDABuilder builder = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES);
 	    
 	    builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
 	    try {
