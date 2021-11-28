@@ -1,11 +1,12 @@
 package fr.nostoS.tasks;
 
-import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoS.Main;
+import fr.nostoS.Utils;
 
 public class clearLag {
 
@@ -19,16 +20,17 @@ public class clearLag {
 				i++;
 
 				if(i == 180) {
-					Main.sendMessageInSurvivalWorld("§4Attention ! §cLes items à terre vont êtres supprimés dans 60 §csecondes!");
+					Utils.sendMessageToSurvival("§4Attention ! §cLes items à terre vont êtres supprimés dans 60 §csecondes!");
 				}
 				if(i == 220) {
-					Main.sendMessageInSurvivalWorld("§4Attention ! §cLes items à terre vont êtres supprimés dans 20 §csecondes!");
+					Utils.sendMessageToSurvival("§4Attention ! §cLes items à terre vont êtres supprimés dans 20 §csecondes!");
 				}
 				if(i == 240) {
 					
 					int nbEntity = 0;
-					for(String name : Main.survivalWorld) {
-						for(Entity entity : Bukkit.getWorld(name).getEntities()) {
+					for(World world : Utils.getSurviesWorlds()) {
+
+						for(Entity entity : world.getEntities()) {
 							if(entity instanceof Item) {
 								nbEntity ++;
 								entity.remove();
@@ -36,7 +38,7 @@ public class clearLag {
 						}
 					}
 					
-					Main.sendMessageInSurvivalWorld("§a" + nbEntity + " entitiés ont été supprimés !");
+					Utils.sendMessageToSurvival("§a" + nbEntity + " entitiés ont été supprimés !");
 					i = 0;
 				}
 				
