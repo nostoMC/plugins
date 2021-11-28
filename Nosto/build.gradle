@@ -29,6 +29,10 @@ repositories {
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
 }
 
+shadowJar {
+    relocate 'net.dv8tion.jda', 'me.mydomain.discordbot.jda'
+}
+
 dependencies {
     compileOnly 'org.spigotmc:spigot:1.16.5-R0.1-SNAPSHOT'
 
