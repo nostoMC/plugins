@@ -11,7 +11,10 @@ commands:
     description: Permet de voler
     permission: nosto.fly
   speed:
-    description: Permet de modifier la vitesse de vol et de marche
+    description: "Permet de modifier la vitesse de vol ou de marche:\n
+    - si le joueur est au sol, la vitesse de marche sera modifiée.\n
+    - si il est en vol, la vitesse de vol sera modifiée."
+    usage: /speed <vitesse>
     permission: nosto.speed
   staffChat:
     description: Chat privé pour le staff

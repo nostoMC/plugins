@@ -11,27 +11,28 @@ import org.jetbrains.annotations.NotNull;
 
 public class TabSpeed implements TabCompleter {
 
-	List<String> arguments = new ArrayList<>();
+	private static final List<String> arguments = new ArrayList<>();
+	static {
+		arguments.add("1");
+		arguments.add("2");
+		arguments.add("5");
+		arguments.add("10");
+		arguments.add("default");
+	}
 
 	public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-		if(arguments.isEmpty()) {
-			arguments.add("1");
-			arguments.add("2");
-			arguments.add("5");
-			arguments.add("10");
-		}
 		
 		List<String> result = new ArrayList<>();
+
 		if(args.length == 1) {
-			for (String a : arguments) {
-				if(a.toLowerCase().startsWith(args[0].toLowerCase())) {
-					result.add(a);
+			for (String arg : arguments) {
+				if(arg.contains(args[0])) {
+					result.add(arg);
 				}
 			}
-			return result;
 		}
 
-		return null;
+		return result;
 	}
 
 }
