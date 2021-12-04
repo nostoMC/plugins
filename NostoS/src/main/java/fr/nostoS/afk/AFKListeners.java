@@ -1,23 +1,21 @@
-package fr.nosto.listeners;
+package fr.nostoS.afk;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.nosto.DiscordSetup;
-import fr.nosto.Main;
-import fr.nosto.Utils;
-import net.dv8tion.jda.api.EmbedBuilder;
+import fr.nostoS.Main;
+import fr.nostoS.Utils;
 
 public class AFKListeners implements Listener {
 
@@ -31,8 +29,6 @@ public class AFKListeners implements Listener {
 		if (inited) return;
 		inited = true;
 
-		Set<String> survies_names = Utils.getSurviesNames();
-
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			time.put(player.getUniqueId(), 0);
 		}
@@ -41,20 +37,19 @@ public class AFKListeners implements Listener {
 
 			@Override
 			public void run() {
+				for (World world : Utils.getSurviesWorlds()) {
 
-				for(Player player : Bukkit.getOnlinePlayers()) {
-					final UUID uuid = player.getUniqueId();
+					for(Player player : world.getPlayers()) {
+						final UUID uuid = player.getUniqueId();
 
-					if(survies_names.contains(player.getWorld().getName())) {
 						time.put(uuid, time.get(uuid) + 1);
-					}
 
-					if(time.get(uuid) == 300 // 5 MIN
-							&& !afks.contains(uuid)) {
-						setAFK(player);
+						if(time.get(uuid) == 300 // 5 MIN
+								&& !afks.contains(uuid)) {
+							setAFK(player);
+						}
 					}
 				}
-
 			}
 
 		}.runTaskTimerAsynchronously(main, 20, 20);
@@ -74,6 +69,19 @@ public class AFKListeners implements Listener {
 		time.put(event.getPlayer().getUniqueId(), 0);
 	}
 
+	@EventHandler
+	public void onLeave(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+		UUID uuid = player.getUniqueId();
+
+		if (afks.contains(uuid)) {
+			afks.remove(uuid);
+
+			player.setCustomName(player.getName());
+			player.setCustomNameVisible(true);
+		}
+	}
+
 	public static void setAFK(Player player) {
 		UUID uuid = player.getUniqueId();
 
@@ -82,18 +90,7 @@ public class AFKListeners implements Listener {
 		player.setCustomName(player.getName() + " §7§l(AFK)");
 		player.setCustomNameVisible(true);
 
-		Bukkit.broadcastMessage("");
-		Bukkit.broadcastMessage("§8§l" + player.getName() + " §8est AFK");
-
-		EmbedBuilder embed = new EmbedBuilder();
-
-		String groupDiscord = Utils.getGroupDiscord(player);
-
-		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
-		embed.setColor(Color.GRAY);
-		embed.addField("est AFK", "", false);
-
-		DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
+		Utils.sendMessageToSurvival("\n§8§l" + player.getName() + " §8est AFK");
 	}
 
 	public static void removeAFK(Player player) {
@@ -104,18 +101,7 @@ public class AFKListeners implements Listener {
 		player.setCustomName(player.getName());
 		player.setCustomNameVisible(true);
 
-		Bukkit.broadcastMessage("");
-		Bukkit.broadcastMessage("§7§l" + player.getName() + " §7n'est plus AFK");
-
-		EmbedBuilder embed = new EmbedBuilder();
-
-		String groupDiscord = Utils.getGroupDiscord(player);
-
-		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
-		embed.setColor(Color.LIGHT_GRAY);
-		embed.addField("n'est plus AFK", "", false);
-
-		DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
+		Utils.sendMessageToSurvival("\n§7§l" + player.getName() + " §7n'est plus AFK");
 	}
 
 }

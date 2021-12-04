@@ -1,10 +1,8 @@
 package fr.nostoNC.tasks.effects;
 
-import org.bukkit.Bukkit;
+import fr.nostoNC.Main;
 import org.bukkit.Particle;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import fr.nostoNC.Main;
 
 public class FloorSmokeEffect {
 
@@ -15,13 +13,13 @@ public class FloorSmokeEffect {
 			@Override
 			public void run() {
 				
-				if(Main.activeEffects.get("floorSmoke") == true) {
-					Main.defaultWorld.spawnParticle(Particle.CLOUD, 0, 64, -8, 500, 10, 0, 10, 0.1);
+				if(Main.activeEffects.get("floorSmoke")) {
+					Main.defaultWorld.spawnParticle(Particle.CLOUD, -2.0, 101.0, 162.5, 500, 7, 0, 5, 0.05);
 				}
 				
 			}
 			
-		}.runTaskTimer(main, 0, 10);
+		}.runTaskTimer(main, 0, 5);
 	
 	}
 

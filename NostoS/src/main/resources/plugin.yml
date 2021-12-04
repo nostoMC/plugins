@@ -4,3 +4,6 @@ version: 0.0.1
 authors: [djredstone, itsRed_v2]
 main: fr.nostoS.Main
 commands:
+  afk:
+    description: Permet de se mettre AFK ou non
+    usage: /afk

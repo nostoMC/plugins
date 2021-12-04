@@ -26,8 +26,6 @@ public class Setup {
 
 		// Listeners
 		Bukkit.getPluginManager().registerEvents(new SitListeners(), main);
-		Bukkit.getPluginManager().registerEvents(new AFKListeners(), main);
-		AFKListeners.initAFKLoop(main);
 		Bukkit.getPluginManager().registerEvents(new OnItemDropListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnLeaveListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnJoinListener(), main);
@@ -85,7 +83,6 @@ public class Setup {
 		main.getCommand("claim").setExecutor(new CommandClaim());
 		main.getCommand("unclaim").setExecutor(new CommandClaim());
 		main.getCommand("sit").setExecutor(new CommandSit());
-		main.getCommand("afk").setExecutor(new CommandAFK());
 		main.getCommand("vanish").setExecutor(new CommandVanish());
 		main.getCommand("freeze").setExecutor(new CommandFreeze());
 		main.getCommand("nosto").setExecutor(new CommandNosto());

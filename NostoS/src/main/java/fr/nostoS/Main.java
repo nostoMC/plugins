@@ -1,51 +1,34 @@
 package fr.nostoS;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.nostoS.afk.AFKListeners;
+import fr.nostoS.afk.CommandAFK;
 import fr.nostoS.tasks.clearLag;
 
 public class Main extends JavaPlugin {
 	
-	public static Set<String> survivalWorld = new HashSet<String>();
-	
 	@Override
 	public void onEnable() {
 		
-		survivalWorld.add("survie");
-		survivalWorld.add("survie_the_end");
-		survivalWorld.add("survie_nether");
-		
 		new clearLag(this);
-		
+
+		Bukkit.getPluginManager().registerEvents(new AFKListeners(), this);
+		AFKListeners.initAFKLoop(this);
+
+		registerCommands();
 	}
 	
 	@Override
 	public void onDisable() {
 		
 	}
-	
-	public static void sendMessageInSurvivalWorld(String message) {
-		
-		if(!Bukkit.getOnlinePlayers().isEmpty()) {
-			
-			for(Player player : Bukkit.getOnlinePlayers()) {
-				
-				if(survivalWorld.contains(player.getWorld().getName())) {
-					
-					player.sendMessage("");
-					player.sendMessage(message);
-					
-				}
-				
-			}
-			
-		}
-		
+
+	@SuppressWarnings("ConstantConditions")
+	private void registerCommands() {
+
+		getCommand("afk").setExecutor(new CommandAFK());
 	}
 
 }
