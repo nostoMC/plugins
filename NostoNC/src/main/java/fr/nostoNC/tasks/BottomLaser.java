@@ -29,25 +29,25 @@ public class BottomLaser {
 	
 	public static void setup() {
 		
-		Location defaultLoc = new Location(Main.defaultWorld, -1.99, 4.0, 155.5);
+		Location defaultLoc = new Location(Main.defaultWorld, -1.99, 101.0, 155.5);
 
 		try {
-			l1 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 13.5, 10.0, 147.5), defaultLoc, duration, distance);
-			l2 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 15.5, 10.0, 153.5), defaultLoc, duration, distance);
+			l1 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 13.5, 107.0, 147.5), defaultLoc, duration, distance);
+			l2 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 15.5, 107.0, 153.5), defaultLoc, duration, distance);
 			l3 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 17.5, 10.0, 160.5), defaultLoc, duration, distance);
-			l4 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 16.5, 10.0, 168.5), defaultLoc, duration, distance);
-			l5 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 12.5, 10.0, 172.5), defaultLoc, duration, distance);
-			l6 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 6.5, 10.0, 170.5), defaultLoc, duration, distance);
-			l7 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 4.5, 10.0, 167.5), defaultLoc, duration, distance);
-			l8 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 0.5, 10.0, 165.5), defaultLoc, duration, distance);
-			l9 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -4.5, 10.0, 165.5), defaultLoc, duration, distance);
-			l10 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -8.5, 10.0, 167.5), defaultLoc, duration, distance);
-			l11 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -10.5, 10.0, 170.5), defaultLoc, duration, distance);
-			l12 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -13.5, 10.0, 172.5), defaultLoc, duration, distance);
-			l13 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -19.5, 10.0, 171.5), defaultLoc, duration, distance);
-			l14 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -18.5, 10.0, 165.5), defaultLoc, duration, distance);
-			l15 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -16.5, 10.0, 160.5), defaultLoc, duration, distance);
-			l16 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -18.5, 10.0, 154.5), defaultLoc, duration, distance);
+			l4 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 16.5, 107.0, 168.5), defaultLoc, duration, distance);
+			l5 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 12.5, 107.0, 172.5), defaultLoc, duration, distance);
+			l6 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 6.5, 107.0, 170.5), defaultLoc, duration, distance);
+			l7 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 4.5, 107.0, 167.5), defaultLoc, duration, distance);
+			l8 = new Laser.GuardianLaser(new Location(Main.defaultWorld, 0.5, 107.0, 165.5), defaultLoc, duration, distance);
+			l9 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -4.5, 107.0, 165.5), defaultLoc, duration, distance);
+			l10 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -8.5, 107.0, 167.5), defaultLoc, duration, distance);
+			l11 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -10.5, 107.0, 170.5), defaultLoc, duration, distance);
+			l12 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -13.5, 107.0, 172.5), defaultLoc, duration, distance);
+			l13 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -19.5, 107.0, 171.5), defaultLoc, duration, distance);
+			l14 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -18.5, 107.0, 165.5), defaultLoc, duration, distance);
+			l15 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -16.5, 107.0, 160.5), defaultLoc, duration, distance);
+			l16 = new Laser.GuardianLaser(new Location(Main.defaultWorld, -18.5, 107.0, 154.5), defaultLoc, duration, distance);
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
@@ -162,7 +162,7 @@ public class BottomLaser {
 			
 			try {
 				laser.start(Main.instance);
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException ignored) {
 			}
 			
 		}
@@ -175,7 +175,7 @@ public class BottomLaser {
 		
 			try {
 				laser.stop();
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException ignored) {
 			}
 		
 		}
@@ -188,7 +188,7 @@ public class BottomLaser {
 		
 			try {
 				laser.start(Main.instance);
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException ignored) {
 			}
 		
 		}
@@ -201,7 +201,7 @@ public class BottomLaser {
 		
 			try {
 				laser.stop();
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException ignored) {
 			}
 		
 		}
@@ -212,12 +212,15 @@ public class BottomLaser {
 		
 		for(Laser laser : all) {
 			
-			Location loc = laser.getEnd();
+			Location loc = laser.getStart();
 			double x = loc.getX();
-			double y = loc.getY() - 8;
+			double y = loc.getY() - 6.5;
 			double z = loc.getZ();
-			if(laser.isStarted()) laser.moveEnd(new Location(Main.defaultWorld, x, y, z), 10, null);
-			
+			try {
+				laser.moveEnd(new Location(Main.defaultWorld, x, y, z));
+			} catch (ReflectiveOperationException ignored) {
+			}
+
 		}
 		
 	}
@@ -225,9 +228,12 @@ public class BottomLaser {
 	public static void moveToUp() {
 		
 		for(Laser laser : all) {
-			
-			if(laser.isStarted()) laser.moveEnd(new Location(Main.defaultWorld, -18.5, 10.0, 154.5), 10, null);
-			
+
+			try {
+				laser.moveEnd(new Location(Main.defaultWorld, -2.0, 101.0, 154.5));
+			} catch (ReflectiveOperationException ignored) {
+			}
+
 		}
 		
 	}
