@@ -2,6 +2,7 @@ package fr.nostoNC;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -19,13 +20,10 @@ import fr.nostoNC.menus.EffectsMenu;
 
 public class Main extends JavaPlugin {
 	
-	public static ArrayList<Player> dj = new ArrayList<Player>();
-	public static ArrayList<Player> vip = new ArrayList<Player>();
-	
-	public static HashMap<String, Boolean> activeEffects = new HashMap<String, Boolean>();
-	
-	public static int cadence = 10;
-	
+	public static ArrayList<Player> dj = new ArrayList<>();
+
+	public static HashMap<String, Boolean> activeEffects = new HashMap<>();
+
 	public static World defaultWorld;
 	
 	public static Main instance;
@@ -39,8 +37,8 @@ public class Main extends JavaPlugin {
 		
 		instance = this;
 		
-		getCommand("nightclub").setExecutor(new CommandNightclub());
-		getCommand("nightclub").setTabCompleter(new TabNightclub());
+		Objects.requireNonNull(getCommand("nightclub")).setExecutor(new CommandNightclub());
+		Objects.requireNonNull(getCommand("nightclub")).setTabCompleter(new TabNightclub());
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
 		Bukkit.getPluginManager().registerEvents(new BottomLaserMenu(), this);

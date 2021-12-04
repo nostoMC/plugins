@@ -63,7 +63,7 @@ public class StrobeEffect {
 	}
 
 	private static void setLightsMaterial(Material material) {
-		for(int i = 112; i > 105; i = i-2) {
+		for(int i = 112; i > 102; i = i-2) {
 			Location loc1 = new Location(Main.defaultWorld, -9, i, 146);
 			Location loc2 = new Location(Main.defaultWorld, -6, i, 145);
 			Location loc3 = new Location(Main.defaultWorld, 1, i, 145);
