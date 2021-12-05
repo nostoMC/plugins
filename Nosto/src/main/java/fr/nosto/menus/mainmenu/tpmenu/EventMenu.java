@@ -1,12 +1,16 @@
 package fr.nosto.menus.mainmenu.tpmenu;
 
+import java.util.Objects;
+
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.nosto.Utils;
 import fr.nosto.menus.mainmenu.TpMenu;
@@ -19,7 +23,12 @@ public class EventMenu implements Listener {
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(11, Utils.createItem(Material.MUSIC_DISC_BLOCKS , "§e§lNostoClub"));
+		ItemStack disc = Utils.createItem(Material.MUSIC_DISC_BLOCKS, "§e§lNostoClub");
+		ItemMeta discMeta = Objects.requireNonNull(disc.getItemMeta());
+		discMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS); // somehow hides the base lore of the disc (author & name)
+		disc.setItemMeta(discMeta);
+
+		inv.setItem(11, disc);
 		inv.setItem(13, Utils.createItem(Material.BARRIER , " "));
 		inv.setItem(15, Utils.createItem(Material.BARRIER , " "));
 		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
@@ -48,9 +57,10 @@ public class EventMenu implements Listener {
 			case MUSIC_DISC_BLOCKS:
 				if(!player.hasPermission("server.nightclubAcces")) break;
 				event.getView().close();
-				Location nightClubLobby = new Location(Bukkit.getWorld("Nightclub"), 0.5, 64.0, 0.5, 0f, 0f);
+				Location nostoClubSpawn = new Location(Bukkit.getWorld("nostoclub"), -5.5, 101, 219.5, 180, 0);
 				player.setGameMode(GameMode.ADVENTURE);
-				player.teleport(nightClubLobby);
+				player.teleport(nostoClubSpawn);
+				player.teleport(nostoClubSpawn);
 				break;
 
 			default:
