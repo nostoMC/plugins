@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.nostoNC.Utils;
 import fr.nostoNC.tasks.BottomLaser;
 
 public class BottomLaserMenu implements Listener {
@@ -40,8 +41,8 @@ public class BottomLaserMenu implements Listener {
 		inv.setItem(32, createItem(Material.WET_SPONGE, "§e§lEdge"));
 		inv.setItem(33, createItem(Material.WARPED_HYPHAE, "§e§lUp/Down"));
 		inv.setItem(34, createItem(Material.GOLD_ORE, "§c§lTimer", "§e§lRandom Up/Down"));
-		
-		fillEmptyItem(inv);
+
+		Utils.fillEmptyItem(inv);
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
@@ -122,19 +123,5 @@ public class BottomLaserMenu implements Listener {
         it.setItemMeta(itM);
         return it;
     }
-	
-	private static void fillEmptyItem(Inventory inv) {
-		
-		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
-		clearSlotMeta.setDisplayName(" ");
-		clearSlot.setItemMeta(clearSlotMeta);
-		
-		for(int i = 0; i < inv.getSize(); i++) {
-			if(inv.getItem(i) == null) {
-				inv.setItem(i, clearSlot);
-			}
-		}
-	}
 
 }

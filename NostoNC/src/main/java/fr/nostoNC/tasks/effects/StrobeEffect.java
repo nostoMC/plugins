@@ -32,7 +32,7 @@ public class StrobeEffect {
 
 					flash = !flash;
 
-					if (Main.activeEffects.get("strobe") != null) if (Main.activeEffects.get("strobe")) {
+					if (Main.activeEffects.get("strobe") != null && Main.activeEffects.get("strobe")) {
 
 						if (flash) {
 
@@ -84,7 +84,7 @@ public class StrobeEffect {
 	private static void flashON() {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.getWorld() == Main.defaultWorld) {
-				PotionEffect potion = new PotionEffect(PotionEffectType.NIGHT_VISION, 10, 255, false);
+				PotionEffect potion = new PotionEffect(PotionEffectType.NIGHT_VISION, 25, 255, false, false, false);
 				player.addPotionEffect(potion);
 				player.removePotionEffect(PotionEffectType.BLINDNESS);
 			}
@@ -94,7 +94,7 @@ public class StrobeEffect {
 	private static void flashOFF() {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.getWorld() == Main.defaultWorld) {
-				PotionEffect potion = new PotionEffect(PotionEffectType.BLINDNESS, 10, 255, false);
+				PotionEffect potion = new PotionEffect(PotionEffectType.BLINDNESS, 25, 255, false, false, false);
 				player.addPotionEffect(potion);
 				player.removePotionEffect(PotionEffectType.NIGHT_VISION);
 			}

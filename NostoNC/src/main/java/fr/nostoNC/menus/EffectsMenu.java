@@ -12,7 +12,7 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryAction;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -28,10 +28,8 @@ import fr.nostoNC.tasks.effects.StrobeEffect;
 
 public class EffectsMenu implements Listener {
 
-	static final ArrayList<String> on = new ArrayList<>();
-	static final ArrayList<String> off = new ArrayList<>();
-
-	public EffectsMenu() {
+	private static final ArrayList<String> on = new ArrayList<>(), off = new ArrayList<>();
+	static {
 		off.add("§c§loff");
 		on.add("§a§lon");
 	}
@@ -44,8 +42,11 @@ public class EffectsMenu implements Listener {
 
 		createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 10);
 
-		inv.setItem(18, Utils.createItem(Material.CLOCK, "§e§lTiming", "§e§lLa vitesse est actuellement à §6§l" + StrobeEffect.timing));
-		if (Main.activeEffects.get("strobe") != null) if (Main.activeEffects.get("strobe")) {
+		inv.setItem(18, Utils.createItem(Material.CLOCK, "§e§lTiming",
+				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
+				"§8Click gauche: §a+1",
+				"§8Click droit: §c-1"));
+		if (Main.activeEffects.get("strobe") != null && Main.activeEffects.get("strobe")) {
 			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§a§lon"));
 		} else {
 			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§c§loff"));
@@ -55,7 +56,7 @@ public class EffectsMenu implements Listener {
 
 		createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 21);
 
-		fillEmptyItem(inv);
+		Utils.fillEmptyItem(inv);
 
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 		player.openInventory(inv);
@@ -75,19 +76,29 @@ public class EffectsMenu implements Listener {
 			switch(current.getType()) {
 
 			case STRING:
-				checkActiveEffectItem(current, player, "floorSmoke");
+				checkActiveEffectItem(player, "floorSmoke");
 				break;
 
 			case CLOCK:
-				if (event.getAction() == InventoryAction.PICKUP_ALL)
+				if (event.getClick() == ClickType.LEFT) {
+					if (StrobeEffect.timing >= 20) {
+						player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+						break;
+					}
 					StrobeEffect.timing++;
-				if (event.getAction() == InventoryAction.PICKUP_HALF)
+				}
+				else if (event.getClick() == ClickType.RIGHT) {
+					if (StrobeEffect.timing <= 1) {
+						player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+						break;
+					}
 					StrobeEffect.timing--;
-				openMenu(player);
+				}
+				if (event.getClick() != ClickType.DOUBLE_CLICK) openMenu(player);
 				break;
 
 			case REDSTONE_LAMP:
-				checkActiveEffectItem(current, player, "strobe");
+				checkActiveEffectItem(player, "strobe");
 				break;
 
 			case FIREWORK_ROCKET:
@@ -131,7 +142,7 @@ public class EffectsMenu implements Listener {
 	}
 
 	private static void createAndCheckActiveEffectItem(Inventory inv, Material material, String itName, String var, int slot) {
-		ItemStack it = new ItemStack(material, 1);
+		ItemStack it = new ItemStack(material);
 		ItemMeta itM = it.getItemMeta();
 		itM.setDisplayName(itName);
 
@@ -150,33 +161,15 @@ public class EffectsMenu implements Listener {
 		inv.setItem(slot, it);
 	}
 
-	private static void checkActiveEffectItem(ItemStack current, Player player, String var) {
-		ItemMeta itM = current.getItemMeta();
-		if(!Main.activeEffects.get(var)) {
+	private static void checkActiveEffectItem(Player player, String var) {
+		if (!Main.activeEffects.get(var)) {
 			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-			itM.setLore(on);
-			current.setItemMeta(itM);
 			Main.activeEffects.put(var, true);
 		} else {
 			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-			itM.setLore(off);
-			current.setItemMeta(itM);
 			Main.activeEffects.put(var, false);
 		}
-	}
-
-	private static void fillEmptyItem(Inventory inv) {
-
-		ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-		ItemMeta clearSlotMeta = clearSlot.getItemMeta();
-		clearSlotMeta.setDisplayName(" ");
-		clearSlot.setItemMeta(clearSlotMeta);
-
-		for(int i = 0; i < inv.getSize(); i++) {
-			if(inv.getItem(i) == null) {
-				inv.setItem(i, clearSlot);
-			}
-		}
+		openMenu(player);
 	}
 
 }
