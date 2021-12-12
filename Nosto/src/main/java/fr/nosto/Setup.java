@@ -55,13 +55,6 @@ public class Setup {
 		MainLobbyParticles.init(main);
 		MainLobbyJumpPads.init(main);
 
-		// Tab
-		TabManager tab = new TabManager(main);
-	    tab.addHeader("\n§8⋙ &b&lNosto §8⋘\n");
-	    tab.addFooter("\n&9&lDiscord : discord.io/nosto\n                                             ");
-
-	    tab.showTab();
-
 		System.out.println("§b[Nosto] Plugin Custom Chargé !");
 	}
 
