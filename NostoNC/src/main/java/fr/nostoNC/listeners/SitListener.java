@@ -1,10 +1,10 @@
 package fr.nostoNC.listeners;
 
-import java.util.Objects;
+import java.util.Set;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Bisected;
@@ -12,16 +12,13 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.PistonHead;
 import org.bukkit.block.data.type.Slab;
 import org.bukkit.block.data.type.Stairs;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
 
 import fr.nostoNC.Main;
 import org.spigotmc.event.entity.EntityDismountEvent;
@@ -45,7 +42,6 @@ public class SitListener implements Listener {
         if (!block.getRelative(BlockFace.UP).isPassable()) return;
 
         BlockData data = block.getBlockData();
-        World world = player.getWorld();
 
         if (data instanceof Stairs) {
             Stairs stair = (Stairs) data;
@@ -83,11 +79,12 @@ public class SitListener implements Listener {
             loc.setPitch(0);
             loc.add(loc.getDirection().multiply(.2));
 
-            ArmorStand chair = (ArmorStand) world.spawnEntity(loc, EntityType.ARMOR_STAND);
+            ArmorStand chair = (ArmorStand) Main.defaultWorld.spawnEntity(loc, EntityType.ARMOR_STAND);
 
             chair.setVisible(false);
             chair.setMarker(true);
-            chair.setCustomName("ClubStairSeat");
+            chair.addScoreboardTag("clubSeat");
+            chair.addScoreboardTag("lift_1.2");
             chair.addPassenger(player);
         }
 
@@ -96,29 +93,20 @@ public class SitListener implements Listener {
 
             if (piston.getFacing() != BlockFace.UP) return;
 
-            Location loc = block.getLocation().add(.5, .8,.5);
-            loc.setYaw(player.getLocation().getYaw());
+            Location loc = block.getLocation().add(.5, .4,.5);
 
-            ArmorStand chair = (ArmorStand) world.spawnEntity(loc, EntityType.ARMOR_STAND);
-
-            chair.setVisible(false);
-            chair.setMarker(true);
+            AreaEffectCloud chair = createArea(loc);
             chair.addPassenger(player);
         }
 
-        else if (block.getType() == Material.SMOOTH_QUARTZ_SLAB) {
+        else if (block.getType() == Material.SMOOTH_QUARTZ_SLAB || block.getType() == Material.BRICK_SLAB) {
             Slab slab = (Slab) data;
 
             if (slab.getType() != Slab.Type.BOTTOM) return;
 
-            Location loc = block.getLocation().add(.5, .3,.5);
-            loc.setDirection(new Vector(14.0, 5.0, 179.0).subtract(loc.toVector())); // le joueur est assis vers la table
+            Location loc = block.getLocation().add(.5, -.1,.5);
 
-            ArmorStand chair = (ArmorStand) world.spawnEntity(loc, EntityType.ARMOR_STAND);
-
-            chair.setVisible(false);
-            chair.setMarker(true);
-            chair.setCustomName("ClubStairSeat");
+            AreaEffectCloud chair = createArea(loc);
             chair.addPassenger(player);
         }
 
@@ -128,11 +116,14 @@ public class SitListener implements Listener {
     public void onDismount(EntityDismountEvent event) {
 
         if(!(event.getEntity() instanceof Player)) return;
-        if(!(event.getDismounted() instanceof ArmorStand)) return;
 
-        ArmorStand as = (ArmorStand) event.getDismounted();
+        Entity entity = event.getDismounted();
+        if(!(entity instanceof ArmorStand || entity instanceof AreaEffectCloud)) return;
 
-        if (Objects.equals(as.getCustomName(), "ClubStairSeat")) {
+        Set<String> tags = entity.getScoreboardTags();
+        
+        if (tags.contains("clubSeat")) {
+            entity.remove();
 
             // Cette task est nécessaire pour exécuter le code APRÈS que l'event ait fini d'etre calculé
             // (sinon le tp n'a pas d'effet)
@@ -141,10 +132,26 @@ public class SitListener implements Listener {
                 @Override
                 public void run() {
                     Player player = (Player) event.getEntity();
-                    player.teleport(player.getLocation().add(0, 1, 0));
+                    if (tags.contains("lift_0.6")) player.teleport(player.getLocation().add(0, 0.6, 0));
+                    if (tags.contains("lift_1.2")) player.teleport(player.getLocation().add(0, 1.2, 0));
                 }
             }.runTask(Main.getPlugin(Main.class));
         }
 
+    }
+
+    private static AreaEffectCloud createArea(Location loc) {
+        Location spawnLoc = new Location(Main.defaultWorld, 0, 0, 0);
+        AreaEffectCloud cloud = (AreaEffectCloud) Main.defaultWorld.spawnEntity(spawnLoc, EntityType.AREA_EFFECT_CLOUD);
+
+        cloud.setParticle(Particle.BLOCK_CRACK, Material.AIR.createBlockData());
+        cloud.setDuration(32000);
+        cloud.setRadius(0);
+        cloud.addScoreboardTag("clubSeat");
+        cloud.addScoreboardTag("lift_0.6");
+
+        cloud.teleport(loc);
+
+        return cloud;
     }
 }
