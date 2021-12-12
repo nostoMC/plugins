@@ -3,7 +3,6 @@ package fr.nosto.commands;
 import java.util.ArrayList;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,10 +14,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class CommandSit implements CommandExecutor {
 	
+	public static final ArrayList<Player> sitting = new ArrayList<>();
 
-	static ArrayList<Player> sitting = new ArrayList<>();
-
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
@@ -30,37 +27,29 @@ public class CommandSit implements CommandExecutor {
 			return true;
 		}
 		
+		if(sitting.contains(player)) {
+			player.sendMessage("\n§cVous êtes déjà assis !");
+			return true;
+		}
+
+		//noinspection deprecation
 		if(!player.isOnGround()) {
-    		player.sendMessage("");
-    		player.sendMessage("§cVous ne pouvez pas vous assoir en l'air !");
+    		player.sendMessage("\n§cVous ne pouvez pas vous assoir en l'air !");
     		return true;
-    	}
-    	
-    	if(sitting.contains(player)) {
-    		player.sendMessage("");
-    		player.sendMessage("§cVous êtes déjà assis !");
-    		return true;
-    	}
-    	
+		}
+		
     	sitting.add(player);
-    	
-    	Location loc = player.getLocation();
-    	
-    	Location newloc = new Location(loc.getWorld(), loc.getX(), loc.getY() - 1.7, loc.getZ(), loc.getYaw(), loc.getPitch());
-    	
-    	World world = player.getWorld();
-    	ArmorStand chair = (ArmorStand) world.spawnEntity(newloc, EntityType.ARMOR_STAND);
-    	
-    	chair.setGravity(false);
-    	chair.setVisible(false);
-    	chair.setInvulnerable(false);
+
+		Location loc = player.getLocation().add(0, -.2, 0);
+
+		ArmorStand chair = (ArmorStand) player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
+
+		chair.addScoreboardTag("seat");
+		chair.setVisible(false);
+		chair.setMarker(true);
     	chair.addPassenger(player);
 		
 		return false;
 	}
 	
-	public static ArrayList<Player> getSitting() {
-		return sitting;
-	}
-
 }

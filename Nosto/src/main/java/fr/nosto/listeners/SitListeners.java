@@ -1,33 +1,44 @@
 package fr.nosto.listeners;
 
-import java.util.ArrayList;
-
+import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.spigotmc.event.entity.EntityDismountEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nosto.Main;
 import fr.nosto.commands.CommandSit;
+import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class SitListeners implements Listener {
 	
-	ArrayList<Player> sitting = CommandSit.getSitting();
-
 	@EventHandler
 	public void onDismount(EntityDismountEvent event) {
 		
 		if(!(event.getEntity() instanceof Player)) return;
-		
-		Player player = (Player) event.getEntity();
-		
 		if(!(event.getDismounted() instanceof ArmorStand)) return;
 		
+		Player player = (Player) event.getEntity();
 		ArmorStand as = (ArmorStand) event.getDismounted();
-		
-		sitting.remove(player);
-		
-		as.remove();
+
+		if (as.getScoreboardTags().contains("seat")) {
+			CommandSit.sitting.remove(player);
+			as.remove();
+
+			Location loc = player.getLocation().add(0, .6, 0);
+			
+			// Cette task est nécessaire pour exécuter le code APRÈS que l'event ait fini d'etre calculé
+			// (sinon le tp n'a pas d'effet)
+			new BukkitRunnable() {
+
+				@Override
+				public void run() {
+					player.teleport(loc);
+				}
+			}.runTask(Main.getPlugin(Main.class));
+		}
+
 	}
 
 }
