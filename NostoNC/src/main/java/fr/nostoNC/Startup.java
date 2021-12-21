@@ -1,6 +1,7 @@
 package fr.nostoNC;
 
 import fr.nostoNC.tasks.BottomLaser;
+import fr.nostoNC.tasks.StaffPass;
 import fr.nostoNC.tasks.VIPpass;
 import fr.nostoNC.tasks.effects.FloorSmokeEffect;
 import fr.nostoNC.tasks.effects.StrobeEffect;
@@ -16,6 +17,7 @@ public class Startup {
 		new StrobeEffect(main);
 
 		new VIPpass(main);
+		new StaffPass(main);
 
 		BottomLaser.setup();
 		
