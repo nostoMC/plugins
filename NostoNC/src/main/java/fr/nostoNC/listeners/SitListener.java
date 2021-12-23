@@ -46,6 +46,7 @@ public class SitListener implements Listener {
         if (data instanceof Stairs) {
             Stairs stair = (Stairs) data;
 
+            if (stair.isWaterlogged()) return;
             if (stair.getHalf() != Bisected.Half.BOTTOM) return;
 
             Location loc = block.getLocation().add(.5, .3, .5);
@@ -102,6 +103,7 @@ public class SitListener implements Listener {
         else if (block.getType() == Material.SMOOTH_QUARTZ_SLAB || block.getType() == Material.BRICK_SLAB) {
             Slab slab = (Slab) data;
 
+            if (slab.isWaterlogged()) return;
             if (slab.getType() != Slab.Type.BOTTOM) return;
 
             Location loc = block.getLocation().add(.5, -.1,.5);
