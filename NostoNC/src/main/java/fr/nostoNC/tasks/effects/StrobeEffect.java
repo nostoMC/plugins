@@ -13,9 +13,14 @@ import fr.nostoNC.Main;
 
 public class StrobeEffect {
 
+	private static boolean inited = false;
+
 	public static int timing = 5;
 
-	public StrobeEffect(Main main) {
+	public static void init(Main main) {
+
+		if (inited) return;
+		inited = true;
 		
 		new BukkitRunnable() {
 

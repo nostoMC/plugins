@@ -12,7 +12,7 @@ public class OnResourcepackStatusListener implements Listener {
 		
 		if(event.getStatus() == Status.DECLINED) {
 			
-			event.getPlayer().kickPlayer("Vous n'avez pas accépté le resource pack !");
+			event.getPlayer().kickPlayer("§cVous devez accepter le pack pour accéder au club !");
 			
 		}
 		

@@ -33,7 +33,6 @@ public class GolemPass {
 			public void run() {
 
 				for(Player player : Main.defaultWorld.getPlayers()) {
-					UUID uuid = player.getUniqueId();
 					Location loc = player.getLocation();
 
 					if (vipBox.contains(loc.toVector()) && !player.hasPermission("nosto.nightclub.vip")) {

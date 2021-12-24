@@ -15,13 +15,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * A whole class to create Guardian Lasers and Ender Crystal Beams using packets and reflection.</br>
@@ -32,6 +33,7 @@ import org.bukkit.scheduler.BukkitTask;
  * @version 2.0.1
  * @author SkytAsul
  */
+@SuppressWarnings("ALL")
 public abstract class Laser {
 	
 	protected final int distanceSquared;

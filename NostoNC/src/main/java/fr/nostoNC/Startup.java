@@ -12,8 +12,8 @@ public class Startup {
 		Main.activeEffects.put("floorSmoke", false);
 		Main.activeEffects.put("strobe", false);
 
-		new FloorSmokeEffect(main);
-		new StrobeEffect(main);
+		FloorSmokeEffect.init(main);
+		StrobeEffect.init(main);
 
 		GolemPass.init(main);
 

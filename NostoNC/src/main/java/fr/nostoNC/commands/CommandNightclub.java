@@ -10,11 +10,12 @@ import org.bukkit.entity.Player;
 import fr.nostoNC.Main;
 import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandNightclub implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String commandLabel, String[] args) {
 		
 		Player player = (Player) sender;
 		
@@ -37,8 +38,7 @@ public class CommandNightclub implements CommandExecutor {
 							if(!player.hasPermission("nosto.nightclub.dj")) return true;
 							Main.dj.add(player);
 							player.teleport(new Location(Main.defaultWorld, -12.5, 65, 13.5, -90, 0));
-							Bukkit.broadcastMessage("");
-							Bukkit.broadcastMessage("§6§l" + player.getName() + " §eest notre nouveau DJ !");
+							Bukkit.broadcastMessage("\n§6§l" + player.getName() + " §eest notre nouveau DJ !");
 						} else {
 							if(Main.dj.contains(player)) {
 								player.teleport(new Location(Main.defaultWorld, -12.5, 65, 13.5, -90, 0));
@@ -53,8 +53,7 @@ public class CommandNightclub implements CommandExecutor {
 						if(Main.dj.contains(player)) {
 							Main.dj.remove(player);
 							player.teleport(new Location(Main.defaultWorld, -14.5, 65, 13.5, 90, 0));
-							Bukkit.broadcastMessage("");
-							Bukkit.broadcastMessage("§6§l" + player.getName() + " §en'est plus DJ !");
+							Bukkit.broadcastMessage("\n§6§l" + player.getName() + " §en'est plus DJ !");
 						}
 					}
 				}

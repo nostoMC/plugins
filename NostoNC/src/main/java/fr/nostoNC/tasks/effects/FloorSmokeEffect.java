@@ -1,12 +1,18 @@
 package fr.nostoNC.tasks.effects;
 
-import fr.nostoNC.Main;
 import org.bukkit.Particle;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nostoNC.Main;
+
 public class FloorSmokeEffect {
 
-	public FloorSmokeEffect(Main main) {
+	private static boolean inited = false;
+
+	public static void init(Main main) {
+
+		if (inited) return;
+		inited = true;
 		
 		new BukkitRunnable() {
 

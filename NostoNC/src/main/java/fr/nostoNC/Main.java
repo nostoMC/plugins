@@ -27,10 +27,6 @@ public class Main extends JavaPlugin {
 	public static World defaultWorld;
 	
 	public static Main instance;
-	
-	public static JavaPlugin getInstance() {
-		return instance;
-	}
 
 	@Override
 	public void onEnable() {
