@@ -25,8 +25,7 @@ public class CommandEvent implements CommandExecutor {
 					Main.getInstance().saveConfig();
 					Bukkit.broadcastMessage("");
 					Bukkit.broadcastMessage("Un événement commence ! Utilisez /lobby pour vous téléporter !");
-					if(sender instanceof Player) {
-						Player player = (Player) sender;
+					if (sender instanceof Player player) {
 						Location showLobby = new Location(Bukkit.getWorld("show"), 0.5, 65, 0.5, 0f, 0f);
 						player.teleport(showLobby);
 						player.teleport(showLobby);

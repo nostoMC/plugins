@@ -15,10 +15,9 @@ public class CommandHome implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-		if (!(sender instanceof Player)) return true;
-		Player p = (Player) sender;
+		if (!(sender instanceof Player p)) return true;
 		
-		if(p.getWorld() == Bukkit.getWorld("survie") || p.getWorld() == Bukkit.getWorld("skyworld")) {		
+		if(p.getWorld() == Bukkit.getWorld("survie") || p.getWorld() == Bukkit.getWorld("skyworld")) {
 			if(cmd.getName().equalsIgnoreCase("sethome")) {
 
 				if(args.length == 0) {

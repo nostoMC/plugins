@@ -12,12 +12,10 @@ public class CommandSpeed implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
-		if (!(sender instanceof Player)) {
+		if (!(sender instanceof Player p)) {
             sender.sendMessage("Player only command!");
             return true;
         }
-
-        Player p = (Player) sender;
 
         if (!p.hasPermission("nosto.speed")) {
             p.sendMessage("§cVous n'avez pas les permissions !");

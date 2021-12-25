@@ -45,31 +45,14 @@ public class TpMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if (current == null) return;
-				
-		switch(current.getType()){
 
-			case ARROW:
-				MainMenu.openMenu(player);
-				break;
-
-			case GRASS_BLOCK:
-				MondeOuvertMenu.openMenu(player);
-				break;
-				
-			case FISHING_ROD:
-				MinijeuxMenu.openMenu(player);
-				break;
-
-			case WOODEN_SWORD:
-				TrainingMenu.openMenu(player);
-				break;
-
-			case FIREWORK_ROCKET:
-				EventMenu.openMenu(player);
-				break;
-
-			default:
-				break;
+		switch (current.getType()) {
+			case ARROW -> MainMenu.openMenu(player);
+			case GRASS_BLOCK -> MondeOuvertMenu.openMenu(player);
+			case FISHING_ROD -> MinijeuxMenu.openMenu(player);
+			case WOODEN_SWORD -> TrainingMenu.openMenu(player);
+			case FIREWORK_ROCKET -> EventMenu.openMenu(player);
+			default -> {}
 		}
 	}
 	

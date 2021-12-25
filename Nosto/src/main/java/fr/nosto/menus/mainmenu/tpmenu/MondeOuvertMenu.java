@@ -37,30 +37,26 @@ public class MondeOuvertMenu implements Listener {
 		ItemStack current = event.getCurrentItem();
 		if (current == null) return;
 
-		switch(current.getType()) {
+		switch (current.getType()) {
+			case ARROW -> TpMenu.openMenu(player);
 
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
-
-			case COOKED_BEEF:
-				if(!player.hasPermission("server.survivalAcces")) break;
+			case COOKED_BEEF -> {
+				if (!player.hasPermission("server.survivalAcces")) break;
 				event.getView().close();
 				Location SurvivalLobby = new Location(Bukkit.getWorld("survie"), -0.5, 63, 0.5, 180f, 0f);
 				player.teleport(SurvivalLobby);
 				player.setGameMode(GameMode.SURVIVAL);
-				break;
+			}
 
-			case WHITE_WOOL:
-				if(!player.hasPermission("server.skyblockAcces")) break;
+			case WHITE_WOOL -> {
+				if (!player.hasPermission("server.skyblockAcces")) break;
 				event.getView().close();
 				Location skyblockLobby = new Location(Bukkit.getWorld("skyworld"), 0.5, 150, 4.5, 0f, -10f);
 				player.teleport(skyblockLobby);
 				player.setGameMode(GameMode.SURVIVAL);
-				break;
+			}
 
-			default:
-				break;
+			default -> {}
 		}
 	}
 

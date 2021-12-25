@@ -39,15 +39,10 @@ public class ShopMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if (current == null) return;
-				
-		switch(current.getType()) {
-
-			case ARROW:
-				MainMenu.openMenu(player);
-				break;
-
-			default:
-				break;
+		
+		switch (current.getType()) {
+			case ARROW -> MainMenu.openMenu(player);
+			default -> {}
 		}
 		
 	}

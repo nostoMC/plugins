@@ -17,8 +17,7 @@ public class CommandFly implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
-		if(sender instanceof Player) {
-			Player player = (Player) sender;
+		if (sender instanceof Player player) {
 			if(args.length == 0) {
 				if(list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);

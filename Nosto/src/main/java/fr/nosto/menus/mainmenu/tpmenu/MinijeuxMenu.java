@@ -40,15 +40,9 @@ public class MinijeuxMenu implements Listener {
 		ItemStack current = event.getCurrentItem();
 		if (current == null) return;
 
-		switch(current.getType()) {
-
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
-
-			default:
-				break;
-
+		switch (current.getType()) {
+			case ARROW -> TpMenu.openMenu(player);
+			default -> {}
 		}
 	}
 }

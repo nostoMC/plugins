@@ -48,23 +48,19 @@ public class EventMenu implements Listener {
 		ItemStack current = event.getCurrentItem();
 		if (current == null) return;
 		
-		switch(current.getType()) {
-
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
-	
-			case MUSIC_DISC_BLOCKS:
-				if(!player.hasPermission("server.nightclubAcces")) break;
+		switch (current.getType()) {
+			case ARROW -> TpMenu.openMenu(player);
+			
+			case MUSIC_DISC_BLOCKS -> {
+				if (!player.hasPermission("server.nightclubAcces")) break;
 				event.getView().close();
 				Location nostoClubSpawn = new Location(Bukkit.getWorld("nostoclub"), -5.5, 101, 219.5, 180, 0);
 				player.setGameMode(GameMode.ADVENTURE);
 				player.teleport(nostoClubSpawn);
 				player.teleport(nostoClubSpawn);
-				break;
+			}
 
-			default:
-				break;
+			default -> {}
 		}
 	}
 

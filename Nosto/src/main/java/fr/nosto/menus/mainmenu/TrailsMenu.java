@@ -99,16 +99,11 @@ public class TrailsMenu implements Listener {
 	}
 
 	private static ItemStack getItemFromEffect(CosmeticEffect effect) {
-		switch (effect) {
-			case FIREWORK_CAPE:
-				return Utils.createItem(Material.FIREWORK_ROCKET, "§fCape étincelante");
-			case FIRE_CROWN:
-				return Utils.createItem(Material.HONEYCOMB, "§6Couronne de feu");
-			case WITCH_CIRCLE:
-				return Utils.createItem(Material.END_CRYSTAL, "§5Cercle magique");
-			default:
-				return Utils.createItem(Material.BEDROCK, "null");
-		}
+		return switch (effect) {
+			case FIREWORK_CAPE -> Utils.createItem(Material.FIREWORK_ROCKET, "§fCape étincelante");
+			case FIRE_CROWN -> Utils.createItem(Material.HONEYCOMB, "§6Couronne de feu");
+			case WITCH_CIRCLE -> Utils.createItem(Material.END_CRYSTAL, "§5Cercle magique");
+		};
 	}
 	
 	@EventHandler

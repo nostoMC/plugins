@@ -28,8 +28,7 @@ public class CommandStaffChat implements CommandExecutor {
 
         StringBuilder builder = new StringBuilder("§c[StaffChat] §e");
         
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        if (sender instanceof Player player) {
             builder.append(player.getDisplayName());
         } else {
             builder.append("[Console]");

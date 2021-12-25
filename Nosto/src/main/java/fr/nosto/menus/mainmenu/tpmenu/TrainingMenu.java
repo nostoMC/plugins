@@ -39,14 +39,9 @@ public class TrainingMenu implements Listener {
 		if (current == null) return;
 		Player player = (Player) event.getWhoClicked();
 
-		switch(current.getType()) {
-
-			case ARROW:
-				TpMenu.openMenu(player);
-				break;
-
-			default:
-				break;
+		switch (current.getType()) {
+			case ARROW -> TpMenu.openMenu(player);
+			default -> {}
 		}
 	}
 

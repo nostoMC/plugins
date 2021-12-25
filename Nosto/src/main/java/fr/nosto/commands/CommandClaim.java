@@ -15,11 +15,9 @@ public class CommandClaim implements CommandExecutor
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args)
     {
-        if (sender instanceof Player)
-        {
-            Player player = (Player) sender;
-            
-            if(player.getWorld() == Bukkit.getWorld("survie")) {
+        if (sender instanceof Player player) {
+			
+			if(player.getWorld() == Bukkit.getWorld("survie")) {
             
             if(cmd.getName().equalsIgnoreCase("claim")) {
 

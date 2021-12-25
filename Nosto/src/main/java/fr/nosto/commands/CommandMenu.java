@@ -13,8 +13,7 @@ public class CommandMenu implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		if(sender instanceof Player) {
-			Player player = (Player) sender;
+		if (sender instanceof Player player) {
 			MainMenu.openMenu(player);
 		}
 		

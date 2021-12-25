@@ -36,8 +36,13 @@ dependencies {
     implementation 'net.dv8tion:JDA:4.4.0_350'
 }
 
+compileJava.options.encoding = 'UTF-8'
 
-def targetJavaVersion = 8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+def targetJavaVersion = 16
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
