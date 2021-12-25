@@ -1,6 +1,7 @@
 package fr.nostoNC;
 
 import fr.nostoNC.tasks.BottomLaser;
+import fr.nostoNC.tasks.ElevatorTask;
 import fr.nostoNC.tasks.GolemPass;
 import fr.nostoNC.tasks.effects.FloorSmokeEffect;
 import fr.nostoNC.tasks.effects.StrobeEffect;
@@ -16,6 +17,7 @@ public class Startup {
 		StrobeEffect.init(main);
 
 		GolemPass.init(main);
+		ElevatorTask.init(main);
 
 		BottomLaser.setup();
 		

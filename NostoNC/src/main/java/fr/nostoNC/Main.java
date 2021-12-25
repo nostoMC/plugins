@@ -3,6 +3,7 @@ package fr.nostoNC;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -49,7 +50,13 @@ public class Main extends JavaPlugin {
 
 			@Override
 			public void run() {
-				Main.defaultWorld = Bukkit.getWorld("nostoclub");
+				defaultWorld = Bukkit.getWorld("nostoclub");
+
+				if (defaultWorld == null) {
+					Bukkit.getLogger().log(Level.SEVERE, "Unable to get world \"nostoclub\"");
+					return;
+				}
+				
 				Startup.startup(main);
 			}
 		}.runTaskLater(this, 1);
