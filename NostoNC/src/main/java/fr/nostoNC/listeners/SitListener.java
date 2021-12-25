@@ -1,5 +1,6 @@
 package fr.nostoNC.listeners;
 
+import java.util.Collection;
 import java.util.Set;
 
 import org.bukkit.Location;
@@ -40,11 +41,15 @@ public class SitListener implements Listener {
         Block block = event.getClickedBlock();
         if (block == null) return;
         if (!block.getRelative(BlockFace.UP).isPassable()) return;
+        
+        Collection<Entity> nearbyEntities = block.getLocation().add(.5, .5, .5).getNearbyEntities(.5, .5, .5);
+        for (Entity entity : nearbyEntities) {
+            if (entity.getScoreboardTags().contains("clubSeat")) return;
+        }
 
         BlockData data = block.getBlockData();
 
-        if (data instanceof Stairs) {
-            Stairs stair = (Stairs) data;
+        if (data instanceof Stairs stair) {
 
             if (stair.isWaterlogged()) return;
             if (stair.getHalf() != Bisected.Half.BOTTOM) return;
@@ -52,40 +57,20 @@ public class SitListener implements Listener {
             Location loc = block.getLocation().add(.5, .3, .5);
 
             switch (stair.getShape()) {
-                case STRAIGHT:
-                    loc.setYaw(0);
-                    break;
-                case INNER_LEFT:
-                case OUTER_LEFT:
-                    loc.setYaw(-45);
-                    break;
-                case INNER_RIGHT:
-                case OUTER_RIGHT:
-                    loc.setYaw(45);
-                    break;
+                case STRAIGHT -> loc.setYaw(0);
+                case INNER_LEFT, OUTER_LEFT -> loc.setYaw(-45);
+                case INNER_RIGHT, OUTER_RIGHT -> loc.setYaw(45);
             }
-
             switch (stair.getFacing()) {
-                case EAST:
-                    loc.setYaw(loc.getYaw() + 90);
-                    break;
-                case SOUTH:
-                    loc.setYaw(loc.getYaw() + 180);
-                    break;
-                case WEST:
-                    loc.setYaw(loc.getYaw() + 270);
-                    break;
+                case EAST -> loc.setYaw(loc.getYaw() + 90);
+                case SOUTH -> loc.setYaw(loc.getYaw() + 180);
+                case WEST -> loc.setYaw(loc.getYaw() + 270);
             }
 
             loc.setPitch(0);
             loc.add(loc.getDirection().multiply(.2));
 
-            ArmorStand chair = (ArmorStand) Main.defaultWorld.spawnEntity(loc, EntityType.ARMOR_STAND);
-
-            chair.setVisible(false);
-            chair.setMarker(true);
-            chair.addScoreboardTag("clubSeat");
-            chair.addScoreboardTag("lift_1.2");
+            ArmorStand chair = createArmorStand(loc);
             chair.addPassenger(player);
         }
 
@@ -137,12 +122,13 @@ public class SitListener implements Listener {
                     if (tags.contains("lift_0.6")) player.teleport(player.getLocation().add(0, 0.6, 0));
                     if (tags.contains("lift_1.2")) player.teleport(player.getLocation().add(0, 1.2, 0));
                 }
-            }.runTask(Main.getPlugin(Main.class));
+            }.runTask(Main.instance);
         }
 
     }
 
     private static AreaEffectCloud createArea(Location loc) {
+        // l'area est summon en 0 0 pour qu'on ne voie pas les particules qu'elle émet lors du spawn
         Location spawnLoc = new Location(Main.defaultWorld, 0, 0, 0);
         AreaEffectCloud cloud = (AreaEffectCloud) Main.defaultWorld.spawnEntity(spawnLoc, EntityType.AREA_EFFECT_CLOUD);
 
@@ -155,5 +141,20 @@ public class SitListener implements Listener {
         cloud.teleport(loc);
 
         return cloud;
+    }
+
+    private static ArmorStand createArmorStand(Location loc) {
+        // l'armor stand est summon en 0 0 pour qu'on ne le voie pas lors du spawn
+        Location spawnLoc = new Location(Main.defaultWorld, 0, 0, 0);
+        ArmorStand armorStand = (ArmorStand) Main.defaultWorld.spawnEntity(spawnLoc, EntityType.ARMOR_STAND);
+
+        armorStand.setVisible(false);
+        armorStand.setMarker(true);
+        armorStand.addScoreboardTag("clubSeat");
+        armorStand.addScoreboardTag("lift_1.2");
+
+        armorStand.teleport(loc);
+
+        return armorStand;
     }
 }
