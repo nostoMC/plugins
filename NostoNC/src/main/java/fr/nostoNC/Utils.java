@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -45,6 +46,10 @@ public class Utils {
                 inv.setItem(i, clearSlot);
             }
         }
+    }
+
+    public static boolean isInClub(Player player) {
+        return player.getWorld().getName().equals(Main.defaultWorld.getName());
     }
 
 }
