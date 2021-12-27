@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabNightclub;
+import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
@@ -45,7 +46,9 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
+
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
+		Bukkit.getPluginManager().registerEvents(new DamageListener(), this);
 
 		Main main = this;
 		new BukkitRunnable() {
