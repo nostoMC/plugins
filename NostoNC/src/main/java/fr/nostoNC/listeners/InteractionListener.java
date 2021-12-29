@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -45,10 +46,16 @@ public class InteractionListener implements Listener {
         Entity damager = event.getDamager();
         if (!(damager instanceof Player player)) return;
 
-        if(Utils.isInClub(player)) {
-            if(!player.hasPermission("nosto.nightclub.interact")) event.setCancelled(true);
-            if(event.getEntity() instanceof ArmorStand) event.setCancelled(true);
+        if (Utils.isInClub(player)) {
+            if (!player.hasPermission("nosto.nightclub.interact")) event.setCancelled(true);
+            else if (event.getEntity() instanceof ArmorStand) event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        if (Utils.isInClub(player) && !player.hasPermission("nosto.nightclub.interact")) event.setCancelled(true);
     }
 
     @EventHandler
