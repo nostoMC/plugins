@@ -40,7 +40,7 @@ public class GolemPass {
 						player.setVelocity(new Vector(-.8, .5, .2));
 					}
 
-					else if (staffBox.contains(loc.toVector()) && !player.hasPermission("nosto.nightclub.staff")) {
+					else if (staffBox.contains(loc.toVector()) && !player.hasPermission("nosto.nightclub.artist")) {
 						playSoundAndMessage(player, "\n§c[Golem] §6Cette zone est réservée aux artistes et aux membres du staff!");
 						player.setVelocity(new Vector(.8, .5, .3));
 					}

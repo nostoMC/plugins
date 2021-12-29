@@ -28,9 +28,15 @@ public class InteractionListener implements Listener {
             Block block = event.getClickedBlock();
             if (block != null) {
                 Material type = block.getType();
-                if(type == Material.OAK_WALL_SIGN || type == Material.SPRUCE_DOOR
-                        || type == Material.STONE_BUTTON || type == Material.POLISHED_BLACKSTONE_BUTTON)
+
+                if (type == Material.OAK_WALL_SIGN || type == Material.SPRUCE_DOOR
+                        || type == Material.STONE_BUTTON || type == Material.POLISHED_BLACKSTONE_BUTTON
+                        || type == Material.POLISHED_BLACKSTONE_PRESSURE_PLATE) {
                     event.setCancelled(false);
+                }
+                if (player.hasPermission("nosto.nightclub.staff") && type == Material.DARK_OAK_DOOR) {
+                    event.setCancelled(false);
+                }
             }
         }
     }

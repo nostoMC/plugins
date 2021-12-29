@@ -15,6 +15,7 @@ import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.customDrinks.DrinkListener;
 import fr.nostoNC.commands.CommandDrink;
 import fr.nostoNC.commands.TabDrink;
+import fr.nostoNC.listeners.BarAccessListener;
 import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
@@ -47,6 +48,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
+		Bukkit.getPluginManager().registerEvents(new BarAccessListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DrinkListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
