@@ -1,20 +1,18 @@
 package fr.nostoNC;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nostoNC.commands.CommandDrink;
 import fr.nostoNC.commands.CommandNightclub;
+import fr.nostoNC.commands.TabDrink;
 import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.customDrinks.DrinkListener;
-import fr.nostoNC.commands.CommandDrink;
-import fr.nostoNC.commands.TabDrink;
 import fr.nostoNC.listeners.BarAccessListener;
 import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
@@ -26,9 +24,7 @@ import fr.nostoNC.menus.EffectsMenu;
 
 public class Main extends JavaPlugin {
 	
-	public static ArrayList<Player> dj = new ArrayList<>();
-
-	public static HashMap<String, Boolean> activeEffects = new HashMap<>();
+	public static final HashMap<String, Boolean> activeEffects = new HashMap<>();
 
 	public static World defaultWorld;
 	
@@ -69,12 +65,6 @@ public class Main extends JavaPlugin {
 				Startup.startup(main);
 			}
 		}.runTaskLater(this, 1);
-		
-		//fix
-		/*
-        WorldData worldData = ((CraftWorld) w).getHandle().getWorldData();
-        Reflection.getField(worldData.getClass(), long.class, 0).set(worldData, 0);
-        */
 		
 	}
 	

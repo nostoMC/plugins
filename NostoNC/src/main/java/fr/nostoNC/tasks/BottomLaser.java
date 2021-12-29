@@ -21,12 +21,12 @@ public class BottomLaser {
 	public static Boolean strobe = false;
 	public static Boolean alternance = false;
 	
-	public static List<Laser> all = new ArrayList<>();
+	public static final List<Laser> all = new ArrayList<>();
 	
-	public static Set<Laser> group1 = new HashSet<>();
-	public static Set<Laser> group2 = new HashSet<>();
-	public static Set<Laser> group3 = new HashSet<>();
-	public static Set<Laser> group4 = new HashSet<>();
+	public static final Set<Laser> group1 = new HashSet<>();
+	public static final Set<Laser> group2 = new HashSet<>();
+	public static final Set<Laser> group3 = new HashSet<>();
+	public static final Set<Laser> group4 = new HashSet<>();
 	
 	public static void setup() {
 		
