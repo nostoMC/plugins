@@ -11,8 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import fr.nosto.Utils;
-import fr.nosto.menus.*;
-import fr.nosto.menus.mainmenu.tpmenu.EventMenu;
+import fr.nosto.menus.MainMenu;
 import fr.nosto.menus.mainmenu.tpmenu.MinijeuxMenu;
 import fr.nosto.menus.mainmenu.tpmenu.MondeOuvertMenu;
 import fr.nosto.menus.mainmenu.tpmenu.TrainingMenu;
@@ -25,11 +24,11 @@ public class TpMenu implements Listener {
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
-		inv.setItem(10, Utils.createItem(Material.GRASS_BLOCK , "§2§lMonde ouvert"));
-		inv.setItem(12, Utils.createItem(Material.WOODEN_SWORD , "§c§lTraining"));
-		inv.setItem(14, Utils.createItem(Material.FIREWORK_ROCKET , "§e§lEvents"));
-		inv.setItem(16, Utils.createItem(Material.FISHING_ROD , "§6§lMini jeux"));
-		inv.setItem(22, Utils.createItem(Material.ARROW , "§6§lRetour"));
+		inv.setItem(10, Utils.createItem(Material.GRASS_BLOCK, "§2§lMonde ouvert"));
+		inv.setItem(12, Utils.createItem(Material.FISHING_ROD, "§6§lMini jeux"));
+		inv.setItem(14, Utils.createItem(Material.WOODEN_SWORD, "§c§lTraining"));
+		inv.setItem(16, Utils.createItem(Material.FIREWORK_ROCKET, "§e§lEvent", "§8Aucun event en cours"));
+		inv.setItem(22, Utils.createItem(Material.ARROW, "§6§lRetour"));
 		
 		Utils.fillEmptyItem(inv);
 	
@@ -51,7 +50,6 @@ public class TpMenu implements Listener {
 			case GRASS_BLOCK -> MondeOuvertMenu.openMenu(player);
 			case FISHING_ROD -> MinijeuxMenu.openMenu(player);
 			case WOODEN_SWORD -> TrainingMenu.openMenu(player);
-			case FIREWORK_ROCKET -> EventMenu.openMenu(player);
 			default -> {}
 		}
 	}

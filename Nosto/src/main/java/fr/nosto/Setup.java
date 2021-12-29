@@ -8,11 +8,15 @@ import fr.nosto.menus.MainMenu;
 import fr.nosto.menus.mainmenu.ShopMenu;
 import fr.nosto.menus.mainmenu.TpMenu;
 import fr.nosto.menus.mainmenu.TrailsMenu;
-import fr.nosto.menus.mainmenu.tpmenu.EventMenu;
 import fr.nosto.menus.mainmenu.tpmenu.MinijeuxMenu;
 import fr.nosto.menus.mainmenu.tpmenu.MondeOuvertMenu;
 import fr.nosto.menus.mainmenu.tpmenu.TrainingMenu;
-import fr.nosto.tasks.*;
+import fr.nosto.tasks.CosmeticEffectTask;
+import fr.nosto.tasks.MainLobbyJumpPads;
+import fr.nosto.tasks.MainLobbyParticles;
+import fr.nosto.tasks.PluginListTask;
+import fr.nosto.tasks.RandomBroadcastTask;
+import fr.nosto.tasks.VanishLoop;
 
 public class Setup {
 
@@ -43,7 +47,6 @@ public class Setup {
 			Bukkit.getPluginManager().registerEvents(new TpMenu(), main);
 				Bukkit.getPluginManager().registerEvents(new MondeOuvertMenu(), main);
 				Bukkit.getPluginManager().registerEvents(new TrainingMenu(), main);
-				Bukkit.getPluginManager().registerEvents(new EventMenu(), main);
 				Bukkit.getPluginManager().registerEvents(new MinijeuxMenu(), main);
 
 		// Tasks
