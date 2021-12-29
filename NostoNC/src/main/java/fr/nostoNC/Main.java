@@ -2,7 +2,6 @@ package fr.nostoNC;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -13,6 +12,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabNightclub;
+import fr.nostoNC.customDrinks.DrinkListener;
+import fr.nostoNC.commands.CommandDrink;
+import fr.nostoNC.commands.TabDrink;
 import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
@@ -36,8 +38,7 @@ public class Main extends JavaPlugin {
 		
 		instance = this;
 		
-		Objects.requireNonNull(getCommand("nightclub")).setExecutor(new CommandNightclub());
-		Objects.requireNonNull(getCommand("nightclub")).setTabCompleter(new TabNightclub());
+		registerCommands();
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
 		Bukkit.getPluginManager().registerEvents(new BottomLaserMenu(), this);
@@ -46,6 +47,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
+		Bukkit.getPluginManager().registerEvents(new DrinkListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DamageListener(), this);
@@ -74,6 +76,14 @@ public class Main extends JavaPlugin {
 		
 	}
 	
+	@SuppressWarnings("ConstantConditions")
+	private void registerCommands() {
+		getCommand("nightclub").setExecutor(new CommandNightclub());
+			getCommand("nightclub").setTabCompleter(new TabNightclub());
+		getCommand("getdrink").setExecutor(new CommandDrink());
+			getCommand("getdrink").setTabCompleter(new TabDrink());
+	}
+
 	@Override
 	public void onDisable() {
 	}

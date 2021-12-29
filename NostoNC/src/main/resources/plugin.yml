@@ -6,3 +6,7 @@ authors: [djredstone, itsRed_v2]
 commands:
   nightclub:
     description: Nightclub Command
+  getdrink:
+    description: Permet de se give les différentes boissons du club
+    usage: /getdrink <nom>
+    permission: nosto.nightclub.getdrink
