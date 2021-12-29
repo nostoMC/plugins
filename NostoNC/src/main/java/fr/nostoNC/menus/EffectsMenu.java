@@ -105,17 +105,17 @@ public class EffectsMenu implements Listener {
 
 				Set<Firework> setOfFW = new HashSet<>();
 
-				Firework fw1 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 11.5, 65.7, 13.5), EntityType.FIREWORK);
+				Firework fw1 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 4.5, 103.4, 148.5), EntityType.FIREWORK);
 				setOfFW.add(fw1);
-				Firework fw2 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 7.5, 65.7, 14.5), EntityType.FIREWORK);
+				Firework fw2 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 2.5, 103.4, 149.5), EntityType.FIREWORK);
 				setOfFW.add(fw2);
-				Firework fw3 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 3.5, 65.7, 15.5), EntityType.FIREWORK);
+				Firework fw3 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -0.5, 103.4, 150.5), EntityType.FIREWORK);
 				setOfFW.add(fw3);
-				Firework fw4 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -2.5, 65.7, 15.5), EntityType.FIREWORK);
+				Firework fw4 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -3.5, 103.4, 150.5), EntityType.FIREWORK);
 				setOfFW.add(fw4);
-				Firework fw5 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -6.5, 65.7, 14.5), EntityType.FIREWORK);
+				Firework fw5 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -6.5, 103.4, 149.5), EntityType.FIREWORK);
 				setOfFW.add(fw5);
-				Firework fw6 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -10.5, 65.7, 13.5), EntityType.FIREWORK);
+				Firework fw6 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -8.5, 103.4,  148.5), EntityType.FIREWORK);
 				setOfFW.add(fw6);
 	            FireworkMeta fwm = fw1.getFireworkMeta();
 

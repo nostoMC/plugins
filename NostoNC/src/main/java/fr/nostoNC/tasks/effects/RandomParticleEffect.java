@@ -19,7 +19,7 @@ public class RandomParticleEffect {
 			@Override
 			public void run() {
 
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub run summon minecraft:bat 0 71 15 {ActiveEffects:[{Id:14,Amplifier:0,Duration:2147483647,ShowParticles:0b}]}");
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nostoclub run summon minecraft:bat -2.0 107.99 146.0 {ActiveEffects:[{Id:14,Amplifier:0,Duration:2147483647,ShowParticles:0b}]}");
 				i++;
 				if(i == 20) this.cancel();
 				
@@ -49,7 +49,8 @@ public class RandomParticleEffect {
 			@Override
 			public void run() {
 
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nightclub positioned 0 70 10 run kill @e[type=minecraft:bat,distance=..200]");
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nostoclub positioned -2 107 146 at @e[type=minecraft:bat,distance=..200] run summon firework_rocket ~ ~ ~ {LifeTime:0,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Explosions:[{Type:0,Flicker:1,Trail:1,Colors:[I;11743532,14602026,15435844],FadeColors:[I;11743532,14602026,15435844]}],Flight:1}}}}");
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:nostoclub positioned -2 107 146 run kill @e[type=minecraft:bat,distance=..200]");
 				
 			}
 		}.runTaskLater(main, 200);
