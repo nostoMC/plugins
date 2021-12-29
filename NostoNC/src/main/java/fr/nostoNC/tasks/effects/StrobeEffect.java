@@ -17,6 +17,8 @@ public class StrobeEffect {
 
 	public static int timing = 5;
 
+	public static boolean activated;
+
 	public static void init(Main main) {
 
 		if (inited) return;
@@ -39,6 +41,8 @@ public class StrobeEffect {
 
 					if (Main.activeEffects.get("strobe") != null && Main.activeEffects.get("strobe")) {
 
+						activated = true;
+
 						if (flash) {
 
 							flashON();
@@ -51,8 +55,9 @@ public class StrobeEffect {
 
 						}
 
-					} else {
-
+					} else if (activated) {
+						activated = false;
+						
 						reset();
 						setLightsMaterial(Material.STONE);
 
