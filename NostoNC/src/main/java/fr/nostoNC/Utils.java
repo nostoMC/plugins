@@ -10,6 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
 import net.kyori.adventure.text.Component;
 
@@ -50,6 +51,25 @@ public class Utils {
 
     public static boolean isInClub(Entity entity) {
         return entity.getWorld().getName().equals(Main.defaultWorld.getName());
+    }
+
+    public static Vector getBPoint(Vector pointA, double yaw, double pitch, double distance) {
+
+        yaw *= 2 * Math.PI / 360 * -1;
+        pitch *= 2 * Math.PI / 360 * -1;
+
+        double multiplicator = Math.cos(pitch);
+
+        Vector pointB = new Vector();
+
+        pointB.setX(Math.sin(yaw) * multiplicator);
+        pointB.setZ(Math.cos(yaw) * multiplicator);
+        pointB.setY(Math.sin(pitch));
+
+        pointB.multiply(distance);
+        pointB.add(pointA);
+
+        return pointB;
     }
 
 }
