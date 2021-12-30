@@ -1,11 +1,15 @@
 package fr.nostoNC.menus;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -66,77 +70,68 @@ public class EffectsMenu implements Listener {
 	public void onClick(InventoryClickEvent event) {
 
 		ItemStack current = event.getCurrentItem();
-		Player player = (Player) event.getWhoClicked();
-
 		if(current == null) return;
+
+		Player player = (Player) event.getWhoClicked();
 
 		if(event.getView().getTitle().equalsIgnoreCase("§2§lGestioraire des effets")) {
 			event.setCancelled(true);
 
-			switch(current.getType()) {
+			if (event.getClick() == ClickType.DOUBLE_CLICK) return;
 
-			case STRING:
-				checkActiveEffectItem(player, "floorSmoke");
-				break;
+			switch (current.getType()) {
+				case STRING -> checkActiveEffectItem(player, "floorSmoke");
 
-			case CLOCK:
-				if (event.getClick() == ClickType.LEFT) {
-					if (StrobeEffect.timing >= 20) {
-						player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
-						break;
+				case CLOCK -> {
+					if (event.getClick() == ClickType.LEFT) {
+						if (StrobeEffect.timing >= 20) {
+							player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+							break;
+						}
+						StrobeEffect.timing++;
 					}
-					StrobeEffect.timing++;
-				}
-				else if (event.getClick() == ClickType.RIGHT) {
-					if (StrobeEffect.timing <= 1) {
-						player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
-						break;
+					else if (event.getClick() == ClickType.RIGHT) {
+						if (StrobeEffect.timing <= 1) {
+							player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+							break;
+						}
+						StrobeEffect.timing--;
 					}
-					StrobeEffect.timing--;
+					if (event.getClick() != ClickType.DOUBLE_CLICK) openMenu(player);
 				}
-				if (event.getClick() != ClickType.DOUBLE_CLICK) openMenu(player);
-				break;
 
-			case REDSTONE_LAMP:
-				checkActiveEffectItem(player, "strobe");
-				break;
+				case REDSTONE_LAMP -> checkActiveEffectItem(player, "strobe");
 
-			case FIREWORK_ROCKET:
+				case FIREWORK_ROCKET -> {
+					List<Firework> fireworks = new ArrayList<>();
 
-				Set<Firework> setOfFW = new HashSet<>();
+					fireworks.add((Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 4.5, 103.4, 148.5), EntityType.FIREWORK));
+					fireworks.add((Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 2.5, 103.4, 149.5), EntityType.FIREWORK));
+					fireworks.add((Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -0.5, 103.4, 150.5), EntityType.FIREWORK));
+					fireworks.add((Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -3.5, 103.4, 150.5), EntityType.FIREWORK));
+					fireworks.add((Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -6.5, 103.4, 149.5), EntityType.FIREWORK));
+					fireworks.add((Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -8.5, 103.4, 148.5), EntityType.FIREWORK));
 
-				Firework fw1 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 4.5, 103.4, 148.5), EntityType.FIREWORK);
-				setOfFW.add(fw1);
-				Firework fw2 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, 2.5, 103.4, 149.5), EntityType.FIREWORK);
-				setOfFW.add(fw2);
-				Firework fw3 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -0.5, 103.4, 150.5), EntityType.FIREWORK);
-				setOfFW.add(fw3);
-				Firework fw4 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -3.5, 103.4, 150.5), EntityType.FIREWORK);
-				setOfFW.add(fw4);
-				Firework fw5 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -6.5, 103.4, 149.5), EntityType.FIREWORK);
-				setOfFW.add(fw5);
-				Firework fw6 = (Firework) Main.defaultWorld.spawnEntity(new Location(Main.defaultWorld, -8.5, 103.4,  148.5), EntityType.FIREWORK);
-				setOfFW.add(fw6);
-	            FireworkMeta fwm = fw1.getFireworkMeta();
+					FireworkMeta fwm = fireworks.get(0).getFireworkMeta();
 
-	            fwm.setPower(2);
-	            fwm.addEffect(FireworkEffect.builder().withColor(Color.WHITE).with(Type.BURST).flicker(true).trail(true).build());
+					fwm.setPower(2);
+					fwm.addEffect(FireworkEffect.builder()
+							.withColor(Color.WHITE)
+							.withFade(Color.AQUA, Color.ORANGE)
+							.with(Type.BURST)
+							.flicker(true).trail(true)
+							.build());
 
-	            for(Firework fw : setOfFW) {
-	            	fw.setVelocity(new Vector(0, 1, -0.2));
-	            	fw.setFireworkMeta(fwm);
-	            	fw.detonate();
-	            }
+					for (Firework fw : fireworks) {
+						fw.setVelocity(new Vector(0, 1, -0.2));
+						fw.setFireworkMeta(fwm);
+						fw.detonate();
+					}
+				}
 
-				break;
+				case PUMPKIN_SEEDS -> new RandomParticleEffect(Main.instance);
 
-			case PUMPKIN_SEEDS:
-				new RandomParticleEffect(Main.instance);
-				break;
-
-			default:
-				break;
-
+				default -> {}
 			}
 		}
 	}
