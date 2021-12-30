@@ -3,8 +3,8 @@ package fr.nostoNC.listeners;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -24,6 +24,8 @@ public class InteractionListener implements Listener {
         if(Utils.isInClub(player)) {
 
             if(!player.hasPermission("nosto.nightclub.interact")) event.setCancelled(true);
+
+            event.setUseItemInHand(Event.Result.DEFAULT);
 
             Block block = event.getClickedBlock();
             if (block != null) {
@@ -49,8 +51,7 @@ public class InteractionListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        Entity damager = event.getDamager();
-        if (!(damager instanceof Player player)) return;
+        if (!(event.getDamager() instanceof Player player)) return;
 
         if (Utils.isInClub(player)) {
             if (!player.hasPermission("nosto.nightclub.interact")) event.setCancelled(true);

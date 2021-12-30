@@ -10,6 +10,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
 
 public class DrinkListener implements Listener {
 
@@ -17,6 +18,7 @@ public class DrinkListener implements Listener {
     public void onDrink(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
 
+        if (!Utils.isInClub(player)) return;
         if (!(event.getItem().getItemMeta() instanceof PotionMeta meta)) return;
 
         PersistentDataContainer data = meta.getPersistentDataContainer();
