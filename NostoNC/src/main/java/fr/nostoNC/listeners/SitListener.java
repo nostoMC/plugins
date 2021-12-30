@@ -22,6 +22,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class SitListener implements Listener {
@@ -36,7 +37,7 @@ public class SitListener implements Listener {
 
         Player player = event.getPlayer();
         if (player.isSneaking()) return;
-        if (player.getWorld() != Main.defaultWorld) return;
+        if (!Utils.isInClub(player)) return;
 
         Block block = event.getClickedBlock();
         if (block == null) return;

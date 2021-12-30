@@ -48,8 +48,8 @@ public class EffectsMenu implements Listener {
 
 		inv.setItem(18, Utils.createItem(Material.CLOCK, "§e§lTiming",
 				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
-				"§8Click gauche: §a+1",
-				"§8Click droit: §c-1"));
+				"§8Click droit: §a+1",
+				"§8Click gauche: §c-1"));
 		if (Main.activeEffects.get("strobe") != null && Main.activeEffects.get("strobe")) {
 			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§a§lon"));
 		} else {
@@ -83,14 +83,14 @@ public class EffectsMenu implements Listener {
 				case STRING -> checkActiveEffectItem(player, "floorSmoke");
 
 				case CLOCK -> {
-					if (event.getClick() == ClickType.LEFT) {
+					if (event.getClick() == ClickType.RIGHT) {
 						if (StrobeEffect.timing >= 20) {
 							player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
 							break;
 						}
 						StrobeEffect.timing++;
 					}
-					else if (event.getClick() == ClickType.RIGHT) {
+					else if (event.getClick() == ClickType.LEFT) {
 						if (StrobeEffect.timing <= 1) {
 							player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
 							break;
