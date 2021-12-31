@@ -7,7 +7,6 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -128,8 +127,6 @@ public class ElevatorTask {
     }
 
     private static void startElevator(Player player, @NotNull Elevator startingElevator) {
-        if (startingElevator == Elevator.LOBBY) player.setResourcePack("https://www.dropbox.com/sh/hwhqynt5xvhvyj1/AAAki-6eHwpMLNlsMS6p4ySfa?dl=1");
-
         Location playerLoc = player.getLocation();
 
         double x = LOBBY_ELEVATOR_CORNER.getX() + CLUB_ELEVATOR_CORNER.getX() - playerLoc.getX();
@@ -152,6 +149,8 @@ public class ElevatorTask {
         player.teleport(destination); // teleporting 2 times to prevent multiverse-inventories from changing destination
         player.teleport(destination);
         
+        if (startingElevator == Elevator.LOBBY) player.setResourcePack("https://www.dropbox.com/sh/hwhqynt5xvhvyj1/AAAki-6eHwpMLNlsMS6p4ySfa?dl=1");
+
         BoundingBox destionationElevatorBox;
         Set<UUID> inStartingElevator;
         Set<UUID> inDestinationElevator;
@@ -182,12 +181,5 @@ public class ElevatorTask {
             }
         }.runTaskTimer(main, 1, 1);
 
-        new BukkitRunnable() {
-
-            @Override
-            public void run() {
-                player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 100, 1);
-            }
-        }.runTaskLater(main, 60);
     }
 }
