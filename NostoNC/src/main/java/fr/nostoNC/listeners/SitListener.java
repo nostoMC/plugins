@@ -146,7 +146,7 @@ public class SitListener implements Listener {
 
     private static ArmorStand createArmorStand(Location loc) {
         // l'armor stand est summon en 0 0 pour qu'on ne le voie pas lors du spawn
-        Location spawnLoc = new Location(Main.defaultWorld, 0, 0, 0);
+        Location spawnLoc = new Location(Main.defaultWorld, 0, 0, 0, loc.getYaw(), loc.getPitch());
         ArmorStand armorStand = (ArmorStand) Main.defaultWorld.spawnEntity(spawnLoc, EntityType.ARMOR_STAND);
 
         armorStand.setVisible(false);
