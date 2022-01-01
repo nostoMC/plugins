@@ -5,10 +5,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.nostoNC.customDrinks.Drink;
+import fr.nostoNC.customConsumables.Consumable;
+import fr.nostoNC.customConsumables.Products;
 import org.jetbrains.annotations.NotNull;
 
-public class CommandDrink implements CommandExecutor {
+public class CommandFood implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -17,16 +18,14 @@ public class CommandDrink implements CommandExecutor {
 
         if (args.length == 0) return false;
 
-        Drink drink;
+        Consumable consumable = Products.products.get(args[0]);
 
-        try {
-            drink = Drink.valueOf(args[0].toUpperCase());
-        } catch (IllegalArgumentException e) {
-            player.sendMessage("§cAucune boisson ne correspond à §6" + args[0]);
+        if (consumable == null) {
+            player.sendMessage("§cAucun consommable ne correspond à §6" + args[0]);
             return true;
         }
 
-        player.getInventory().addItem(drink.getPotion());
+        player.getInventory().addItem(consumable.getItem());
         
         return true;
     }

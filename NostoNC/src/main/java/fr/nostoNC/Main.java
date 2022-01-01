@@ -8,11 +8,11 @@ import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.nostoNC.commands.CommandDrink;
+import fr.nostoNC.commands.CommandFood;
 import fr.nostoNC.commands.CommandNightclub;
-import fr.nostoNC.commands.TabDrink;
+import fr.nostoNC.commands.TabFood;
 import fr.nostoNC.commands.TabNightclub;
-import fr.nostoNC.customDrinks.DrinkListener;
+import fr.nostoNC.customConsumables.ConsumeListener;
 import fr.nostoNC.listeners.BarAccessListener;
 import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
 
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
 		Bukkit.getPluginManager().registerEvents(new BarAccessListener(), this);
-		Bukkit.getPluginManager().registerEvents(new DrinkListener(), this);
+		Bukkit.getPluginManager().registerEvents(new ConsumeListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DamageListener(), this);
@@ -72,8 +72,8 @@ public class Main extends JavaPlugin {
 	private void registerCommands() {
 		getCommand("nightclub").setExecutor(new CommandNightclub());
 			getCommand("nightclub").setTabCompleter(new TabNightclub());
-		getCommand("getdrink").setExecutor(new CommandDrink());
-			getCommand("getdrink").setTabCompleter(new TabDrink());
+		getCommand("getfood").setExecutor(new CommandFood());
+			getCommand("getfood").setTabCompleter(new TabFood());
 	}
 
 	@Override
