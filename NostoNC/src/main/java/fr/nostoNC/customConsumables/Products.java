@@ -5,11 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Material;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
+import fr.nostoNC.customConsumables.types.DrinkConsumable;
+import fr.nostoNC.customConsumables.types.GappleConsumable;
+import fr.nostoNC.customConsumables.types.ItemConsumable;
 
 public class Products {
 
@@ -18,12 +23,12 @@ public class Products {
     static {
         // **** DRINKS ****
 
-        products.put("calvados", new Drink("Calvados", 0x943f00, player -> {
+        products.put("calvados", new DrinkConsumable("Calvados", 0x943f00, player -> {
             PotionEffect effect = new PotionEffect(PotionEffectType.CONFUSION, 160, 0, false, false, false);
             player.addPotionEffect(effect);
         }));
 
-        products.put("gin", new Drink("Gin", 0xf0e4a3, player -> {
+        products.put("gin", new DrinkConsumable("Gin", 0xf0e4a3, player -> {
             int duration = ((int) (Math.random() * 20)) + 10; // durée random entre 10 et 30 sec
             duration *= 20; // conversion: secondes => ticks
 
@@ -33,7 +38,7 @@ public class Products {
             player.addPotionEffects(List.of(speed, blindness));
         }));
 
-        products.put("jet27", new Drink("Jet 27", 0xe9e00, player -> {
+        products.put("jet27", new DrinkConsumable("Jet 27", 0xe9e00, player -> {
             int duration = ((int) (Math.random() * 20)) + 10; // durée random entre 10 et 30 sec
             duration *= 20; // conversion: secondes => ticks
 
@@ -43,7 +48,7 @@ public class Products {
             player.addPotionEffects(List.of(speed, blindness));
         }));
 
-        products.put("rhum", new Drink("Rhum", 0xa8905d, player -> {
+        products.put("rhum", new DrinkConsumable("Rhum", 0xa8905d, player -> {
             int duration = 300; // 15 sec
 
             PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, 1, false, false, false);
@@ -52,7 +57,7 @@ public class Products {
             player.addPotionEffects(List.of(slowness, blindness));
         }));
 
-        products.put("vodka", new Drink("Vodka", 0xffffff, player -> {
+        products.put("vodka", new DrinkConsumable("Vodka", 0xffffff, player -> {
             int buffDuration = 800; // 40 sec
             List<PotionEffect> buffs = new ArrayList<>();
 
@@ -92,10 +97,15 @@ public class Products {
             }.runTaskTimer(Main.instance, 0, periodTime);
         }));
 
+        // **** GAPPLE FOOD ****
+
+        products.put("menthe", new GappleConsumable("Menthe", "menthe", 1, player -> {}));
+        products.put("double", new GappleConsumable("Double menthe" ,"double", 2, player -> {}));
+        products.put("bicarbonate", new GappleConsumable("Bicarbonate de soude", "bicarbonate", 3, player -> {}));
+
         // **** FOOD ****
 
-        products.put("menthe", new Food("Menthe", "menthe", 1, player -> {}));
-        products.put("double", new Food("Double menthe" ,"double", 2, player -> {}));
-        products.put("bicarbonate", new Food("Bicarbonate de soude", "bicarbonate", 3, player -> {}));
+        products.put("cookie", new ItemConsumable(Utils.createItem(Material.COOKIE, "§rCookie"), "cookie", null));
+        products.put("honey", new ItemConsumable(Utils.createItem(Material.HONEY_BOTTLE, "§rJus d'orange"), "honey", null));
     }
 }

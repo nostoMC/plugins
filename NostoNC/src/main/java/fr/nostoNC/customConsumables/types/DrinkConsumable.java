@@ -1,4 +1,4 @@
-package fr.nostoNC.customConsumables;
+package fr.nostoNC.customConsumables.types;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -11,13 +11,15 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.customConsumables.Consumable;
+import fr.nostoNC.customConsumables.EffectRunnable;
 
-public class Drink implements Consumable {
+public class DrinkConsumable implements Consumable {
 
     private final ItemStack potion;
     private final EffectRunnable effectRunnable;
 
-    public Drink(String drinkName, int color, EffectRunnable effectRunnable) {
+    public DrinkConsumable(String drinkName, int color, EffectRunnable effectRunnable) {
         this.effectRunnable = effectRunnable;
 
         potion = new ItemStack(Material.POTION);

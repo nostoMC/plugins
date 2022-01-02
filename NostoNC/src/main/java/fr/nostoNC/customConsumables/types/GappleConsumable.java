@@ -1,4 +1,4 @@
-package fr.nostoNC.customConsumables;
+package fr.nostoNC.customConsumables.types;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -9,13 +9,15 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.customConsumables.Consumable;
+import fr.nostoNC.customConsumables.EffectRunnable;
 
-public class Food implements Consumable {
+public class GappleConsumable implements Consumable {
 
     private final ItemStack item;
     private final EffectRunnable effectRunnable;
 
-    public Food(String foodName, String id, int customModelData, EffectRunnable effectRunnable) {
+    public GappleConsumable(String foodName, String id, int customModelData, EffectRunnable effectRunnable) {
         this.effectRunnable = effectRunnable;
 
         item = new ItemStack(Material.GOLDEN_APPLE);
