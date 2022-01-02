@@ -14,11 +14,13 @@ import fr.nostoNC.commands.TabFood;
 import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.customConsumables.ConsumeListener;
 import fr.nostoNC.listeners.BarAccessListener;
+import fr.nostoNC.listeners.BarMenuListener;
 import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
 import fr.nostoNC.listeners.SitListener;
+import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
 
@@ -39,6 +41,7 @@ public class Main extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
 		Bukkit.getPluginManager().registerEvents(new BottomLaserMenu(), this);
+		Bukkit.getPluginManager().registerEvents(new BarMenu(), this);
 		
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
@@ -46,6 +49,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
 		Bukkit.getPluginManager().registerEvents(new BarAccessListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ConsumeListener(), this);
+		Bukkit.getPluginManager().registerEvents(new BarMenuListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DamageListener(), this);

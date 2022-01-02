@@ -16,6 +16,13 @@ import net.kyori.adventure.text.Component;
 
 public class Utils {
 
+    public static final ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+    static {
+        ItemMeta clearSlotMeta = clearSlot.getItemMeta();
+        clearSlotMeta.displayName(Component.empty());
+        clearSlot.setItemMeta(clearSlotMeta);
+    }
+
     public static ItemStack createItem(Material material, String name, String... lore) {
 
         ItemStack it = new ItemStack((material));
@@ -36,12 +43,6 @@ public class Utils {
     }
 
     public static void fillEmptyItem(Inventory inv) {
-
-        ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-        ItemMeta clearSlotMeta = clearSlot.getItemMeta();
-        clearSlotMeta.displayName(Component.empty());
-        clearSlot.setItemMeta(clearSlotMeta);
-
         for(int i = 0; i < inv.getSize(); i++) {
             if(inv.getItem(i) == null) {
                 inv.setItem(i, clearSlot);
