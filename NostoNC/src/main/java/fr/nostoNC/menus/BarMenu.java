@@ -15,7 +15,9 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nostoNC.Main;
 import fr.nostoNC.Utils;
 import fr.nostoNC.customConsumables.Products;
 import net.kyori.adventure.text.Component;
@@ -65,7 +67,9 @@ public class BarMenu implements Listener {
         event.setCancelled(true);
 
         if (event.getClick() == ClickType.DOUBLE_CLICK) return;
-        if (event.getClickedInventory() == null) return;
+
+        Inventory clickedInventory = event.getClickedInventory();
+        if (clickedInventory == null) return;
 
         Player player = (Player) event.getWhoClicked();
         InventoryAction action = event.getAction();
@@ -73,15 +77,26 @@ public class BarMenu implements Listener {
 
         if (action == InventoryAction.MOVE_TO_OTHER_INVENTORY || action == InventoryAction.COLLECT_TO_CURSOR) return;
 
-        if (event.getClickedInventory().getType() == InventoryType.PLAYER) {
+        if (clickedInventory.getType() == InventoryType.PLAYER) {
             event.setCancelled(false);
         }
-        if (event.getClickedInventory().getType() == InventoryType.CHEST) { // the custom ui type is CHEST
+        if (clickedInventory.getType() == InventoryType.CHEST) { // the custom ui type is CHEST
 
             // player can take products from the inventory
-            if (slot >= 9 && slot < 9 * 5
-                    && action == InventoryAction.PICKUP_ALL) {
+            if (slot >= 9 && slot < 9 * 5 && action == InventoryAction.PICKUP_ALL) {
                 event.setCancelled(false);
+
+                ItemStack current = event.getCurrentItem();
+                if (current == null) return;
+                ItemStack replaceItem = current.clone();
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        // putting back the item 1 sec after
+                        clickedInventory.setItem(slot, replaceItem);
+                    }
+                }.runTaskLater(Main.instance, 20);
             }
             // close button
             if (slot == 53) {
