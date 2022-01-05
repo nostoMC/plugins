@@ -3,6 +3,7 @@ package fr.nostoNC;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import fr.nostoNC.tasks.BottomLaser;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,7 +23,6 @@ import fr.nostoNC.listeners.OnResourcepackStatusListener;
 import fr.nostoNC.listeners.QuitDjListener;
 import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
-import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
 
 public class Main extends JavaPlugin {
@@ -41,7 +41,6 @@ public class Main extends JavaPlugin {
 		registerCommands();
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
-		Bukkit.getPluginManager().registerEvents(new BottomLaserMenu(), this);
 		Bukkit.getPluginManager().registerEvents(new BarMenu(), this);
 		
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
@@ -84,6 +83,7 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
+		BottomLaser.hideAll();
 	}
 	
 }

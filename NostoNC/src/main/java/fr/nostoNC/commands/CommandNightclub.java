@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 
 import fr.nostoNC.DjManager;
 import fr.nostoNC.Utils;
-import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +21,6 @@ public class CommandNightclub implements CommandExecutor {
 		if (args.length != 1) return false;
 		
 		if (args[0].equalsIgnoreCase("menu")) EffectsMenu.openMenu(player);
-		else if (args[0].equalsIgnoreCase("bottomlaser")) BottomLaserMenu.openMenu(player);
 
 		else if (args[0].equalsIgnoreCase("joindj")) {
 			DjManager.tryJoinDj(player);

@@ -14,7 +14,6 @@ public class TabNightclub implements TabCompleter {
 	private static final List<String> arguments = new ArrayList<>();
 	static {
 		arguments.add("menu");
-		arguments.add("bottomlaser");
 		arguments.add("joindj");
 		arguments.add("leavedj");
 	}
