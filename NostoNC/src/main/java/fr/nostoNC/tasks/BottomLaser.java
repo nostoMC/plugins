@@ -14,7 +14,7 @@ public class BottomLaser {
 	
 	public static int affichageTimer = 20;
 	
-	private static final Location defaultLoc = new Location(Main.defaultWorld, -1.99, 101.0, 155.5);
+	private static final Location defaultLoc = new Location(Main.defaultWorld, -1.99, 99, 155.5);
 	private static final int duration = -1;
 	private static final int distance = -1;
 	
@@ -211,7 +211,7 @@ public class BottomLaser {
 		for(Laser laser : all) {
 
 			try {
-				laser.moveEnd(new Location(Main.defaultWorld, -2.0, 101.0, 154.5));
+				laser.moveEnd(new Location(Main.defaultWorld, -2.0, 108, 154.5));
 			} catch (ReflectiveOperationException ignored) {
 			}
 
@@ -221,7 +221,7 @@ public class BottomLaser {
 
 	private static void addLaser(double x, double z) {
 		try {
-			all.add(new Laser.GuardianLaser(new Location(Main.defaultWorld, x, 107.0, z), defaultLoc, duration, distance));
+			all.add(new Laser.CrystalLaser(defaultLoc, new Location(Main.defaultWorld, x, 105, z), duration, distance));
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
