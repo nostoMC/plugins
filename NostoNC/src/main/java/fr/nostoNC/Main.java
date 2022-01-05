@@ -1,6 +1,7 @@
 package fr.nostoNC;
 
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -23,12 +24,15 @@ import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
+import org.jetbrains.annotations.NotNull;
 
 public class Main extends JavaPlugin {
 	
 	public static final HashMap<String, Boolean> activeEffects = new HashMap<>();
 
 	public static World defaultWorld;
+
+	public static UUID DjID = null;
 	
 	public static Main instance;
 
