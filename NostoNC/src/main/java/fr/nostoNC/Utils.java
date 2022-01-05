@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -52,6 +53,12 @@ public class Utils {
 
     public static boolean isInClub(Entity entity) {
         return entity.getWorld().getName().equals(Main.defaultWorld.getName());
+    }
+
+    public static void sendMessageToClub(String message) {
+        for (Player player : Main.defaultWorld.getPlayers()) {
+            player.sendMessage(message);
+        }
     }
 
     public static Vector getBPoint(Vector pointA, double yaw, double pitch, double distance) {

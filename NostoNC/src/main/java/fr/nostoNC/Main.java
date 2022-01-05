@@ -1,7 +1,6 @@
 package fr.nostoNC;
 
 import java.util.HashMap;
-import java.util.UUID;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -20,11 +19,11 @@ import fr.nostoNC.listeners.DamageListener;
 import fr.nostoNC.listeners.InteractionListener;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
+import fr.nostoNC.listeners.QuitDjListener;
 import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.BottomLaserMenu;
 import fr.nostoNC.menus.EffectsMenu;
-import org.jetbrains.annotations.NotNull;
 
 public class Main extends JavaPlugin {
 	
@@ -32,8 +31,6 @@ public class Main extends JavaPlugin {
 
 	public static World defaultWorld;
 
-	public static UUID DjID = null;
-	
 	public static Main instance;
 
 	@Override
@@ -57,6 +54,7 @@ public class Main extends JavaPlugin {
 
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DamageListener(), this);
+		Bukkit.getPluginManager().registerEvents(new QuitDjListener(), this);
 
 		Main main = this;
 		new BukkitRunnable() {
