@@ -1,9 +1,6 @@
 package fr.nostoNC.tasks;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -11,6 +8,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.nostoNC.Main;
 
 public class BottomLaser {
+
+	private static final Random random = new Random();
 	
 	public static int affichageTimer = 5;
 
@@ -60,6 +59,7 @@ public class BottomLaser {
 		group4.add(all.get(7));
 		group4.add(all.get(9));
 		group4.add(all.get(8));
+		group4.add(all.get(5));
 		
 		new BukkitRunnable() {
 			int t = 0;
@@ -69,16 +69,20 @@ public class BottomLaser {
 				if(alternance) {
 					if(t >= affichageTimer) {
 						if(stade == 1) {
-							hideGroup(group3);
+							hideGroup(group4);
 							showGroup(group1);
 							stade = 2;
 						} else if(stade == 2) {
 							hideGroup(group1);
 							showGroup(group2);
 							stade = 3;
-						} else {
+						} else if(stade == 3) {
 							hideGroup(group2);
 							showGroup(group3);
+							stade = 4;
+						} else {
+							hideGroup(group3);
+							showGroup(group4);
 							stade = 1;
 						}
 						t = 0;
@@ -93,10 +97,7 @@ public class BottomLaser {
 			public void run() {
 				if (move.equalsIgnoreCase("random")) {
 					for (Laser laser : all) {
-						try {
-							laser.moveStart(new Location(Main.defaultWorld, 0, 0, 0));
-						} catch (ReflectiveOperationException ignored) {
-						}
+						laser.moveStart(new Location(Main.defaultWorld, random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
 					}
 				}
 			}
@@ -159,7 +160,7 @@ public class BottomLaser {
 
 	private static void addLaser(double x, double z) {
 		try {
-			all.add(new Laser.CrystalLaser(new Location(Main.defaultWorld, x, 100, z), new Location(Main.defaultWorld, x, 113.0, z), duration, distance));
+			all.add(new Laser.GuardianLaser(new Location(Main.defaultWorld, x, 100, z), new Location(Main.defaultWorld, x, 114.0, z), duration, distance));
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}

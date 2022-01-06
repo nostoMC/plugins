@@ -64,6 +64,7 @@ public class EffectsMenu implements Listener {
 		inv.setItem(15, Utils.createItem(Material.END_CRYSTAL, "§f§eLights Top"));
 		inv.setItem(24, Utils.createItem(Material.REDSTONE_TORCH, "§f§eDown en alternance"));
 		inv.setItem(33, Utils.createItem(Material.STICK, "§f§eRandom Moving"));
+		inv.setItem(42, Utils.createItem(Material.RED_WOOL, "§f§eSTOP"));
 
 		Utils.fillEmptyItem(inv);
 
@@ -147,6 +148,11 @@ public class EffectsMenu implements Listener {
 					BottomLaser.hideAll();
 					BottomLaser.showAll();
 					BottomLaser.moveRandom();
+					BottomLaser.alternance = false;
+				}
+
+				case RED_WOOL -> {
+					BottomLaser.hideAll();
 					BottomLaser.alternance = false;
 				}
 
