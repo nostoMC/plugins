@@ -3,7 +3,6 @@ package fr.nostoNC;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-import fr.nostoNC.tasks.BottomLaser;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +16,7 @@ import fr.nostoNC.customConsumables.ConsumeListener;
 import fr.nostoNC.listeners.BarAccessListener;
 import fr.nostoNC.listeners.BarMenuListener;
 import fr.nostoNC.listeners.DamageListener;
+import fr.nostoNC.listeners.HelmetRemoveListener;
 import fr.nostoNC.listeners.InteractionListener;
 import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
 import fr.nostoNC.listeners.OnResourcepackStatusListener;
@@ -24,6 +24,7 @@ import fr.nostoNC.listeners.QuitDjListener;
 import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.EffectsMenu;
+import fr.nostoNC.tasks.BottomLaser;
 
 public class Main extends JavaPlugin {
 	
@@ -54,6 +55,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DamageListener(), this);
 		Bukkit.getPluginManager().registerEvents(new QuitDjListener(), this);
+		Bukkit.getPluginManager().registerEvents(new HelmetRemoveListener(), this);
 
 		Main main = this;
 		new BukkitRunnable() {
