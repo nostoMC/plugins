@@ -1,9 +1,12 @@
 package fr.nosto.listeners;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
+import fr.nosto.DiscordSetup;
+import fr.nosto.Utils;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,13 +14,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.nosto.DiscordSetup;
-import fr.nosto.Utils;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class OnMessageListener extends ListenerAdapter implements Listener {
 	
@@ -39,7 +38,7 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 
 		if(survival_worlds.contains(player.getWorld().getName())) {
 			DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
-		} else if(player.getWorld().getName().equals("Nightclub")) {
+		} else if(player.getWorld().getName().equals("nostoclub")) {
 			DiscordSetup.getChannelNightclub().sendMessageEmbeds(embed.build()).queue();
 		}
 
@@ -50,8 +49,8 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		if (survival_worlds.contains(player.getWorld().getName())) Utils.sendMessageToSurvival("\n" + format);
 		else Utils.sendMessageToWorld(player.getWorld(), "\n" + format);
 	}
-	
-	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+
+	public void onMessageReceived(MessageReceivedEvent event) {
         
 		if(event.getAuthor().isBot()) return;
 		if(!event.getChannel().getId().equals("832554910301290506")
@@ -70,7 +69,7 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		String format = net.md_5.bungee.api.ChatColor.of("#5865F2") + "Discord §f| " + color + "§l" + event.getAuthor().getName() + "§f • " + event.getMessage().getContentDisplay();
 
 		if (event.getChannel().getId().equals("832554910301290506")) Utils.sendMessageToSurvival("\n" + format);
-		else Utils.sendMessageToWorld(Objects.requireNonNull(Bukkit.getWorld("Nightclub")), "\n" + format);
+		else Utils.sendMessageToWorld(Objects.requireNonNull(Bukkit.getWorld("nostoclub")), "\n" + format);
 	}
 
 }
