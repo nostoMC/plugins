@@ -90,6 +90,7 @@ public class Setup {
 			main.getCommand("event").setTabCompleter(new TabEvent());
 		main.getCommand("menu").setExecutor(new CommandMenu());
 		main.getCommand("lobby").setExecutor(new CommandLobby());
+		main.getCommand("me").setExecutor(new CommandMe());
 	}
 
 }

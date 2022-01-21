@@ -64,3 +64,5 @@ commands:
   lobby:
     description: Revenir au lobby principal
     usage: /lobby
+  me:
+    description: Realise une action
