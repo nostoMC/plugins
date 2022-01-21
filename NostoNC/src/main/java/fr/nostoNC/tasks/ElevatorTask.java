@@ -95,7 +95,7 @@ public class ElevatorTask {
         bar.setProgress(0.0);
         bar.addPlayer(player);
 
-        if (elevator == Elevator.LOBBY) player.sendTitle("§c§c⚠ Epileptic Warning ⚠","§6• Optifine Recommandé •",10,200,10);
+        if (elevator == Elevator.LOBBY) player.sendTitle("§c§l⚠ Epileptic Warning ⚠","§6• Optifine Recommandé •",10,200,10);
 
         new BukkitRunnable() {
 
