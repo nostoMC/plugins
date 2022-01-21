@@ -39,6 +39,7 @@ public class Setup {
 		Bukkit.getPluginManager().registerEvents(new OnMessageListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), main);
 		Bukkit.getPluginManager().registerEvents(new OnPlayerDamageListener(), main);
+		Bukkit.getPluginManager().registerEvents(new OnPlayerDead(), main);
 
 		// Menu Listeners
 		Bukkit.getPluginManager().registerEvents(new MainMenu(), main);
