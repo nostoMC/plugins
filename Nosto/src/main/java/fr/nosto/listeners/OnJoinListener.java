@@ -45,29 +45,34 @@ public class OnJoinListener implements Listener {
 			}
 		}
 		
-		if(!Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
+		if(Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
+			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
+			player.teleport(lg);
+			player.teleport(lg);
+			player.setGameMode(GameMode.ADVENTURE);
+		} else {
 			Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f);
 			player.teleport(lobby);
 			player.teleport(lobby);
 			player.setMaxHealth(20);
 			player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1, 200));
 			player.getInventory().clear();
-			player.setGameMode(GameMode.ADVENTURE);
+			if (player.hasPermission("*")) {
+				player.setGameMode(GameMode.CREATIVE);
+			} else {
+				player.setGameMode(GameMode.ADVENTURE);
+			}
 			player.sendMessage("");
 			player.sendTitle("§l§3≪ §l§bNosto §l§3≫", "§f§k§l|| §l§7Bienvenue " + player.getName() +  " §f§k§l||", 0, 100, 5);
 			ItemStack compassLobby = new ItemStack(Material.COMPASS, 1);
 			ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
+			assert compassLobbyMeta != null;
 			compassLobbyMeta.setDisplayName("§b§lClick pour ouvrir le menu de téléportation");
 			compassLobbyMeta.addEnchant(Enchantment.DAMAGE_ALL, 200, true);
 			compassLobbyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			compassLobby.setItemMeta(compassLobbyMeta);
 			player.getInventory().setItem(4, compassLobby);
 			player.updateInventory();
-		} else {
-			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
-			player.teleport(lg);
-			player.teleport(lg);
-			player.setGameMode(GameMode.ADVENTURE);
 		}
 
 		PlayerTrailsStats stats = new PlayerTrailsStats(player); // futur: chercher les stats dans un fichier yml

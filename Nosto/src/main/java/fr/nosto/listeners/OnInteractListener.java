@@ -96,7 +96,7 @@ public class OnInteractListener implements Listener {
 	}
 
 	private boolean denyInteract(Player player) {
-		return player.getGameMode() != GameMode.CREATIVE || !player.isOp();
+		return player.getGameMode() != GameMode.CREATIVE || !player.hasPermission("*");
 	}
 
 }
