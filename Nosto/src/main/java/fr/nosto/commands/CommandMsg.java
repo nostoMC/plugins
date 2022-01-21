@@ -15,36 +15,35 @@ public class CommandMsg implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
 		if(sender instanceof Player player) {
-			Player target;
-			if(args.length == 0) {
+
+			if (args.length == 0 || Bukkit.getPlayer(args[0]) == null) {
 				player.sendMessage("");
 				player.sendMessage("§cUtilisation : /msg <joueur> <message>");
-			} else if(args.length == 1 && Bukkit.getPlayer(args[0]) != null) {
-				target = Bukkit.getPlayer(args[0]);
+				return false;
+			}
+
+			Player target = Bukkit.getPlayer(args[0]);
+			assert target != null;
+
+			if (args.length == 1) {
 				player.sendMessage("");
 				player.sendMessage("§eVous avez poke §6§l" + target.getName() + " §e!");
 				target.sendMessage("");
 				target.sendMessage("§6§l" + player.getName() + " §evous à poke !");
 				target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 2);
-			} else if(args.length >= 2) {
-				target = Bukkit.getPlayer(args[0]);
-				StringBuilder argsMessage = new StringBuilder();
-				for(String part : args) {
-					argsMessage.append(part).append(" ");
+			} else {
+				StringBuilder messageBuilder = new StringBuilder();
+				for (int i = 1; i < args.length; i++) {
+					messageBuilder.append(args[i]).append(" ");
 				}
-				int max = player.getName().length();
-				max = max + 1;
-				argsMessage.delete(0, max);
-				int maxMessage = argsMessage.length();
-				argsMessage.delete(maxMessage - 1, maxMessage);
+				String message = messageBuilder.toString();
 				player.sendMessage("");
-				player.sendMessage("§eVous avez envoyer : §a" + argsMessage + " §eà §6§l" + target.getName());
+				player.sendMessage("§eVous avez envoyer : §a" + message + "§eà §6§l" + target.getName());
 				target.sendMessage("");
-				target.sendMessage("§eVous avez reçu un message de §6§l" + player.getName() + "§e : §a" + argsMessage);
+				target.sendMessage("§eVous avez reçu un message de §6§l" + player.getName() + "§e : §a" + message);
 				target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 			}
 		}
-		
 		return false;
 	}
 
