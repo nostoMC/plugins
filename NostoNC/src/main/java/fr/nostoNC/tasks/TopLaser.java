@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nostoNC.Main;
 
-public class BottomLaser {
+public class TopLaser {
 
 	private static final Random random = new Random();
 	
@@ -97,7 +97,7 @@ public class BottomLaser {
 			public void run() {
 				if (move.equalsIgnoreCase("random")) {
 					for (Laser laser : all) {
-						laser.moveStart(new Location(Main.defaultWorld, random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
+						laser.moveEnd(new Location(Main.defaultWorld, random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
 					}
 				}
 			}
@@ -160,7 +160,7 @@ public class BottomLaser {
 
 	private static void addLaser(double x, double z) {
 		try {
-			all.add(new Laser.GuardianLaser(new Location(Main.defaultWorld, x, 100, z), new Location(Main.defaultWorld, x, 114.0, z), duration, distance));
+			all.add(new Laser.GuardianLaser(new Location(Main.defaultWorld, x, 114.0, z), new Location(Main.defaultWorld, x, 100, z), duration, distance));
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
@@ -169,10 +169,10 @@ public class BottomLaser {
 	private static void updateMovement(Laser laser) {
 		try {
 			if ("down".equals(move)) {
-				Location loc = laser.getEnd();
+				Location loc = laser.getStart();
 				double x = loc.getX();
 				double z = loc.getZ();
-				laser.moveStart(new Location(Main.defaultWorld, x, 100, z));
+				laser.moveEnd(new Location(Main.defaultWorld, x, 100, z));
 			}
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();

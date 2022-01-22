@@ -3,7 +3,8 @@ package fr.nostoNC.menus;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.nostoNC.tasks.BottomLaser;
+import fr.nostoNC.tasks.TopLaser;
+import fr.nostoNC.tasks.WallLaser;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -61,10 +62,16 @@ public class EffectsMenu implements Listener {
 
 		createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 21);
 
-		inv.setItem(15, Utils.createItem(Material.END_CRYSTAL, "§f§eLights Top"));
-		inv.setItem(24, Utils.createItem(Material.REDSTONE_TORCH, "§f§eDown en alternance"));
-		inv.setItem(33, Utils.createItem(Material.STICK, "§f§eRandom Moving"));
-		inv.setItem(42, Utils.createItem(Material.RED_WOOL, "§f§eSTOP"));
+		inv.setItem(5, Utils.createItem(Material.END_CRYSTAL, "§f§eLights Top"));
+		inv.setItem(14, Utils.createItem(Material.REDSTONE_TORCH, "§f§eDown en alternance"));
+		inv.setItem(23, Utils.createItem(Material.STICK, "§f§eRandom Moving"));
+		inv.setItem(32, Utils.createItem(Material.RED_CONCRETE, "§f§eSTOP"));
+
+		inv.setItem(7, Utils.createItem(Material.END_CRYSTAL, "§f§eLights Wall"));
+		inv.setItem(16, Utils.createItem(Material.STONE_BUTTON, "§f§eFront"));
+		inv.setItem(25, Utils.createItem(Material.REPEATER, "§f§eWave"));
+		inv.setItem(34, Utils.createItem(Material.COMPARATOR, "§f§eEdge"));
+		inv.setItem(43, Utils.createItem(Material.RED_CONCRETE_POWDER, "§f§eSTOP"));
 
 		Utils.fillEmptyItem(inv);
 
@@ -138,22 +145,41 @@ public class EffectsMenu implements Listener {
 				case PUMPKIN_SEEDS -> new RandomParticleEffect(Main.instance);
 
 				case REDSTONE_TORCH -> {
-					BottomLaser.hideAll();
-					BottomLaser.showAll();
-					BottomLaser.moveToDown();
-					BottomLaser.alternance = true;
+					TopLaser.hideAll();
+					TopLaser.showAll();
+					TopLaser.moveToDown();
+					TopLaser.alternance = true;
 				}
 
 				case STICK -> {
-					BottomLaser.hideAll();
-					BottomLaser.showAll();
-					BottomLaser.moveRandom();
-					BottomLaser.alternance = false;
+					TopLaser.hideAll();
+					TopLaser.showAll();
+					TopLaser.moveRandom();
+					TopLaser.alternance = false;
 				}
 
-				case RED_WOOL -> {
-					BottomLaser.hideAll();
-					BottomLaser.alternance = false;
+				case RED_CONCRETE -> {
+					TopLaser.hideAll();
+					TopLaser.alternance = false;
+				}
+
+				case STONE_BUTTON -> {
+					WallLaser.moveFront();
+					WallLaser.showAll();
+				}
+
+				case REPEATER -> {
+					WallLaser.moveWave();
+					WallLaser.showAll();
+				}
+
+				case COMPARATOR -> {
+					WallLaser.moveEdge();
+					WallLaser.showAll();
+				}
+
+				case RED_CONCRETE_POWDER -> {
+					WallLaser.hideAll();
 				}
 
 				default -> {}

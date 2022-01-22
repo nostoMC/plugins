@@ -3,6 +3,7 @@ package fr.nostoNC;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import fr.nostoNC.tasks.WallLaser;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,7 +25,7 @@ import fr.nostoNC.listeners.QuitDjListener;
 import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.EffectsMenu;
-import fr.nostoNC.tasks.BottomLaser;
+import fr.nostoNC.tasks.TopLaser;
 
 public class Main extends JavaPlugin {
 	
@@ -85,7 +86,8 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		BottomLaser.hideAll();
+		TopLaser.hideAll();
+		WallLaser.hideAll();
 	}
 	
 }
