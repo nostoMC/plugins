@@ -24,9 +24,9 @@ public class TabSpeed implements TabCompleter {
 		
 		List<String> result = new ArrayList<>();
 
-		if(args.length == 1) {
+		if (args.length == 1) {
 			for (String arg : arguments) {
-				if(arg.contains(args[0])) {
+				if (arg.contains(args[0])) {
 					result.add(arg);
 				}
 			}

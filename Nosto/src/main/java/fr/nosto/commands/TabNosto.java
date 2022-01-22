@@ -17,26 +17,26 @@ public class TabNosto implements TabCompleter {
 	@Override
 	public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		if(arguments.isEmpty()) {
+		if (arguments.isEmpty()) {
 			arguments.add("reload");
 		}
-		if(arguments2.isEmpty()) {
+		if (arguments2.isEmpty()) {
 			arguments2.add("server");
 			arguments2.add("config");
 		}
 		
 		List<String> result = new ArrayList<>();
-		if(args.length == 1) {
+		if (args.length == 1) {
 			for (String a : arguments) {
-				if(a.toLowerCase().startsWith(args[0].toLowerCase())) {
+				if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
 					result.add(a);
 				}
 			}
 			return result;
-		} else if(args.length == 2) {
-			if(args[0].equalsIgnoreCase("reload")) {
+		} else if (args.length == 2) {
+			if (args[0].equalsIgnoreCase("reload")) {
 				for (String a : arguments2) {
-					if(a.toLowerCase().startsWith(args[1].toLowerCase())) {
+					if (a.toLowerCase().startsWith(args[1].toLowerCase())) {
 						result.add(a);
 					}
 				}

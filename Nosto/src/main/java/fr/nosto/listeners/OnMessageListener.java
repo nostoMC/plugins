@@ -36,9 +36,9 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		embed.setAuthor(groupDiscord + player.getName(), null, "https://mc-heads.net/avatar/" + player.getName());
 		embed.setDescription(event.getMessage());
 
-		if(survival_worlds.contains(player.getWorld().getName())) {
+		if (survival_worlds.contains(player.getWorld().getName())) {
 			DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
-		} else if(player.getWorld().getName().equals("nostoclub")) {
+		} else if (player.getWorld().getName().equals("nostoclub")) {
 			DiscordSetup.getChannelNightclub().sendMessageEmbeds(embed.build()).queue();
 		}
 
@@ -52,8 +52,8 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 
 	public void onMessageReceived(MessageReceivedEvent event) {
         
-		if(event.getAuthor().isBot()) return;
-		if(!event.getChannel().getId().equals("832554910301290506")
+		if (event.getAuthor().isBot()) return;
+		if (!event.getChannel().getId().equals("832554910301290506")
 				&& !event.getChannel().getId().equals("877675571193200670")) return;
 
 		Member member = event.getMember();
@@ -62,9 +62,9 @@ public class OnMessageListener extends ListenerAdapter implements Listener {
 		List<Role> roles = member.getRoles();
 
 		ChatColor color = ChatColor.GRAY;
-		if(roles.contains(DiscordSetup.jda.getRoleById("782248738240069652"))) color = ChatColor.RED;
-		else if(roles.contains(DiscordSetup.jda.getRoleById("861880443561312277"))) color = ChatColor.AQUA;
-		else if(roles.contains(DiscordSetup.jda.getRoleById("855435199676547095"))) color = ChatColor.GREEN;
+		if (roles.contains(DiscordSetup.jda.getRoleById("782248738240069652"))) color = ChatColor.RED;
+		else if (roles.contains(DiscordSetup.jda.getRoleById("861880443561312277"))) color = ChatColor.AQUA;
+		else if (roles.contains(DiscordSetup.jda.getRoleById("855435199676547095"))) color = ChatColor.GREEN;
 
 		String format = net.md_5.bungee.api.ChatColor.of("#5865F2") + "Discord §f| " + color + "§l" + event.getAuthor().getName() + "§f • " + event.getMessage().getContentDisplay();
 

@@ -16,8 +16,8 @@ public class SitListeners implements Listener {
 	@EventHandler
 	public void onDismount(EntityDismountEvent event) {
 		
-		if(!(event.getEntity() instanceof Player player)) return;
-		if(!(event.getDismounted() instanceof ArmorStand as)) return;
+		if (!(event.getEntity() instanceof Player player)) return;
+		if (!(event.getDismounted() instanceof ArmorStand as)) return;
 
 		if (as.getScoreboardTags().contains("seat")) {
 			CommandSit.sitting.remove(player);

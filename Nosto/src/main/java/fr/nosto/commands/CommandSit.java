@@ -21,19 +21,19 @@ public class CommandSit implements CommandExecutor {
 		
 		Player player;
 		
-		if(sender instanceof Player) {
+		if (sender instanceof Player) {
 			player = (Player) sender;
 		} else {
 			return true;
 		}
 		
-		if(sitting.contains(player)) {
+		if (sitting.contains(player)) {
 			player.sendMessage("\n§cVous êtes déjà assis !");
 			return true;
 		}
 
 		//noinspection deprecation
-		if(!player.isOnGround()) {
+		if (!player.isOnGround()) {
     		player.sendMessage("\n§cVous ne pouvez pas vous assoir en l'air !");
     		return true;
 		}

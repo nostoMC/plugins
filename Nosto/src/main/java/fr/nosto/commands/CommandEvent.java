@@ -16,11 +16,11 @@ public class CommandEvent implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		
-		if(!sender.isOp()) return false;
+		if (!sender.isOp()) return false;
 		
-		if(args[0].equalsIgnoreCase("add")) {
-			if(Main.getInstance().getConfig().get("event") == null) {
-				if(args[1].equalsIgnoreCase("show")) {
+		if (args[0].equalsIgnoreCase("add")) {
+			if (Main.getInstance().getConfig().get("event") == null) {
+				if (args[1].equalsIgnoreCase("show")) {
 					Main.getInstance().getConfig().set("event", "show");
 					Main.getInstance().saveConfig();
 					Bukkit.broadcastMessage("");
@@ -36,8 +36,8 @@ public class CommandEvent implements CommandExecutor {
 				sender.sendMessage("");
 				sender.sendMessage("Un événement est déjà en cours !");
 			}
-		} else if(args[0].equalsIgnoreCase("stop")) {
-			if(Main.getInstance().getConfig().get("event") != null) {
+		} else if (args[0].equalsIgnoreCase("stop")) {
+			if (Main.getInstance().getConfig().get("event") != null) {
 				Main.getInstance().getConfig().set("event", null);
 				Main.getInstance().saveConfig();
 			} else {

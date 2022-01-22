@@ -13,7 +13,7 @@ public class CommandClearTchat implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
 		int i = 0;
-		while(i <= 100) {
+		while (i <= 100) {
 			Bukkit.broadcastMessage("");
 			i = i + 1;
 		}

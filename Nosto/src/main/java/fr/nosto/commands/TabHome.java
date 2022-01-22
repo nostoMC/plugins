@@ -19,7 +19,7 @@ public class TabHome implements TabCompleter {
 		
 		Player player = (Player) sender;
 		
-		if(arguments.isEmpty()) {
+		if (arguments.isEmpty()) {
 			List<Character> list = Main.getInstance().getConfig().getCharacterList("home." + player.getUniqueId());
 			for (Character character : list) {
 				arguments.add(character.toString());
@@ -27,9 +27,9 @@ public class TabHome implements TabCompleter {
 		}
 		
 		List<String> result = new ArrayList<>();
-		if(args.length == 1) {
+		if (args.length == 1) {
 			for (String a : arguments) {
-				if(a.toLowerCase().startsWith(args[0].toLowerCase())) {
+				if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
 					result.add(a);
 				}
 			}

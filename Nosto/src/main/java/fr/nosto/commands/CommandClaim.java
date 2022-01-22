@@ -17,9 +17,9 @@ public class CommandClaim implements CommandExecutor
     {
         if (sender instanceof Player player) {
 			
-			if(player.getWorld() == Bukkit.getWorld("survie")) {
+			if (player.getWorld() == Bukkit.getWorld("survie")) {
             
-            if(cmd.getName().equalsIgnoreCase("claim")) {
+            if (cmd.getName().equalsIgnoreCase("claim")) {
 
             	Chunk chunk = player.getLocation().getChunk();
 
@@ -35,7 +35,7 @@ public class CommandClaim implements CommandExecutor
             		player.sendMessage("");
             		player.sendMessage("§eVous avez claim ce chunk !");
             	}
-            } else if(cmd.getName().equalsIgnoreCase("unclaim")) {
+            } else if (cmd.getName().equalsIgnoreCase("unclaim")) {
             	
             	Chunk chunk = player.getLocation().getChunk();
 

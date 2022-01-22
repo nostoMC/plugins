@@ -36,7 +36,7 @@ public class OnJoinListener implements Listener {
 		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-		if(config.getConfigurationSection("money." + uuid) == null) {
+		if (config.getConfigurationSection("money." + uuid) == null) {
 			config.set("money." + uuid, 0);
 			try {
 				config.save(file);
@@ -45,7 +45,7 @@ public class OnJoinListener implements Listener {
 			}
 		}
 		
-		if(Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
+		if (Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
 			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
 			player.teleport(lg);
 			player.teleport(lg);
@@ -80,8 +80,8 @@ public class OnJoinListener implements Listener {
 		stats.equip(stats.getEquiped()); // re-updating value
 
 		// ADMIN MESSAGE
-		for(Player players : Bukkit.getOnlinePlayers()) {
-			if(players.isOp()) {
+		for (Player players : Bukkit.getOnlinePlayers()) {
+			if (players.isOp()) {
 				players.sendMessage("");
 				players.sendMessage("§5[LOG] §d" + player.getName() + "§5 joined the server");
 			}

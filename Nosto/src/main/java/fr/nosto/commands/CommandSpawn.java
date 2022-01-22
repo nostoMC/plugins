@@ -25,35 +25,35 @@ public class CommandSpawn implements CommandExecutor {
 		Location roueLobby = new Location(Bukkit.getWorld("RoueDeLaChance"), 0, 229, 50, 0f, 0f);
 		Location showLobby = new Location(Bukkit.getWorld("show"), 0.5, 65, 0.5, 0f, 0f);
 		
-		if(player.getWorld() == Bukkit.getWorld("survie")) {
+		if (player.getWorld() == Bukkit.getWorld("survie")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(SurvivalLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("skyworld")) {
+		} else if (player.getWorld() == Bukkit.getWorld("skyworld")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(skyblockLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("Freebuild")) {
+		} else if (player.getWorld() == Bukkit.getWorld("Freebuild")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(freebuildLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("Hunt")) {
+		} else if (player.getWorld() == Bukkit.getWorld("Hunt")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(huntLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("event")) {
+		} else if (player.getWorld() == Bukkit.getWorld("event")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(pvpLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("lg")) {
+		} else if (player.getWorld() == Bukkit.getWorld("lg")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(lgLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("RoueDeLaChance")) {
+		} else if (player.getWorld() == Bukkit.getWorld("RoueDeLaChance")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(roueLobby);
-		} else if(player.getWorld() == Bukkit.getWorld("show")) {
+		} else if (player.getWorld() == Bukkit.getWorld("show")) {
 			player.sendMessage("");
 			player.sendMessage("§eTéléportation au spawn !");
 			player.teleport(showLobby);

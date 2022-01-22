@@ -79,7 +79,7 @@ public class MainMenu implements Listener {
 		ItemStack current = event.getCurrentItem();
 		if (current == null) return;
 		
-		switch(current.getType()) {
+		switch (current.getType()) {
 
 			case COMPASS:
 				TpMenu.openMenu(player);

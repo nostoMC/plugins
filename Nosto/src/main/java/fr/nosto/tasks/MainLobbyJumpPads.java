@@ -48,7 +48,7 @@ public class MainLobbyJumpPads {
 			@Override
 			public void run() {
 
-				for(Player player : mainLobby.getPlayers()){
+				for (Player player : mainLobby.getPlayers()){
 
 					if (BoundingBox.of(new Location(Bukkit.getWorld("MainLobby"), -7, 94, 11), new Location(Bukkit.getWorld("MainLobby"), -4, 95, 14)).contains(player.getLocation().toVector())
 							|| BoundingBox.of(new Location(Bukkit.getWorld("MainLobby"), 5, 94, 11), new Location(Bukkit.getWorld("MainLobby"), 8, 95, 14)).contains(player.getLocation().toVector())) {

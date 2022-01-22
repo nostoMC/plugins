@@ -28,7 +28,7 @@ public class MainLobbyParticles {
 			@Override
 			public void run() {
 
-				if(loop > Math.PI*4) loop = 0;
+				if (loop > Math.PI*4) loop = 0;
 				loop += .05;
 				
 				double yOffset = Math.cos(loop);

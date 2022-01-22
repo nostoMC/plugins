@@ -59,7 +59,7 @@ public class Setup {
 		MainLobbyParticles.init(main);
 		MainLobbyJumpPads.init(main);
 
-		System.out.println("§b[Nosto] Plugin Custom Chargé !");
+		Bukkit.getLogger().info("§b[Nosto] Plugin Custom Chargé !");
 	}
 
 	@SuppressWarnings("ConstantConditions")

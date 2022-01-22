@@ -10,7 +10,7 @@ public class OnItemDropListener implements Listener {
 	@EventHandler
     public void onItemDrop(PlayerDropItemEvent event) {
 		Player player = event.getPlayer();
-		if(player.getWorld().getName().endsWith("Lobby")) {
+		if (player.getWorld().getName().endsWith("Lobby")) {
 			event.setCancelled(true);
 		}
 	}

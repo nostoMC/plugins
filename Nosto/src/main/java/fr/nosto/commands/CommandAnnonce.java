@@ -16,11 +16,11 @@ public class CommandAnnonce implements CommandExecutor {
 		
 		Player player = (Player)sender;
 		
-		if(args.length == 0) {
+		if (args.length == 0) {
 			player.sendMessage("§cVeuillez ajouter un message");
 		} else {
 			StringBuilder argsAnnonce = new StringBuilder();
-			for(String part : args) {
+			for (String part : args) {
 				argsAnnonce.append(part).append(" ");
 			}
 			Bukkit.broadcastMessage("");

@@ -9,9 +9,9 @@ public class OnPlayerDamageListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerDamage(EntityDamageEvent event) {
-		if(event.getEntity() instanceof Player) {
-			if(event.getEntity().getWorld().getName().endsWith("Lobby")) {
-				if(!event.getEntity().hasPermission("nosto.lobby.interact")) {
+		if (event.getEntity() instanceof Player) {
+			if (event.getEntity().getWorld().getName().endsWith("Lobby")) {
+				if (!event.getEntity().hasPermission("nosto.lobby.interact")) {
 			        event.setCancelled(true);
 			    }
 			}

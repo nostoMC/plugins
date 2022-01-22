@@ -23,7 +23,7 @@ public class VanishLoop {
 			@Override
 			public void run() {
 				
-				for(Player players : Bukkit.getOnlinePlayers()) {
+				for (Player players : Bukkit.getOnlinePlayers()) {
 					players.setInvisible(Main.vanishList.contains(players));
 				}
 				

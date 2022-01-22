@@ -17,16 +17,16 @@ public class CommandHome implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		if (!(sender instanceof Player p)) return true;
 		
-		if(p.getWorld() == Bukkit.getWorld("survie") || p.getWorld() == Bukkit.getWorld("skyworld")) {
-			if(cmd.getName().equalsIgnoreCase("sethome")) {
+		if (p.getWorld() == Bukkit.getWorld("survie") || p.getWorld() == Bukkit.getWorld("skyworld")) {
+			if (cmd.getName().equalsIgnoreCase("sethome")) {
 
-				if(args.length == 0) {
+				if (args.length == 0) {
 					p.sendMessage("");
 					p.sendMessage("§cUtilisation : /sethome <nom>");
 					return false;
 				}
 
-				if(args.length == 1) {
+				if (args.length == 1) {
 					Main.getInstance().getConfig().set("home." + p.getUniqueId() + "." + args[0] + ".world", p.getLocation().getWorld().getName());
 					Main.getInstance().getConfig().set("home." + p.getUniqueId() + "." + args[0] + ".x", p.getLocation().getX());
 					Main.getInstance().getConfig().set("home." + p.getUniqueId() + "." + args[0] + ".y", p.getLocation().getY());
@@ -39,7 +39,7 @@ public class CommandHome implements CommandExecutor {
 					return false;
 				}
 
-				if(args.length >= 2) {
+				if (args.length >= 2) {
 					p.sendMessage("");
 					p.sendMessage("§cUtilisation : /sethome <nom>");
 					return false;
@@ -47,16 +47,16 @@ public class CommandHome implements CommandExecutor {
 
 			}
 			
-			if(cmd.getName().equalsIgnoreCase("home")) {
+			if (cmd.getName().equalsIgnoreCase("home")) {
 
-				if(args.length == 0) {
+				if (args.length == 0) {
 					p.sendMessage("");
 					p.sendMessage("§cUtilisation : /home <nom>");
 					return false;
 				}
 
-				if(args.length == 1) {
-					if(Main.getInstance().getConfig().contains("home." + p.getUniqueId() + "." + args[0])) {
+				if (args.length == 1) {
+					if (Main.getInstance().getConfig().contains("home." + p.getUniqueId() + "." + args[0])) {
 						World w = Bukkit.getServer().getWorld(Main.getInstance().getConfig().getString("home." + p.getUniqueId() + "." + args[0] + ".world"));
 						double x = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".x");
 						double y = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".y");
@@ -73,23 +73,23 @@ public class CommandHome implements CommandExecutor {
 					return false;
 				}
 
-				if(args.length >= 2) {
+				if (args.length >= 2) {
 					p.sendMessage("");
 					p.sendMessage("§cUtilisation : /home <nom>");
 					return false;
 				}
 
 			}
-			if(cmd.getName().equalsIgnoreCase("delhome")) {	
+			if (cmd.getName().equalsIgnoreCase("delhome")) {	
 
-				if(args.length == 0) {
+				if (args.length == 0) {
 					p.sendMessage("");
 					p.sendMessage("§cUtilisation : /delhome <nom>");
 					return false;
 				}
 
-				if(args.length == 1) {
-					if(Main.getInstance().getConfig().contains("home." + p.getUniqueId() + "." + args[0])) {
+				if (args.length == 1) {
+					if (Main.getInstance().getConfig().contains("home." + p.getUniqueId() + "." + args[0])) {
 						Main.getInstance().getConfig().set("home." + p.getUniqueId() + "." + args[0], null);
 						Main.getInstance().saveConfig();
 						p.sendMessage("");
@@ -98,14 +98,14 @@ public class CommandHome implements CommandExecutor {
 					}
 				}
 
-				if(args.length >= 2) {
+				if (args.length >= 2) {
 					p.sendMessage("");
 					p.sendMessage("§cUtilisation : /delhome <nom>");
 					return false;
 				}
 			}
 			
-			if(cmd.getName().equalsIgnoreCase("homelist")) {
+			if (cmd.getName().equalsIgnoreCase("homelist")) {
 				p.sendMessage("");
 				p.sendMessage("Liste de vos homes : ");
 			}

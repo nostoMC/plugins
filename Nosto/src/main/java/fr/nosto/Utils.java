@@ -29,7 +29,7 @@ public class Utils {
         ItemStack it = new ItemStack(material);
         ItemMeta itM = Objects.requireNonNull(it.getItemMeta());
 
-        if(customName != null) itM.setDisplayName(customName);
+        if (customName != null) itM.setDisplayName(customName);
 
         List<String> itemLore = new ArrayList<>();
         Collections.addAll(itemLore, lore);
@@ -43,21 +43,21 @@ public class Utils {
     }
 
     public static void fillEmptyItem(Inventory inv) {
-        for(int i = 0; i < inv.getSize(); i++) {
-            if(inv.getItem(i) == null) {
+        for (int i = 0; i < inv.getSize(); i++) {
+            if (inv.getItem(i) == null) {
                 inv.setItem(i, getClearSlot());
             }
         }
     }
 
     public static void sendMessageToSurvival(String message) {
-        for(String name : survies_names) {
+        for (String name : survies_names) {
             sendMessageToWorld(Objects.requireNonNull(Bukkit.getWorld(name)), message);
         }
     }
 
     public static void sendMessageToWorld(World world, String message) {
-        for(Player player : world.getPlayers()) {
+        for (Player player : world.getPlayers()) {
             player.sendMessage(message);
         }
     }
@@ -82,9 +82,9 @@ public class Utils {
     @NotNull
     public static String getGroupDiscord(Player player) {
         String groupDiscord = "";
-        if(player.hasPermission("group.administrateur")) groupDiscord = "Administrateur | ";
-        else if(player.hasPermission("group.dev")) groupDiscord = "Developpeur | ";
-        else if(player.hasPermission("group.buildeur")) groupDiscord = "Buildeur | ";
+        if (player.hasPermission("group.administrateur")) groupDiscord = "Administrateur | ";
+        else if (player.hasPermission("group.dev")) groupDiscord = "Developpeur | ";
+        else if (player.hasPermission("group.buildeur")) groupDiscord = "Buildeur | ";
         return groupDiscord;
     }
 }

@@ -28,7 +28,7 @@ public class OnPlayerDead implements Listener {
         embed.setColor(Color.ORANGE);
         embed.setDescription(event.getDeathMessage());
 
-        if(survival_worlds.contains(player.getWorld().getName())) {
+        if (survival_worlds.contains(player.getWorld().getName())) {
             DiscordSetup.getChannelSurvie().sendMessageEmbeds(embed.build()).queue();
         }
 

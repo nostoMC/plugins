@@ -21,7 +21,7 @@ public class CommandMe implements CommandExecutor {
 
             String message = String.join(" ", args);
 
-            if(survival_worlds.contains(player.getWorld().getName())) {
+            if (survival_worlds.contains(player.getWorld().getName())) {
 
                 Utils.sendMessageToSurvival("");
                 Utils.sendMessageToSurvival("§7§o" + player.getName() + " " + message);

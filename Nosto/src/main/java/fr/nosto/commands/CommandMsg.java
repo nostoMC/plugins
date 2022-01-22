@@ -14,7 +14,7 @@ public class CommandMsg implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
-		if(sender instanceof Player player) {
+		if (sender instanceof Player player) {
 
 			if (args.length == 0 || Bukkit.getPlayer(args[0]) == null) {
 				player.sendMessage("");

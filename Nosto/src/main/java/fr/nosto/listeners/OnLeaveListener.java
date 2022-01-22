@@ -24,7 +24,7 @@ public class OnLeaveListener implements Listener {
 		
 		player.teleport(new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f));
 
-		if(Utils.getSurviesNames().contains(player.getWorld().getName())) {
+		if (Utils.getSurviesNames().contains(player.getWorld().getName())) {
 
 			String message = MessageManager.getMessage("leave")
 					.replace("%player%", Utils.getGradeColor(player) + playerName);
@@ -36,8 +36,8 @@ public class OnLeaveListener implements Listener {
 		CosmeticEffectTask.playerTrails.remove(uuid);
 		
 		// ADMIN MESSAGE
-		for(Player players : Bukkit.getOnlinePlayers()) {
-			if(players.isOp()) {
+		for (Player players : Bukkit.getOnlinePlayers()) {
+			if (players.isOp()) {
 				players.sendMessage("\n§5[LOG] §d" + playerName + "§5 left the server");
 			}
 		}

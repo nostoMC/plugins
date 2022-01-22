@@ -17,7 +17,7 @@ public class CommandFreeze implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		if(args.length == 1) {
+		if (args.length == 1) {
 
 			Player target = Bukkit.getPlayer(args[0]);
 
@@ -26,7 +26,7 @@ public class CommandFreeze implements CommandExecutor {
 				return false;
 			}
 
-			if(!CommandFreeze.frozen.contains(target)) {
+			if (!CommandFreeze.frozen.contains(target)) {
 				CommandFreeze.frozen.add(target);
 				sender.sendMessage("\n§eVous avez freeze §6§l" + target.getName());
 				target.sendMessage("\n§eVous avez été freeze par un modérateur");

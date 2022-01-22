@@ -3,6 +3,7 @@ package fr.nosto;
 import javax.security.auth.login.LoginException;
 import java.awt.*;
 
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.listeners.OnMessageListener;
@@ -30,7 +31,7 @@ public class DiscordSetup implements EventListener {
 
 	public DiscordSetup(Main main) {
 		
-		if(!main.getConfig().contains("token")) {
+		if (!main.getConfig().contains("token")) {
 			main.getConfig().set("token", "YOUR TOKEN HERE");
 		}
 		
@@ -83,7 +84,7 @@ public class DiscordSetup implements EventListener {
 	}
 	
 	public void onEvent(@NotNull GenericEvent event) {
-		if (event instanceof ReadyEvent) System.out.println("§cBot discord synchronisé avec minecraft prêt !");
+		if (event instanceof ReadyEvent) Bukkit.getLogger().info("§cBot discord synchronisé avec minecraft prêt !");
 		
 	}
 

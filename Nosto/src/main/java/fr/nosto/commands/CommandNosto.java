@@ -14,24 +14,24 @@ public class CommandNosto implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		if(cmd.getName().equalsIgnoreCase("nosto")) {
-        	if(args.length >= 3) {
+		if (cmd.getName().equalsIgnoreCase("nosto")) {
+        	if (args.length >= 3) {
         		sender.sendMessage("");
 				sender.sendMessage("Utilisation : /nosto reload <server | config>");
 			} else {
-				if(args[0].equalsIgnoreCase("reload")) {
-					if(args[1].equalsIgnoreCase("server")) {
+				if (args[0].equalsIgnoreCase("reload")) {
+					if (args[1].equalsIgnoreCase("server")) {
 						Bukkit.broadcastMessage("");
 						Bukkit.broadcastMessage("§4Reload dans §4§l10 §4secondes !");
 						new BukkitRunnable() {
 							int timer = 11;
 							@Override
 							public void run() {
-								if(timer <= 5) {
+								if (timer <= 5) {
 									Bukkit.broadcastMessage("");
 									Bukkit.broadcastMessage("§4Reload dans §4§l" + timer + "§4s !");
 								}
-								if(timer == 0) {
+								if (timer == 0) {
 									Bukkit.broadcastMessage("");
 									Bukkit.broadcastMessage("§4§lReload !");
 									Bukkit.reload();
@@ -40,7 +40,7 @@ public class CommandNosto implements CommandExecutor {
 								timer = timer - 1;
 							}
 						}.runTaskTimer(Main.instance, 0, 20);
-					} else if(args[1].equalsIgnoreCase("config")) {
+					} else if (args[1].equalsIgnoreCase("config")) {
 						Main.getInstance().reloadConfig();
 						sender.sendMessage("Config reload !");
 					} else {

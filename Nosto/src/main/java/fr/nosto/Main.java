@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -38,7 +39,7 @@ public class Main extends JavaPlugin {
 	public void onDisable() {
 		
 		new DiscordShutdown(this);
-		System.out.println("§b[Nosto] Plugin Custom Déchargé !");
+		Bukkit.getLogger().info("§b[Nosto] Plugin Custom Déchargé !");
 		
 	}
 

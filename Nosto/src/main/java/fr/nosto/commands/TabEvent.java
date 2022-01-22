@@ -17,11 +17,11 @@ public class TabEvent implements TabCompleter {
 	@Override
 	public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		if(arguments.isEmpty()) {
+		if (arguments.isEmpty()) {
 			arguments.add("add");
 			arguments.add("stop");
 		}
-		if(arguments2.isEmpty()) {
+		if (arguments2.isEmpty()) {
 			arguments2.add("sar");
 			arguments2.add("lg");
 			arguments2.add("show");
@@ -29,17 +29,17 @@ public class TabEvent implements TabCompleter {
 		}
 		
 		List<String> result = new ArrayList<>();
-		if(args.length == 1) {
+		if (args.length == 1) {
 			for (String a : arguments) {
-				if(a.toLowerCase().startsWith(args[0].toLowerCase())) {
+				if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
 					result.add(a);
 				}
 			}
 			return result;
-		} else if(args.length == 2) {
-			if(args[0].equalsIgnoreCase("add")) {
+		} else if (args.length == 2) {
+			if (args[0].equalsIgnoreCase("add")) {
 				for (String a : arguments2) {
-					if(a.toLowerCase().startsWith(args[1].toLowerCase())) {
+					if (a.toLowerCase().startsWith(args[1].toLowerCase())) {
 						result.add(a);
 					}
 				}

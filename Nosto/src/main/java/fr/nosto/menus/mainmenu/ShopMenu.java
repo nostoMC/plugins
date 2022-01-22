@@ -33,7 +33,7 @@ public class ShopMenu implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-		if(!event.getView().getTitle().equals(title)) return;
+		if (!event.getView().getTitle().equals(title)) return;
 		event.setCancelled(true);
 
 		Player player = (Player) event.getWhoClicked();
