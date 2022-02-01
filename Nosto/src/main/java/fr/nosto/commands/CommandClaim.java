@@ -28,10 +28,10 @@ public class CommandClaim implements CommandExecutor
 				try {
 					final Connection connection = dbConnection.getConnection();
 
-					if (cmd.getName().equalsIgnoreCase("claim")) {
+					final Chunk chunk = player.getLocation().getChunk();
+					final String chunkID = chunk.getX() + "_" + chunk.getZ();
 
-						final Chunk chunk = player.getLocation().getChunk();
-						final String chunkID = chunk.getX() + "_" + chunk.getZ();
+					if (cmd.getName().equalsIgnoreCase("claim")) {
 
 						final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, chunkID FROM survival_claim WHERE chunkID = ?");
 						preparedStatement.setString(1, chunkID);
@@ -47,36 +47,28 @@ public class CommandClaim implements CommandExecutor
 							player.sendMessage("§eVous avez claim ce chunk !");
 						}
 
+					} else if (cmd.getName().equalsIgnoreCase("unclaim")) {
+
+						final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, chunkID FROM survival_claim WHERE (uuid = ? AND chunkID = ?)");
+						preparedStatement.setString(1, player.getUniqueId().toString());
+						preparedStatement.setString(2, chunkID);
+						final ResultSet resultSet = preparedStatement.executeQuery();
+
+						if (resultSet.next()) {
+							deleteClaim(connection, player.getUniqueId(), chunkID);
+							player.sendMessage("");
+							player.sendMessage("§eVous avez unclaim ce chunk !");
+
+						} else {
+							player.sendMessage("");
+							player.sendMessage("§cVous ne pouvez pas unclaim ce chunk !");
+						}
 					}
 
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-            	/*
-            	if (cmd.getName().equalsIgnoreCase("unclaim")) {
 
-            		Chunk chunk = player.getLocation().getChunk();
-
-            		String chunkID = chunk.getX() + "_" + chunk.getZ();
-            	
-            		if (Main.getInstance().getConfig().getString("claim." + chunkID).equals(player.getUniqueId().toString())) {
-
-            			if (Main.getInstance().getConfig().contains("claim." + chunkID)) {
-            				Main.getInstance().getConfig().set("claim." + chunkID, null);
-							Main.getInstance().saveConfig();
-            				player.sendMessage("");
-                			player.sendMessage("§eVous avez unclaim ce chunk !");
-            			} else {
-            				player.sendMessage("");
-            				player.sendMessage("§cCe chunk n'est pas claim !");
-            			}
-            		} else {
-            			player.sendMessage("");
-            			player.sendMessage("§cVous ne possédez pas ce chunk !");
-            		}
-            	}
-
-            	 */
             } else {
             	player.sendMessage("");
             	player.sendMessage("§cLes claim sont seulement autorisés dans les mondes : §6§lSurvie");
@@ -95,6 +87,19 @@ public class CommandClaim implements CommandExecutor
 			preparedStatement.setTimestamp(3, timestamp);
 			preparedStatement.setTimestamp(4, timestamp);
 
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void deleteClaim(Connection connection, UUID uuid, String chunkID) {
+		try {
+			final PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM survival_claim WHERE (uuid = ? AND chunkID = ?)");
+
+			preparedStatement.setString(1, uuid.toString());
+			preparedStatement.setString(2, chunkID);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
