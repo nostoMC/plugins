@@ -9,6 +9,10 @@ public class DatabaseManager {
         this.dbConnection = new DbConnection(new DbCredentials(host, user, pass, dbName, 3306));
     }
 
+    public DbConnection getDbConnection() {
+        return dbConnection;
+    }
+
     public void close() {
         try {
             this.dbConnection.close();

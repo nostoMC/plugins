@@ -18,7 +18,7 @@ public class Main extends JavaPlugin {
 
 	private FileConfiguration messageConfig;
 
-	public DatabaseManager databaseManager;
+	public static DatabaseManager databaseManager;
 
 	public static Main instance;
 
@@ -42,7 +42,7 @@ public class Main extends JavaPlugin {
 	public void onDisable() {
 		
 		new DiscordShutdown(this);
-		this.databaseManager.close();
+		databaseManager.close();
 		Bukkit.getLogger().info("§b[Nosto] Plugin Custom Déchargé !");
 		
 	}
@@ -50,6 +50,8 @@ public class Main extends JavaPlugin {
 	public FileConfiguration getMessageConfig() {
 		return messageConfig;
 	}
+
+	public DatabaseManager getDatabaseManager() { return databaseManager; }
 
 	private void createMessageConfig() {
 		File customConfigFile = new File(getDataFolder(), "messages.yml");
