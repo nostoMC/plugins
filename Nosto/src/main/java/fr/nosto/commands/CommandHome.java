@@ -112,11 +112,6 @@ public class CommandHome implements CommandExecutor {
 
 			}
 			*/
-			
-			if (cmd.getName().equalsIgnoreCase("homelist")) {
-				player.sendMessage("");
-				player.sendMessage("Liste de vos homes : ");
-			}
 		} else {
 			player.sendMessage("");
 			player.sendMessage("§cLes homes sont seulement autorisés dans les mondes : §6§lSurvie");
