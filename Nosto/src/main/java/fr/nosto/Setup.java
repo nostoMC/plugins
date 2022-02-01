@@ -18,13 +18,33 @@ import fr.nosto.tasks.MainLobbyParticles;
 import fr.nosto.tasks.PluginListTask;
 import fr.nosto.tasks.RandomBroadcastTask;
 import fr.nosto.tasks.VanishLoop;
+import org.bukkit.configuration.file.FileConfiguration;
 
 public class Setup {
 
 	public Setup(Main main) {
 
 		// MySQL (Database)
-		main.databaseManager = new DatabaseManager();
+		FileConfiguration fc = main.getConfig();
+		if (!fc.contains("SQL.host")) {
+			fc.set("SQL.host", "HOST HERE");
+		}
+
+		if (!fc.contains("SQL.user")) {
+			fc.set("SQL.user", "USER HERE");
+		}
+
+		if (!fc.contains("SQL.password")) {
+			fc.set("SQL.password", "PASSWORD HERE");
+		}
+
+		if (!fc.contains("SQL.dbName")) {
+			fc.set("SQL.dbName", "DATABASE NAME HERE");
+		}
+
+		main.saveConfig();
+
+		main.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
 
 		// Message manager
 		MessageManager.init(main);

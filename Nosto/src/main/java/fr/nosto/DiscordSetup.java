@@ -31,13 +31,13 @@ public class DiscordSetup implements EventListener {
 
 	public DiscordSetup(Main main) {
 		
-		if (!main.getConfig().contains("token")) {
-			main.getConfig().set("token", "YOUR TOKEN HERE");
+		if (!main.getConfig().contains("discordToken")) {
+			main.getConfig().set("discordToken", "YOUR TOKEN HERE");
 		}
 		
 		main.saveConfig();
 		
-		token = main.getConfig().getString("token");
+		token = main.getConfig().getString("discordToken");
 
 		try {
 			jda = JDABuilder.createDefault(token).build();
