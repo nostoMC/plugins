@@ -3,6 +3,9 @@ package fr.nosto.commands;
 import fr.nosto.Main;
 import fr.nosto.Utils;
 import fr.nosto.mysql.DbConnection;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -72,46 +75,50 @@ public class CommandHome implements CommandExecutor {
 					player.sendMessage("");
 					player.sendMessage("§cUtilisation : /delhome <nom>");
 					return false;
+
+				} else if (cmd.getName().equalsIgnoreCase("home")) {
+
+					if (args.length == 0) {
+						player.sendMessage("");
+						player.sendMessage("§cUtilisation : /home <nom>");
+						return false;
+					}
+
+					if (args.length == 1) {
+						final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM survival_home WHERE (uuid = ? AND name = ?)");
+						preparedStatement.setString(1, player.getUniqueId().toString());
+						preparedStatement.setString(2, args[0]);
+						final ResultSet resultSet = preparedStatement.executeQuery();
+
+						if (resultSet.next()) {
+							World w = Bukkit.getServer().getWorld(resultSet.getString("world"));
+							float x = resultSet.getFloat("x");
+							float y = resultSet.getFloat("y");
+							float z = resultSet.getFloat("z");
+							float pitch = resultSet.getFloat("pitch");
+							float yaw = resultSet.getFloat("yaw");
+							final Location loc = new Location(w, x, y, z, pitch, yaw);
+							player.sendMessage("");
+							player.sendMessage("§eTéléportation vers §6§l" + args[0] + " §e!");
+							player.teleport(loc);
+							player.teleport(loc);
+						} else {
+							player.sendMessage("");
+							player.sendMessage("§cVous n'avez aucun home à ce nom");
+						}
+						return false;
+					}
+
+					player.sendMessage("");
+					player.sendMessage("§cUtilisation : /home <nom>");
+					return false;
+
 				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			/*
-			if (cmd.getName().equalsIgnoreCase("home")) {
 
-				if (args.length == 0) {
-					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /home <nom>");
-					return false;
-				}
-
-				if (args.length == 1) {
-					if (Main.getInstance().getConfig().contains("home." + p.getUniqueId() + "." + args[0])) {
-						World w = Bukkit.getServer().getWorld(Main.getInstance().getConfig().getString("home." + p.getUniqueId() + "." + args[0] + ".world"));
-						double x = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".x");
-						double y = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".y");
-						double z = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".z");
-						double pitch = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".pitch");
-						double yaw = Main.getInstance().getConfig().getDouble("home." + p.getUniqueId() + "." + args[0] + ".yaw");
-						p.teleport(new Location(w, x, y, z, (float) yaw, (float) pitch));
-						p.sendMessage("");
-						p.sendMessage("§eTéléportation vers §6§l" + args[0] + " §e!");
-					} else {
-						p.sendMessage("");
-						p.sendMessage("§cLe home n'exste pas !");
-					}
-					return false;
-				}
-
-				if (args.length >= 2) {
-					p.sendMessage("");
-					p.sendMessage("§cUtilisation : /home <nom>");
-					return false;
-				}
-
-			}
-			*/
 		} else {
 			player.sendMessage("");
 			player.sendMessage("§cLes homes sont seulement autorisés dans les mondes : §6§lSurvie");
