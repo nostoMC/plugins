@@ -1,5 +1,6 @@
 package fr.nosto;
 
+import fr.nosto.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
 
 import fr.nosto.commands.*;
@@ -21,6 +22,9 @@ import fr.nosto.tasks.VanishLoop;
 public class Setup {
 
 	public Setup(Main main) {
+
+		// MySQL (Database)
+		main.databaseManager = new DatabaseManager();
 
 		// Message manager
 		MessageManager.init(main);

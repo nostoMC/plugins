@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import fr.nosto.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,6 +17,8 @@ public class Main extends JavaPlugin {
 	public static ArrayList<Player> vanishList = new ArrayList<>();
 
 	private FileConfiguration messageConfig;
+
+	public DatabaseManager databaseManager;
 
 	public static Main instance;
 
@@ -39,6 +42,7 @@ public class Main extends JavaPlugin {
 	public void onDisable() {
 		
 		new DiscordShutdown(this);
+		this.databaseManager.close();
 		Bukkit.getLogger().info("§b[Nosto] Plugin Custom Déchargé !");
 		
 	}
