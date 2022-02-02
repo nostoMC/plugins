@@ -95,16 +95,8 @@ public class Setup {
 			main.getCommand("speed").setTabCompleter(new TabSpeed());
 		main.getCommand("staffChat").setExecutor(new CommandStaffChat());
 		main.getCommand("msg").setExecutor(new CommandMsg());
-		main.getCommand("sethome").setExecutor(new CommandHome());
-			main.getCommand("sethome").setTabCompleter(new TabHome());
-		main.getCommand("home").setExecutor(new CommandHome());
-			main.getCommand("home").setTabCompleter(new TabHome());
-		main.getCommand("delhome").setExecutor(new CommandHome());
-			main.getCommand("delhome").setTabCompleter(new TabHome());
 		main.getCommand("spawn").setExecutor(new CommandSpawn());
 		main.getCommand("cleartchat").setExecutor(new CommandClearTchat());
-		main.getCommand("claim").setExecutor(new CommandClaim());
-		main.getCommand("unclaim").setExecutor(new CommandClaim());
 		main.getCommand("sit").setExecutor(new CommandSit());
 		main.getCommand("vanish").setExecutor(new CommandVanish());
 		main.getCommand("freeze").setExecutor(new CommandFreeze());

@@ -7,3 +7,13 @@ commands:
   afk:
     description: Permet de se mettre AFK ou non
     usage: /afk
+  sethome:
+    decription: Permet de faire des homes
+  home:
+    description: Permet de se tp aux homes
+  delhome:
+    description: Permet de retirer des homes
+  claim:
+    description: Permet de claim des chunk
+  unclaim:
+    description: Permet d'unclaim des chunk
