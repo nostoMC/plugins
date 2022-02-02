@@ -44,7 +44,7 @@ public class Setup {
 
 		main.saveConfig();
 
-		main.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
+		Main.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
 
 		// Message manager
 		MessageManager.init(main);

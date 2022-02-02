@@ -1,14 +1,13 @@
 package fr.nosto.listeners;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.UUID;
-
+import fr.nosto.Main;
+import fr.nosto.mysql.DbConnection;
+import fr.nosto.tasks.CosmeticEffectTask;
+import fr.nosto.tasks.particles.PlayerTrailsStats;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,9 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.nosto.Main;
-import fr.nosto.tasks.CosmeticEffectTask;
-import fr.nosto.tasks.particles.PlayerTrailsStats;
+import java.sql.*;
 
 public class OnJoinListener implements Listener {
 	
@@ -31,20 +28,14 @@ public class OnJoinListener implements Listener {
 	public void onJoin(PlayerJoinEvent event){
 		event.setJoinMessage("");
 		Player player = event.getPlayer();
-		final UUID uuid = player.getUniqueId();
 
-		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-
-		if (config.getConfigurationSection("money." + uuid) == null) {
-			config.set("money." + uuid, 0);
-			try {
-				config.save(file);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			setDefaultMoney(player);
+		} catch (SQLException e) {
+			player.kickPlayer("Une erreur est survenu. Veuyez contacter un administrateur.");
+			e.printStackTrace();
 		}
-		
+
 		if (Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
 			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
 			player.teleport(lg);
@@ -76,7 +67,7 @@ public class OnJoinListener implements Listener {
 		}
 
 		PlayerTrailsStats stats = new PlayerTrailsStats(player); // futur: chercher les stats dans un fichier yml
-		CosmeticEffectTask.playerTrails.put(uuid, stats);
+		CosmeticEffectTask.playerTrails.put(player.getUniqueId(), stats);
 		stats.equip(stats.getEquiped()); // re-updating value
 
 		// ADMIN MESSAGE
@@ -87,6 +78,29 @@ public class OnJoinListener implements Listener {
 			}
 		}
 		
+	}
+
+	public void setDefaultMoney(Player player) throws SQLException {
+
+		final DbConnection dbConnection = Main.databaseManager.getDbConnection();
+
+		final Connection connection = dbConnection.getConnection();
+
+		final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, money FROM player_money WHERE uuid = ?");
+		preparedStatement.setString(1, player.getUniqueId().toString());
+		final ResultSet resultSet = preparedStatement.executeQuery();
+
+		if (!resultSet.next()) {
+			final PreparedStatement preparedStatement1 = connection.prepareStatement("INSERT INTO player_money VALUES(?, ?, ?, ?)");
+			final Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+			preparedStatement1.setString(1, player.getUniqueId().toString());
+			preparedStatement1.setFloat(2, 0);
+			preparedStatement1.setTimestamp(3, timestamp);
+			preparedStatement1.setTimestamp(4, timestamp);
+
+			preparedStatement1.executeUpdate();
+		}
 	}
 
 }

@@ -51,8 +51,6 @@ public class Main extends JavaPlugin {
 		return messageConfig;
 	}
 
-	public DatabaseManager getDatabaseManager() { return databaseManager; }
-
 	private void createMessageConfig() {
 		File customConfigFile = new File(getDataFolder(), "messages.yml");
 		if (!customConfigFile.exists()) {

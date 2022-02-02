@@ -1,13 +1,14 @@
 package fr.nosto.menus;
 
-import java.io.File;
-import java.util.ArrayList;
-
+import fr.nosto.Main;
+import fr.nosto.Utils;
+import fr.nosto.menus.mainmenu.ShopMenu;
+import fr.nosto.menus.mainmenu.TpMenu;
+import fr.nosto.menus.mainmenu.TrailsMenu;
+import fr.nosto.mysql.DbConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,29 +18,30 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import fr.nosto.Main;
-import fr.nosto.Utils;
-import fr.nosto.menus.mainmenu.ShopMenu;
-import fr.nosto.menus.mainmenu.TpMenu;
-import fr.nosto.menus.mainmenu.TrailsMenu;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MainMenu implements Listener {
 
 	public static final String title = "§2§lMenu";
 
 	public static void openMenu(Player player) {
-		
-		File file = new File(Main.getInstance().getDataFolder(), "economy.yml");
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-		
-		ConfigurationSection configSection = config.getConfigurationSection("money.");
-		
-		double playerMoney = configSection.getDouble(player.getUniqueId().toString());
+
+		float playerMoney = 0;
+		try {
+			playerMoney = getPlayerMoney(player);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		Inventory inv = Bukkit.createInventory(null, 54, title);
 	
 		ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta) skull.getItemMeta();
+		assert meta != null;
 		meta.setOwningPlayer(player);
 		meta.setDisplayName("§6§l" + player.getName());
 		
@@ -98,6 +100,20 @@ public class MainMenu implements Listener {
 			default:
 				break;
 		}
+	}
+
+	private static float getPlayerMoney(Player player) throws SQLException {
+
+		final DbConnection dbConnection = Main.databaseManager.getDbConnection();
+
+		final Connection connection = dbConnection.getConnection();
+
+		final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, money FROM player_money WHERE uuid = ?");
+		preparedStatement.setString(1, player.getUniqueId().toString());
+		final ResultSet resultSet = preparedStatement.executeQuery();
+
+		if (resultSet.next()) return resultSet.getFloat("money");
+		return 0;
 	}
 
 }
