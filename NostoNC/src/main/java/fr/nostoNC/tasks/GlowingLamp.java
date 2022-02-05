@@ -19,9 +19,12 @@ public class GlowingLamp {
 
     public static void setup() {
 
-        for (int l = 0; l < 8*2; l += 2) {
-            for (int L = 0; L < 13*2; L += 2) {
-                Location location = new Location(Main.defaultWorld, -14 + L, 113, 148 + l);
+        int lMax = 13;
+        int LMax = 15;
+
+        for (int l = 0; l < lMax*2; l += 2) {
+            for (int L = 0; L < LMax*2; L += 2) {
+                Location location = new Location(Main.defaultWorld, -16 + L, 113, 150 + l);
                 all.add(location);
                 if (!lignes.containsKey(l/2)) lignes.put(l/2, new ArrayList<>());
                 ArrayList<Location> list = lignes.get(l/2);
@@ -30,7 +33,7 @@ public class GlowingLamp {
             }
         }
 
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < LMax; i++) {
             ArrayList<Location> list = new ArrayList<>();
             for (int i1 = 0; i1 < lignes.size(); i1++) {
                 list.add(lignes.get(i1).get(i));
