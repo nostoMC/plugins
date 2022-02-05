@@ -1,9 +1,6 @@
 package fr.nostoNC;
 
-import fr.nostoNC.tasks.TopLaser;
-import fr.nostoNC.tasks.ElevatorTask;
-import fr.nostoNC.tasks.GolemPass;
-import fr.nostoNC.tasks.WallLaser;
+import fr.nostoNC.tasks.*;
 import fr.nostoNC.tasks.effects.FloorSmokeEffect;
 import fr.nostoNC.tasks.effects.StrobeEffect;
 
@@ -21,8 +18,8 @@ public class Startup {
 		ElevatorTask.init(main);
 
 		TopLaser.setup();
-
 		WallLaser.setup();
+		GlowingLamp.setup();
 		
 	}
 

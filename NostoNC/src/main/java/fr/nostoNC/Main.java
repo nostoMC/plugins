@@ -1,31 +1,22 @@
 package fr.nostoNC;
 
-import java.util.HashMap;
-import java.util.logging.Level;
-
+import fr.nostoNC.commands.CommandFood;
+import fr.nostoNC.commands.CommandNightclub;
+import fr.nostoNC.commands.TabFood;
+import fr.nostoNC.commands.TabNightclub;
+import fr.nostoNC.customConsumables.ConsumeListener;
+import fr.nostoNC.listeners.*;
+import fr.nostoNC.menus.BarMenu;
+import fr.nostoNC.menus.EffectsMenu;
+import fr.nostoNC.tasks.TopLaser;
 import fr.nostoNC.tasks.WallLaser;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.nostoNC.commands.CommandFood;
-import fr.nostoNC.commands.CommandNightclub;
-import fr.nostoNC.commands.TabFood;
-import fr.nostoNC.commands.TabNightclub;
-import fr.nostoNC.customConsumables.ConsumeListener;
-import fr.nostoNC.listeners.BarAccessListener;
-import fr.nostoNC.listeners.BarMenuListener;
-import fr.nostoNC.listeners.DamageListener;
-import fr.nostoNC.listeners.HelmetRemoveListener;
-import fr.nostoNC.listeners.InteractionListener;
-import fr.nostoNC.listeners.OnPlayerChangeWorldListener;
-import fr.nostoNC.listeners.OnResourcepackStatusListener;
-import fr.nostoNC.listeners.QuitDjListener;
-import fr.nostoNC.listeners.SitListener;
-import fr.nostoNC.menus.BarMenu;
-import fr.nostoNC.menus.EffectsMenu;
-import fr.nostoNC.tasks.TopLaser;
+import java.util.HashMap;
+import java.util.logging.Level;
 
 public class Main extends JavaPlugin {
 	
