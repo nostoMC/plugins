@@ -36,6 +36,8 @@ public class OnJoinListener implements Listener {
 			e.printStackTrace();
 		}
 
+		player.performCommand("jukebox");
+
 		if (Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
 			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
 			player.teleport(lg);
