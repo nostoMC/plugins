@@ -23,6 +23,9 @@ import fr.nosto.Main;
 import fr.nosto.mysql.DbConnection;
 import fr.nosto.tasks.CosmeticEffectTask;
 import fr.nosto.tasks.particles.PlayerTrailsStats;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 
 public class OnJoinListener implements Listener {
 	
@@ -52,7 +55,13 @@ public class OnJoinListener implements Listener {
 		// Séquence de join normal si le joueur n'est pas admin
 		if (player.hasPermission("nosto.admin.joinpersistence")) {
 
-			// TODO : texte clickable pour join normalement
+			Component hoverText = Component.text("§6Rejoindre comme un user normal");
+
+			Component component = Component.text("§6Click ici pour rejoindre le serveur comme un user")
+					.clickEvent(ClickEvent.runCommand("/nosto normaljoin"))
+					.hoverEvent(HoverEvent.showText(hoverText));
+
+			player.sendMessage(component);
 
 		} else {
 			playerJoin(player);
@@ -61,7 +70,7 @@ public class OnJoinListener implements Listener {
 	}
 
 	public static void playerJoin(Player player) {
-		Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f);
+		Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.0, 0.5, 0f, 0f);
 		player.teleport(lobby);
 		player.teleport(lobby);
 
