@@ -73,13 +73,7 @@ public class OnJoinListener implements Listener {
 		stats.equip(stats.getEquiped()); // re-updating value
 
 		// ADMIN MESSAGE
-		for (Player players : Bukkit.getOnlinePlayers()) {
-			if (players.isOp()) {
-				players.sendMessage("");
-				players.sendMessage("§5[LOG] §d" + player.getName() + "§5 joined the server");
-			}
-		}
-		
+		Bukkit.broadcast("\n§5[LOG] §d" + player.getName() + "§5 joined the server", "nosto.logmessages.joinleave");
 	}
 
 	public void setDefaultMoney(Player player) throws SQLException {

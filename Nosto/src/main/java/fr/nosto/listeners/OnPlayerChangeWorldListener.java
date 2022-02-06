@@ -53,12 +53,8 @@ public class OnPlayerChangeWorldListener implements Listener {
 		}
 		
 		// ADMIN MESSAGE
-		for (Player players : Bukkit.getOnlinePlayers()) {
-			if (players.isOp()) {
-				players.sendMessage("\n§5[LOG] §d" + playerName + "§5 travels from §d" + event.getFrom().getName() + "§5 to §d" + player.getWorld().getName());
-			}
-		}
-		
+		Bukkit.broadcast("\n§5[LOG] §d" + playerName + "§5 travels from §d" + event.getFrom().getName() + "§5 to §d" + player.getWorld().getName(),
+				"nosto.logmessages.worldchange");
 	}
 
 }
