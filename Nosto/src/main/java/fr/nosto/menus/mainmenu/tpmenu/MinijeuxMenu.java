@@ -18,6 +18,9 @@ public class MinijeuxMenu implements Listener {
 	public static final String title = "§2§lMenu > TP > Mini jeux";
 
 	public static void openMenu(Player player) {
+
+		if (!player.getWorld().getName().endsWith("Lobby")) return;
+
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Utils.createItem(Material.SPRUCE_PLANKS , "§6§l§kMoyen âge"));

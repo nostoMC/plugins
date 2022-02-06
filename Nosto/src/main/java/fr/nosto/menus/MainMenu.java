@@ -30,6 +30,8 @@ public class MainMenu implements Listener {
 
 	public static void openMenu(Player player) {
 
+		if (!player.getWorld().getName().endsWith("Lobby")) return;
+
 		float playerMoney = 0;
 		try {
 			playerMoney = getPlayerMoney(player);

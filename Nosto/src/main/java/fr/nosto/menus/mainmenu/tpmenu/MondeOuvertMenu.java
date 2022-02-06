@@ -16,6 +16,9 @@ public class MondeOuvertMenu implements Listener {
 	public static final String title = "§2§lMenu > TP > Monde Ouvert";
 
 	public static void openMenu(Player player) {
+
+		if (!player.getWorld().getName().endsWith("Lobby")) return;
+
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Utils.createItem(Material.COOKED_BEEF , "§c§lSurvival"));

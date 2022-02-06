@@ -18,6 +18,9 @@ public class TrainingMenu implements Listener {
 	private static final String title = "§2§lMenu > TP > Training";
 
 	public static void openMenu(Player player) {
+
+		if (!player.getWorld().getName().endsWith("Lobby")) return;
+
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Utils.createItem(Material.SANDSTONE , "§e§l§kBridge"));

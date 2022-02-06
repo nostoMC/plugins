@@ -19,6 +19,9 @@ public class ShopMenu implements Listener {
 
 	public static void openMenu(Player player) {
 
+		if (!player.getWorld().getName().endsWith("Lobby")) return;
+		if (!player.isOp()) return; // TEMPORAIRE
+
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(11, Utils.createItem(Material.BLAZE_POWDER , "§e§lParticules"));

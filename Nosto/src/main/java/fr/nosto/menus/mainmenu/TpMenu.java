@@ -22,6 +22,8 @@ public class TpMenu implements Listener {
 
 	public static void openMenu(Player player) {
 
+		if (!player.getWorld().getName().endsWith("Lobby")) return;
+
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
 		inv.setItem(10, Utils.createItem(Material.GRASS_BLOCK, "§2§lMonde ouvert"));
