@@ -1,11 +1,10 @@
 package fr.nosto.mysql;
 
-import org.bukkit.Bukkit;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+
+import org.bukkit.Bukkit;
 
 public class DbConnection {
     private  DbCredentials dbCredentials;
@@ -21,7 +20,7 @@ public class DbConnection {
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection(this.dbCredentials.toURL(), this.dbCredentials.getUser(), this.dbCredentials.getPass());
 
-            Bukkit.getLogger().info("La base de donné MySQL est connectée !");
+            Bukkit.getLogger().info("La base de données MySQL est connectée !");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
