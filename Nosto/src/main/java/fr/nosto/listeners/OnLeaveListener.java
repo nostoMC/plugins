@@ -22,7 +22,9 @@ public class OnLeaveListener implements Listener {
 		final Player player = event.getPlayer();
 		final String playerName = player.getName();
 		
-		player.teleport(new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f));
+		if (!player.hasPermission("nosto.admin.joinpersistence")) {
+			player.teleport(new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f));
+		}
 
 		if (Utils.getSurviesNames().contains(player.getWorld().getName())) {
 

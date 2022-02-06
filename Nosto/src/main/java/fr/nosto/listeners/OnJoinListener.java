@@ -26,64 +26,69 @@ import fr.nosto.tasks.particles.PlayerTrailsStats;
 
 public class OnJoinListener implements Listener {
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onJoin(PlayerJoinEvent event){
+	public void onJoin(PlayerJoinEvent event) {
 		event.setJoinMessage("");
 		Player player = event.getPlayer();
 
 		try {
 			setDefaultMoney(player);
 		} catch (SQLException e) {
-			player.kickPlayer("Une erreur est survenue. Veuyez contacter un administrateur.");
+			player.kickPlayer("Une erreur est survenue. Si le problème persiste, essayez de contactez un administrateur sur notre discord: https://discord.io/Nosto");
 			e.printStackTrace();
 		}
 
-		player.performCommand("jukebox");
-
-		if (Main.getInstance().getServer().getPluginManager().isPluginEnabled("pluginpv")) {
-			Location lg = new Location(Bukkit.getWorld("lg"), 2841, 73, 3539);
-			player.teleport(lg);
-			player.teleport(lg);
-			player.setGameMode(GameMode.ADVENTURE);
-		} else {
-			Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f);
-			player.teleport(lobby);
-			player.teleport(lobby);
-
-			player.setMaxHealth(20);
-			player.setHealth(20);
-			player.setFoodLevel(20);
-
-			if (!player.hasPermission("nosto.admin.persistentgamemode")) {
-				player.setGameMode(GameMode.ADVENTURE);
-			}
-
-			player.sendTitle("§l§3« §l§bNosto §l§3»",
-					"§f§k§l|| §l§7Bienvenue " + player.getName() +  " §f§k§l||",
-					0, 100, 5);
-
-			ItemStack compassLobby = new ItemStack(Material.COMPASS);
-			ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
-			assert compassLobbyMeta != null;
-
-			compassLobbyMeta.setDisplayName("§b§lClick pour ouvrir le menu de téléportation");
-			compassLobbyMeta.addEnchant(Enchantment.LUCK, 1, true);
-			compassLobbyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-			compassLobby.setItemMeta(compassLobbyMeta);
-
-			player.getInventory().clear();
-			player.getInventory().setItem(4, compassLobby);
-			player.updateInventory();
-		}
-
+		// Trails
 		PlayerTrailsStats stats = new PlayerTrailsStats(player); // futur: chercher les stats dans un fichier yml
 		CosmeticEffectTask.playerTrails.put(player.getUniqueId(), stats);
 		stats.equip(stats.getEquiped()); // re-updating value
 
-		// ADMIN MESSAGE
+		// Message admin
 		Bukkit.broadcast("\n§5[LOG] §d" + player.getName() + "§5 joined the server", "nosto.logmessages.joinleave");
+
+		// Génération du lien McJukebox
+		player.performCommand("jukebox");
+
+		// Séquence de join normal si le joueur n'est pas admin
+		if (player.hasPermission("nosto.admin.joinpersistence")) {
+
+			// TODO : texte clickable pour join normalement
+
+		} else {
+			playerJoin(player);
+		}
+
+	}
+
+	public static void playerJoin(Player player) {
+		Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.5, 0.5, 0f, 0f);
+		player.teleport(lobby);
+		player.teleport(lobby);
+
+		//noinspection deprecation
+		player.setMaxHealth(20);
+		player.setHealth(20);
+		player.setFoodLevel(20);
+
+		player.setGameMode(GameMode.ADVENTURE);
+
+		player.sendTitle("§l§3« §l§bNosto §l§3»",
+				"§f§k§l|| §l§7Bienvenue " + player.getName() +  " §f§k§l||",
+				0, 100, 5);
+
+		ItemStack compassLobby = new ItemStack(Material.COMPASS);
+		ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
+		assert compassLobbyMeta != null;
+
+		compassLobbyMeta.setDisplayName("§b§lClick pour ouvrir le menu de téléportation");
+		compassLobbyMeta.addEnchant(Enchantment.LUCK, 1, true);
+		compassLobbyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+		compassLobby.setItemMeta(compassLobbyMeta);
+
+		player.getInventory().clear();
+		player.getInventory().setItem(4, compassLobby);
+		player.updateInventory();
 	}
 
 	public void setDefaultMoney(Player player) throws SQLException {

@@ -33,7 +33,7 @@ commands:
     description: Permet d'envoyer des message privees
   nosto:
     description: Reload Custom
-    permission: nosto.admin.reload
+    permission: nosto.admin.commandnosto
   freeze:
     description: Permet de freeze un joueur
     permission: nosto.admin.freeze
