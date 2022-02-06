@@ -36,12 +36,7 @@ public class OnLeaveListener implements Listener {
 		CosmeticEffectTask.playerTrails.remove(uuid);
 		
 		// ADMIN MESSAGE
-		for (Player players : Bukkit.getOnlinePlayers()) {
-			if (players.isOp()) {
-				players.sendMessage("\n§5[LOG] §d" + playerName + "§5 left the server");
-			}
-		}
-		
+		Bukkit.broadcast("\n§5[LOG] §d" + playerName + "§5 left the server", "nosto.logmessages.joinleave");
 	}
 
 }
