@@ -1,4 +1,4 @@
-package fr.nosto.tasks;
+package fr.nosto.tasks.mainLobby;
 
 import java.util.Objects;
 

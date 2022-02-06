@@ -1,7 +1,7 @@
 package fr.nosto;
 
-import fr.nosto.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import fr.nosto.commands.*;
 import fr.nosto.listeners.*;
@@ -12,13 +12,13 @@ import fr.nosto.menus.mainmenu.TrailsMenu;
 import fr.nosto.menus.mainmenu.tpmenu.MinijeuxMenu;
 import fr.nosto.menus.mainmenu.tpmenu.MondeOuvertMenu;
 import fr.nosto.menus.mainmenu.tpmenu.TrainingMenu;
+import fr.nosto.mysql.DatabaseManager;
 import fr.nosto.tasks.CosmeticEffectTask;
-import fr.nosto.tasks.MainLobbyJumpPads;
-import fr.nosto.tasks.MainLobbyParticles;
 import fr.nosto.tasks.PluginListTask;
 import fr.nosto.tasks.RandomBroadcastTask;
 import fr.nosto.tasks.VanishLoop;
-import org.bukkit.configuration.file.FileConfiguration;
+import fr.nosto.tasks.mainLobby.MainLobbyJumpPads;
+import fr.nosto.tasks.mainLobby.MainLobbyParticles;
 
 public class Setup {
 
