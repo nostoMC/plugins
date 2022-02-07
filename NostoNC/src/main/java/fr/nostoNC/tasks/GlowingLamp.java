@@ -1,6 +1,7 @@
 package fr.nostoNC.tasks;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -24,7 +25,7 @@ public class GlowingLamp {
 
         for (int l = 0; l < lMax*2; l += 2) {
             for (int L = 0; L < LMax*2; L += 2) {
-                Location location = new Location(Main.defaultWorld, -16 + L, 113, 150 + l);
+                Location location = new Location(Utils.defaultWorld, -16 + L, 113, 150 + l);
                 all.add(location);
                 if (!lignes.containsKey(l/2)) lignes.put(l/2, new ArrayList<>());
                 ArrayList<Location> list = lignes.get(l/2);
@@ -64,7 +65,7 @@ public class GlowingLamp {
 
     private static void allChangeDimmer(boolean bool) {
         for (Location location : all) {
-            Block b = Main.defaultWorld.getBlockAt(location);
+            Block b = Utils.defaultWorld.getBlockAt(location);
             if (bool) b.setType(Material.GLOWSTONE);
             else b.setType(Material.STONE);
         }
@@ -86,7 +87,7 @@ public class GlowingLamp {
                     t--;
                 }
                 if (hashMap.containsKey(t)) for (Location location : hashMap.get(t)) {
-                    Block block = Main.defaultWorld.getBlockAt(location);
+                    Block block = Utils.defaultWorld.getBlockAt(location);
                     block.setType(Material.GLOWSTONE);
                     new BukkitRunnable() {
                         @Override

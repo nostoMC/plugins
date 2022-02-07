@@ -12,8 +12,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class DjManager {
 
-    private static final Location PLATEAU = new Location(Main.defaultWorld, -2.0, 103.0, 147, 0, 0); // sur la scène
-    private static final Location FOSSE = new Location(Main.defaultWorld, -2.0, 101.0, 152.99, 0, 0); // en bas de la scène
+    private static final Location PLATEAU = new Location(Utils.defaultWorld, -2.0, 103.0, 147, 0, 0); // sur la scène
+    private static final Location FOSSE = new Location(Utils.defaultWorld, -2.0, 101.0, 152.99, 0, 0); // en bas de la scène
 
     private static final ItemStack HEADPHONES = Utils.createItem(Material.CARVED_PUMPKIN, "§3Casque de DJ");
     static {

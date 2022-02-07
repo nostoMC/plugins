@@ -2,9 +2,11 @@ package fr.nostoNC;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -16,6 +18,10 @@ import org.bukkit.util.Vector;
 import net.kyori.adventure.text.Component;
 
 public class Utils {
+
+    public static final HashMap<String, Boolean> activeEffects = new HashMap<>();
+
+    public static World defaultWorld;
 
     public static final ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
     static {
@@ -52,11 +58,11 @@ public class Utils {
     }
 
     public static boolean isInClub(Entity entity) {
-        return entity.getWorld().getName().equals(Main.defaultWorld.getName());
+        return entity.getWorld().getName().equals(defaultWorld.getName());
     }
 
     public static void sendMessageToClub(String message) {
-        for (Player player : Main.defaultWorld.getPlayers()) {
+        for (Player player : defaultWorld.getPlayers()) {
             player.sendMessage(message);
         }
     }

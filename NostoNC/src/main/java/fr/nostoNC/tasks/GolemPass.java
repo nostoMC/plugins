@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import fr.nostoNC.Utils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -32,7 +33,7 @@ public class GolemPass {
 			@Override
 			public void run() {
 
-				for(Player player : Main.defaultWorld.getPlayers()) {
+				for(Player player : Utils.defaultWorld.getPlayers()) {
 					Location loc = player.getLocation();
 
 					if (vipBox.contains(loc.toVector()) && !player.hasPermission("nosto.nightclub.vip")) {
@@ -62,7 +63,7 @@ public class GolemPass {
 		UUID uuid = player.getUniqueId();
 		
 		if (cooldown.get(uuid) == null) {
-			Main.defaultWorld.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 1);
+			Utils.defaultWorld.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 1);
 			player.sendMessage(message);
 			cooldown.put(uuid, 5);
 		}

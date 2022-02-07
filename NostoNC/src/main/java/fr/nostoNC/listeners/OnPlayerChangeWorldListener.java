@@ -1,5 +1,6 @@
 package fr.nostoNC.listeners;
 
+import fr.nostoNC.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +15,7 @@ public class OnPlayerChangeWorldListener implements Listener {
 		
 		Player player = event.getPlayer();
 		
-		if(event.getFrom() == Main.defaultWorld) {
+		if(event.getFrom() == Utils.defaultWorld) {
 			
 			player.setResourcePack("https://www.dropbox.com/sh/y64429u85j3nb7p/AADbPee76vWP5XiXGB2MzuRGa?dl=1");
 			

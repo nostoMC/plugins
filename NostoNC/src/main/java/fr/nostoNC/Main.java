@@ -19,10 +19,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 public class Main extends JavaPlugin {
-	
-	public static final HashMap<String, Boolean> activeEffects = new HashMap<>();
-
-	public static World defaultWorld;
 
 	public static Main instance;
 
@@ -54,9 +50,9 @@ public class Main extends JavaPlugin {
 
 			@Override
 			public void run() {
-				defaultWorld = Bukkit.getWorld("nostoclub");
+				Utils.defaultWorld = Bukkit.getWorld("nostoclub");
 
-				if (defaultWorld == null) {
+				if (Utils.defaultWorld == null) {
 					Bukkit.getLogger().log(Level.SEVERE, "Unable to get world \"nostoclub\"");
 					return;
 				}

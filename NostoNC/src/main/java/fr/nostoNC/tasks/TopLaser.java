@@ -2,6 +2,7 @@ package fr.nostoNC.tasks;
 
 import java.util.*;
 
+import fr.nostoNC.Utils;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -97,7 +98,7 @@ public class TopLaser {
 			public void run() {
 				if (move.equalsIgnoreCase("random")) {
 					for (Laser laser : all) {
-						laser.moveEnd(new Location(Main.defaultWorld, random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
+						laser.moveEnd(new Location(Utils.defaultWorld, random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
 					}
 				}
 			}
@@ -160,7 +161,7 @@ public class TopLaser {
 
 	private static void addLaser(double x, double z) {
 		try {
-			all.add(new Laser.GuardianLaser(new Location(Main.defaultWorld, x, 114.0, z), new Location(Main.defaultWorld, x, 100, z), duration, distance));
+			all.add(new Laser.GuardianLaser(new Location(Utils.defaultWorld, x, 114.0, z), new Location(Utils.defaultWorld, x, 100, z), duration, distance));
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
@@ -172,7 +173,7 @@ public class TopLaser {
 				Location loc = laser.getStart();
 				double x = loc.getX();
 				double z = loc.getZ();
-				laser.moveEnd(new Location(Main.defaultWorld, x, 100, z));
+				laser.moveEnd(new Location(Utils.defaultWorld, x, 100, z));
 			}
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();

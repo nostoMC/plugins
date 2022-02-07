@@ -8,8 +8,8 @@ public class Startup {
 
 	public static void startup(Main main) {
 
-		Main.activeEffects.put("floorSmoke", false);
-		Main.activeEffects.put("strobe", false);
+		Utils.activeEffects.put("floorSmoke", false);
+		Utils.activeEffects.put("strobe", false);
 
 		FloorSmokeEffect.init(main);
 		StrobeEffect.init(main);

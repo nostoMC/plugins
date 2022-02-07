@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 
+import fr.nostoNC.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -64,7 +65,7 @@ public class ElevatorTask {
                         startTimer(player, Elevator.LOBBY);
                     }
                 }
-                for (Player player : Main.defaultWorld.getPlayers()) {
+                for (Player player : Utils.defaultWorld.getPlayers()) {
                     if (!inClubElevator.contains(player.getUniqueId()) && CLUB_ELEVATOR_BOX.contains(player.getLocation().toVector())) {
                         startTimer(player, Elevator.CLUB);
                     }
@@ -139,7 +140,7 @@ public class ElevatorTask {
 
         if (startingElevator == Elevator.LOBBY) {
             y = playerLoc.getY() + CLUB_ELEVATOR_CORNER.getY() - LOBBY_ELEVATOR_CORNER.getY();
-            destinationWorld = Main.defaultWorld;
+            destinationWorld = Utils.defaultWorld;
         } else {
             y = playerLoc.getY() + LOBBY_ELEVATOR_CORNER.getY() - CLUB_ELEVATOR_CORNER.getY();
             destinationWorld = mainLobby;
