@@ -1,8 +1,9 @@
-package fr.nostoNC.tasks;
+package fr.nostoNC.tasks.effects;
 
 import java.util.*;
 
 import fr.nostoNC.Utils;
+import fr.nostoNC.tasks.Laser;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 

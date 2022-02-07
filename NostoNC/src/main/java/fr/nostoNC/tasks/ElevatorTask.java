@@ -153,6 +153,7 @@ public class ElevatorTask {
         player.teleport(destination);
         
         if (startingElevator == Elevator.LOBBY) player.setResourcePack("https://www.dropbox.com/sh/hwhqynt5xvhvyj1/AAAki-6eHwpMLNlsMS6p4ySfa?dl=1");
+        if (startingElevator == Elevator.CLUB) player.setResourcePack("https://www.dropbox.com/sh/y64429u85j3nb7p/AADbPee76vWP5XiXGB2MzuRGa?dl=1");
 
         BoundingBox destionationElevatorBox;
         Set<UUID> inStartingElevator;

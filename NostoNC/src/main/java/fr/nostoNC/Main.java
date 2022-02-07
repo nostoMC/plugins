@@ -8,14 +8,12 @@ import fr.nostoNC.customConsumables.ConsumeListener;
 import fr.nostoNC.listeners.*;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.EffectsMenu;
-import fr.nostoNC.tasks.TopLaser;
-import fr.nostoNC.tasks.WallLaser;
+import fr.nostoNC.tasks.effects.TopLaser;
+import fr.nostoNC.tasks.effects.WallLaser;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
 import java.util.logging.Level;
 
 public class Main extends JavaPlugin {

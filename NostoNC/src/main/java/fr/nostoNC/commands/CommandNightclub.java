@@ -29,7 +29,7 @@ public class CommandNightclub implements CommandExecutor {
 			if (DjManager.DjID == player.getUniqueId()) {
 				DjManager.leaveDj();
 			} else {
-				player.sendMessage("§cVous n'êtes pas DJ !");
+				player.sendMessage("\n§cVous n'êtes pas DJ !");
 			}
 		}
 		

@@ -1,8 +1,7 @@
 package fr.nostoNC;
 
 import fr.nostoNC.tasks.*;
-import fr.nostoNC.tasks.effects.FloorSmokeEffect;
-import fr.nostoNC.tasks.effects.StrobeEffect;
+import fr.nostoNC.tasks.effects.*;
 
 public class Startup {
 

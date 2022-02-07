@@ -21,7 +21,7 @@ public class CommandFood implements CommandExecutor {
         Consumable consumable = Products.products.get(args[0]);
 
         if (consumable == null) {
-            player.sendMessage("§cAucun consommable ne correspond à §6" + args[0]);
+            player.sendMessage("\n§cAucun consommable ne correspond à §6" + args[0]);
             return true;
         }
 

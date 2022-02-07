@@ -1,4 +1,4 @@
-package fr.nostoNC.tasks;
+package fr.nostoNC.tasks.effects;
 
 import fr.nostoNC.Main;
 import fr.nostoNC.Utils;

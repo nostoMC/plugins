@@ -3,8 +3,8 @@ package fr.nostoNC.menus;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.nostoNC.tasks.TopLaser;
-import fr.nostoNC.tasks.WallLaser;
+import fr.nostoNC.tasks.effects.TopLaser;
+import fr.nostoNC.tasks.effects.WallLaser;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
