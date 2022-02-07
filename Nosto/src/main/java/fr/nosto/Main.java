@@ -14,12 +14,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
-	public static ArrayList<Player> vanishList = new ArrayList<>();
-
-	private FileConfiguration messageConfig;
-
-	public static DatabaseManager databaseManager;
-
 	public static Main instance;
 
 	public static JavaPlugin getInstance() {
@@ -42,13 +36,9 @@ public class Main extends JavaPlugin {
 	public void onDisable() {
 		
 		new DiscordShutdown(this);
-		databaseManager.close();
+		Utils.databaseManager.close();
 		Bukkit.getLogger().info("§b[Nosto] Plugin Custom Déchargé !");
 		
-	}
-
-	public FileConfiguration getMessageConfig() {
-		return messageConfig;
 	}
 
 	private void createMessageConfig() {
@@ -59,9 +49,9 @@ public class Main extends JavaPlugin {
 			saveResource("messages.yml", false);
 		}
 
-		messageConfig = new YamlConfiguration();
+		Utils.messageConfig = new YamlConfiguration();
 		try {
-			messageConfig.load(customConfigFile);
+			Utils.messageConfig.load(customConfigFile);
 		} catch (IOException | InvalidConfigurationException e) {
 			e.printStackTrace();
 		}

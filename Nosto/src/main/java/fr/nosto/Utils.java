@@ -2,10 +2,12 @@ package fr.nosto;
 
 import java.util.*;
 
+import fr.nosto.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -15,6 +17,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 public class Utils {
+
+    public static ArrayList<Player> vanishList = new ArrayList<>();
+
+    public static FileConfiguration messageConfig;
+
+    public static DatabaseManager databaseManager;
 
     private static final ItemStack clearSlot = createItem(Material.BLACK_STAINED_GLASS_PANE, " ");
 

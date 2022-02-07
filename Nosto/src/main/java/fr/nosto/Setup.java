@@ -94,7 +94,7 @@ public class Setup {
 
 	public static void connexionMySQL(Main main) {
 
-		if (Main.databaseManager != null) Main.databaseManager.close();
+		if (Utils.databaseManager != null) Utils.databaseManager.close();
 
 		FileConfiguration fc = main.getConfig();
 		if (!fc.contains("SQL.host")) {
@@ -115,7 +115,7 @@ public class Setup {
 
 		main.saveConfig();
 
-		Main.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
+		Utils.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
 	}
 
 }

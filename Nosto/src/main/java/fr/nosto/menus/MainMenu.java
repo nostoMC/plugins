@@ -106,7 +106,7 @@ public class MainMenu implements Listener {
 
 	private static float getPlayerMoney(Player player) throws SQLException {
 
-		final DbConnection dbConnection = Main.databaseManager.getDbConnection();
+		final DbConnection dbConnection = Utils.databaseManager.getDbConnection();
 
 		final Connection connection = dbConnection.getConnection();
 

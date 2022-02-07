@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import fr.nosto.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -102,7 +103,7 @@ public class OnJoinListener implements Listener {
 
 	public void setDefaultMoney(Player player) throws SQLException {
 
-		final DbConnection dbConnection = Main.databaseManager.getDbConnection();
+		final DbConnection dbConnection = Utils.databaseManager.getDbConnection();
 
 		final Connection connection = dbConnection.getConnection();
 

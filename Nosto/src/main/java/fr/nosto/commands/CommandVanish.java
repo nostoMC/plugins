@@ -1,5 +1,6 @@
 package fr.nosto.commands;
 
+import fr.nosto.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,25 +18,25 @@ public class CommandVanish implements CommandExecutor {
 		Player player = (Player) sender;
 		
 		if (args.length == 0) {
-			if (Main.vanishList.contains(player)) {
-				Main.vanishList.remove(player);
+			if (Utils.vanishList.contains(player)) {
+				Utils.vanishList.remove(player);
 				player.sendMessage("");
 				player.sendMessage("§7Vous êtes maintenant visible !");
 			} else {
-				Main.vanishList.add(player);
+				Utils.vanishList.add(player);
 				player.sendMessage("");
 				player.sendMessage("§7Vous êtes maintenant invisible !");
 			}
 		} else {
 			Player target = Bukkit.getPlayer(args[0]);
-			if (Main.vanishList.contains(target)) {
-				Main.vanishList.remove(target);
+			if (Utils.vanishList.contains(target)) {
+				Utils.vanishList.remove(target);
 				player.sendMessage("");
 				player.sendMessage("§7Vous avez mis " + target.getName() + " visible !");
 				target.sendMessage("");
 				target.sendMessage("§7Vous êtes maintenant visible !");
 			} else {
-				Main.vanishList.add(target);
+				Utils.vanishList.add(target);
 				player.sendMessage("");
 				player.sendMessage("§7Vous avez mis " + target.getName() + " en invisible !");
 				target.sendMessage("");
