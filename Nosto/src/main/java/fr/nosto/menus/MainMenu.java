@@ -1,6 +1,5 @@
 package fr.nosto.menus;
 
-import fr.nosto.Main;
 import fr.nosto.Utils;
 import fr.nosto.menus.mainmenu.ShopMenu;
 import fr.nosto.menus.mainmenu.TpMenu;

@@ -3,7 +3,6 @@ package fr.nosto.listeners;
 import fr.nosto.DiscordSetup;
 import fr.nosto.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

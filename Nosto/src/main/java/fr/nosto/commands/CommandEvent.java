@@ -23,8 +23,7 @@ public class CommandEvent implements CommandExecutor {
 				if (args[1].equalsIgnoreCase("show")) {
 					Main.getInstance().getConfig().set("event", "show");
 					Main.getInstance().saveConfig();
-					Bukkit.broadcastMessage("");
-					Bukkit.broadcastMessage("Un événement commence ! Utilisez /lobby pour vous téléporter !");
+					Bukkit.broadcastMessage("\nUn événement commence ! Utilisez /lobby pour vous téléporter !");
 					if (sender instanceof Player player) {
 						Location showLobby = new Location(Bukkit.getWorld("show"), 0.5, 65, 0.5, 0f, 0f);
 						player.teleport(showLobby);
@@ -33,20 +32,17 @@ public class CommandEvent implements CommandExecutor {
 					}
 				}
 			} else {
-				sender.sendMessage("");
-				sender.sendMessage("Un événement est déjà en cours !");
+				sender.sendMessage("\nUn événement est déjà en cours !");
 			}
 		} else if (args[0].equalsIgnoreCase("stop")) {
 			if (Main.getInstance().getConfig().get("event") != null) {
 				Main.getInstance().getConfig().set("event", null);
 				Main.getInstance().saveConfig();
 			} else {
-				sender.sendMessage("");
-				sender.sendMessage("Aucun événement en cours !");
+				sender.sendMessage("\nAucun événement en cours !");
 			}
 		} else {
-			sender.sendMessage("");
-			sender.sendMessage("Utilisation : /event add <nom de l'event ou /event stop");
+			sender.sendMessage("\nUtilisation : /event add <nom de l'event ou /event stop");
 		}
 		
 		return false;

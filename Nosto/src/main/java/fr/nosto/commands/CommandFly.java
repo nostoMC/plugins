@@ -22,26 +22,22 @@ public class CommandFly implements CommandExecutor {
 				if (list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);
 					player.setAllowFlight(false);
-					player.sendMessage("");
-					player.sendMessage("§cVous ne pouvez plus voler !");
+					player.sendMessage("\n§cVous ne pouvez plus voler !");
 				} else if (!list.contains(player)) {
 					list.add(player);
 					player.setAllowFlight(true);
-					player.sendMessage("");
-					player.sendMessage("§aVous pouvez voler !");
+					player.sendMessage("\n§aVous pouvez voler !");
 				}
 			} else {
 				player = Bukkit.getPlayer(args[0]);
 				if (list.contains(player) || player.getAllowFlight()) {
 					list.remove(player);
 					player.setAllowFlight(false);
-					player.sendMessage("");
-					player.sendMessage("§c" + player.getName() + " ne peut plus voler !");
+					player.sendMessage("\n§c" + player.getName() + " ne peut plus voler !");
 				} else if (!list.contains(player)) {
 					list.add(player);
 					player.setAllowFlight(true);
-					player.sendMessage("");
-					player.sendMessage("§a" + player.getName() + " peut voler !");
+					player.sendMessage("\n§a" + player.getName() + " peut voler !");
 				}
 			}
 		}

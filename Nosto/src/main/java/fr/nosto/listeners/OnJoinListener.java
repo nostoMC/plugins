@@ -1,12 +1,12 @@
 package fr.nosto.listeners;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-
 import fr.nosto.Utils;
+import fr.nosto.mysql.DbConnection;
+import fr.nosto.tasks.CosmeticEffectTask;
+import fr.nosto.tasks.particles.PlayerTrailsStats;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -20,13 +20,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.nosto.Main;
-import fr.nosto.mysql.DbConnection;
-import fr.nosto.tasks.CosmeticEffectTask;
-import fr.nosto.tasks.particles.PlayerTrailsStats;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
+import java.sql.*;
 
 public class OnJoinListener implements Listener {
 	

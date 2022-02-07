@@ -23,13 +23,11 @@ public class CommandMe implements CommandExecutor {
 
             if (survival_worlds.contains(player.getWorld().getName())) {
 
-                Utils.sendMessageToSurvival("");
-                Utils.sendMessageToSurvival("§7§o" + player.getName() + " " + message);
+                Utils.sendMessageToSurvival("\n§7§o" + player.getName() + " " + message);
 
             } else {
 
-                Utils.sendMessageToWorld(player.getWorld(),"");
-                Utils.sendMessageToWorld(player.getWorld(),"§7§o" + player.getName() + " " + message);
+                Utils.sendMessageToWorld(player.getWorld(),"\n§7§o" + player.getName() + " " + message);
 
             }
 

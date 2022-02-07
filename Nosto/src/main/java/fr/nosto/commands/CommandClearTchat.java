@@ -12,17 +12,11 @@ public class CommandClearTchat implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		int i = 0;
-		while (i <= 100) {
-			Bukkit.broadcastMessage("");
-			i = i + 1;
-		}
+		Bukkit.broadcastMessage("\n".repeat(100));
 		
-		Bukkit.broadcastMessage("§e----------------------------------------------");
-		Bukkit.broadcastMessage("");
+		Bukkit.broadcastMessage("§e----------------------------------------------\n");
 		Bukkit.broadcastMessage("§eTchat clear par §6§l" + sender.getName() + " §e!");
-		Bukkit.broadcastMessage("");
-		Bukkit.broadcastMessage("§e----------------------------------------------");
+		Bukkit.broadcastMessage("\n§e----------------------------------------------");
 		
 		return true;
 	}

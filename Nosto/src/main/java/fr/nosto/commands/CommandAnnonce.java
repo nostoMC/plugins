@@ -17,21 +17,13 @@ public class CommandAnnonce implements CommandExecutor {
 		Player player = (Player)sender;
 		
 		if (args.length == 0) {
-			player.sendMessage("§cVeuillez ajouter un message");
+			player.sendMessage("\n§cVeuillez ajouter un message");
 		} else {
 			StringBuilder argsAnnonce = new StringBuilder();
 			for (String part : args) {
 				argsAnnonce.append(part).append(" ");
 			}
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§6§l-- Annonce de " + player.getName() + " --");
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§l" + argsAnnonce);
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§6§l---------------------------");
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage("\n\n§6§l-- Annonce de " + player.getName() + " --\\n§l\" + argsAnnonce\n§6§l---------------------------\n\n");
 
 			for (Player otherPlayer : Bukkit.getOnlinePlayers()) {
 				otherPlayer.playSound(otherPlayer.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);

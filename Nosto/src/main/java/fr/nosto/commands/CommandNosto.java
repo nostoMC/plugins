@@ -25,14 +25,14 @@ public class CommandNosto implements CommandExecutor {
 				case "reloadconfig" -> {
 					Main.getInstance().reloadConfig();
 					Setup.connexionMySQL(Main.instance);
-					sender.sendMessage("§aConfig et MySQL reload !");
+					sender.sendMessage("\n§aConfig et MySQL reload !");
 				}
 
 				case "normaljoin" -> {
 					if (sender instanceof Player player) {
 						OnJoinListener.playerJoin(player);
 					} else {
-						sender.sendMessage("Seuls les joueurs peuvent faire ca !");
+						sender.sendMessage("\nSeuls les joueurs peuvent faire ca !");
 					}
 				}
 

@@ -15,7 +15,7 @@ public class OnMoveListener implements Listener {
 		Player player = event.getPlayer();
 		
 		if (CommandFreeze.frozen.contains(player)) {
-			player.sendMessage("§cVous êtes freeze, vous ne pouvez pas bouger !");
+			player.sendMessage("\n§cVous êtes freeze, vous ne pouvez pas bouger !");
 			event.setCancelled(true);
 		}
 

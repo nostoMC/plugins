@@ -22,7 +22,7 @@ public class CommandFreeze implements CommandExecutor {
 			Player target = Bukkit.getPlayer(args[0]);
 
 			if (target == null) {
-				sender.sendMessage("§cImpossible de trouver un joueur avec le nom §6" + args[0]);
+				sender.sendMessage("\n§cImpossible de trouver un joueur avec le nom §6" + args[0]);
 				return false;
 			}
 
@@ -37,7 +37,7 @@ public class CommandFreeze implements CommandExecutor {
 			}
 
 		} else {
-			sender.sendMessage("§cSyntaxe: /freeze <player>");
+			sender.sendMessage("\n§cSyntaxe: /freeze <player>");
 		}
 
 		return false;

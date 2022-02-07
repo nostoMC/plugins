@@ -15,18 +15,17 @@ public class CommandStaffChat implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
         if (!(sender.hasPermission("nosto.admin.chat"))) {
-        	sender.sendMessage("");
-            sender.sendMessage("§cVous n'avez pas la permission !");
+            sender.sendMessage("\n§cVous n'avez pas la permission !");
             return true;
         }
 
         if (args.length < 1) {
         	sender.sendMessage("");
-            sender.sendMessage("§cLe message ne peut pas être vide !");
+            sender.sendMessage("\n§cLe message ne peut pas être vide !");
             return true;
         }
 
-        StringBuilder builder = new StringBuilder("§c[StaffChat] §e");
+        StringBuilder builder = new StringBuilder("\n§c[StaffChat] §e");
         
         if (sender instanceof Player player) {
             builder.append(player.getDisplayName());
