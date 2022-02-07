@@ -17,9 +17,9 @@ public class MinijeuxMenu implements Listener {
 
 	public static final String title = "§2§lMenu > TP > Mini jeux";
 
-	public static void openMenu(Player player) {
+	public static void openMenu(Player player, boolean override) {
 
-		if (!player.getWorld().getName().endsWith("Lobby")) return;
+		if (!player.getWorld().getName().endsWith("Lobby") && !override) return;
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
@@ -44,7 +44,7 @@ public class MinijeuxMenu implements Listener {
 		if (current == null) return;
 
 		switch (current.getType()) {
-			case ARROW -> TpMenu.openMenu(player);
+			case ARROW -> TpMenu.openMenu(player, false);
 			default -> {}
 		}
 	}

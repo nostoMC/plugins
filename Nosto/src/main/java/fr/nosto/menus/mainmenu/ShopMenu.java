@@ -17,9 +17,9 @@ public class ShopMenu implements Listener {
 
 	public static final String title = "§2§lMenu > Boutique";
 
-	public static void openMenu(Player player) {
+	public static void openMenu(Player player, boolean override) {
 
-		if (!player.getWorld().getName().endsWith("Lobby")) return;
+		if (!player.getWorld().getName().endsWith("Lobby") && !override) return;
 		if (!player.isOp()) return; // TEMPORAIRE
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
@@ -44,7 +44,7 @@ public class ShopMenu implements Listener {
 		if (current == null) return;
 
 		if (current.getType() == Material.ARROW) {
-			MainMenu.openMenu(player);
+			MainMenu.openMenu(player, false);
 		}
 		
 	}

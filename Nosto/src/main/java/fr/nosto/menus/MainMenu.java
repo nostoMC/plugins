@@ -27,9 +27,9 @@ public class MainMenu implements Listener {
 
 	public static final String title = "§2§lMenu";
 
-	public static void openMenu(Player player) {
+	public static void openMenu(Player player, boolean override) {
 
-		if (!player.getWorld().getName().endsWith("Lobby")) return;
+		if (!player.getWorld().getName().endsWith("Lobby") && !override) return;
 
 		float playerMoney = 0;
 		try {
@@ -85,17 +85,17 @@ public class MainMenu implements Listener {
 		switch (current.getType()) {
 
 			case COMPASS:
-				TpMenu.openMenu(player);
+				TpMenu.openMenu(player, false);
 				break;
 
 			case BLAZE_POWDER:
 				if (player.getWorld().getName().endsWith("Lobby"))
-					TrailsMenu.openMenu(player);
+					TrailsMenu.openMenu(player, false);
 				else player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 				break;
 
 			case GOLD_INGOT:
-				ShopMenu.openMenu(player);
+				ShopMenu.openMenu(player, false);
 				break;
 
 			default:

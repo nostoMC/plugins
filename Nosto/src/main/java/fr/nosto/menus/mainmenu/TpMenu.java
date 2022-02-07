@@ -20,9 +20,9 @@ public class TpMenu implements Listener {
 
 	public static final String title = "§2§lMenu > TP";
 
-	public static void openMenu(Player player) {
+	public static void openMenu(Player player, boolean override) {
 
-		if (!player.getWorld().getName().endsWith("Lobby")) return;
+		if (!player.getWorld().getName().endsWith("Lobby") && !override) return;
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
@@ -48,10 +48,10 @@ public class TpMenu implements Listener {
 		if (current == null) return;
 
 		switch (current.getType()) {
-			case ARROW -> MainMenu.openMenu(player);
-			case GRASS_BLOCK -> MondeOuvertMenu.openMenu(player);
-			case FISHING_ROD -> MinijeuxMenu.openMenu(player);
-			case WOODEN_SWORD -> TrainingMenu.openMenu(player);
+			case ARROW -> MainMenu.openMenu(player, false);
+			case GRASS_BLOCK -> MondeOuvertMenu.openMenu(player, false);
+			case FISHING_ROD -> MinijeuxMenu.openMenu(player, false);
+			case WOODEN_SWORD -> TrainingMenu.openMenu(player, false);
 			default -> {}
 		}
 	}

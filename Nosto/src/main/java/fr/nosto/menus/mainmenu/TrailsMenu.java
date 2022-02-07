@@ -29,8 +29,9 @@ public class TrailsMenu implements Listener {
 
 	private static final String title = "§2§lMenu > Particules";
 
-	public static void openMenu(Player player) {
-		if (!player.getWorld().getName().endsWith("Lobby")) return;
+	public static void openMenu(Player player, boolean override) {
+
+		if (!player.getWorld().getName().endsWith("Lobby") && !override) return;
 		if (!player.isOp()) return; // TEMPORAIRE
 		open(player);
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
@@ -122,7 +123,7 @@ public class TrailsMenu implements Listener {
 
 		// Flèche retour
 		if (slot == 53)
-			MainMenu.openMenu(player);
+			MainMenu.openMenu(player, false);
 		// slot equiped
 		else if (slot == 49) {
 			if (stats.getEquiped() == null) return;

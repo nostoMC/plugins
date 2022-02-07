@@ -17,9 +17,9 @@ public class TrainingMenu implements Listener {
 
 	private static final String title = "§2§lMenu > TP > Training";
 
-	public static void openMenu(Player player) {
+	public static void openMenu(Player player, boolean override) {
 
-		if (!player.getWorld().getName().endsWith("Lobby")) return;
+		if (!player.getWorld().getName().endsWith("Lobby") && !override) return;
 
 		Inventory inv = Bukkit.createInventory(null, 27, title);
 		
@@ -43,7 +43,7 @@ public class TrainingMenu implements Listener {
 		Player player = (Player) event.getWhoClicked();
 
 		switch (current.getType()) {
-			case ARROW -> TpMenu.openMenu(player);
+			case ARROW -> TpMenu.openMenu(player, false);
 			default -> {}
 		}
 	}

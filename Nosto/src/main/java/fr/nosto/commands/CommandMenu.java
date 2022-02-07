@@ -14,7 +14,7 @@ public class CommandMenu implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
 		if (sender instanceof Player player) {
-			MainMenu.openMenu(player);
+			MainMenu.openMenu(player, false);
 		}
 		
 		return false;

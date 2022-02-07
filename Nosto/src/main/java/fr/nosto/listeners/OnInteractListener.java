@@ -25,7 +25,7 @@ public class OnInteractListener implements Listener {
 
 			if (player.getOpenInventory().getTitle().equals("Crafting")
 					&& event.getMaterial() == Material.COMPASS) {
-				TpMenu.openMenu(player);
+				TpMenu.openMenu(player, false);
 			}
 
 			if (denyInteract(player)) event.setCancelled(true);
