@@ -29,8 +29,7 @@ public class Main extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), this);
 		Bukkit.getPluginManager().registerEvents(new BarMenu(), this);
-		
-		Bukkit.getPluginManager().registerEvents(new OnPlayerChangeWorldListener(), this);
+
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), this);
 
 		Bukkit.getPluginManager().registerEvents(new SitListener(), this);
