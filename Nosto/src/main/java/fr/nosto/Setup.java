@@ -27,9 +27,6 @@ public class Setup {
 		// MySQL (Database)
 		connexionMySQL(main);
 
-		// Message manager
-		MessageManager.init(main);
-
 		// Commands
 		registerCommands(main);
 

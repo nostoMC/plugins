@@ -1,8 +1,10 @@
 package fr.nosto;
 
 import java.util.*;
+import java.util.List;
 
 import fr.nosto.mysql.DatabaseManager;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -67,6 +69,18 @@ public class Utils {
     public static void sendMessageToWorld(World world, String message) {
         for (Player player : world.getPlayers()) {
             player.sendMessage(message);
+        }
+    }
+
+    public static void sendTextComponentToSurvival(TextComponent textComponent) {
+        for (String name : survies_names) {
+            sendTextComponentToWorld(Objects.requireNonNull(Bukkit.getWorld(name)), textComponent);
+        }
+    }
+
+    public static void sendTextComponentToWorld(World world, TextComponent textComponent) {
+        for (Player player : world.getPlayers()) {
+            player.sendMessage(textComponent);
         }
     }
 

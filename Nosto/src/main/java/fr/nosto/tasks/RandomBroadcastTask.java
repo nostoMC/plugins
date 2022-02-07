@@ -1,10 +1,10 @@
 package fr.nosto.tasks;
 
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.nosto.Main;
@@ -12,38 +12,39 @@ import fr.nosto.Utils;
 
 public class RandomBroadcastTask {
 
-	private static boolean inited = false;
+	static Random random = new Random();
 
 	public static void init(Main main) {
 
-		if (inited) {
-			Bukkit.getLogger().warning("RandomBroadcastTask.init() ran twice!");
-			return;
-		}
-		inited = true;
-		
-		String[] messages = {"1", "2", "3", "4"};
+		ArrayList<TextComponent> messagesList = new ArrayList<>();
 
-		Set<String> survies_names = Utils.getSurviesNames();
-    	
+		messagesList.add(message1());
+		messagesList.add(message2());
+
 		new BukkitRunnable() {
-		    @Override
-		    public void run() {
-				if (!Bukkit.getOnlinePlayers().isEmpty()) {
-					for (Player players : Bukkit.getOnlinePlayers()) {
-		    			if (survies_names.contains(players.getWorld().getName())) {
-							if (messages[new Random().nextInt(messages.length)].equals("1")) {
-				    			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + players.getName() + " [\"\",{\"text\":\"\\n\"},{\"text\":\"Si vous rencontrez des bugs, veuillez nous les signaler sur le discord :\",\"bold\":true,\"color\":\"yellow\"},{\"text\":\" \",\"bold\":true,\"color\":\"gold\"},{\"text\":\"https://discord.io/Nosto\",\"bold\":true,\"underlined\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://discord.io/Nosto\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"Cliquez pour accéder au serveur discord\"}}]");
-							} else if (messages[new Random().nextInt(messages.length)].equals("2")) {
-				    			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + players.getName() + " [\"\",{\"text\":\"\\n\"},{\"text\":\"Les machines à lag sont \",\"bold\":true,\"color\":\"red\"},{\"text\":\"strictement interdites\",\"bold\":true,\"color\":\"dark_red\"},{\"text\":\" en tous mondes.\",\"bold\":true,\"color\":\"red\"}]");
-				    		}
-		    			}
-		    		}
-		    	}
-		    }
-		          
-		}.runTaskTimer(main, 0, 1000);
-		
+			@Override
+			public void run() {
+				TextComponent textComponent = messagesList.get(random.nextInt(messagesList.size()));
+				Utils.sendTextComponentToSurvival(textComponent);
+			}
+		}.runTaskTimer(main, 0, 3000);
+	}
+
+	private static TextComponent message1() {
+		TextComponent finalTextComponent = new TextComponent("\n");
+		finalTextComponent.addExtra("§e§l" + "Si vous rencontrez des bugs, veuillez nous les signaler sur le discord : ");
+		TextComponent link = new TextComponent("§6§l§n" + "https://discord.io/Nosto");
+		link.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, "https://discord.io/Nosto"));
+		finalTextComponent.addExtra(link);
+		return finalTextComponent;
+	}
+
+	private static TextComponent message2() {
+		TextComponent finalTextComponent = new TextComponent("\n");
+		finalTextComponent.addExtra("§c§l" + "Les machines à lag sont ");
+		finalTextComponent.addExtra("§4§l" + "strictement interdites ");
+		finalTextComponent.addExtra("§c§l" + "en tous mondes.");
+		return finalTextComponent;
 	}
 
 }
