@@ -1,12 +1,12 @@
 package fr.nosto.commands;
 
+import fr.nosto.Main;
+import fr.nosto.Setup;
+import fr.nosto.listeners.OnJoinListener;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import fr.nosto.Main;
-import fr.nosto.listeners.OnJoinListener;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandNosto implements CommandExecutor {
@@ -24,7 +24,8 @@ public class CommandNosto implements CommandExecutor {
 				
 				case "reloadconfig" -> {
 					Main.getInstance().reloadConfig();
-					sender.sendMessage("§aConfig reload !");
+					Setup.connexionMySQL(Main.instance);
+					sender.sendMessage("§aConfig et MySQL reload !");
 				}
 
 				case "normaljoin" -> {

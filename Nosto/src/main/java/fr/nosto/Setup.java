@@ -25,26 +25,7 @@ public class Setup {
 	public Setup(Main main) {
 
 		// MySQL (Database)
-		FileConfiguration fc = main.getConfig();
-		if (!fc.contains("SQL.host")) {
-			fc.set("SQL.host", "HOST HERE");
-		}
-
-		if (!fc.contains("SQL.user")) {
-			fc.set("SQL.user", "USER HERE");
-		}
-
-		if (!fc.contains("SQL.password")) {
-			fc.set("SQL.password", "PASSWORD HERE");
-		}
-
-		if (!fc.contains("SQL.dbName")) {
-			fc.set("SQL.dbName", "DATABASE NAME HERE");
-		}
-
-		main.saveConfig();
-
-		Main.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
+		connexionMySQL(main);
 
 		// Message manager
 		MessageManager.init(main);
@@ -109,6 +90,32 @@ public class Setup {
 		main.getCommand("menu").setExecutor(new CommandMenu());
 		main.getCommand("lobby").setExecutor(new CommandLobby());
 		main.getCommand("me").setExecutor(new CommandMe());
+	}
+
+	public static void connexionMySQL(Main main) {
+
+		if (Main.databaseManager != null) Main.databaseManager.close();
+
+		FileConfiguration fc = main.getConfig();
+		if (!fc.contains("SQL.host")) {
+			fc.set("SQL.host", "HOST HERE");
+		}
+
+		if (!fc.contains("SQL.user")) {
+			fc.set("SQL.user", "USER HERE");
+		}
+
+		if (!fc.contains("SQL.password")) {
+			fc.set("SQL.password", "PASSWORD HERE");
+		}
+
+		if (!fc.contains("SQL.dbName")) {
+			fc.set("SQL.dbName", "DATABASE NAME HERE");
+		}
+
+		main.saveConfig();
+
+		Main.databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
 	}
 
 }
