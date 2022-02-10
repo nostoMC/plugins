@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.jetbrains.annotations.NotNull;
 
 public class CommandEvent implements CommandExecutor {
@@ -19,6 +20,13 @@ public class CommandEvent implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
+		final String helpMsg = """
+															
+				§cUtilisation :
+				  /event add <nom de l'event>
+				  /event stop
+				""";
+
 		if (sender instanceof Player player) {
 			if (player.hasPermission("nosto.admin.event")) { // PARTIE ADMIN
 				if (args.length == 0) {
@@ -27,16 +35,20 @@ public class CommandEvent implements CommandExecutor {
 				}
 				if (args[0].equalsIgnoreCase("add")) {
 					if (event != null) player.sendMessage("\n§cUn event est déjà en cours !");
+					else if (args.length != 2) sender.sendMessage(helpMsg);
 					else {
 						switch (args[1].toLowerCase()) {
 
 							case "nostoclub" -> event = Event.NOSTOCLUB;
 							case "mainlobby" -> event = Event.MAINLOBBY;
 
-							default -> player.sendMessage("\n§cAucun event n'a ce nom");
+							default -> {
+								player.sendMessage("\n§cAucun event n'a ce nom");
+								return true;
+							}
 						}
 
-						Bukkit.broadcastMessage("\n\n§b§lUn event vient d'être créé ! Faites /event pour nous rejoindre !\n\n");
+						Bukkit.broadcastMessage("\n\n§b§lUn event vient de commencer ! Fais /event pour nous rejoindre !\n\n");
 					}
 				} else if (args[0].equalsIgnoreCase("stop")) {
 					if (event == null) player.sendMessage("\n§cAucun event en cours !");
@@ -45,13 +57,13 @@ public class CommandEvent implements CommandExecutor {
 						player.sendMessage("\n§bL'event vient de se finir");
 					}
 				} else {
-					sender.sendMessage("\n§cUtilisation : /event add <nom de l'event ou /event stop");
+					sender.sendMessage(helpMsg);
 				}
 			} else { // PARTIE JOUEUR
 				tpEvent(player);
 			}
 		}
-		return false;
+		return true;
 	}
 
 	private static void tpEvent(Player player) {
@@ -74,8 +86,6 @@ public class CommandEvent implements CommandExecutor {
 					player.teleport(location);
 					player.teleport(location);
 				}
-
-				default -> player.sendMessage("\n§cErreur. Veuillez contacter un administrateur");
 			}
 		}
 	}

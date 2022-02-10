@@ -14,8 +14,10 @@ commands:
     permission: nosto.admin.cleartchat
     aliases: ct
   event:
-    description: "Permet de creer des events et de les rejoindres"
-    usage: /event ou /event add <type> ou /event stop
+    description: "Permet de creer des events et de les rejoindre"
+    usage: "/event\n
+    /event add <type>\n
+    /event stop"
   feed:
     description: "Permet de régénérer sa barre de nourriture"
     usage: /feed
