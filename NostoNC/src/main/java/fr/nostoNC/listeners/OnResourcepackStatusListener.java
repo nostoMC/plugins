@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
 
 public class OnResourcepackStatusListener implements Listener {
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onResourcepackStatusEvent(PlayerResourcePackStatusEvent event) {
 		

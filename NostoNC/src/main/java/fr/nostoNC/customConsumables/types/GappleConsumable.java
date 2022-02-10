@@ -17,6 +17,7 @@ public class GappleConsumable implements Consumable {
     private final ItemStack item;
     private final EffectRunnable effectRunnable;
 
+    @SuppressWarnings("deprecation")
     public GappleConsumable(String foodName, String id, int customModelData, EffectRunnable effectRunnable) {
         this.effectRunnable = effectRunnable;
 
@@ -28,7 +29,7 @@ public class GappleConsumable implements Consumable {
         meta.setCustomModelData(customModelData);
 
         PersistentDataContainer data = meta.getPersistentDataContainer();
-        data.set(new NamespacedKey(Main.instance, "consumableId"), PersistentDataType.STRING, id);
+        data.set(new NamespacedKey(Main.getInstance(), "consumableId"), PersistentDataType.STRING, id);
 
         item.setItemMeta(meta);
     }

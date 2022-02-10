@@ -25,7 +25,7 @@ public class GlowingLamp {
 
         for (int l = 0; l < lMax*2; l += 2) {
             for (int L = 0; L < LMax*2; L += 2) {
-                Location location = new Location(Utils.defaultWorld, -16 + L, 113, 150 + l);
+                Location location = new Location(Utils.getDefaultWorld(), -16 + L, 113, 150 + l);
                 all.add(location);
                 if (!lignes.containsKey(l/2)) lignes.put(l/2, new ArrayList<>());
                 ArrayList<Location> list = lignes.get(l/2);
@@ -59,13 +59,13 @@ public class GlowingLamp {
                 stade ++;
                 if (stade == 8) stade = defaultInt;
             }
-        }.runTaskTimer(Main.instance, 0, 5*8);
+        }.runTaskTimer(Main.getInstance(), 0, 5*8);
 
     }
 
     private static void allChangeDimmer(boolean bool) {
         for (Location location : all) {
-            Block b = Utils.defaultWorld.getBlockAt(location);
+            Block b = Utils.getDefaultWorld().getBlockAt(location);
             if (bool) b.setType(Material.GLOWSTONE);
             else b.setType(Material.STONE);
         }
@@ -87,17 +87,17 @@ public class GlowingLamp {
                     t--;
                 }
                 if (hashMap.containsKey(t)) for (Location location : hashMap.get(t)) {
-                    Block block = Utils.defaultWorld.getBlockAt(location);
+                    Block block = Utils.getDefaultWorld().getBlockAt(location);
                     block.setType(Material.GLOWSTONE);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
                             block.setType(Material.STONE);
                         }
-                    }.runTaskLater(Main.instance, timing* 3L);
+                    }.runTaskLater(Main.getInstance(), timing* 3L);
                 }
             }
-        }.runTaskTimer(Main.instance, 0, timing);
+        }.runTaskTimer(Main.getInstance(), 0, timing);
     }
 
 }

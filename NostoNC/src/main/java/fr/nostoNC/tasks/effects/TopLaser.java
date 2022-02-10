@@ -92,25 +92,25 @@ public class TopLaser {
 					t++;
 				}
 			}
-		}.runTaskTimer(Main.instance, 0, 1);
+		}.runTaskTimer(Main.getInstance(), 0, 1);
 
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				if (move.equalsIgnoreCase("random")) {
 					for (Laser laser : all) {
-						laser.moveEnd(new Location(Utils.defaultWorld, random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
+						laser.moveEnd(new Location(Utils.getDefaultWorld(), random.nextInt(41) - 25, 100, random.nextInt(35) + 144), 39, null);
 					}
 				}
 			}
-		}.runTaskTimer(Main.instance, 0, 40);
+		}.runTaskTimer(Main.getInstance(), 0, 40);
 
 	}
 	
 	public static void showAll() {
 		for(Laser laser : all) {
 			try {
-				laser.start(Main.instance);
+				laser.start(Main.getInstance());
 			} catch (IllegalArgumentException ignored) {
 			}
 			updateMovement(laser);
@@ -130,7 +130,7 @@ public class TopLaser {
 	public static void showGroup(Set<Laser> group) {
 		for(Laser laser : group) {
 			try {
-				laser.start(Main.instance);
+				laser.start(Main.getInstance());
 			} catch (IllegalArgumentException ignored) {
 			}
 			updateMovement(laser);
@@ -162,7 +162,7 @@ public class TopLaser {
 
 	private static void addLaser(double x, double z) {
 		try {
-			all.add(new Laser.GuardianLaser(new Location(Utils.defaultWorld, x, 114.0, z), new Location(Utils.defaultWorld, x, 100, z), duration, distance));
+			all.add(new Laser.GuardianLaser(new Location(Utils.getDefaultWorld(), x, 114.0, z), new Location(Utils.getDefaultWorld(), x, 100, z), duration, distance));
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
@@ -174,7 +174,7 @@ public class TopLaser {
 				Location loc = laser.getStart();
 				double x = loc.getX();
 				double z = loc.getZ();
-				laser.moveEnd(new Location(Utils.defaultWorld, x, 100, z));
+				laser.moveEnd(new Location(Utils.getDefaultWorld(), x, 100, z));
 			}
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();

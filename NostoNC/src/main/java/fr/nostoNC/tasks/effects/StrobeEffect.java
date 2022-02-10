@@ -7,6 +7,7 @@ import fr.nostoNC.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -38,7 +39,7 @@ public class StrobeEffect {
 					t = 0;
 					flash = !flash;
 
-					if (Utils.activeEffects.get("strobe") != null && Utils.activeEffects.get("strobe")) {
+					if (Utils.getActiveEffects("strobe")) {
 						activated = true;
 
 						if (flash) {
@@ -64,26 +65,29 @@ public class StrobeEffect {
 	}
 
 	private static void setLightsMaterial(Material material) {
+
+		World world = Utils.getDefaultWorld();
+
 		Set<Location> locations = new HashSet<>();
 
 		for(int i = 112; i > 102; i = i-2) {
-			locations.add(new Location(Utils.defaultWorld, -9, i, 146));
-			locations.add(new Location(Utils.defaultWorld, -6, i, 145));
-			locations.add(new Location(Utils.defaultWorld, 1, i, 145));
-			locations.add(new Location(Utils.defaultWorld, 4, i, 146));
+			locations.add(new Location(world, -9, i, 146));
+			locations.add(new Location(world, -6, i, 145));
+			locations.add(new Location(world, 1, i, 145));
+			locations.add(new Location(world, 4, i, 146));
 		}
 
 		for (Location loc : locations) {
-			Utils.defaultWorld.getBlockAt(loc).setType(material);
+			world.getBlockAt(loc).setType(material);
 			if (material == Material.SEA_LANTERN)
-				Utils.defaultWorld.spawnParticle(Particle.FLASH, loc, 1, 0, 0, 0, 1, null, true);
+				world.spawnParticle(Particle.FLASH, loc, 1, 0, 0, 0, 1, null, true);
 		}
 	}
 
 	private static void flashON() {
 		PotionEffect potion = new PotionEffect(PotionEffectType.NIGHT_VISION, 25, 255, false, false, false);
 
-		for (Player player : Utils.defaultWorld.getPlayers()) {
+		for (Player player : Utils.getDefaultWorld().getPlayers()) {
 			player.addPotionEffect(potion);
 			player.removePotionEffect(PotionEffectType.BLINDNESS);
 		}
@@ -92,14 +96,14 @@ public class StrobeEffect {
 	private static void flashOFF() {
 		PotionEffect potion = new PotionEffect(PotionEffectType.BLINDNESS, 25, 255, false, false, false);
 
-		for (Player player : Utils.defaultWorld.getPlayers()) {
+		for (Player player : Utils.getDefaultWorld().getPlayers()) {
 			player.addPotionEffect(potion);
 			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
 		}
 	}
 
 	private static void reset() {
-		for (Player player : Utils.defaultWorld.getPlayers()) {
+		for (Player player : Utils.getDefaultWorld().getPlayers()) {
 			player.removePotionEffect(PotionEffectType.BLINDNESS);
 			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
 		}

@@ -24,7 +24,7 @@ public class ItemConsumable implements Consumable {
         ItemMeta meta = item.getItemMeta();
 
         PersistentDataContainer data = meta.getPersistentDataContainer();
-        data.set(new NamespacedKey(Main.instance, "consumableId"), PersistentDataType.STRING, id);
+        data.set(new NamespacedKey(Main.getInstance(), "consumableId"), PersistentDataType.STRING, id);
 
         item.setItemMeta(meta);
     }

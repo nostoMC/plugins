@@ -55,14 +55,14 @@ public class WallLaser {
 
                     Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
                     try {
-                        if (move.equalsIgnoreCase("edge")) laser.moveEnd(new Location(Utils.defaultWorld, pointB.getX(), pointB.getY(), pointB.getZ()));
+                        if (move.equalsIgnoreCase("edge")) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
                     } catch (ReflectiveOperationException ignored) {
                     }
 
                     t += .05;
 
                 }
-            }.runTaskTimer(Main.instance, 0, 1);
+            }.runTaskTimer(Main.getInstance(), 0, 1);
             new BukkitRunnable() {
                 double t = defaultT;
                 final double size = 45;
@@ -74,14 +74,14 @@ public class WallLaser {
 
                     Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
                     try {
-                        if (move.equalsIgnoreCase("wave")) laser.moveEnd(new Location(Utils.defaultWorld, pointB.getX(), pointB.getY(), pointB.getZ()));
+                        if (move.equalsIgnoreCase("wave")) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
                     } catch (ReflectiveOperationException ignored) {
                     }
 
                     t += .05;
 
                 }
-            }.runTaskTimer(Main.instance, 0, 1);
+            }.runTaskTimer(Main.getInstance(), 0, 1);
 
         }
     }
@@ -89,7 +89,7 @@ public class WallLaser {
     public static void showAll() {
         for(Laser laser : all) {
             try {
-                laser.start(Main.instance);
+                laser.start(Main.getInstance());
             } catch (IllegalArgumentException ignored) {
             }
             updateMovement(laser);
@@ -129,7 +129,7 @@ public class WallLaser {
 
     private static void addLaser(double x, double y, double z) {
         try {
-            all.add(new Laser.GuardianLaser(new Location(Utils.defaultWorld, x, y, z), new Location(Utils.defaultWorld, x, y, z+longueur), duration, distance));
+            all.add(new Laser.GuardianLaser(new Location(Utils.getDefaultWorld(), x, y, z), new Location(Utils.getDefaultWorld(), x, y, z+longueur), duration, distance));
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
@@ -142,7 +142,7 @@ public class WallLaser {
                 double x = loc.getX();
                 double y = loc.getY();
                 double z = loc.getZ() + longueur;
-                laser.moveEnd(new Location(Utils.defaultWorld, x, y, z));
+                laser.moveEnd(new Location(Utils.getDefaultWorld(), x, y, z));
             }
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();

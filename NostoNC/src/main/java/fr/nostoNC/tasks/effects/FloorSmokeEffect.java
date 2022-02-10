@@ -20,8 +20,8 @@ public class FloorSmokeEffect {
 			@Override
 			public void run() {
 				
-				if(Utils.activeEffects.get("floorSmoke")) {
-					Utils.defaultWorld.spawnParticle(Particle.CLOUD, -2.0, 101.0, 162.5, 500, 7, 0, 5, 0.05);
+				if(Utils.getActiveEffects("floorSmoke")) {
+					Utils.getDefaultWorld().spawnParticle(Particle.CLOUD, -2.0, 101.0, 162.5, 500, 7, 0, 5, 0.05);
 				}
 				
 			}

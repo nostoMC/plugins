@@ -94,7 +94,7 @@ public class Products {
 
                     period++;
                 }
-            }.runTaskTimer(Main.instance, 0, periodTime);
+            }.runTaskTimer(Main.getInstance(), 0, periodTime);
         }));
 
         // **** GAPPLE FOOD ****

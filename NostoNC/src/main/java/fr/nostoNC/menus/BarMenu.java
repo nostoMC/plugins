@@ -60,6 +60,7 @@ public class BarMenu implements Listener {
         player.openInventory(inv);
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         if (!event.getView().title().equals(TITLE)) return;
@@ -96,7 +97,7 @@ public class BarMenu implements Listener {
                         // putting back the item 1 sec after
                         clickedInventory.setItem(slot, replaceItem);
                     }
-                }.runTaskLater(Main.instance, 20);
+                }.runTaskLater(Main.getInstance(), 20);
             }
             // close button
             if (slot == 53) {

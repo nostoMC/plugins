@@ -5,13 +5,8 @@ import java.util.List;
 
 import fr.nostoNC.tasks.effects.TopLaser;
 import fr.nostoNC.tasks.effects.WallLaser;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
+import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -40,6 +35,7 @@ public class EffectsMenu implements Listener {
 		on.add("§a§lon");
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void openMenu(Player player) {
 
 		Inventory inv = Bukkit.createInventory(null, 54, "§2§lGestioraire des effets");
@@ -52,7 +48,7 @@ public class EffectsMenu implements Listener {
 				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
 				"§8Click droit: §a+1",
 				"§8Click gauche: §c-1"));
-		if (Utils.activeEffects.get("strobe") != null && Utils.activeEffects.get("strobe")) {
+		if (Utils.getActiveEffects("strobe")) {
 			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§a§lon"));
 		} else {
 			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§c§loff"));
@@ -79,8 +75,11 @@ public class EffectsMenu implements Listener {
 		player.openInventory(inv);
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
+
+		World world = Utils.getDefaultWorld();
 
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
@@ -118,12 +117,12 @@ public class EffectsMenu implements Listener {
 				case FIREWORK_ROCKET -> {
 					List<Firework> fireworks = new ArrayList<>();
 
-					fireworks.add((Firework) Utils.defaultWorld.spawnEntity(new Location(Utils.defaultWorld, 4.5, 103.4, 148.5), EntityType.FIREWORK));
-					fireworks.add((Firework) Utils.defaultWorld.spawnEntity(new Location(Utils.defaultWorld, 2.5, 103.4, 149.5), EntityType.FIREWORK));
-					fireworks.add((Firework) Utils.defaultWorld.spawnEntity(new Location(Utils.defaultWorld, -0.5, 103.4, 150.5), EntityType.FIREWORK));
-					fireworks.add((Firework) Utils.defaultWorld.spawnEntity(new Location(Utils.defaultWorld, -3.5, 103.4, 150.5), EntityType.FIREWORK));
-					fireworks.add((Firework) Utils.defaultWorld.spawnEntity(new Location(Utils.defaultWorld, -6.5, 103.4, 149.5), EntityType.FIREWORK));
-					fireworks.add((Firework) Utils.defaultWorld.spawnEntity(new Location(Utils.defaultWorld, -8.5, 103.4, 148.5), EntityType.FIREWORK));
+					fireworks.add((Firework) world.spawnEntity(new Location(world, 4.5, 103.4, 148.5), EntityType.FIREWORK));
+					fireworks.add((Firework) world.spawnEntity(new Location(world, 2.5, 103.4, 149.5), EntityType.FIREWORK));
+					fireworks.add((Firework) world.spawnEntity(new Location(world, -0.5, 103.4, 150.5), EntityType.FIREWORK));
+					fireworks.add((Firework) world.spawnEntity(new Location(world, -3.5, 103.4, 150.5), EntityType.FIREWORK));
+					fireworks.add((Firework) world.spawnEntity(new Location(world, -6.5, 103.4, 149.5), EntityType.FIREWORK));
+					fireworks.add((Firework) world.spawnEntity(new Location(world, -8.5, 103.4, 148.5), EntityType.FIREWORK));
 
 					FireworkMeta fwm = fireworks.get(0).getFireworkMeta();
 
@@ -142,7 +141,7 @@ public class EffectsMenu implements Listener {
 					}
 				}
 
-				case PUMPKIN_SEEDS -> new RandomParticleEffect(Main.instance);
+				case PUMPKIN_SEEDS -> new RandomParticleEffect(Main.getInstance());
 
 				case REDSTONE_TORCH -> {
 					TopLaser.hideAll();
@@ -178,22 +177,21 @@ public class EffectsMenu implements Listener {
 					WallLaser.showAll();
 				}
 
-				case RED_CONCRETE_POWDER -> {
-					WallLaser.hideAll();
-				}
+				case RED_CONCRETE_POWDER -> WallLaser.hideAll();
 
 				default -> {}
 			}
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private static void createAndCheckActiveEffectItem(Inventory inv, Material material, String itName, String var, int slot) {
 		ItemStack it = new ItemStack(material);
 		ItemMeta itM = it.getItemMeta();
 		itM.setDisplayName(itName);
 
 		if(var != null) {
-			if(!Utils.activeEffects.get(var)) {
+			if(!Utils.getActiveEffects(var)) {
 				itM.setLore(off);
 			} else {
 				itM.setLore(on);
@@ -208,12 +206,12 @@ public class EffectsMenu implements Listener {
 	}
 
 	private static void checkActiveEffectItem(Player player, String var) {
-		if (!Utils.activeEffects.get(var)) {
+		if (!Utils.getActiveEffects(var)) {
 			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
-			Utils.activeEffects.put(var, true);
+			Utils.putActiveEffects(var, true);
 		} else {
 			player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
-			Utils.activeEffects.put(var, false);
+			Utils.putActiveEffects(var, false);
 		}
 		openMenu(player);
 	}

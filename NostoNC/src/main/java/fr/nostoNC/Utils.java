@@ -19,9 +19,9 @@ import net.kyori.adventure.text.Component;
 
 public class Utils {
 
-    public static final HashMap<String, Boolean> activeEffects = new HashMap<>();
+    private static final HashMap<String, Boolean> activeEffects = new HashMap<>();
 
-    public static World defaultWorld;
+    private static World defaultWorld;
 
     public static final ItemStack clearSlot = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
     static {
@@ -30,6 +30,7 @@ public class Utils {
         clearSlot.setItemMeta(clearSlotMeta);
     }
 
+    @SuppressWarnings("deprecation")
     public static ItemStack createItem(Material material, String name, String... lore) {
 
         ItemStack it = new ItemStack((material));
@@ -84,6 +85,22 @@ public class Utils {
         pointB.add(pointA);
 
         return pointB;
+    }
+
+    public static World getDefaultWorld() {
+        return defaultWorld;
+    }
+
+    public static void setDefaultWorld(World defaultWorld) {
+        Utils.defaultWorld = defaultWorld;
+    }
+
+    public static void putActiveEffects(String key, boolean value) {
+        activeEffects.put(key, value);
+    }
+
+    public static boolean getActiveEffects(String key) {
+        return activeEffects.get(key);
     }
 
 }

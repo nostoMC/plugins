@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.nostoNC.Utils;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -21,6 +17,8 @@ public class RandomParticleEffect {
 
 	public RandomParticleEffect(Main main) {
 
+		World world = Utils.getDefaultWorld();
+
 		List<Bat> batList = new ArrayList<>();
 
 		new BukkitRunnable() {
@@ -30,7 +28,7 @@ public class RandomParticleEffect {
 			@Override
 			public void run() {
 
-				Bat bat = (Bat) Utils.defaultWorld.spawnEntity(new Location(null, -2, 112, 156), EntityType.BAT);
+				Bat bat = (Bat) world.spawnEntity(new Location(null, -2, 112, 156), EntityType.BAT);
 				bat.setInvisible(true);
 				bat.setSilent(true);
 				
@@ -52,14 +50,14 @@ public class RandomParticleEffect {
 			public void run() {
 				
 				for (Bat bat : batList) {
-					Utils.defaultWorld.spawnParticle(Particle.FLAME, bat.getLocation(), 1, 0, 0, 0, 0);
+					world.spawnParticle(Particle.FLAME, bat.getLocation(), 1, 0, 0, 0, 0);
 				}
 				
 				i++;
 				if (i >= 200) {
 					this.cancel();
 
-					Firework firework = (Firework) Utils.defaultWorld.spawnEntity(batList.get(0).getLocation(), EntityType.FIREWORK);
+					Firework firework = (Firework) world.spawnEntity(batList.get(0).getLocation(), EntityType.FIREWORK);
 
 					FireworkMeta fwMeta = firework.getFireworkMeta();
 					fwMeta.addEffect(FireworkEffect.builder()
@@ -77,7 +75,7 @@ public class RandomParticleEffect {
 					for (Bat bat : batList) {
 						bat.remove();
 
-						firework = (Firework) Utils.defaultWorld.spawnEntity(bat.getLocation(), EntityType.FIREWORK);
+						firework = (Firework) world.spawnEntity(bat.getLocation(), EntityType.FIREWORK);
 						firework.setFireworkMeta(fwMeta);
 						firework.detonate();
 					}

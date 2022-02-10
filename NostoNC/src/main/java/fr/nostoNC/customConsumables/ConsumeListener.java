@@ -23,7 +23,7 @@ public class ConsumeListener implements Listener {
         ItemMeta meta = event.getItem().getItemMeta();
         PersistentDataContainer data = meta.getPersistentDataContainer();
 
-        String consumableId = data.get(new NamespacedKey(Main.instance, "consumableId"), PersistentDataType.STRING);
+        String consumableId = data.get(new NamespacedKey(Main.getInstance(), "consumableId"), PersistentDataType.STRING);
         if (consumableId == null) return;
 
         Consumable consumable = Products.products.get(consumableId);

@@ -52,7 +52,7 @@ public class BarAccessListener implements Listener {
                 openable.setOpen(false);
                 block.setBlockData(openable);
             }
-        }.runTaskLater(Main.instance, 20);
+        }.runTaskLater(Main.getInstance(), 20);
 
     }
 

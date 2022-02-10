@@ -65,7 +65,7 @@ public class ElevatorTask {
                         startTimer(player, Elevator.LOBBY);
                     }
                 }
-                for (Player player : Utils.defaultWorld.getPlayers()) {
+                for (Player player : Utils.getDefaultWorld().getPlayers()) {
                     if (!inClubElevator.contains(player.getUniqueId()) && CLUB_ELEVATOR_BOX.contains(player.getLocation().toVector())) {
                         startTimer(player, Elevator.CLUB);
                     }
@@ -75,6 +75,7 @@ public class ElevatorTask {
         }.runTaskTimer(main, 10, 40);
     }
 
+    @SuppressWarnings("deprecation")
     private static void startTimer(Player player, @NotNull Elevator elevator) {
         BoundingBox elevatorBox;
         Set<UUID> inElevator;
@@ -129,6 +130,7 @@ public class ElevatorTask {
 
     }
 
+    @SuppressWarnings("deprecation")
     private static void startElevator(Player player, @NotNull Elevator startingElevator) {
         Location playerLoc = player.getLocation();
 
@@ -140,7 +142,7 @@ public class ElevatorTask {
 
         if (startingElevator == Elevator.LOBBY) {
             y = playerLoc.getY() + CLUB_ELEVATOR_CORNER.getY() - LOBBY_ELEVATOR_CORNER.getY();
-            destinationWorld = Utils.defaultWorld;
+            destinationWorld = Utils.getDefaultWorld();
         } else {
             y = playerLoc.getY() + LOBBY_ELEVATOR_CORNER.getY() - CLUB_ELEVATOR_CORNER.getY();
             destinationWorld = mainLobby;

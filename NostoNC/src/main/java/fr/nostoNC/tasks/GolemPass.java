@@ -33,7 +33,7 @@ public class GolemPass {
 			@Override
 			public void run() {
 
-				for(Player player : Utils.defaultWorld.getPlayers()) {
+				for(Player player : Utils.getDefaultWorld().getPlayers()) {
 					Location loc = player.getLocation();
 
 					if (vipBox.contains(loc.toVector()) && !player.hasPermission("nosto.nightclub.vip")) {
@@ -63,7 +63,7 @@ public class GolemPass {
 		UUID uuid = player.getUniqueId();
 		
 		if (cooldown.get(uuid) == null) {
-			Utils.defaultWorld.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 1);
+			Utils.getDefaultWorld().playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 1);
 			player.sendMessage(message);
 			cooldown.put(uuid, 5);
 		}

@@ -123,15 +123,15 @@ public class SitListener implements Listener {
                     if (tags.contains("lift_0.6")) player.teleport(player.getLocation().add(0, 0.6, 0));
                     if (tags.contains("lift_1.2")) player.teleport(player.getLocation().add(0, 1.2, 0));
                 }
-            }.runTask(Main.instance);
+            }.runTask(Main.getInstance());
         }
 
     }
 
     private static AreaEffectCloud createArea(Location loc) {
         // l'area est summon en 0 0 pour qu'on ne voie pas les particules qu'elle émet lors du spawn
-        Location spawnLoc = new Location(Utils.defaultWorld, 0, 0, 0);
-        AreaEffectCloud cloud = (AreaEffectCloud) Utils.defaultWorld.spawnEntity(spawnLoc, EntityType.AREA_EFFECT_CLOUD);
+        Location spawnLoc = new Location(Utils.getDefaultWorld(), 0, 0, 0);
+        AreaEffectCloud cloud = (AreaEffectCloud) Utils.getDefaultWorld().spawnEntity(spawnLoc, EntityType.AREA_EFFECT_CLOUD);
 
         cloud.setParticle(Particle.BLOCK_CRACK, Material.AIR.createBlockData());
         cloud.setDuration(32000);
@@ -146,8 +146,8 @@ public class SitListener implements Listener {
 
     private static ArmorStand createArmorStand(Location loc) {
         // l'armor stand est summon en 0 0 pour qu'on ne le voie pas lors du spawn
-        Location spawnLoc = new Location(Utils.defaultWorld, 0, 0, 0, loc.getYaw(), loc.getPitch());
-        ArmorStand armorStand = (ArmorStand) Utils.defaultWorld.spawnEntity(spawnLoc, EntityType.ARMOR_STAND);
+        Location spawnLoc = new Location(Utils.getDefaultWorld(), 0, 0, 0, loc.getYaw(), loc.getPitch());
+        ArmorStand armorStand = (ArmorStand) Utils.getDefaultWorld().spawnEntity(spawnLoc, EntityType.ARMOR_STAND);
 
         armorStand.setVisible(false);
         armorStand.setMarker(true);

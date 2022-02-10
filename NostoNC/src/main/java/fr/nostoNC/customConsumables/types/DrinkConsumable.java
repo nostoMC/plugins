@@ -19,6 +19,7 @@ public class DrinkConsumable implements Consumable {
     private final ItemStack potion;
     private final EffectRunnable effectRunnable;
 
+    @SuppressWarnings("deprecation")
     public DrinkConsumable(String drinkName, int color, EffectRunnable effectRunnable) {
         this.effectRunnable = effectRunnable;
 
@@ -31,7 +32,7 @@ public class DrinkConsumable implements Consumable {
         meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 
         PersistentDataContainer data = meta.getPersistentDataContainer();
-        data.set(new NamespacedKey(Main.instance, "consumableId"), PersistentDataType.STRING, drinkName.toLowerCase().replace(" ", ""));
+        data.set(new NamespacedKey(Main.getInstance(), "consumableId"), PersistentDataType.STRING, drinkName.toLowerCase().replace(" ", ""));
 
         potion.setItemMeta(meta);
     }
