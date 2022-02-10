@@ -5,11 +5,56 @@ authors: [djredstone, itsRed_v2]
 main: fr.nosto.Main
 commands:
   annonce:
-    description: Commande annonce
+    description: "Permet de créer des annonces"
+    usage: /annonce <message>
     permission: nosto.admin.annonce
+  cleartchat:
+    description: "Permet de clear le tchat"
+    usage: /cleartchat
+    permission: nosto.admin.cleartchat
+    aliases: ct
+  event:
+    description: "Permet de creer des events et de les rejoindres"
+    usage: /event ou /event add <type> ou /event stop
+  feed:
+    description: "Permet de régénérer sa barre de nourriture"
+    usage: /feed
+    permission: nosto.feed
   fly:
-    description: Permet de voler
+    description: "Permet de voler"
+    usage: /fly ou /fly <joueur>
     permission: nosto.fly
+  freeze:
+    description: "Permet de freeze un joueur"
+    usage: /freeze <joueur>
+    permission: nosto.admin.freeze
+  heal:
+    description: "Permet de régénérer sa barre de nourriture et de vie"
+    usage: /heal
+    permission: nosto.heal
+  lobby:
+    description: "Permet de revenir au lobby principal"
+    usage: /lobby
+    aliases: hub
+  me:
+    description: "Permet de simuler une action"
+    usage: /me <action>
+  menu:
+    description: "Permet d'afficher le menu Principal"
+    usage: /menu
+  msg:
+    description: "Permet d'envoyer des message privées à d'autres joueurs"
+    usage: /msg <joueur> ou /msg <joueur> <message>
+  nosto:
+    description: "Permet de faire pas mal de chose (commande admin)"
+    usage: /nosto normaljoin ou /nosto reloadconfig ou /nosto openmenu <nom du menu>
+    permission: nosto.admin.commandnosto
+  sit:
+    description: "Permet de s'assoir"
+    usage: /sit
+  spawn:
+    description: "Permet de se TP au spawn du monde"
+    usage: /spawn
   speed:
     description: "Permet de modifier la vitesse de vol ou de marche:\n
     - si le joueur est au sol, la vitesse de marche sera modifiée.\n
@@ -21,38 +66,6 @@ commands:
     usage: /staffchat <message>
     permission: nosto.admin.chat
     aliases: sc
-  spawn:
-    description: Permet de se TP au spawn du monde
-  feed:
-    description: Permet de manger
-    permission: nosto.feed
-  heal:
-    description: Permet de vivre
-    permission: nosto.heal
-  msg:
-    description: Permet d'envoyer des message privees
-  nosto:
-    description: Reload Custom
-    permission: nosto.admin.commandnosto
-  freeze:
-    description: Permet de freeze un joueur
-    permission: nosto.admin.freeze
-  cleartchat:
-    description: Permet de clear le tchat
-    usage: /cleartchat
-    permission: nosto.admin.cleartchat
-  sit:
-    description: Permet de s'assoir
   vanish:
     description: Permet de se rendre invisible
     permission: nosto.admin.vanish
-  event:
-    description : Permet de creer des events
-    permission: nosto.admin.event
-  menu:
-    description: Menu Principal
-  lobby:
-    description: Revenir au lobby principal
-    usage: /lobby
-  me:
-    description: Realise une action

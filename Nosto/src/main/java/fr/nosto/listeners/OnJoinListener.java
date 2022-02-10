@@ -1,6 +1,7 @@
 package fr.nosto.listeners;
 
-import fr.nosto.Utils;
+import fr.nosto.Main;
+import fr.nosto.commands.CommandEvent;
 import fr.nosto.mysql.DbConnection;
 import fr.nosto.tasks.CosmeticEffectTask;
 import fr.nosto.tasks.particles.PlayerTrailsStats;
@@ -32,7 +33,7 @@ public class OnJoinListener implements Listener {
 		try {
 			setDefaultMoney(player);
 		} catch (SQLException e) {
-			player.kickPlayer("Une erreur est survenue. Si le problème persiste, essayez de contactez un administrateur sur notre discord: https://discord.io/Nosto");
+			player.kickPlayer("§cUne erreur est survenue. Si le problème persiste, essayez de contactez un administrateur sur notre discord: https://discord.io/Nosto");
 			e.printStackTrace();
 		}
 
@@ -80,6 +81,10 @@ public class OnJoinListener implements Listener {
 				"§f§k§l|| §l§7Bienvenue " + player.getName() +  " §f§k§l||",
 				0, 100, 5);
 
+		if (CommandEvent.getEvent() != null) {
+			player.sendMessage("\n\n§b§lUn event est en cours ! Fait /event pour nous rejoindre !\n\n");
+		}
+
 		ItemStack compassLobby = new ItemStack(Material.COMPASS);
 		ItemMeta compassLobbyMeta = compassLobby.getItemMeta();
 		assert compassLobbyMeta != null;
@@ -97,7 +102,7 @@ public class OnJoinListener implements Listener {
 
 	public void setDefaultMoney(Player player) throws SQLException {
 
-		final DbConnection dbConnection = Utils.databaseManager.getDbConnection();
+		final DbConnection dbConnection = Main.getDatabaseManager().getDbConnection();
 
 		final Connection connection = dbConnection.getConnection();
 

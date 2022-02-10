@@ -1,6 +1,7 @@
 package fr.nosto.commands;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CommandFly implements CommandExecutor {
 	
-	private ArrayList<Player> list = new ArrayList<>();
+	private final ArrayList<Player> list = new ArrayList<>();
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
@@ -30,8 +31,9 @@ public class CommandFly implements CommandExecutor {
 				}
 			} else {
 				player = Bukkit.getPlayer(args[0]);
-				if (list.contains(player) || player.getAllowFlight()) {
+				if (list.contains(player) || Objects.requireNonNull(player).getAllowFlight()) {
 					list.remove(player);
+					assert player != null;
 					player.setAllowFlight(false);
 					player.sendMessage("\n§c" + player.getName() + " ne peut plus voler !");
 				} else if (!list.contains(player)) {

@@ -1,13 +1,9 @@
 package fr.nosto.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import org.jetbrains.annotations.NotNull;
 
 public class CommandLobby implements CommandExecutor {
@@ -17,6 +13,9 @@ public class CommandLobby implements CommandExecutor {
 
         if (!(sender instanceof Player player)) return true;
 
+        player.sendMessage("\n§cCette commande comporte des problèmes, veuillez vous déconnecter puis vous reconnecter pour revenir au lobby.");
+
+        /*
         if (player.getWorld().getName().equals("MainLobby")) {
             player.sendMessage("\n§6Vous êtes déjà au lobby !");
         } else {
@@ -25,6 +24,7 @@ public class CommandLobby implements CommandExecutor {
             player.teleport(loc);
         }
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 2);
+         */
 
         return true;
     }

@@ -29,12 +29,6 @@ public class PluginListTask {
 				} else {
 					list.append("║   §bSurvival - §c✖");
 				}
-				list.append("\n║\n");
-				if (pm.getPlugin("Nosto-World") != null) {
-					list.append("║   §bWorld - §a✔");
-				} else {
-					list.append("║   §bWorld - §c✖");
-				}
 
 				list.append("\n║\n╚═══════════════════\n");
 				Bukkit.getLogger().info(list.toString());

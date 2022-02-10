@@ -1,5 +1,6 @@
 package fr.nosto.menus;
 
+import fr.nosto.Main;
 import fr.nosto.Utils;
 import fr.nosto.menus.mainmenu.ShopMenu;
 import fr.nosto.menus.mainmenu.TpMenu;
@@ -105,7 +106,7 @@ public class MainMenu implements Listener {
 
 	private static float getPlayerMoney(Player player) throws SQLException {
 
-		final DbConnection dbConnection = Utils.databaseManager.getDbConnection();
+		final DbConnection dbConnection = Main.getDatabaseManager().getDbConnection();
 
 		final Connection connection = dbConnection.getConnection();
 

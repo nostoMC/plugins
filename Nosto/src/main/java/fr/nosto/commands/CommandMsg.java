@@ -25,8 +25,8 @@ public class CommandMsg implements CommandExecutor {
 			assert target != null;
 
 			if (args.length == 1) {
-				player.sendMessage("\n§eVous avez poke §6§l" + target.getName() + " §e!");
-				target.sendMessage("\n§6§l" + player.getName() + " §evous à poke !");
+				player.sendMessage("\n§bVous avez poke §b§l" + target.getName() + " §b!");
+				target.sendMessage("\n§b§l" + player.getName() + " §bvous à poke !");
 				target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 2);
 			} else {
 				StringBuilder messageBuilder = new StringBuilder();
@@ -34,8 +34,8 @@ public class CommandMsg implements CommandExecutor {
 					messageBuilder.append(args[i]).append(" ");
 				}
 				String message = messageBuilder.toString();
-				player.sendMessage("\n§eVous avez envoyer : §a" + message + "§eà §6§l" + target.getName());
-				target.sendMessage("\n§eVous avez reçu un message de §6§l" + player.getName() + "§e : §a" + message);
+				player.sendMessage("\n§bVous avez envoyer : §a" + message + "§bà §b§l" + target.getName());
+				target.sendMessage("\n§bVous avez reçu un message de §b§l" + player.getName() + "§b : §a" + message);
 				target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 			}
 		}

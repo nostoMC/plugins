@@ -1,51 +1,87 @@
 package fr.nosto.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import fr.nosto.Main;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandEvent implements CommandExecutor {
 
+	private static Event event;
+
+	public enum Event {
+		NOSTOCLUB, MAINLOBBY
+	}
+
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-		
-		if (!sender.isOp()) return false;
-		
-		if (args[0].equalsIgnoreCase("add")) {
-			if (Main.getInstance().getConfig().get("event") == null) {
-				if (args[1].equalsIgnoreCase("show")) {
-					Main.getInstance().getConfig().set("event", "show");
-					Main.getInstance().saveConfig();
-					Bukkit.broadcastMessage("\nUn événement commence ! Utilisez /lobby pour vous téléporter !");
-					if (sender instanceof Player player) {
-						Location showLobby = new Location(Bukkit.getWorld("show"), 0.5, 65, 0.5, 0f, 0f);
-						player.teleport(showLobby);
-						player.teleport(showLobby);
-						player.setGameMode(GameMode.ADVENTURE);
+
+		if (sender instanceof Player player) {
+			if (player.hasPermission("nosto.admin.event")) { // PARTIE ADMIN
+				if (args.length == 0) {
+					tpEvent(player);
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("add")) {
+					if (event != null) player.sendMessage("\n§cUn event est déjà en cours !");
+					else {
+						switch (args[1].toLowerCase()) {
+
+							case "nostoclub" -> event = Event.NOSTOCLUB;
+							case "mainlobby" -> event = Event.MAINLOBBY;
+
+							default -> player.sendMessage("\n§cAucun event n'a ce nom");
+						}
+
+						Bukkit.broadcastMessage("\n\n§b§lUn event vient d'être créé ! Faites /event pour nous rejoindre !\n\n");
+					}
+				} else if (args[0].equalsIgnoreCase("stop")) {
+					if (event == null) player.sendMessage("\n§cAucun event en cours !");
+					else {
+						event = null;
+						player.sendMessage("\n§bL'event vient de se finir");
+					}
+				} else {
+					sender.sendMessage("\n§cUtilisation : /event add <nom de l'event ou /event stop");
+				}
+			} else { // PARTIE JOUEUR
+				tpEvent(player);
+			}
+		}
+		return false;
+	}
+
+	private static void tpEvent(Player player) {
+		if (event == null) {
+			player.sendMessage("\n§cAucun event en cours !");
+		} else {
+			switch (event) {
+
+				case NOSTOCLUB -> {
+					if (player.getWorld().getName().equalsIgnoreCase("nostoclub")) player.teleport(new Location(player.getWorld(), -2.0, 101, 168.5, 180, 0));
+					else {
+						Location location = new Location(Bukkit.getWorld("MainLobby"), 0.5, 99, -5.5, 180, 0);
+						player.teleport(location);
+						player.teleport(location);
 					}
 				}
-			} else {
-				sender.sendMessage("\nUn événement est déjà en cours !");
+
+				case MAINLOBBY -> {
+					Location location = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103, 0.5, 0, 0);
+					player.teleport(location);
+					player.teleport(location);
+				}
+
+				default -> player.sendMessage("\n§cErreur. Veuillez contacter un administrateur");
 			}
-		} else if (args[0].equalsIgnoreCase("stop")) {
-			if (Main.getInstance().getConfig().get("event") != null) {
-				Main.getInstance().getConfig().set("event", null);
-				Main.getInstance().saveConfig();
-			} else {
-				sender.sendMessage("\nAucun événement en cours !");
-			}
-		} else {
-			sender.sendMessage("\nUtilisation : /event add <nom de l'event ou /event stop");
 		}
-		
-		return false;
+	}
+
+	public static Event getEvent() {
+		return event;
 	}
 
 }

@@ -20,7 +20,7 @@ public class CommandSpawn implements CommandExecutor {
 		
 		Player player = (Player) sender;
 
-		File file = new File(Main.instance.getDataFolder()+"/spawn.yml");
+		File file = new File(Main.getInstance().getDataFolder()+"/spawn.yml");
 		FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
 
 		fileConfiguration.set("coo.EXEMPLE.x", 0.0);

@@ -21,7 +21,7 @@ public class CommandNosto implements CommandExecutor {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
-		String helpMessage = "\nUtilisation : /nosto < reloadconfig | normaljoin > | /nosto openmenu < nom >";
+		String helpMessage = "\n§cUtilisation : /nosto < reloadconfig | normaljoin > | /nosto openmenu < nom >";
 
 		if (args.length == 0) {
 			sender.sendMessage(helpMessage);
@@ -30,7 +30,7 @@ public class CommandNosto implements CommandExecutor {
 				
 				case "reloadconfig" -> {
 					Main.getInstance().reloadConfig();
-					Setup.connexionMySQL(Main.instance);
+					Setup.connexionMySQL(Main.getInstance());
 					sender.sendMessage("\n§aConfig et MySQL reload !");
 				}
 
@@ -38,7 +38,7 @@ public class CommandNosto implements CommandExecutor {
 					if (sender instanceof Player player) {
 						OnJoinListener.playerJoin(player);
 					} else {
-						sender.sendMessage("\nSeuls les joueurs peuvent faire cela !");
+						sender.sendMessage("\n§cSeuls les joueurs peuvent faire cela !");
 					}
 				}
 
@@ -57,10 +57,10 @@ public class CommandNosto implements CommandExecutor {
 								case "trails" -> TrailsMenu.openMenu(player, true);
 								case "shop" -> ShopMenu.openMenu(player, true);
 
-							default -> player.sendMessage("\nAucun menu à ce nom");
+							default -> player.sendMessage("\n§cAucun menu à ce nom");
 						}
 					} else {
-						sender.sendMessage("\nSeuls les joueurs peuvent faire cela !");
+						sender.sendMessage("\n§cSeuls les joueurs peuvent faire cela !");
 					}
 				}
 

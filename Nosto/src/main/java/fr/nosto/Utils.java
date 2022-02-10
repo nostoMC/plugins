@@ -20,12 +20,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class Utils {
 
-    public static ArrayList<Player> vanishList = new ArrayList<>();
-
-    public static FileConfiguration messageConfig;
-
-    public static DatabaseManager databaseManager;
-
     private static final ItemStack clearSlot = createItem(Material.BLACK_STAINED_GLASS_PANE, " ");
 
     private static final Set<String> survies_names = new HashSet<>();

@@ -1,28 +1,29 @@
 package fr.nosto.listeners;
 
-import org.bukkit.configuration.file.FileConfiguration;
+import fr.nosto.commands.CommandEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
-
-import fr.nosto.Main;
 
 public class OnServerListPingListener implements Listener {
 	
 	@EventHandler
     public void onServerListPing(ServerListPingEvent event) {
-		String motd = "                       §f§l§k|| §b§lNOSTO §f§l§k||;             §f§nhttps://discord.io/Nosto";
-		motd = motd.replaceAll(";", System.getProperty("line.separator"));
-		FileConfiguration cf = Main.getInstance().getConfig();
-		if (cf.get("event") == null) {
-			event.setMotd(motd);
+		if (CommandEvent.getEvent() == null) {
+			event.setMotd(createMOTDSeparator("                       §f§l§k|| §b§lNOSTO §f§l§k||;             §f§nhttps://discord.io/Nosto"));
 		} else {
-			if (cf.get("event").toString().equalsIgnoreCase("show")) {
-				motd = "                       §f§l§k|| §b§lNOSTO §f§l§k|| §6§lEVENT EN COURS;             §f§nhttps://discord.io/Nosto";
-				motd = motd.replaceAll(";", System.getProperty("line.separator"));
-				event.setMotd(motd);
-			}
+			event.setMotd(createMOTDSeparator("                       §f§l§k|| §b§lNOSTO §f§l§k|| §6§lEVENT EN COURS;             §f§nhttps://discord.io/Nosto"));
 		}
+	}
+
+	/**
+	 * Method - Separate line with ',' for MOTD
+	 * @param motd - MOTD with ',' as '\n'
+	 * @return String - The final MOTD
+	 **/
+	private static String createMOTDSeparator(String motd) {
+		motd = motd.replaceAll(";", System.getProperty("line.separator"));
+		return motd;
 	}
 
 }

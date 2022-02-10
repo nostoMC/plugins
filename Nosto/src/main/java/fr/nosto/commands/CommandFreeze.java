@@ -28,12 +28,12 @@ public class CommandFreeze implements CommandExecutor {
 
 			if (!CommandFreeze.frozen.contains(target)) {
 				CommandFreeze.frozen.add(target);
-				sender.sendMessage("\n§eVous avez freeze §6§l" + target.getName());
-				target.sendMessage("\n§eVous avez été freeze par un modérateur");
+				sender.sendMessage("\n§bVous avez freeze §6§l" + target.getName());
+				target.sendMessage("\n§bVous avez été freeze par un modérateur");
 			} else {
 				CommandFreeze.frozen.remove(target);
-				sender.sendMessage("\n§eVous avez défreeze §6§l" + target.getName());
-				target.sendMessage("\n§eVous avez été défreeze");
+				sender.sendMessage("\n§bVous avez défreeze §6§l" + target.getName());
+				target.sendMessage("\n§bVous avez été défreeze");
 			}
 
 		} else {

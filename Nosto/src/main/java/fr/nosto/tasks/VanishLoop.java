@@ -1,11 +1,10 @@
 package fr.nosto.tasks;
 
-import fr.nosto.Utils;
+import fr.nosto.Main;
+import fr.nosto.commands.CommandVanish;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import fr.nosto.Main;
 
 public class VanishLoop {
 
@@ -25,7 +24,7 @@ public class VanishLoop {
 			public void run() {
 				
 				for (Player players : Bukkit.getOnlinePlayers()) {
-					players.setInvisible(Utils.vanishList.contains(players));
+					players.setInvisible(CommandVanish.getVanishList().contains(players));
 				}
 				
 			}

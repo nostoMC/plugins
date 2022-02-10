@@ -22,10 +22,8 @@ public class TabEvent implements TabCompleter {
 			arguments.add("stop");
 		}
 		if (arguments2.isEmpty()) {
-			arguments2.add("sar");
-			arguments2.add("lg");
-			arguments2.add("show");
-			arguments2.add("nightclub");
+			arguments2.add("nostoclub");
+			arguments2.add("mainlobby");
 		}
 		
 		List<String> result = new ArrayList<>();

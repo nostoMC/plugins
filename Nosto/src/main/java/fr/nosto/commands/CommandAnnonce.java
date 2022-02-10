@@ -23,7 +23,9 @@ public class CommandAnnonce implements CommandExecutor {
 			for (String part : args) {
 				argsAnnonce.append(part).append(" ");
 			}
-			Bukkit.broadcastMessage("\n\n§6§l-- Annonce de " + player.getName() + " --\\n§l\" + argsAnnonce\n§6§l---------------------------\n\n");
+			Bukkit.broadcastMessage("\n\n§b§l-- Annonce de " + player.getName() + " --\n");
+			Bukkit.broadcastMessage("§3§l" + argsAnnonce);
+			Bukkit.broadcastMessage("\n§b§l---------------------------\n\n");
 
 			for (Player otherPlayer : Bukkit.getOnlinePlayers()) {
 				otherPlayer.playSound(otherPlayer.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);

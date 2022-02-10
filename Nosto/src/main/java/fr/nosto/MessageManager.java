@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class MessageManager {
 
     public static String getMessage(String basename) {
-        final FileConfiguration config = Utils.messageConfig;
+        final FileConfiguration config = Main.getMessageConfig();
         if (config.isString(basename)) {
             return config.getString(basename);
         }

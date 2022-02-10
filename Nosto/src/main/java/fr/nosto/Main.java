@@ -1,7 +1,9 @@
 package fr.nosto;
 
+import fr.nosto.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,9 +13,13 @@ import java.io.IOException;
 
 public class Main extends JavaPlugin {
 
-	public static Main instance;
+	private static FileConfiguration messageConfig;
 
-	public static JavaPlugin getInstance() {
+	private static DatabaseManager databaseManager;
+
+	private static Main instance;
+
+	public static Main getInstance() {
 		return instance;
 	}
 
@@ -37,7 +43,7 @@ public class Main extends JavaPlugin {
 		}
 
 		new DiscordShutdown(this);
-		Utils.databaseManager.close();
+		databaseManager.close();
 		Bukkit.getLogger().info("§b[Nosto] Plugin Custom Déchargé !");
 		
 	}
@@ -50,12 +56,24 @@ public class Main extends JavaPlugin {
 			saveResource("messages.yml", false);
 		}
 
-		Utils.messageConfig = new YamlConfiguration();
+		messageConfig = new YamlConfiguration();
 		try {
-			Utils.messageConfig.load(customConfigFile);
+			messageConfig.load(customConfigFile);
 		} catch (IOException | InvalidConfigurationException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static FileConfiguration getMessageConfig() {
+		return messageConfig;
+	}
+
+	public static DatabaseManager getDatabaseManager() {
+		return databaseManager;
+	}
+
+	public static void setDatabaseManager(DatabaseManager databaseManager) {
+		Main.databaseManager = databaseManager;
 	}
 	
 }
