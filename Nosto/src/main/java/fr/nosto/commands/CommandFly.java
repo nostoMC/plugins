@@ -1,8 +1,5 @@
 package fr.nosto.commands;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,38 +10,36 @@ import org.jetbrains.annotations.NotNull;
 
 public class CommandFly implements CommandExecutor {
 	
-	private final ArrayList<Player> list = new ArrayList<>();
-
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
 		if (sender instanceof Player player) {
 			if (args.length == 0) {
-				if (list.contains(player) || player.getAllowFlight()) {
-					list.remove(player);
+				if (player.getAllowFlight()) {
 					player.setAllowFlight(false);
 					player.sendMessage("\n§cVous ne pouvez plus voler !");
-				} else if (!list.contains(player)) {
-					list.add(player);
+				} else {
 					player.setAllowFlight(true);
 					player.sendMessage("\n§aVous pouvez voler !");
 				}
 			} else {
-				player = Bukkit.getPlayer(args[0]);
-				if (list.contains(player) || Objects.requireNonNull(player).getAllowFlight()) {
-					list.remove(player);
-					assert player != null;
-					player.setAllowFlight(false);
-					player.sendMessage("\n§c" + player.getName() + " ne peut plus voler !");
-				} else if (!list.contains(player)) {
-					list.add(player);
-					player.setAllowFlight(true);
-					player.sendMessage("\n§a" + player.getName() + " peut voler !");
+				Player target = Bukkit.getPlayer(args[0]);
+				if (target == null) {
+					player.sendMessage("\n§cImpossible de trouver un joueur avec le nom §6" + args[0]);
+					return true;
+				}
+
+				if (target.getAllowFlight()) {
+					target.setAllowFlight(false);
+					target.sendMessage("\n§c" + target.getName() + " ne peut plus voler !");
+				} else {
+					target.setAllowFlight(true);
+					target.sendMessage("\n§a" + target.getName() + " peut voler !");
 				}
 			}
 		}
 		
-		return false;
+		return true;
 	}
 
 }

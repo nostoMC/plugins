@@ -24,7 +24,8 @@ commands:
     permission: nosto.feed
   fly:
     description: "Permet de voler"
-    usage: /fly ou /fly <joueur>
+    usage: "/fly\n
+    /fly <joueur>"
     permission: nosto.fly
   freeze:
     description: "Permet de freeze un joueur"
