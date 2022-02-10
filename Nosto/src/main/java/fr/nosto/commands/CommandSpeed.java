@@ -50,10 +50,10 @@ public class CommandSpeed implements CommandExecutor {
 
         if (p.isFlying()) {
             p.setFlySpeed(speed / 10f);
-            p.sendMessage("\n§bVotre vitesse de vol est maintenant §b§l" + speed);
+            p.sendMessage("\n§bVotre vitesse de vol est maintenant §3§l" + speed);
         } else {
             p.setWalkSpeed(speed / 10f);
-            p.sendMessage("\n§bVotre vitesse de marche est maintenant §b§l" + speed);
+            p.sendMessage("\n§bVotre vitesse de marche est maintenant §3§l" + speed);
         }
         return true;
 	}

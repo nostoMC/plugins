@@ -40,7 +40,7 @@ public class CommandFreeze implements CommandExecutor {
 			sender.sendMessage("\n§cSyntaxe: /freeze <player>");
 		}
 
-		return false;
+		return true;
 	}
 
 }

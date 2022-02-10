@@ -1,6 +1,8 @@
 package fr.nosto.commands;
 
-import fr.nosto.Main;
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,17 +10,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.IOException;
+import fr.nosto.Main;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandSpawn implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-		
-		Player player = (Player) sender;
+
+		if (!(sender instanceof Player player)) return true;
 
 		File file = new File(Main.getInstance().getDataFolder()+"/spawn.yml");
 		FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
@@ -48,7 +49,7 @@ public class CommandSpawn implements CommandExecutor {
 			player.sendMessage("\n§cAucun spawn n'existe pour ce monde !");
 		}
 
-		return false;
+		return true;
 	}
 
 }
