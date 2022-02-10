@@ -20,10 +20,10 @@ public class clearLag {
 				i++;
 
 				if(i == 180) {
-					Utils.sendMessageToSurvival("§4Attention ! §cLes items à terre vont êtres supprimés dans 60 §csecondes!");
+					Utils.sendMessageToSurvival("\n§4Attention ! §cLes items à terre vont êtres supprimés dans 60 §csecondes!");
 				}
 				if(i == 220) {
-					Utils.sendMessageToSurvival("§4Attention ! §cLes items à terre vont êtres supprimés dans 20 §csecondes!");
+					Utils.sendMessageToSurvival("\n§4Attention ! §cLes items à terre vont êtres supprimés dans 20 §csecondes!");
 				}
 				if(i == 240) {
 					
@@ -38,7 +38,7 @@ public class clearLag {
 						}
 					}
 					
-					Utils.sendMessageToSurvival("§a" + nbEntity + " entitiés ont été supprimés !");
+					Utils.sendMessageToSurvival("\n§a" + nbEntity + " entitiés ont été supprimés !");
 					i = 0;
 				}
 				

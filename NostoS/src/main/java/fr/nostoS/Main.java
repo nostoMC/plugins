@@ -11,7 +11,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		Setup.databaseManager.close();
+		Utils.getDatabaseManager().close();
 	}
 
 }

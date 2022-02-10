@@ -1,6 +1,5 @@
 package fr.nostoS.listeners;
 
-import fr.nostoS.Setup;
 import fr.nostoS.Utils;
 import fr.nostoS.mysql.DbConnection;
 import org.bukkit.Chunk;
@@ -25,7 +24,7 @@ public class OnInteractListener implements Listener {
 
             if (event.getClickedBlock() != null) {
 
-                final DbConnection dbConnection = Setup.databaseManager.getDbConnection();
+                final DbConnection dbConnection = Utils.getDatabaseManager().getDbConnection();
                 try {
                     Chunk chunk = event.getClickedBlock().getChunk();
                     String chunkID = chunk.getX() + "_" + chunk.getZ();
@@ -39,8 +38,7 @@ public class OnInteractListener implements Listener {
                     if (!resultSet.next()) {
                         if (!player.isOp()) {
                             event.setCancelled(true);
-                            player.sendMessage("");
-                            player.sendMessage("§cCe chunk a été claim. Tu ne peut donc rien faire dans cette zone.");
+                            player.sendMessage("\n§cCe chunk a été claim. Tu ne peut donc rien faire dans cette zone.");
                         }
 
                     }

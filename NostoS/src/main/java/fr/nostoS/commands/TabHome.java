@@ -1,20 +1,19 @@
 package fr.nostoS.commands;
 
+import fr.nostoS.Utils;
+import fr.nostoS.mysql.DbConnection;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.nostoS.Setup;
-import fr.nostoS.mysql.DbConnection;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
-
-import org.jetbrains.annotations.NotNull;
 
 public class TabHome implements TabCompleter {
 
@@ -25,7 +24,7 @@ public class TabHome implements TabCompleter {
         Player player = (Player) sender;
 
         arguments.clear();
-        final DbConnection dbConnection = Setup.databaseManager.getDbConnection();
+        final DbConnection dbConnection = Utils.getDatabaseManager().getDbConnection();
         try {
             final Connection connection = dbConnection.getConnection();
             final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, name FROM survival_home");

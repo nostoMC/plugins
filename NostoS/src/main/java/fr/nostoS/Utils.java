@@ -3,11 +3,14 @@ package fr.nostoS;
 import java.util.HashSet;
 import java.util.Set;
 
+import fr.nostoS.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class Utils {
+
+    private static DatabaseManager databaseManager;
 
     private static final Set<String> survies_names = new HashSet<>();
     static {
@@ -46,5 +49,13 @@ public class Utils {
         }
 
         return worlds;
+    }
+
+    public static DatabaseManager getDatabaseManager() {
+        return databaseManager;
+    }
+
+    public static void setDatabaseManager(DatabaseManager databaseManager) {
+        Utils.databaseManager = databaseManager;
     }
 }

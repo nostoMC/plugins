@@ -1,6 +1,5 @@
 package fr.nostoS.commands;
 
-import fr.nostoS.Setup;
 import fr.nostoS.Utils;
 import fr.nostoS.mysql.DbConnection;
 import org.bukkit.Chunk;
@@ -8,7 +7,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
@@ -25,7 +23,7 @@ public class CommandClaim implements CommandExecutor {
 
             if (Utils.getSurviesNames().contains(player.getWorld().getName())) {
 
-                final DbConnection dbConnection = Setup.databaseManager.getDbConnection();
+                final DbConnection dbConnection = Utils.getDatabaseManager().getDbConnection();
 
                 try {
                     final Connection connection = dbConnection.getConnection();
@@ -40,13 +38,11 @@ public class CommandClaim implements CommandExecutor {
                         final ResultSet resultSet = preparedStatement.executeQuery();
 
                         if (resultSet.next()) {
-                            player.sendMessage("");
-                            player.sendMessage("§cCe chunk est déjà claim !");
+                            player.sendMessage("\n§cCe chunk est déjà claim !");
 
                         } else {
                             addClaim(connection, player.getUniqueId(), chunkID);
-                            player.sendMessage("");
-                            player.sendMessage("§eVous avez claim ce chunk !");
+                            player.sendMessage("\n§bVous avez claim ce chunk !");
                         }
 
                     } else if (cmd.getName().equalsIgnoreCase("unclaim")) {
@@ -58,12 +54,10 @@ public class CommandClaim implements CommandExecutor {
 
                         if (resultSet.next()) {
                             deleteClaim(connection, player.getUniqueId(), chunkID);
-                            player.sendMessage("");
-                            player.sendMessage("§eVous avez unclaim ce chunk !");
+                            player.sendMessage("\n§bVous avez unclaim ce chunk !");
 
                         } else {
-                            player.sendMessage("");
-                            player.sendMessage("§cVous ne pouvez pas unclaim ce chunk !");
+                            player.sendMessage("\n§cVous ne pouvez pas unclaim ce chunk !");
                         }
                     }
 
@@ -72,8 +66,7 @@ public class CommandClaim implements CommandExecutor {
                 }
 
             } else {
-                player.sendMessage("");
-                player.sendMessage("§cLes claim sont seulement autorisés dans les mondes : §6§lSurvie");
+                player.sendMessage("\n§cLes claim sont seulement autorisés dans les mondes : §6§lSurvie");
             }
         }
         return true;

@@ -1,6 +1,5 @@
 package fr.nostoS.commands;
 
-import fr.nostoS.Setup;
 import fr.nostoS.Utils;
 import fr.nostoS.mysql.DbConnection;
 import org.bukkit.Bukkit;
@@ -25,7 +24,7 @@ public class CommandHome implements CommandExecutor {
 
         if (Utils.getSurviesNames().contains(player.getWorld().getName())) {
 
-            final DbConnection dbConnection = Setup.databaseManager.getDbConnection();
+            final DbConnection dbConnection = Utils.getDatabaseManager().getDbConnection();
 
             try {
                 final Connection connection = dbConnection.getConnection();
@@ -33,27 +32,23 @@ public class CommandHome implements CommandExecutor {
                 if (cmd.getName().equalsIgnoreCase("sethome")) {
 
                     if (args.length == 0) {
-                        player.sendMessage("");
-                        player.sendMessage("§cUtilisation : /sethome <nom>");
+                        player.sendMessage("\n§cUtilisation : /sethome <nom>");
                         return false;
                     }
 
                     if (args.length == 1) {
                         setHome(connection, player.getUniqueId(), args[0], player.getWorld().getName(), (float) player.getLocation().getX(), (float) player.getLocation().getY(), (float) player.getLocation().getZ(), player.getEyeLocation().getPitch(), player.getEyeLocation().getYaw());
-                        player.sendMessage("");
-                        player.sendMessage("§eLe home §6§l" + args[0] + " §eest maintenant mis en place en §a§l" + player.getLocation().getBlockX() + " §a§l" + player.getLocation().getBlockY() + " §a§l" + player.getLocation().getBlockZ() + " §e!");
+                        player.sendMessage("\n§bLe home §b§l" + args[0] + " §best maintenant mis en place en §a§l" + player.getLocation().getBlockX() + " §a§l" + player.getLocation().getBlockY() + " §a§l" + player.getLocation().getBlockZ() + " §b!");
                         return false;
                     }
 
-                    player.sendMessage("");
-                    player.sendMessage("§cUtilisation : /sethome <nom>");
+                    player.sendMessage("\n§cUtilisation : /sethome <nom>");
                     return false;
 
                 } else if (cmd.getName().equalsIgnoreCase("delhome")) {
 
                     if (args.length == 0) {
-                        player.sendMessage("");
-                        player.sendMessage("§cUtilisation : /delhome <nom>");
+                        player.sendMessage("\n§cUtilisation : /delhome <nom>");
                         return false;
                     }
 
@@ -65,24 +60,20 @@ public class CommandHome implements CommandExecutor {
 
                         if (resultSet.next()) {
                             deleteHome(connection, player.getUniqueId(), args[0]);
-                            player.sendMessage("");
-                            player.sendMessage("§eHome supprimé !");
+                            player.sendMessage("\n§bHome supprimé !");
                             return false;
                         } else {
-                            player.sendMessage("");
-                            player.sendMessage("§cVous n'avez aucun home à ce nom");
+                            player.sendMessage("\n§cVous n'avez aucun home à ce nom");
                         }
                     }
 
-                    player.sendMessage("");
-                    player.sendMessage("§cUtilisation : /delhome <nom>");
+                    player.sendMessage("\n§cUtilisation : /delhome <nom>");
                     return false;
 
                 } else if (cmd.getName().equalsIgnoreCase("home")) {
 
                     if (args.length == 0) {
-                        player.sendMessage("");
-                        player.sendMessage("§cUtilisation : /home <nom>");
+                        player.sendMessage("\n§cUtilisation : /home <nom>");
                         return false;
                     }
 
@@ -100,19 +91,16 @@ public class CommandHome implements CommandExecutor {
                             float pitch = resultSet.getFloat("pitch");
                             float yaw = resultSet.getFloat("yaw");
                             final Location loc = new Location(w, x, y, z, pitch, yaw);
-                            player.sendMessage("");
-                            player.sendMessage("§eTéléportation vers §6§l" + args[0] + " §e!");
+                            player.sendMessage("\n§bTéléportation vers §b§l" + args[0] + " §b!");
                             player.teleport(loc);
                             player.teleport(loc);
                         } else {
-                            player.sendMessage("");
-                            player.sendMessage("§cVous n'avez aucun home à ce nom");
+                            player.sendMessage("\n§cVous n'avez aucun home à ce nom");
                         }
                         return false;
                     }
 
-                    player.sendMessage("");
-                    player.sendMessage("§cUtilisation : /home <nom>");
+                    player.sendMessage("\n§cUtilisation : /home <nom>");
                     return false;
 
                 }
@@ -122,8 +110,7 @@ public class CommandHome implements CommandExecutor {
             }
 
         } else {
-            player.sendMessage("");
-            player.sendMessage("§cLes homes sont seulement autorisés dans les mondes : §6§lSurvie");
+            player.sendMessage("\n§cLes homes sont seulement autorisés dans les mondes : §6§lSurvie");
         }
 
         return false;

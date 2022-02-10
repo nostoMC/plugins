@@ -1,7 +1,7 @@
 package fr.nostoS;
 
-import fr.nostoS.afk.AFKListeners;
-import fr.nostoS.afk.CommandAFK;
+import fr.nostoS.listeners.AFKListeners;
+import fr.nostoS.commands.CommandAFK;
 import fr.nostoS.commands.CommandClaim;
 import fr.nostoS.commands.CommandHome;
 import fr.nostoS.commands.TabHome;
@@ -14,8 +14,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.Objects;
 
 public class Setup {
-
-    public static DatabaseManager databaseManager;
 
     public Setup(Main main) {
 
@@ -39,7 +37,7 @@ public class Setup {
 
         main.saveConfig();
 
-        databaseManager = new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName"));
+        Utils.setDatabaseManager(new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName")));
 
         // Commands
         registerCommands(main);
