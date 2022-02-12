@@ -1,36 +1,37 @@
 package fr.nostoNC;
 
+import java.util.logging.Level;
+
+import org.bukkit.Bukkit;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import fr.nostoNC.commands.CommandFood;
 import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabFood;
 import fr.nostoNC.commands.TabNightclub;
 import fr.nostoNC.customConsumables.ConsumeListener;
-import fr.nostoNC.listeners.*;
+import fr.nostoNC.listeners.BarAccessListener;
+import fr.nostoNC.listeners.BarMenuListener;
+import fr.nostoNC.listeners.DamageListener;
+import fr.nostoNC.listeners.HelmetRemoveListener;
+import fr.nostoNC.listeners.InteractionListener;
+import fr.nostoNC.listeners.OnResourcepackStatusListener;
+import fr.nostoNC.listeners.QuitDjListener;
+import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.EffectsMenu;
-import fr.nostoNC.tasks.*;
-import fr.nostoNC.tasks.effects.*;
-import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.logging.Level;
+import fr.nostoNC.tasks.ElevatorTask;
+import fr.nostoNC.tasks.GolemPass;
+import fr.nostoNC.tasks.effects.FloorSmokeEffect;
+import fr.nostoNC.tasks.effects.GlowingLamp;
+import fr.nostoNC.tasks.effects.StrobeEffect;
+import fr.nostoNC.tasks.effects.TopLaser;
+import fr.nostoNC.tasks.effects.WallLaser;
 
 public class Startup {
 
 	public static void startup(Main main) {
-
-		new BukkitRunnable() {
-
-			@Override
-			public void run() {
-				Utils.setDefaultWorld(Bukkit.getWorld("nostoclub"));
-
-				if (Utils.getDefaultWorld() == null) {
-					Bukkit.getLogger().log(Level.SEVERE, "Unable to get world \"nostoclub\"");
-				}
-			}
-		}.runTaskLater(main, 1);
-
+		
 		registerCommands(main);
 
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), main);
@@ -51,6 +52,22 @@ public class Startup {
 		Utils.putActiveEffects("floorSmoke", false);
 		Utils.putActiveEffects("strobe", false);
 
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				Utils.setDefaultWorld(Bukkit.getWorld("nostoclub"));
+
+				if (Utils.getDefaultWorld() == null) {
+					Bukkit.getLogger().log(Level.SEVERE, "Unable to get world \"nostoclub\"");
+				} else {
+					loadAfterWorld(main);
+				}
+			}
+		}.runTaskLater(main, 1);
+	}
+
+	private static void loadAfterWorld(Main main) {
 		FloorSmokeEffect.init(main);
 		StrobeEffect.init(main);
 
@@ -60,7 +77,6 @@ public class Startup {
 		TopLaser.setup();
 		WallLaser.setup();
 		GlowingLamp.setup();
-		
 	}
 
 	@SuppressWarnings("ConstantConditions")
