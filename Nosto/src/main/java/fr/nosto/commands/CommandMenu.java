@@ -17,7 +17,7 @@ public class CommandMenu implements CommandExecutor {
 			MainMenu.openMenu(player, false);
 		}
 		
-		return false;
+		return true;
 	}
 
 }

@@ -41,7 +41,7 @@ public class CommandVanish implements CommandExecutor {
 			}
 		}
 		
-		return false;
+		return true;
 	}
 
 	public static ArrayList<Player> getVanishList() {

@@ -49,7 +49,7 @@ public class CommandNosto implements CommandExecutor {
 					if (sender instanceof Player player) {
 						if (!(args.length >= 2)) {
 							player.sendMessage(helpMessage);
-							return false;
+							return true;
 						}
 						switch (args[1].toLowerCase()) {
 							case "sanction" -> {

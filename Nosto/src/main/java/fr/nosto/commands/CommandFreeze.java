@@ -23,7 +23,7 @@ public class CommandFreeze implements CommandExecutor {
 
 			if (target == null) {
 				sender.sendMessage("\n§cImpossible de trouver un joueur avec le nom §6" + args[0]);
-				return false;
+				return true;
 			}
 
 			if (!CommandFreeze.frozen.contains(target)) {

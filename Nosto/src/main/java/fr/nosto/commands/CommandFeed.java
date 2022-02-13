@@ -29,7 +29,7 @@ public class CommandFeed implements CommandExecutor {
         target.sendMessage("\n§2Votre barre de nourriture a été restaurée !");
         player.sendMessage("\n§2La barre de nourriture de §a§l" + target.getName() + " §2a été restaurée !");
 		
-		return false;
+		return true;
 	}
 
 }

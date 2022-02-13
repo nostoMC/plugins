@@ -49,7 +49,7 @@ public class CommandSit implements CommandExecutor {
 		chair.setMarker(true);
     	chair.addPassenger(player);
 		
-		return false;
+		return true;
 	}
 	
 }
