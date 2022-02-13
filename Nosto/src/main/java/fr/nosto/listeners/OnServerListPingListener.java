@@ -1,29 +1,33 @@
 package fr.nosto.listeners;
 
-import fr.nosto.commands.CommandEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
+import net.kyori.adventure.text.Component;
+
+import fr.nosto.commands.CommandEvent;
 
 public class OnServerListPingListener implements Listener {
 	
 	@EventHandler
     public void onServerListPing(ServerListPingEvent event) {
 		if (CommandEvent.getEvent() == null) {
-			event.setMotd(createMOTDSeparator("                       §f§l§k|| §b§lNOSTO §f§l§k||;             §f§nhttps://discord.io/Nosto"));
+			event.motd(createMOTD("                       §f§l§k|| §b§lNOSTO §f§l§k||", "             §f§nhttps://discord.io/Nosto"));
 		} else {
-			event.setMotd(createMOTDSeparator("                       §f§l§k|| §b§lNOSTO §f§l§k|| §6§lEVENT EN COURS;             §f§nhttps://discord.io/Nosto"));
+			event.motd(createMOTD("                       §f§l§k|| §b§lNOSTO §f§l§k|| §6§lEVENT EN COURS", "             §f§nhttps://discord.io/Nosto"));
 		}
 	}
 
 	/**
-	 * Method - Separate line with ',' for MOTD
-	 * @param motd - MOTD with ',' as '\n'
-	 * @return String - The final MOTD
+	 * Creates a MOTD from 2 lines
+	 *
+	 * @param line1 the first line of the MOTD
+	 * @param line2 the second line of the MOTD
+	 * @return a {@link Component}, the final MOTD
 	 **/
-	private static String createMOTDSeparator(String motd) {
-		motd = motd.replaceAll(";", System.getProperty("line.separator"));
-		return motd;
+	@SuppressWarnings("SameParameterValue")
+	private static Component createMOTD(String line1, String line2) {
+		return Component.text(line1 + System.getProperty("line.separator") + line2);
 	}
 
 }
