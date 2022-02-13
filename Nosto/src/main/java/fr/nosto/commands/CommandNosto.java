@@ -4,6 +4,7 @@ import fr.nosto.Main;
 import fr.nosto.Setup;
 import fr.nosto.listeners.OnJoinListener;
 import fr.nosto.menus.MainMenu;
+import fr.nosto.menus.SanctionMenu;
 import fr.nosto.menus.mainmenu.ShopMenu;
 import fr.nosto.menus.mainmenu.TpMenu;
 import fr.nosto.menus.mainmenu.TrailsMenu;
@@ -15,6 +16,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.sql.SQLException;
 
 public class CommandNosto implements CommandExecutor {
 
@@ -46,9 +49,16 @@ public class CommandNosto implements CommandExecutor {
 					if (sender instanceof Player player) {
 						if (!(args.length >= 2)) {
 							player.sendMessage(helpMessage);
-							return false;
+							return true;
 						}
 						switch (args[1].toLowerCase()) {
+							case "sanction" -> {
+								try {
+									SanctionMenu.openMenu(player, player);
+								} catch (SQLException e) {
+									e.printStackTrace();
+								}
+							}
 							case "main" -> MainMenu.openMenu(player, true);
 								case "tp" -> TpMenu.openMenu(player, true);
 									case "minijeux" -> MinijeuxMenu.openMenu(player, true);

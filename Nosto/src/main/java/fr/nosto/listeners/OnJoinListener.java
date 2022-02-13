@@ -1,8 +1,7 @@
 package fr.nosto.listeners;
 
-import fr.nosto.Main;
 import fr.nosto.commands.CommandEvent;
-import fr.nosto.mysql.DbConnection;
+import fr.nosto.mysql.prepareStatement.money;
 import fr.nosto.tasks.CosmeticEffectTask;
 import fr.nosto.tasks.particles.PlayerTrailsStats;
 import net.kyori.adventure.text.Component;
@@ -21,17 +20,18 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.sql.*;
+import java.sql.SQLException;
 
 public class OnJoinListener implements Listener {
-	
+
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		event.setJoinMessage("");
 		Player player = event.getPlayer();
 
 		try {
-			setDefaultMoney(player);
+			money.setDefaultMoney(player);
 		} catch (SQLException e) {
 			player.kickPlayer("§cUne erreur est survenue. Si le problème persiste, essayez de contactez un administrateur sur notre discord: https://discord.io/Nosto");
 			e.printStackTrace();
@@ -65,6 +65,7 @@ public class OnJoinListener implements Listener {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void playerJoin(Player player) {
 		Location lobby = new Location(Bukkit.getWorld("MainLobby"), 0.5, 103.0, 0.5, 0f, 0f);
 		player.teleport(lobby);
@@ -100,27 +101,6 @@ public class OnJoinListener implements Listener {
 		player.updateInventory();
 	}
 
-	public void setDefaultMoney(Player player) throws SQLException {
 
-		final DbConnection dbConnection = Main.getDatabaseManager().getDbConnection();
-
-		final Connection connection = dbConnection.getConnection();
-
-		final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, money FROM player_money WHERE uuid = ?");
-		preparedStatement.setString(1, player.getUniqueId().toString());
-		final ResultSet resultSet = preparedStatement.executeQuery();
-
-		if (!resultSet.next()) {
-			final PreparedStatement preparedStatement1 = connection.prepareStatement("INSERT INTO player_money VALUES(?, ?, ?, ?)");
-			final Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-			preparedStatement1.setString(1, player.getUniqueId().toString());
-			preparedStatement1.setFloat(2, 0);
-			preparedStatement1.setTimestamp(3, timestamp);
-			preparedStatement1.setTimestamp(4, timestamp);
-
-			preparedStatement1.executeUpdate();
-		}
-	}
 
 }

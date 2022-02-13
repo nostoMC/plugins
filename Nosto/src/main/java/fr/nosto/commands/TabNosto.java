@@ -20,6 +20,7 @@ public class TabNosto implements TabCompleter {
 
 	private static final List<String> argumentsOpenmenu = new ArrayList<>();
 	static {
+		argumentsOpenmenu.add("sanction");
 		argumentsOpenmenu.add("main");
 			argumentsOpenmenu.add("tp");
 				argumentsOpenmenu.add("minijeux");

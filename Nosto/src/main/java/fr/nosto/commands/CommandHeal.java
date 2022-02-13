@@ -31,7 +31,7 @@ public class CommandHeal implements CommandExecutor {
         target.sendMessage("\n§2Votre barre de vie a été restaurée !");
         player.sendMessage("\n§2La barre de vie de §a§l" + target.getName() + " §2a été restaurée !");
 		
-		return false;
+		return true;
 	}
 
 }

@@ -14,7 +14,7 @@ commands:
     permission: nosto.admin.cleartchat
     aliases: ct
   event:
-    description: "Permet de creer des events et de les rejoindre"
+    description: "Permet de créer des events et de les rejoindre"
     usage: "/event\n
     /event add <type>\n
     /event stop"
@@ -47,11 +47,18 @@ commands:
     usage: /menu
   msg:
     description: "Permet d'envoyer des message privées à d'autres joueurs"
-    usage: /msg <joueur> ou /msg <joueur> <message>
+    usage: "/msg <joueur>\n
+    /msg <joueur> <message>"
   nosto:
     description: "Permet de faire pas mal de chose (commande admin)"
-    usage: /nosto normaljoin ou /nosto reloadconfig ou /nosto openmenu <nom du menu>
+    usage: "/nosto normaljoin\n
+    /nosto reloadconfig\n
+    /nosto openmenu <nom du menu>\n"
     permission: nosto.admin.commandnosto
+  sanction:
+    description: "Permet de donner des sanctions à un joueur"
+    usage: /sanction <joueur>
+    permission: nosto.admin.sanction
   sit:
     description: "Permet de s'assoir"
     usage: /sit
@@ -65,10 +72,12 @@ commands:
     usage: /speed <vitesse>
     permission: nosto.speed
   staffChat:
-    description: Chat privé pour le staff
+    description: "Chat privé pour le staff"
     usage: /staffchat <message>
     permission: nosto.admin.chat
     aliases: sc
   vanish:
-    description: Permet de se rendre invisible
+    description: "Permet de se rendre invisible"
+    usage: "/vanish\n
+    /vanish <joueur>"
     permission: nosto.admin.vanish

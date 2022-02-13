@@ -18,7 +18,7 @@ public class CommandMsg implements CommandExecutor {
 
 			if (args.length == 0 || Bukkit.getPlayer(args[0]) == null) {
 				player.sendMessage("\n§cUtilisation : /msg <joueur> <message>");
-				return false;
+				return true;
 			}
 
 			Player target = Bukkit.getPlayer(args[0]);
@@ -39,7 +39,7 @@ public class CommandMsg implements CommandExecutor {
 				target.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 1);
 			}
 		}
-		return false;
+		return true;
 	}
 
 }

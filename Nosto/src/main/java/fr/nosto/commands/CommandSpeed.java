@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class CommandSpeed implements CommandExecutor {
 
+    String invalidArgumentMessage = "\n§cVeuillez choisir une vitesse entre 1 et 10, ou \"default\"";
+
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 		
@@ -16,13 +18,6 @@ public class CommandSpeed implements CommandExecutor {
             sender.sendMessage("Player only command!");
             return true;
         }
-
-        if (!p.hasPermission("nosto.speed")) {
-            p.sendMessage("§cVous n'avez pas les permissions !");
-            return true;
-        }
-
-        String invalidArgumentMessage = "\n§cVeuillez choisir une vitesse entre 1 et 10, ou \"default\"";
 
         if (args.length == 0) {
             p.sendMessage(invalidArgumentMessage);

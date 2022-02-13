@@ -15,7 +15,6 @@ public class CommandStaffChat implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
         if (args.length < 1) {
-        	sender.sendMessage("");
             sender.sendMessage("\n§cLe message ne peut pas être vide !");
             return true;
         }

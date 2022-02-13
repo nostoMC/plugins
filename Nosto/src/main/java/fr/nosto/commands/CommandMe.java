@@ -32,7 +32,7 @@ public class CommandMe implements CommandExecutor {
 
         }
 
-        return false;
+        return true;
     }
 
 }
