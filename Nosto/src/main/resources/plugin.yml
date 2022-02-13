@@ -52,6 +52,10 @@ commands:
     description: "Permet de faire pas mal de chose (commande admin)"
     usage: /nosto normaljoin ou /nosto reloadconfig ou /nosto openmenu <nom du menu>
     permission: nosto.admin.commandnosto
+  sanction:
+    description: "Permet de donner des sanctions à un joueur"
+    usage: /sanction <joueur>
+    permission: nosto.admin.sanction
   sit:
     description: "Permet de s'assoir"
     usage: /sit

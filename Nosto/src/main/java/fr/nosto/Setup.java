@@ -1,5 +1,8 @@
 package fr.nosto;
 
+import fr.nosto.menus.SanctionMenu;
+import fr.nosto.mysql.prepareStatement.money;
+import fr.nosto.mysql.prepareStatement.mute;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -19,6 +22,8 @@ import fr.nosto.tasks.RandomBroadcastTask;
 import fr.nosto.tasks.VanishLoop;
 import fr.nosto.tasks.mainLobby.MainLobbyJumpPads;
 import fr.nosto.tasks.mainLobby.MainLobbyParticles;
+
+import java.sql.SQLException;
 
 public class Setup {
 
@@ -44,6 +49,7 @@ public class Setup {
 		Bukkit.getPluginManager().registerEvents(new OnPlayerDead(), main);
 
 		// Menu Listeners
+		Bukkit.getPluginManager().registerEvents(new SanctionMenu(), main);
 		Bukkit.getPluginManager().registerEvents(new MainMenu(), main);
 			Bukkit.getPluginManager().registerEvents(new TrailsMenu(), main);
 			Bukkit.getPluginManager().registerEvents(new ShopMenu(), main);
@@ -87,6 +93,7 @@ public class Setup {
 		main.getCommand("menu").setExecutor(new CommandMenu());
 		main.getCommand("lobby").setExecutor(new CommandLobby());
 		main.getCommand("me").setExecutor(new CommandMe());
+		main.getCommand("sanction").setExecutor(new CommandSanction());
 	}
 
 	public static void connexionMySQL(Main main) {
@@ -113,6 +120,14 @@ public class Setup {
 		main.saveConfig();
 
 		Main.setDatabaseManager(new DatabaseManager(fc.getString("SQL.host"), fc.getString("SQL.user"), fc.getString("SQL.password"), fc.getString("SQL.dbName")));
+
+		try {
+			money.setup();
+			mute.setup();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
