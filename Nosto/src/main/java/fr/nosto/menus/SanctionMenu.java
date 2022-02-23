@@ -2,7 +2,7 @@ package fr.nosto.menus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.Objects;
 
 import org.bukkit.BanList;
@@ -19,12 +19,26 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import net.dv8tion.jda.internal.utils.tuple.Pair;
+
 import fr.nosto.Utils;
 import fr.nosto.mysql.prepareStatement.mute;
 
 public class SanctionMenu implements Listener {
 
     private static final String title = "§c§lSanctions contre ";
+
+    private static final HashMap<Player, Pair<String, Boolean>> askData = new HashMap<>();
+
+    private static final HashMap<Player, Pair<OfflinePlayer, String>> data = new HashMap<>();
+
+    public static HashMap<Player, Pair<String, Boolean>> getAskData() {
+        return askData;
+    }
+
+    public static HashMap<Player, Pair<OfflinePlayer, String>> getData() {
+        return data;
+    }
 
     @SuppressWarnings("deprecation")
     public static void openMenu(Player player, OfflinePlayer target) throws SQLException {
@@ -74,23 +88,22 @@ public class SanctionMenu implements Listener {
                     if (resultSet.next()) {
                         mute.remove(target, resultSet.getTimestamp("end_date"));
                         if (target.isOnline()) Objects.requireNonNull(target.getPlayer()).sendMessage("\n§aVous avais été dé-mute par §2" + player.getName() + "§a !");
-                        player.sendMessage("\n§9" + targetName + "§b a correctement été dé-mute !");
+                        player.sendMessage("\n§2" + targetName + "§a a correctement été dé-mute !");
                     } else {
-                        mute.add(target, player, "Une raison", new Timestamp(System.currentTimeMillis() + 60*1000));
-                        if (target.isOnline()) Objects.requireNonNull(target.getPlayer()).sendMessage("\n§cVous avais été mute par §4" + player.getName() + "§c !");
-                        Bukkit.broadcastMessage("\n§9" + targetName + "§b a été mute par §9" + player.getName() + "§b pendant §960s §bpour la raison suivante :\n§9(WIP)");
+                        getAskData().put(player, Pair.of("mute", false));
+                        getData().put(player, Pair.of(target, "null"));
+                        player.sendMessage("\n§bEntrez la raison du mute");
                     }
                 }
 
                 case STICK -> {
                     event.getView().close();
                     if (target.isOnline()) {
-                        Objects.requireNonNull(target.getPlayer()).kickPlayer("\n§cVous avais été kick par §4" + player.getName() + "§c pour la raison suivante :" +
-                                "\n§4(WIP)");
-                        Bukkit.broadcastMessage("\n§9" + targetName + "§b a été kick par §9" + player.getName() + "§b pour la raison suivante :" +
-                                "\n§9(WIP)");
+                        getAskData().put(player, Pair.of("kick", true));
+                        getData().put(player, Pair.of(target, "null"));
+                        player.sendMessage("\n§bEntrez la raison du kick");
                     } else {
-                        player.sendMessage("\n§9" + targetName + "§b ne peut pas être kick");
+                        player.sendMessage("\n§4" + targetName + "§c ne peut pas être kick");
                     }
                 }
 
@@ -98,12 +111,11 @@ public class SanctionMenu implements Listener {
                     event.getView().close();
                     if (target.isBanned()) {
                         Bukkit.getBanList(BanList.Type.NAME).pardon(targetName);
-                        player.sendMessage("\n§9" + targetName + "§b a correctement été dé-banni !");
+                        player.sendMessage("\n§2" + targetName + "§a a correctement été dé-banni !");
                     } else {
-                        target.banPlayer("\n§cVous avais été banni par §4" + player.getName() + "§c pour la raison suivante :" +
-                                "\n§4(WIP)");
-                        Bukkit.broadcastMessage("\n§9" + targetName + "§b a été banni par §9" + player.getName() + "§b pour la raison suivante :" +
-                                "\n§9(WIP)");
+                        getAskData().put(player, Pair.of("ban", false));
+                        getData().put(player, Pair.of(target, "null"));
+                        player.sendMessage("\n§bEntrez la raison du ban");
                     }
                 }
 
