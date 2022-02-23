@@ -7,6 +7,7 @@ import fr.nostoS.commands.CommandHome;
 import fr.nostoS.commands.TabHome;
 import fr.nostoS.listeners.OnInteractListener;
 import fr.nostoS.mysql.DatabaseManager;
+import fr.nostoS.tasks.RandomBroadcastTask;
 import fr.nostoS.tasks.clearLag;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -50,6 +51,7 @@ public class Setup {
         new clearLag(main);
 
         AFKListeners.initAFKLoop(main);
+        RandomBroadcastTask.init(main);
 
     }
 

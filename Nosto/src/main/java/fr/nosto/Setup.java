@@ -18,7 +18,6 @@ import fr.nosto.menus.mainmenu.tpmenu.TrainingMenu;
 import fr.nosto.mysql.DatabaseManager;
 import fr.nosto.tasks.CosmeticEffectTask;
 import fr.nosto.tasks.PluginListTask;
-import fr.nosto.tasks.RandomBroadcastTask;
 import fr.nosto.tasks.VanishLoop;
 import fr.nosto.tasks.mainLobby.MainLobbyJumpPads;
 import fr.nosto.tasks.mainLobby.MainLobbyParticles;
@@ -62,7 +61,6 @@ public class Setup {
 		PluginListTask.list(main);
 
 		VanishLoop.init(main);
-		RandomBroadcastTask.init(main);
 		CosmeticEffectTask.init(main);
 		MainLobbyParticles.init(main);
 		MainLobbyJumpPads.init(main);

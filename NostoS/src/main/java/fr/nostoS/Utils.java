@@ -1,9 +1,12 @@
 package fr.nostoS;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import fr.nostoS.mysql.DatabaseManager;
+import net.md_5.bungee.api.chat.TextComponent;
+
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -31,6 +34,18 @@ public class Utils {
     public static void sendMessageToWorld(World world, String message) {
         for(Player player : world.getPlayers()) {
             player.sendMessage(message);
+        }
+    }
+
+    public static void sendTextComponentToSurvival(TextComponent textComponent) {
+        for (String name : survies_names) {
+            sendTextComponentToWorld(Objects.requireNonNull(Bukkit.getWorld(name)), textComponent);
+        }
+    }
+
+    public static void sendTextComponentToWorld(World world, TextComponent textComponent) {
+        for (Player player : world.getPlayers()) {
+            player.sendMessage(textComponent);
         }
     }
 
