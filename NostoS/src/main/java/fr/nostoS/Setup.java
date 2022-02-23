@@ -6,6 +6,7 @@ import fr.nostoS.commands.CommandClaim;
 import fr.nostoS.commands.CommandHome;
 import fr.nostoS.commands.TabHome;
 import fr.nostoS.listeners.OnInteractListener;
+import fr.nostoS.listeners.OnPlayerChangeBiome;
 import fr.nostoS.mysql.DatabaseManager;
 import fr.nostoS.tasks.RandomBroadcastTask;
 import fr.nostoS.tasks.clearLag;
@@ -46,6 +47,7 @@ public class Setup {
         // Listeners
         Bukkit.getPluginManager().registerEvents(new AFKListeners(), main);
         Bukkit.getPluginManager().registerEvents(new OnInteractListener(), main);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerChangeBiome(), main);
 
         // Tasks
         new clearLag(main);
