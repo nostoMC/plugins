@@ -24,6 +24,7 @@ import fr.nostoNC.tasks.ElevatorTask;
 import fr.nostoNC.tasks.GolemPass;
 import fr.nostoNC.tasks.effects.FloorSmokeEffect;
 import fr.nostoNC.tasks.effects.GlowingLamp;
+import fr.nostoNC.tasks.effects.LaserUpDown;
 import fr.nostoNC.tasks.effects.StrobeEffect;
 import fr.nostoNC.tasks.effects.TopLaser;
 import fr.nostoNC.tasks.effects.WallLaser;
@@ -51,6 +52,7 @@ public class Startup {
 
 		Utils.putActiveEffects("floorSmoke", false);
 		Utils.putActiveEffects("strobe", false);
+		Utils.putActiveEffects("laserUpDown", false);
 
 		new BukkitRunnable() {
 
@@ -77,6 +79,8 @@ public class Startup {
 		TopLaser.setup();
 		WallLaser.setup();
 		GlowingLamp.setup();
+
+		LaserUpDown.init(main);
 	}
 
 	@SuppressWarnings("ConstantConditions")
