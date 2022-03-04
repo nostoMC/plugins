@@ -27,6 +27,10 @@ public class Utils {
         on.add("§a§lon");
     }
 
+    public static ArrayList<String> getOnLore() { return on; }
+
+    public static ArrayList<String> getOffLore() { return off; }
+
     private static final HashMap<String, Boolean> activeEffects = new HashMap<>();
 
     private static World defaultWorld;

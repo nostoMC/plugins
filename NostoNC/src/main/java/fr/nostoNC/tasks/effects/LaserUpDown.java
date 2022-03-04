@@ -1,5 +1,6 @@
 package fr.nostoNC.tasks.effects;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -17,6 +18,9 @@ public class LaserUpDown {
     private static final int distance = -1;
     private static final int longueur = 30;
 
+    private static final ArrayList<Laser> lasers = new ArrayList<>();
+    private static boolean started = false;
+
     private static boolean inited = false;
 
     public static void init(Main main) {
@@ -24,13 +28,15 @@ public class LaserUpDown {
         if (inited) return;
         inited = true;
 
-        ArrayList<Laser> lasers = new ArrayList<>();
-
-        ArrayList<Map<Location, Double>> lasersInfo = new ArrayList<>();
+        ArrayList<Map.Entry<Location, Double>> lasersInfo = new ArrayList<>();
 
         for (int i = 1; i < 12; i++) {
-            lasersInfo.add(Map.of(new Location(Utils.getDefaultWorld(), -2.5-(1/i), 108.3, 145.5), 45.0/i));
-            lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1), end, duration, distance));
+            lasersInfo.add(new AbstractMap.SimpleImmutableEntry<>(new Location(Utils.getDefaultWorld(), -2.5+(.1*i), 107.8, 145.9), 55.0-(9*i)));
+            try {
+                lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1).getKey(), new Location(Utils.getDefaultWorld(), -2.0, 107.8, 150), duration, distance));
+            } catch (ReflectiveOperationException e) {
+                e.printStackTrace();
+            }
         }
 
         new BukkitRunnable() {
@@ -39,20 +45,22 @@ public class LaserUpDown {
             @Override
             public void run() {
 
-                for (Laser laser : lasers) {
+                for (int i = 0; i < lasers.size(); i++) {
 
-                    double scale = 2 / (3 - Math.cos(2*t));
-                    double tilt = (scale * Math.cos(t))*size;
-                    double pan = 0;
+                    Laser laser = lasers.get(i);
+                    Map.Entry<Location, Double> laserInfo = lasersInfo.get(i);
+
+                    double tilt = Math.sin(t)*size;
+                    double pan = laserInfo.getValue();
 
                     Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
 
                     try {
-                        if (Utils.getActiveEffects("laserUpDown")) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
+                        if (laser.isStarted()) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
                     } catch (ReflectiveOperationException ignored) {
                     }
 
-                    t += .05;
+                    t += Math.PI/256;
                 }
 
             }
@@ -61,4 +69,21 @@ public class LaserUpDown {
 
     }
 
+    public static void startLaser(Main main) {
+        for (Laser laser : lasers) {
+            laser.start(main);
+        }
+        started = true;
+    }
+
+    public static void stopLaser() {
+        for (Laser laser : lasers) {
+            laser.stop();
+        }
+        started = false;
+    }
+
+    public static boolean isStarted() {
+        return started;
+    }
 }
