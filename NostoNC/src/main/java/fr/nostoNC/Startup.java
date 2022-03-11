@@ -20,10 +20,12 @@ import fr.nostoNC.listeners.QuitDjListener;
 import fr.nostoNC.listeners.SitListener;
 import fr.nostoNC.menus.BarMenu;
 import fr.nostoNC.menus.EffectsMenu;
+import fr.nostoNC.menus.EffectsMenu2;
 import fr.nostoNC.tasks.ElevatorTask;
 import fr.nostoNC.tasks.GolemPass;
 import fr.nostoNC.tasks.effects.FloorSmokeEffect;
 import fr.nostoNC.tasks.effects.GlowingLamp;
+import fr.nostoNC.tasks.effects.LaserUpDown;
 import fr.nostoNC.tasks.effects.StrobeEffect;
 import fr.nostoNC.tasks.effects.TopLaser;
 import fr.nostoNC.tasks.effects.WallLaser;
@@ -35,6 +37,7 @@ public class Startup {
 		registerCommands(main);
 
 		Bukkit.getPluginManager().registerEvents(new EffectsMenu(), main);
+		Bukkit.getPluginManager().registerEvents(new EffectsMenu2(), main);
 		Bukkit.getPluginManager().registerEvents(new BarMenu(), main);
 
 		Bukkit.getPluginManager().registerEvents(new OnResourcepackStatusListener(), main);
@@ -77,6 +80,8 @@ public class Startup {
 		TopLaser.setup();
 		WallLaser.setup();
 		GlowingLamp.setup();
+
+		LaserUpDown.init(main);
 	}
 
 	@SuppressWarnings("ConstantConditions")

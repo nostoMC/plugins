@@ -1,0 +1,89 @@
+package fr.nostoNC.tasks.effects;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.bukkit.Location;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
+
+import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
+import fr.nostoNC.tasks.Laser;
+
+public class LaserUpDown {
+
+    private static final int duration = -1;
+    private static final int distance = -1;
+    private static final int longueur = 30;
+
+    private static final ArrayList<Laser> lasers = new ArrayList<>();
+    private static boolean started = false;
+
+    private static boolean inited = false;
+
+    public static void init(Main main) {
+
+        if (inited) return;
+        inited = true;
+
+        ArrayList<Map.Entry<Location, Double>> lasersInfo = new ArrayList<>();
+
+        for (int i = 1; i < 12; i++) {
+            lasersInfo.add(new AbstractMap.SimpleImmutableEntry<>(new Location(Utils.getDefaultWorld(), -2.5+(.1*i), 107.8, 145.9), 55.0-(9*i)));
+            try {
+                lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1).getKey(), new Location(Utils.getDefaultWorld(), -2.0, 107.8, 150), duration, distance));
+            } catch (ReflectiveOperationException e) {
+                e.printStackTrace();
+            }
+        }
+
+        new BukkitRunnable() {
+            double t = 0;
+            final double size = 45;
+            @Override
+            public void run() {
+
+                for (int i = 0; i < lasers.size(); i++) {
+
+                    Laser laser = lasers.get(i);
+                    Map.Entry<Location, Double> laserInfo = lasersInfo.get(i);
+
+                    double tilt = Math.sin(t)*size;
+                    double pan = laserInfo.getValue();
+
+                    Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
+
+                    try {
+                        if (laser.isStarted()) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
+                    } catch (ReflectiveOperationException ignored) {
+                    }
+
+                    t += Math.PI/256;
+                }
+
+            }
+
+        }.runTaskTimer(main, 0, 1);
+
+    }
+
+    public static void startLaser(Main main) {
+        for (Laser laser : lasers) {
+            laser.start(main);
+        }
+        started = true;
+    }
+
+    public static void stopLaser() {
+        for (Laser laser : lasers) {
+            laser.stop();
+        }
+        started = false;
+    }
+
+    public static boolean isStarted() {
+        return started;
+    }
+}

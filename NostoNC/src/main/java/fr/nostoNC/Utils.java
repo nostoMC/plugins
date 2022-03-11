@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -18,6 +20,16 @@ import org.bukkit.util.Vector;
 import net.kyori.adventure.text.Component;
 
 public class Utils {
+
+    private static final ArrayList<String> on = new ArrayList<>(), off = new ArrayList<>();
+    static {
+        off.add("§c§loff");
+        on.add("§a§lon");
+    }
+
+    public static ArrayList<String> getOnLore() { return on; }
+
+    public static ArrayList<String> getOffLore() { return off; }
 
     private static final HashMap<String, Boolean> activeEffects = new HashMap<>();
 
@@ -101,6 +113,37 @@ public class Utils {
 
     public static boolean getActiveEffects(String key) {
         return activeEffects.get(key);
+    }
+
+    @SuppressWarnings("deprecation")
+    public static void createAndCheckActiveEffectItem(Inventory inv, Material material, String itName, String var, int slot) {
+        ItemStack it = new ItemStack(material);
+        ItemMeta itM = it.getItemMeta();
+        itM.setDisplayName(itName);
+
+        if(var != null) {
+            if(!Utils.getActiveEffects(var)) {
+                itM.setLore(off);
+            } else {
+                itM.setLore(on);
+                itM.addEnchant(Enchantment.LUCK, 1, false);
+            }
+        }
+
+        itM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        it.setItemMeta(itM);
+        inv.setItem(slot, it);
+    }
+
+    public static void checkActiveEffectItem(Player player, String var) {
+        if (!Utils.getActiveEffects(var)) {
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 2);
+            Utils.putActiveEffects(var, true);
+        } else {
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100, 0);
+            Utils.putActiveEffects(var, false);
+        }
     }
 
 }
