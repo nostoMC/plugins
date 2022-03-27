@@ -81,3 +81,12 @@ commands:
     usage: "/vanish\n
     /vanish <joueur>"
     permission: nosto.admin.vanish
+  whitelist:
+    description: "Permet de manipuler la whitelist"
+    usage: "/whitelist on\n
+    /whitelist off\n
+    /whitelist reload\n
+    /whitelist add <player>\n
+    /whitelist remove <player>\n
+    /whitelist list"
+    permission: nosto.admin.whitelist

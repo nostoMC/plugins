@@ -1,10 +1,12 @@
 package fr.nosto;
 
+import org.bukkit.Bukkit;
+
 public class DiscordShutdown {
 
 	public DiscordShutdown(Main main) {
 
-		DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(DiscordSetup.decoEmbed.build()).queue();
+		if (!Bukkit.hasWhitelist()) DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(DiscordSetup.decoEmbed.build()).queue();
 		
 		DiscordSetup.jda.shutdown();
 		

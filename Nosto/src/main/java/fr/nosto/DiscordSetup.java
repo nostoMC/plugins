@@ -68,17 +68,14 @@ public class DiscordSetup implements EventListener {
 		channel_nightclub = jda.getTextChannelById("877675571193200670");
 		channel_etat_serveur = jda.getTextChannelById("875315182556053524");
 
-		decoEmbed.setTitle("Serveur déconnecté !");
+		decoEmbed.setTitle("Serveur fermé !");
 		decoEmbed.setColor(Color.RED);
 
 		new BukkitRunnable() {
 
 			@Override
 			public void run() {
-				EmbedBuilder embed = new EmbedBuilder();
-				embed.setTitle("Serveur actif !");
-				embed.setColor(Color.GREEN);
-				channel_etat_serveur.sendMessageEmbeds(embed.build()).queue();
+				if (!Bukkit.hasWhitelist()) channel_etat_serveur.sendMessageEmbeds(getOpenServerEmbed().build()).queue();
 			}
 		}.runTaskLater(main, 40);
 	}
@@ -86,6 +83,20 @@ public class DiscordSetup implements EventListener {
 	public void onEvent(@NotNull GenericEvent event) {
 		if (event instanceof ReadyEvent) Bukkit.getLogger().info("§cBot discord synchronisé avec minecraft prêt !");
 		
+	}
+
+	public static EmbedBuilder getOpenServerEmbed() {
+		EmbedBuilder embed = new EmbedBuilder();
+		embed.setTitle("Serveur ouvert !");
+		embed.setColor(Color.GREEN);
+		return embed;
+	}
+
+	public static EmbedBuilder getCloseServerEmbed() {
+		EmbedBuilder embed = new EmbedBuilder();
+		embed.setTitle("Serveur fermé !");
+		embed.setColor(Color.RED);
+		return embed;
 	}
 
 	public static TextChannel getChannelSurvie() {

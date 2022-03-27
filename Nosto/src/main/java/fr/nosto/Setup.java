@@ -92,6 +92,8 @@ public class Setup {
 		main.getCommand("lobby").setExecutor(new CommandLobby());
 		main.getCommand("me").setExecutor(new CommandMe());
 		main.getCommand("sanction").setExecutor(new CommandSanction());
+		main.getCommand("whitelist").setExecutor(new CommandWhitelist());
+			main.getCommand("whitelist").setTabCompleter(new TabWhitelist());
 	}
 
 	public static void connexionMySQL(Main main) {
