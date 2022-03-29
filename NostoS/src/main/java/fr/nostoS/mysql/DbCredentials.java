@@ -23,7 +23,8 @@ public class DbCredentials {
                 ":" +
                 port +
                 "/" +
-                dbName;
+                dbName +
+                "?autoReconnect=true";
     }
 
     public String getUser() {
