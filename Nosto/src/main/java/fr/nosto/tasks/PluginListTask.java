@@ -18,17 +18,14 @@ public class PluginListTask {
 				StringBuilder list = new StringBuilder("\n");
 				list.append("\n╔══════╣ §bListe des plugins Nosto disponibles :\n║\n");
 				
-				if (pm.getPlugin("Nosto-Nightclub") != null) {
-					list.append("║   §bNightclub - §a✔");
-				} else {
-					list.append("║   §bNightclub - §c✖");
-				}
+				if (pm.getPlugin("Nosto-Nightclub") != null) list.append("║   §bNightclub - §a✔");
+				else list.append("║   §bNightclub - §c✖");
 				list.append("\n║\n");
-				if (pm.getPlugin("Nosto-Survival") != null) {
-					list.append("║   §bSurvival - §a✔");
-				} else {
-					list.append("║   §bSurvival - §c✖");
-				}
+				if (pm.getPlugin("Nosto-Survival") != null) list.append("║   §bSurvival - §a✔");
+				else list.append("║   §bSurvival - §c✖");
+				list.append("\n║\n");
+				if (pm.getPlugin("Nosto-Island") != null) list.append("║   §bIsland - §a✔");
+				else list.append("║   §bIsland - §c✖");
 
 				list.append("\n║\n╚═══════════════════\n");
 				Bukkit.getLogger().info(list.toString());
