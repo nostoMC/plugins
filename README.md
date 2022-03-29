@@ -5,3 +5,4 @@ Plugins on Minecraft server
  - Nosto ==> Main Plugin
  - NostoNC ==> Nightclub
  - NostoS ==> Survival
+ - NostoI ==> Island (event été)
