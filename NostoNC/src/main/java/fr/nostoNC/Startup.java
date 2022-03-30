@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nostoNC.casino.ButtonInteract;
 import fr.nostoNC.commands.CommandFood;
 import fr.nostoNC.commands.CommandNightclub;
 import fr.nostoNC.commands.TabFood;
@@ -51,6 +52,8 @@ public class Startup {
 		Bukkit.getPluginManager().registerEvents(new DamageListener(), main);
 		Bukkit.getPluginManager().registerEvents(new QuitDjListener(), main);
 		Bukkit.getPluginManager().registerEvents(new HelmetRemoveListener(), main);
+
+		new ButtonInteract();
 
 		Utils.putActiveEffects("floorSmoke", false);
 		Utils.putActiveEffects("strobe", false);
