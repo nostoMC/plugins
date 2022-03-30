@@ -47,7 +47,7 @@ public class DiscordSetup implements EventListener {
 		
 		JDABuilder builder = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES);
 	    
-	    builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
+	    builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE, CacheFlag.EMOTE);
 	    try {
 			builder.build();
 		} catch (LoginException e) {
@@ -57,7 +57,6 @@ public class DiscordSetup implements EventListener {
 	    try {
 			jda.awaitReady();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
