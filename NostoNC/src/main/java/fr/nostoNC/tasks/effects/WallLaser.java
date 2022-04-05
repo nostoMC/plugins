@@ -17,6 +17,7 @@ public class WallLaser {
     private static final int longueur = 25;
 
     public static String move = "edge";
+    public static Boolean alternance = false;
 
     public static final List<Laser> all = new ArrayList<>();
 
@@ -24,22 +25,30 @@ public class WallLaser {
 
     public static void setup() {
 
-        addLaser(-8.5, 111, 147);
-        addLaser(-8.5, 107, 147);
-        addLaser(-5.5, 105, 146);
-        addLaser(-5.5, 109, 146);
-        addLaser(-5.5, 113, 146);
-        addLaser(-2.5, 111, 146);
-        addLaser(-2.5, 107, 146);
-        addLaser(-1.5, 107, 146);
-        addLaser(-1.5, 111, 146);
-        addLaser(1.5, 113, 146);
-        addLaser(1.5, 109, 146);
-        addLaser(1.5, 105, 146);
-        addLaser(4.5, 107, 147);
-        addLaser(4.5, 111, 147);
+        addLaser(-8.5, 111.4, 147);
+        addLaser(-8.5, 107.4, 147);
+        addLaser(-5.5, 105.4, 146);
+        addLaser(-5.5, 109.4, 146);
+        addLaser(-5.5, 113.4, 146);
+        addLaser(-2.5, 111.4, 146);
+        addLaser(-2.5, 107.4, 146);
+        addLaser(-1.5, 107.4, 146);
+        addLaser(-1.5, 111.4, 146);
+        addLaser(1.5, 113.4, 146);
+        addLaser(1.5, 109.4, 146);
+        addLaser(1.5, 105.4, 146);
+        addLaser(4.5, 107.4, 147);
+        addLaser(4.5, 111.4, 147);
 
         Collections.shuffle(all);
+
+        for (Laser laser : all) {
+            try {
+                laser.start(Main.getInstance());
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+        hideAll();
 
         for (Laser laser : all) {
             defaultT += (Math.PI*2)/all.size();
@@ -55,7 +64,7 @@ public class WallLaser {
 
                     Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
                     try {
-                        if (move.equalsIgnoreCase("edge")) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
+                        if (move.equalsIgnoreCase("edge") && laser.getStart() != laser.getEnd()) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
                     } catch (ReflectiveOperationException ignored) {
                     }
 
@@ -74,7 +83,7 @@ public class WallLaser {
 
                     Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
                     try {
-                        if (move.equalsIgnoreCase("wave")) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
+                        if (move.equalsIgnoreCase("wave") && laser.getStart() != laser.getEnd()) laser.moveEnd(new Location(Utils.getDefaultWorld(), pointB.getX(), pointB.getY(), pointB.getZ()));
                     } catch (ReflectiveOperationException ignored) {
                     }
 
@@ -87,23 +96,29 @@ public class WallLaser {
     }
 
     public static void showAll() {
-        for(Laser laser : all) {
+        alternance = false;
+        for (Laser laser : all) {
             try {
-                laser.start(Main.getInstance());
-            } catch (IllegalArgumentException ignored) {
+                laser.moveEnd(new Location(Utils.getDefaultWorld(), laser.getStart().getX(), laser.getStart().getY(), laser.getStart().getZ() + 1));
+            } catch (ReflectiveOperationException e) {
+                e.printStackTrace();
             }
-            updateMovement(laser);
-
         }
     }
 
     public static void hideAll() {
-        for(Laser laser : all) {
+        alternance = false;
+        for (Laser laser : all) {
             try {
-                laser.stop();
-            } catch (IllegalArgumentException ignored) {
+                laser.moveEnd(new Location(Utils.getDefaultWorld(), laser.getStart().getX(), laser.getStart().getY(), laser.getStart().getZ()));
+            } catch (ReflectiveOperationException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    public static void alternance() {
+        alternance = true;
     }
 
     public static void moveFront() {
@@ -137,7 +152,7 @@ public class WallLaser {
 
     private static void updateMovement(Laser laser) {
         try {
-            if ("front".equals(move)) {
+            if (move.equals("front")) {
                 Location loc = laser.getStart();
                 double x = loc.getX();
                 double y = loc.getY();

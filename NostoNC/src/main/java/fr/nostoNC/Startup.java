@@ -54,6 +54,7 @@ public class Startup {
 
 		Utils.putActiveEffects("floorSmoke", false);
 		Utils.putActiveEffects("strobe", false);
+		Utils.putActiveEffects("topLights", true);
 
 		new BukkitRunnable() {
 

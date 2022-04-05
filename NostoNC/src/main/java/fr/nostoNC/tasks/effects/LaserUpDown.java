@@ -31,9 +31,9 @@ public class LaserUpDown {
         ArrayList<Map.Entry<Location, Double>> lasersInfo = new ArrayList<>();
 
         for (int i = 1; i < 12; i++) {
-            lasersInfo.add(new AbstractMap.SimpleImmutableEntry<>(new Location(Utils.getDefaultWorld(), -2.5+(.1*i), 107.8, 145.9), 55.0-(9*i)));
+            lasersInfo.add(new AbstractMap.SimpleImmutableEntry<>(new Location(Utils.getDefaultWorld(), -2.5+(.1*i), 108.25, 145.9), 55.0-(9*i)));
             try {
-                lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1).getKey(), new Location(Utils.getDefaultWorld(), -2.0, 107.8, 150), duration, distance));
+                lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1).getKey(), new Location(Utils.getDefaultWorld(), -2.0, 108.25, 150), duration, distance));
             } catch (ReflectiveOperationException e) {
                 e.printStackTrace();
             }

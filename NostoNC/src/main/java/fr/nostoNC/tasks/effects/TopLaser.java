@@ -12,13 +12,12 @@ import fr.nostoNC.Main;
 public class TopLaser {
 
 	private static final Random random = new Random();
-	
-	public static int affichageTimer = 5;
 
 	private static final int duration = -1;
 	private static final int distance = -1;
 
 	public static Boolean alternance = false;
+	public static int timing = 10;
 
 	public static String move = "down";
 
@@ -31,19 +30,25 @@ public class TopLaser {
 	
 	public static void setup() {
 		
-		addLaser(6, 150);
-		addLaser(6, 154);
-		addLaser(6, 158);
-		addLaser(6, 162);
-		addLaser(6, 166);
-		addLaser(-2, 154);
-		addLaser(-2, 158);
-		addLaser(-2, 162);
-		addLaser(-10, 150);
-		addLaser(-10, 154);
-		addLaser(-10, 158);
-		addLaser(-10, 162);
-		addLaser(-10, 166);
+		addLaser(5.5, 150.5);
+		addLaser(5.5, 154.5);
+		addLaser(5.5, 158.5);
+		addLaser(5.5, 162.5);
+		addLaser(5.5, 166.5);
+		addLaser(-2.5, 154.5);
+		addLaser(-2.5, 158.5);
+		addLaser(-2.5, 162.5);
+		addLaser(-10.5, 150.5);
+		addLaser(-10.5, 154.5);
+		addLaser(-10.5, 158.5);
+		addLaser(-10.5, 162.5);
+		addLaser(-10.5, 166.5);
+
+		for (Laser laser : all) {
+			laser.start(Main.getInstance());
+		}
+
+		hideAll();
 
 		group1.add(all.get(3));
 		group1.add(all.get(11));
@@ -69,7 +74,7 @@ public class TopLaser {
 			@Override
 			public void run() {
 				if(alternance) {
-					if(t >= affichageTimer) {
+					if(t >= timing) {
 						if(stade == 1) {
 							hideGroup(group4);
 							showGroup(group1);
@@ -106,32 +111,38 @@ public class TopLaser {
 		}.runTaskTimer(Main.getInstance(), 0, 40);
 
 	}
-	
-	public static void showAll() {
-		for(Laser laser : all) {
-			try {
-				laser.start(Main.getInstance());
-			} catch (IllegalArgumentException ignored) {
-			}
-			updateMovement(laser);
 
+	public static void showAll() {
+		alternance = false;
+		for (Laser laser : all) {
+			try {
+				laser.moveEnd(new Location(Utils.getDefaultWorld(), laser.getStart().getX(), laser.getStart().getY(), laser.getStart().getZ() + 1));
+			} catch (ReflectiveOperationException e) {
+				e.printStackTrace();
+			}
+		};
+	}
+
+	public static void hideAll() {
+		alternance = false;
+		for (Laser laser : all) {
+			try {
+				laser.moveEnd(new Location(Utils.getDefaultWorld(), laser.getStart().getX(), laser.getStart().getY(), laser.getStart().getZ()));
+			} catch (ReflectiveOperationException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	
-	public static void hideAll() {
-		for(Laser laser : all) {
-			try {
-				laser.stop();
-			} catch (IllegalArgumentException ignored) {
-			}
-		}
+
+	public static void alternance() {
+		alternance = !alternance;
 	}
 	
 	public static void showGroup(Set<Laser> group) {
 		for(Laser laser : group) {
 			try {
-				laser.start(Main.getInstance());
-			} catch (IllegalArgumentException ignored) {
+				laser.moveEnd(new Location(Utils.getDefaultWorld(), laser.getStart().getX(), laser.getStart().getY(), laser.getStart().getZ() + 1));
+			} catch (ReflectiveOperationException ignored) {
 			}
 			updateMovement(laser);
 		}
@@ -140,8 +151,8 @@ public class TopLaser {
 	public static void hideGroup(Set<Laser> group) {
 		for(Laser laser : group) {
 			try {
-				laser.stop();
-			} catch (IllegalArgumentException ignored) {
+				laser.moveEnd(new Location(Utils.getDefaultWorld(), laser.getStart().getX(), laser.getStart().getY(), laser.getStart().getZ()));
+			} catch (ReflectiveOperationException ignored) {
 			}
 		}
 	}
@@ -170,7 +181,7 @@ public class TopLaser {
 
 	private static void updateMovement(Laser laser) {
 		try {
-			if ("down".equals(move)) {
+			if (move.equals("down")) {
 				Location loc = laser.getStart();
 				double x = loc.getX();
 				double z = loc.getZ();

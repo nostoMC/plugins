@@ -92,7 +92,7 @@ public class GlowingLamp {
                     return;
                 }
 
-                setLine(lineAxis, progress, true);
+                setLine(lineAxis, progress, Utils.getActiveEffects("topLights"));
 
                 int progressClone = progress;
                 new BukkitRunnable() {
