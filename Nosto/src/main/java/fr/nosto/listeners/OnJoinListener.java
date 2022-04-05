@@ -1,5 +1,7 @@
 package fr.nosto.listeners;
 
+import fr.nosto.Main;
+import fr.nosto.Setup;
 import fr.nosto.commands.CommandEvent;
 import fr.nosto.mysql.prepareStatement.money;
 import fr.nosto.tasks.CosmeticEffectTask;
@@ -33,7 +35,8 @@ public class OnJoinListener implements Listener {
 		try {
 			money.setDefaultMoney(player);
 		} catch (SQLException e) {
-			player.kickPlayer("§cUne erreur est survenue. Si le problème persiste, essayez de contactez un administrateur sur notre discord: https://discord.io/Nosto");
+			player.kickPlayer("§cUne erreur est survenue, essayez de vous reconnecter.\nSi le problème persiste, essayez de contactez un administrateur sur notre discord: https://discord.io/Nosto");
+			Setup.connexionMySQL(Main.getInstance());
 			e.printStackTrace();
 		}
 
