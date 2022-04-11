@@ -2,6 +2,7 @@ package fr.nostoNC.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -13,6 +14,7 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import fr.nostoNC.Main;
@@ -91,6 +93,56 @@ public class EffectsManager {
             fw.setFireworkMeta(fwm);
             fw.detonate();
         }
+    }
+
+    /**
+     * Launch creeper firework on the stage
+     */
+    public static void creeperFirework() {
+
+        final Random r = new Random();
+        List<Firework> fireworks = new ArrayList<>();
+
+        fireworks.add((Firework) world.spawnEntity(new Location(world, -5.5, 103.0, 148.5), EntityType.FIREWORK));
+        fireworks.add((Firework) world.spawnEntity(new Location(world, 1.5, 103.0, 148.5), EntityType.FIREWORK));
+
+        FireworkMeta fwm = fireworks.get(0).getFireworkMeta();
+
+        fwm.setPower(2);
+        fwm.addEffect(FireworkEffect.builder()
+                .withColor(Utils.getColor(r.nextInt(17) + 1))
+                .withFade(Utils.getColor(r.nextInt(17) + 1), Utils.getColor(r.nextInt(17) + 1))
+                .with(FireworkEffect.Type.CREEPER)
+                .flicker(true).trail(true)
+                .build());
+
+        for (Firework fw : fireworks) fw.setFireworkMeta(fwm);
+        new BukkitRunnable() {@Override public void run() { for (Firework fw : fireworks) fw.detonate(); }}.runTaskLater(Main.getInstance(), 17);
+    }
+
+    /**
+     * Launch star firework on the stage
+     */
+    public static void starFirework() {
+
+        final Random r = new Random();
+        List<Firework> fireworks = new ArrayList<>();
+
+        fireworks.add((Firework) world.spawnEntity(new Location(world, -5.5, 103.0, 148.5), EntityType.FIREWORK));
+        fireworks.add((Firework) world.spawnEntity(new Location(world, 1.5, 103.0, 148.5), EntityType.FIREWORK));
+
+        FireworkMeta fwm = fireworks.get(0).getFireworkMeta();
+
+        fwm.setPower(2);
+        fwm.addEffect(FireworkEffect.builder()
+                .withColor(Utils.getColor(r.nextInt(17) + 1))
+                .withFade(Utils.getColor(r.nextInt(17) + 1), Utils.getColor(r.nextInt(17) + 1))
+                .with(FireworkEffect.Type.STAR)
+                .flicker(true).trail(true)
+                .build());
+
+        for (Firework fw : fireworks) fw.setFireworkMeta(fwm);
+        new BukkitRunnable() {@Override public void run() { for (Firework fw : fireworks) fw.detonate(); }}.runTaskLater(Main.getInstance(), 17);
     }
 
     /**

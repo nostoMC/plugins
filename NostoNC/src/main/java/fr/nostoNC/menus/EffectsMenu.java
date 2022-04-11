@@ -27,24 +27,20 @@ public class EffectsMenu implements Listener {
 
 		// ----------------------------------------------------------------------------------------------------------------------
 
-		Utils.createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 10);
+		Utils.createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 10);
+		Utils.createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 19);
+		Utils.createAndCheckActiveEffectItem(inv, Material.CREEPER_HEAD, "§2§lCreeper Firework", null, 11);
+		Utils.createAndCheckActiveEffectItem(inv, Material.NETHER_STAR, "§e§lStar Firework", null, 20);
 
-		inv.setItem(38, Utils.createItem(Material.ICE, "§a§lLaser Up/Down", LaserUpDown.isStarted() ? Utils.getOnLore().get(0) : Utils.getOffLore().get(0)));
-		Utils.createAndCheckActiveEffectItem(inv, Material.GLOWSTONE, "§e§lLights top", "topLights", 34);
-
-		inv.setItem(18, Utils.createItem(Material.CLOCK, "§e§lTiming",
+		Utils.createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 16);
+		Utils.createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 25);
+		inv.setItem(26, Utils.createItem(Material.CLOCK, "§e§lTiming",
 				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
 				"§8Click droit: §a+1",
 				"§8Click gauche: §c-1"));
-		if (Utils.getActiveEffects("strobe")) {
-			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§a§lon"));
-		} else {
-			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§c§loff"));
-		}
 
-		Utils.createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 12);
-
-		Utils.createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 21);
+		Utils.createAndCheckActiveEffectItem(inv, Material.GLOWSTONE, "§e§lLights top", "topLights", 37);
+		inv.setItem(39, Utils.createItem(Material.ICE, "§a§lLaser Up/Down", LaserUpDown.isStarted() ? Utils.getOnLore().get(0) : Utils.getOffLore().get(0)));
 
 		inv.setItem(53, Utils.createItem(Material.ARROW, "Page 2"));
 
@@ -70,13 +66,18 @@ public class EffectsMenu implements Listener {
 
 			switch (current.getType()) {
 
-				case ICE -> EffectsManager.laserUpDown();
-				case GLOWSTONE -> EffectsManager.topLights(player);
-				case STRING -> EffectsManager.floorSmoke(player);
-				case CLOCK -> EffectsManager.strobeTimingChange(player, event.getClick());
-				case REDSTONE_LAMP -> EffectsManager.strobe(player);
 				case FIREWORK_ROCKET -> EffectsManager.firework();
 				case PUMPKIN_SEEDS -> EffectsManager.randomParticle();
+				case CREEPER_HEAD -> EffectsManager.creeperFirework();
+				case NETHER_STAR -> EffectsManager.starFirework();
+
+				case STRING -> EffectsManager.floorSmoke(player);
+				case REDSTONE_LAMP -> EffectsManager.strobe(player);
+				case CLOCK -> EffectsManager.strobeTimingChange(player, event.getClick());
+
+				case GLOWSTONE -> EffectsManager.topLights(player);
+
+				case ICE -> EffectsManager.laserUpDown();
 
 				case ARROW -> {
 					EffectsMenu2.openMenu(player);
