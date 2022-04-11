@@ -96,80 +96,122 @@ public class EffectsManager {
     /**
      * Spawn many fire particle that going everywhere
      */
-    public static void randomParticle() {
-        new RandomParticleEffect(Main.getInstance());
-    }
+    public static void randomParticle() { new RandomParticleEffect(Main.getInstance()); }
 
     /**
      * Show all the top lasers
      */
-    public static void topLaserFull() {
-        TopLaser.showAll();
-    }
+    public static void topLaserFull() { TopLaser.showOrHideAll(false); }
 
     /**
      * Activate alternance on top lights
      */
-    public static void topLaserSemi() {
-        TopLaser.alternance();
+    public static void topLaserSemi() { TopLaser.alternance(); }
+
+    /**
+     * Change the speed of the top laser
+     * @param player The player who activate / disable the effect
+     * @param type The ClickType of the item
+     */
+    public static void topLaserTimingChange(Player player, ClickType type) {
+        if (type == ClickType.RIGHT) {
+            if (TopLaser.timing >= 20) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            TopLaser.timing++;
+        }
+        else if (type == ClickType.LEFT) {
+            if (TopLaser.timing <= 1) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            TopLaser.timing--;
+        }
     }
 
     /**
      * Hide all the top lasers
      */
-    public static void topLaserBlack() {
-        TopLaser.hideAll();
-    }
+    public static void topLaserBlack() { TopLaser.showOrHideAll(true); }
 
     /***
      * Move top laser to down
      */
-    public static void topLaserDown() {
-        TopLaser.moveToDown();
-    }
+    public static void topLaserDown() { TopLaser.moveDown(); }
 
     /**
      * Move top laser to random
      */
-    public static void topLaserRandom() {
-        TopLaser.moveRandom();
-    }
+    public static void topLaserRandom() { TopLaser.moveRandom(); }
 
     /**
-     * Stop top laser
+     * Change the speed of the top laser moving
+     * @param player The player who activate / disable the effect
+     * @param type The ClickType of the item
      */
-    public static void topLaserStop() {
-        TopLaser.hideAll();
-        TopLaser.alternance = false;
+    public static void topLaserMoveTimingChange(Player player, ClickType type) {
+        if (type == ClickType.RIGHT) {
+            if (TopLaser.moveTiming >= 20) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            TopLaser.moveTiming++;
+        }
+        else if (type == ClickType.LEFT) {
+            if (TopLaser.moveTiming <= 1) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            TopLaser.moveTiming--;
+        }
     }
 
     /**
      * Move wall laser to front
      */
-    public static void wallLaserFront() {
-        WallLaser.moveFront();
-    }
+    public static void wallLaserFront() { WallLaser.moveFront(); }
 
     /**
      * Move wall laser to wave
      */
-    public static void wallLaserWave() {
-        WallLaser.moveWave();
-    }
+    public static void wallLaserWave() { WallLaser.moveWave(); }
 
     /**
      * Move wall laser to edge
      */
-    public static void wallLaserEdge() {
-        WallLaser.moveEdge();
+    public static void wallLaserEdge() { WallLaser.moveEdge(); }
+
+    /**
+     * Show wall laser
+     */
+    public static void wallLaserFull() { WallLaser.showOrHideAll(false); }
+
+    /**
+     * Alterne wall laser
+     */
+    public static void wallLaserSemi() { WallLaser.alternance(); }
+
+    /**
+     * Change the speed of the wall laser
+     * @param player The player who activate / disable the effect
+     * @param type The ClickType of the item
+     */
+    public static void wallLaserTimingChange(Player player, ClickType type) {
+        if (type == ClickType.RIGHT) {
+            if (WallLaser.timing >= 20) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            WallLaser.timing++;
+        }
+        else if (type == ClickType.LEFT) {
+            if (WallLaser.timing <= 1) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            WallLaser.timing--;
+        }
     }
 
     /**
-     * Stop wall laser
+     * Hide wall laser
      */
-    public static void wallLaserStop() {
-        WallLaser.hideAll();
-    }
+    public static void wallLaserBlack() { WallLaser.showOrHideAll(true); }
 
     /**
      * Activate or disable up/down laser
@@ -183,8 +225,6 @@ public class EffectsManager {
      * Activate or disable top lights
      * @param player The player who activate / disable the effect
      */
-    public static void topLights(Player player) {
-        Utils.checkActiveEffectItem(player, "topLights");
-    }
+    public static void topLights(Player player) { Utils.checkActiveEffectItem(player, "topLights"); }
 
 }
