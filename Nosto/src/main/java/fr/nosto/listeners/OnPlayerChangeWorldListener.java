@@ -22,6 +22,8 @@ public class OnPlayerChangeWorldListener implements Listener {
 		final Player player = event.getPlayer();
 		final String playerName = player.getName();
 
+		updateTab(player);
+
 		final Set<String> survies_names = Utils.getSurviesNames();
 
 		final boolean isToSurvivalWorld = survies_names.contains(player.getWorld().getName());
@@ -55,6 +57,23 @@ public class OnPlayerChangeWorldListener implements Listener {
 		// ADMIN MESSAGE
 		Bukkit.broadcast("\n§5[LOG] §d" + playerName + "§5 travels from §d" + event.getFrom().getName() + "§5 to §d" + player.getWorld().getName(),
 				"nosto.logmessages.worldchange");
+	}
+
+	@SuppressWarnings("deprecation")
+	private static void updateTab(Player player) {
+		for (Player player1 : Bukkit.getOnlinePlayers()) {
+			if (player.getWorld() != player1.getWorld()) {
+				if (player.canSee(player1))
+					player.hidePlayer(player1);
+				if (player1.canSee(player))
+					player1.hidePlayer(player);
+				continue;
+			}
+			if (!player1.canSee(player))
+				player1.showPlayer(player);
+			if (!player.canSee(player1))
+				player.showPlayer(player1);
+		}
 	}
 
 }
