@@ -20,7 +20,7 @@ public class GlowingLamp {
 
     private static final int Zwide = 13, Xwide = 15;
 
-    public static void setup() {
+    public static void init() {
 
         allChangeDimmer(true);
         allChangeDimmer(false);
@@ -49,7 +49,7 @@ public class GlowingLamp {
         Location loc = new Location(Utils.getDefaultWorld(), -16, 113, 150);
         loc.add(x*2, 0, z*2);
 
-        if (on) loc.getBlock().setType(Material.GLOWSTONE);
+        if (on) loc.getBlock().setType(Material.SHROOMLIGHT);
         else loc.getBlock().setType(Material.STONE);
     }
 

@@ -15,10 +15,11 @@ import fr.nostoNC.Utils;
 import fr.nostoNC.tasks.EffectsManager;
 import fr.nostoNC.tasks.effects.LaserUpDown;
 import fr.nostoNC.tasks.effects.StrobeEffect;
+import fr.nostoNC.tasks.effects.WallLighting;
 
 public class EffectsMenu implements Listener {
 
-	private static final String title = "§2§lGestioraire des effets (page 1)";
+	private static final String title = "§2§lConsole | Effets";
 
 	@SuppressWarnings("deprecation")
 	public static void openMenu(Player player) {
@@ -32,17 +33,24 @@ public class EffectsMenu implements Listener {
 		Utils.createAndCheckActiveEffectItem(inv, Material.CREEPER_HEAD, "§2§lCreeper Firework", null, 11);
 		Utils.createAndCheckActiveEffectItem(inv, Material.NETHER_STAR, "§e§lStar Firework", null, 20);
 
+		inv.setItem(13, Utils.createItem(Material.REDSTONE_BLOCK, "§c§lStop"));
+		inv.setItem(22, Utils.createItem(Material.COMPASS, "§e§lTiming",
+				"§7La vitesse est actuellement à §6§l" + WallLighting.timing,
+				"§8Click droit: §a+1",
+				"§8Click gauche: §c-1"));
+		inv.setItem(14, Utils.createItem(Material.GLOWSTONE, "§e§lStrobe"));
+		inv.setItem(23, Utils.createItem(Material.GLOWSTONE, "§e§lAlternation"));
 		Utils.createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 16);
 		Utils.createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 25);
-		inv.setItem(26, Utils.createItem(Material.CLOCK, "§e§lTiming",
+		inv.setItem(25, Utils.createItem(Material.CLOCK, "§e§lTiming",
 				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
 				"§8Click droit: §a+1",
 				"§8Click gauche: §c-1"));
 
-		Utils.createAndCheckActiveEffectItem(inv, Material.GLOWSTONE, "§e§lLights top", "topLights", 37);
+		Utils.createAndCheckActiveEffectItem(inv, Material.SHROOMLIGHT, "§e§lLights top", "topLights", 37);
 		inv.setItem(39, Utils.createItem(Material.ICE, "§a§lLaser Up/Down", LaserUpDown.isStarted() ? Utils.getOnLore().get(0) : Utils.getOffLore().get(0)));
 
-		inv.setItem(53, Utils.createItem(Material.ARROW, "Page 2"));
+		inv.setItem(53, Utils.createItem(Material.ARROW, "§2§lLasers"));
 
 		Utils.fillEmptyItem(inv);
 
@@ -71,11 +79,17 @@ public class EffectsMenu implements Listener {
 				case CREEPER_HEAD -> EffectsManager.creeperFirework();
 				case NETHER_STAR -> EffectsManager.starFirework();
 
+				case REDSTONE_BLOCK -> EffectsManager.wallLightingStop();
+				case COMPASS -> EffectsManager.wallLightingTimingChange(player, event.getClick());
+				case GLOWSTONE -> {
+					if (current.getItemMeta().getDisplayName().equals("§e§lStrobe")) EffectsManager.wallLightingStrobe();
+					else if (current.getItemMeta().getDisplayName().equals("§e§lAlternation")) EffectsManager.wallLightingAlternation();
+				}
 				case STRING -> EffectsManager.floorSmoke(player);
 				case REDSTONE_LAMP -> EffectsManager.strobe(player);
 				case CLOCK -> EffectsManager.strobeTimingChange(player, event.getClick());
 
-				case GLOWSTONE -> EffectsManager.topLights(player);
+				case SHROOMLIGHT -> EffectsManager.topLights(player);
 
 				case ICE -> EffectsManager.laserUpDown();
 

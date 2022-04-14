@@ -24,7 +24,7 @@ public class TopLaser {
 
 	public static final LinkedHashMap<Laser, Pair<Location, Boolean>> all = new LinkedHashMap<>();
 	
-	public static void setup() {
+	public static void init() {
 		
 		addLaser(5.5, 150.5);
 		addLaser(5.5, 154.5);

@@ -24,6 +24,7 @@ import fr.nostoNC.tasks.effects.RandomParticleEffect;
 import fr.nostoNC.tasks.effects.StrobeEffect;
 import fr.nostoNC.tasks.effects.TopLaser;
 import fr.nostoNC.tasks.effects.WallLaser;
+import fr.nostoNC.tasks.effects.WallLighting;
 
 public class EffectsManager {
 
@@ -47,13 +48,13 @@ public class EffectsManager {
             if (StrobeEffect.timing >= 20) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            StrobeEffect.timing++;
+            else StrobeEffect.timing++;
         }
         else if (type == ClickType.LEFT) {
             if (StrobeEffect.timing <= 1) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            StrobeEffect.timing--;
+            else StrobeEffect.timing--;
         }
     }
 
@@ -170,13 +171,13 @@ public class EffectsManager {
             if (TopLaser.timing >= 20) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            TopLaser.timing++;
+            else TopLaser.timing++;
         }
         else if (type == ClickType.LEFT) {
             if (TopLaser.timing <= 1) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            TopLaser.timing--;
+            else TopLaser.timing--;
         }
     }
 
@@ -205,13 +206,13 @@ public class EffectsManager {
             if (TopLaser.moveTiming >= 20) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            TopLaser.moveTiming++;
+            else TopLaser.moveTiming++;
         }
         else if (type == ClickType.LEFT) {
             if (TopLaser.moveTiming <= 1) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            TopLaser.moveTiming--;
+            else TopLaser.moveTiming--;
         }
     }
 
@@ -250,13 +251,13 @@ public class EffectsManager {
             if (WallLaser.timing >= 20) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            WallLaser.timing++;
+            else WallLaser.timing++;
         }
         else if (type == ClickType.LEFT) {
             if (WallLaser.timing <= 1) {
                 player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
             }
-            WallLaser.timing--;
+            else WallLaser.timing--;
         }
     }
 
@@ -278,5 +279,40 @@ public class EffectsManager {
      * @param player The player who activate / disable the effect
      */
     public static void topLights(Player player) { Utils.checkActiveEffectItem(player, "topLights"); }
+
+    /**
+     * Disable wall lighting
+     */
+    public static void wallLightingStop() { WallLighting.stop(); }
+
+    /**
+     * Set the action of wall lighting to strobe
+     */
+    public static void wallLightingStrobe() { WallLighting.setStrobe(); }
+
+    /**
+     * Set the action of wall lighting to alternation
+     */
+    public static void wallLightingAlternation() { WallLighting.setAlternation(); }
+
+    /**
+     * Change the speed of the wall lighting
+     * @param player The player who activate / disable the effect
+     * @param type The ClickType of the item
+     */
+    public static void wallLightingTimingChange(Player player, ClickType type) {
+        if (type == ClickType.RIGHT) {
+            if (WallLighting.timing >= 20) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            else WallLighting.timing++;
+        }
+        else if (type == ClickType.LEFT) {
+            if (WallLighting.timing <= 1) {
+                player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
+            }
+            else WallLighting.timing--;
+        }
+    }
 
 }

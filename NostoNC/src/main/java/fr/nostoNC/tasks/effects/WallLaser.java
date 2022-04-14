@@ -27,7 +27,7 @@ public class WallLaser {
 
     private static double defaultT = 0;
 
-    public static void setup() {
+    public static void init() {
 
         addLaser(-8.5, 111.4, 147);
         addLaser(-8.5, 107.4, 147);
