@@ -1,8 +1,6 @@
 package fr.nostoNC.tasks.effects;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -11,6 +9,7 @@ import org.bukkit.util.Vector;
 import fr.nostoNC.Main;
 import fr.nostoNC.Utils;
 import fr.nostoNC.tasks.Laser;
+import org.javatuples.Pair;
 
 public class LaserUpDown {
 
@@ -28,12 +27,12 @@ public class LaserUpDown {
         if (inited) return;
         inited = true;
 
-        ArrayList<Map.Entry<Location, Double>> lasersInfo = new ArrayList<>();
+        ArrayList<Pair<Location, Double>> lasersInfo = new ArrayList<>();
 
         for (int i = 1; i < 12; i++) {
-            lasersInfo.add(new AbstractMap.SimpleImmutableEntry<>(new Location(Utils.getDefaultWorld(), -2.5+(.1*i), 107.8, 145.9), 55.0-(9*i)));
+            lasersInfo.add(new Pair<>(new Location(Utils.getDefaultWorld(), -2.5+(.1*i), 108.25, 145.9), 55.0-(9*i)));
             try {
-                lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1).getKey(), new Location(Utils.getDefaultWorld(), -2.0, 107.8, 150), duration, distance));
+                lasers.add(new Laser.GuardianLaser(lasersInfo.get(i-1).getValue0(), new Location(Utils.getDefaultWorld(), -2.0, 108.25, 150), duration, distance));
             } catch (ReflectiveOperationException e) {
                 e.printStackTrace();
             }
@@ -41,17 +40,17 @@ public class LaserUpDown {
 
         new BukkitRunnable() {
             double t = 0;
-            final double size = 45;
+            final double size = 33;
             @Override
             public void run() {
 
                 for (int i = 0; i < lasers.size(); i++) {
 
                     Laser laser = lasers.get(i);
-                    Map.Entry<Location, Double> laserInfo = lasersInfo.get(i);
+                    Pair<Location, Double> laserInfo = lasersInfo.get(i);
 
-                    double tilt = Math.sin(t)*size;
-                    double pan = laserInfo.getValue();
+                    double tilt = Math.sin(t)*size + 11;
+                    double pan = laserInfo.getValue1();
 
                     Vector pointB = Utils.getBPoint(laser.getStart().toVector(),pan,tilt,longueur);
 

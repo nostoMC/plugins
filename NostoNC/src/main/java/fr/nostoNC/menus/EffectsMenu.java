@@ -1,18 +1,8 @@
 package fr.nostoNC.menus;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.FireworkEffect.Type;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.World;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,19 +10,16 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.util.Vector;
 
-import fr.nostoNC.Main;
 import fr.nostoNC.Utils;
-import fr.nostoNC.tasks.effects.RandomParticleEffect;
+import fr.nostoNC.tasks.EffectsManager;
+import fr.nostoNC.tasks.effects.LaserUpDown;
 import fr.nostoNC.tasks.effects.StrobeEffect;
-import fr.nostoNC.tasks.effects.TopLaser;
-import fr.nostoNC.tasks.effects.WallLaser;
+import fr.nostoNC.tasks.effects.WallLighting;
 
 public class EffectsMenu implements Listener {
 
-	private static final String title = "§2§lGestioraire des effets (page 1)";
+	private static final String title = "§2§lConsole | Effets";
 
 	@SuppressWarnings("deprecation")
 	public static void openMenu(Player player) {
@@ -41,34 +28,29 @@ public class EffectsMenu implements Listener {
 
 		// ----------------------------------------------------------------------------------------------------------------------
 
-		Utils.createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 10);
+		Utils.createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 10);
+		Utils.createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 19);
+		Utils.createAndCheckActiveEffectItem(inv, Material.CREEPER_HEAD, "§2§lCreeper Firework", null, 11);
+		Utils.createAndCheckActiveEffectItem(inv, Material.NETHER_STAR, "§e§lStar Firework", null, 20);
 
-		inv.setItem(18, Utils.createItem(Material.CLOCK, "§e§lTiming",
+		inv.setItem(13, Utils.createItem(Material.REDSTONE_BLOCK, "§c§lStop"));
+		inv.setItem(22, Utils.createItem(Material.COMPASS, "§e§lTiming",
+				"§7La vitesse est actuellement à §6§l" + WallLighting.timing,
+				"§8Click droit: §a+1",
+				"§8Click gauche: §c-1"));
+		inv.setItem(14, Utils.createItem(Material.GLOWSTONE, "§e§lStrobe"));
+		inv.setItem(23, Utils.createItem(Material.GLOWSTONE, "§e§lAlternation"));
+		Utils.createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 16);
+		Utils.createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 25);
+		inv.setItem(25, Utils.createItem(Material.CLOCK, "§e§lTiming",
 				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
 				"§8Click droit: §a+1",
 				"§8Click gauche: §c-1"));
-		if (Utils.getActiveEffects("strobe")) {
-			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§a§lon"));
-		} else {
-			inv.setItem(19, Utils.createItem(Material.REDSTONE_LAMP, "§8§lStrobe", "§c§loff"));
-		}
 
-		Utils.createAndCheckActiveEffectItem(inv, Material.FIREWORK_ROCKET, "§8§lFeux d'artifices", null, 12);
+		Utils.createAndCheckActiveEffectItem(inv, Material.SHROOMLIGHT, "§e§lLights top", "topLights", 37);
+		inv.setItem(39, Utils.createItem(Material.ICE, "§a§lLaser Up/Down", LaserUpDown.isStarted() ? Utils.getOnLore().get(0) : Utils.getOffLore().get(0)));
 
-		Utils.createAndCheckActiveEffectItem(inv, Material.PUMPKIN_SEEDS, "§f§lParticules aléatoires", null, 21);
-
-		inv.setItem(5, Utils.createItem(Material.END_CRYSTAL, "§f§eLights Top"));
-		inv.setItem(14, Utils.createItem(Material.REDSTONE_TORCH, "§f§eDown en alternance"));
-		inv.setItem(23, Utils.createItem(Material.STICK, "§f§eRandom Moving"));
-		inv.setItem(32, Utils.createItem(Material.RED_CONCRETE, "§f§eSTOP"));
-
-		inv.setItem(7, Utils.createItem(Material.END_CRYSTAL, "§f§eLights Wall"));
-		inv.setItem(16, Utils.createItem(Material.STONE_BUTTON, "§f§eFront"));
-		inv.setItem(25, Utils.createItem(Material.REPEATER, "§f§eWave"));
-		inv.setItem(34, Utils.createItem(Material.COMPARATOR, "§f§eEdge"));
-		inv.setItem(43, Utils.createItem(Material.RED_CONCRETE_POWDER, "§f§eSTOP"));
-
-		inv.setItem(53, Utils.createItem(Material.ARROW, "Page 2"));
+		inv.setItem(53, Utils.createItem(Material.ARROW, "§2§lLasers"));
 
 		Utils.fillEmptyItem(inv);
 
@@ -79,8 +61,6 @@ public class EffectsMenu implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
-
-		World world = Utils.getDefaultWorld();
 
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
@@ -93,103 +73,32 @@ public class EffectsMenu implements Listener {
 			if (event.getClick() == ClickType.DOUBLE_CLICK) return;
 
 			switch (current.getType()) {
-				case STRING -> {
-					Utils.checkActiveEffectItem(player, "floorSmoke");
-					openMenu(player);
+
+				case FIREWORK_ROCKET -> EffectsManager.firework();
+				case PUMPKIN_SEEDS -> EffectsManager.randomParticle();
+				case CREEPER_HEAD -> EffectsManager.creeperFirework();
+				case NETHER_STAR -> EffectsManager.starFirework();
+
+				case REDSTONE_BLOCK -> EffectsManager.wallLightingStop();
+				case COMPASS -> EffectsManager.wallLightingTimingChange(player, event.getClick());
+				case GLOWSTONE -> {
+					if (current.getItemMeta().getDisplayName().equals("§e§lStrobe")) EffectsManager.wallLightingStrobe();
+					else if (current.getItemMeta().getDisplayName().equals("§e§lAlternation")) EffectsManager.wallLightingAlternation();
 				}
+				case STRING -> EffectsManager.floorSmoke(player);
+				case REDSTONE_LAMP -> EffectsManager.strobe(player);
+				case CLOCK -> EffectsManager.strobeTimingChange(player, event.getClick());
 
-				case CLOCK -> {
-					if (event.getClick() == ClickType.RIGHT) {
-						if (StrobeEffect.timing >= 20) {
-							player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
-							break;
-						}
-						StrobeEffect.timing++;
-					}
-					else if (event.getClick() == ClickType.LEFT) {
-						if (StrobeEffect.timing <= 1) {
-							player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 100, 1);
-							break;
-						}
-						StrobeEffect.timing--;
-					}
-					if (event.getClick() != ClickType.DOUBLE_CLICK) openMenu(player);
+				case SHROOMLIGHT -> EffectsManager.topLights(player);
+
+				case ICE -> EffectsManager.laserUpDown();
+
+				case ARROW -> {
+					EffectsMenu2.openMenu(player);
+					return;
 				}
-
-				case REDSTONE_LAMP -> {
-					Utils.checkActiveEffectItem(player, "strobe");
-					openMenu(player);
-				}
-
-				case FIREWORK_ROCKET -> {
-					List<Firework> fireworks = new ArrayList<>();
-
-					fireworks.add((Firework) world.spawnEntity(new Location(world, 4.5, 103.4, 148.5), EntityType.FIREWORK));
-					fireworks.add((Firework) world.spawnEntity(new Location(world, 2.5, 103.4, 149.5), EntityType.FIREWORK));
-					fireworks.add((Firework) world.spawnEntity(new Location(world, -0.5, 103.4, 150.5), EntityType.FIREWORK));
-					fireworks.add((Firework) world.spawnEntity(new Location(world, -3.5, 103.4, 150.5), EntityType.FIREWORK));
-					fireworks.add((Firework) world.spawnEntity(new Location(world, -6.5, 103.4, 149.5), EntityType.FIREWORK));
-					fireworks.add((Firework) world.spawnEntity(new Location(world, -8.5, 103.4, 148.5), EntityType.FIREWORK));
-
-					FireworkMeta fwm = fireworks.get(0).getFireworkMeta();
-
-					fwm.setPower(2);
-					fwm.addEffect(FireworkEffect.builder()
-							.withColor(Color.WHITE)
-							.withFade(Color.AQUA, Color.ORANGE)
-							.with(Type.BURST)
-							.flicker(true).trail(true)
-							.build());
-
-					for (Firework fw : fireworks) {
-						fw.setVelocity(new Vector(0, 1, -0.2));
-						fw.setFireworkMeta(fwm);
-						fw.detonate();
-					}
-				}
-
-				case PUMPKIN_SEEDS -> new RandomParticleEffect(Main.getInstance());
-
-				case REDSTONE_TORCH -> {
-					TopLaser.hideAll();
-					TopLaser.showAll();
-					TopLaser.moveToDown();
-					TopLaser.alternance = true;
-				}
-
-				case STICK -> {
-					TopLaser.hideAll();
-					TopLaser.showAll();
-					TopLaser.moveRandom();
-					TopLaser.alternance = false;
-				}
-
-				case RED_CONCRETE -> {
-					TopLaser.hideAll();
-					TopLaser.alternance = false;
-				}
-
-				case STONE_BUTTON -> {
-					WallLaser.moveFront();
-					WallLaser.showAll();
-				}
-
-				case REPEATER -> {
-					WallLaser.moveWave();
-					WallLaser.showAll();
-				}
-
-				case COMPARATOR -> {
-					WallLaser.moveEdge();
-					WallLaser.showAll();
-				}
-
-				case RED_CONCRETE_POWDER -> WallLaser.hideAll();
-
-				case ARROW -> EffectsMenu2.openMenu(player);
-
-				default -> {}
 			}
+			openMenu(player);
 		}
 	}
 }

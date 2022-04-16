@@ -3,17 +3,16 @@ package fr.nostoNC.tasks.effects;
 import java.util.HashSet;
 import java.util.Set;
 
-import fr.nostoNC.Utils;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import fr.nostoNC.Main;
+import fr.nostoNC.Utils;
 
 public class StrobeEffect {
 
@@ -44,17 +43,14 @@ public class StrobeEffect {
 
 						if (flash) {
 							flashON();
-							setLightsMaterial(Material.SEA_LANTERN);
 						} else {
 							flashOFF();
-							setLightsMaterial(Material.STONE);
 						}
 
 					} else if (activated) {
 						activated = false;
 						
 						reset();
-						setLightsMaterial(Material.STONE);
 					}
 				}
 
@@ -64,27 +60,19 @@ public class StrobeEffect {
 		
 	}
 
-	private static void setLightsMaterial(Material material) {
-
-		World world = Utils.getDefaultWorld();
-
-		Set<Location> locations = new HashSet<>();
-
-		for(int i = 112; i > 102; i = i-2) {
-			locations.add(new Location(world, -9, i, 146));
-			locations.add(new Location(world, -6, i, 145));
-			locations.add(new Location(world, 1, i, 145));
-			locations.add(new Location(world, 4, i, 146));
-		}
-
-		for (Location loc : locations) {
-			world.getBlockAt(loc).setType(material);
-			if (material == Material.SEA_LANTERN)
-				world.spawnParticle(Particle.FLASH, loc, 1, 0, 0, 0, 1, null, true);
-		}
-	}
-
 	private static void flashON() {
+		Set<Vector> set = new HashSet<>();
+		set.add(new Vector(-15.5, 113.0, 148.5));
+		set.add(new Vector(-9.5, 113.0, 148.5));
+		set.add(new Vector(-3.5, 113.0, 148.5));
+		set.add(new Vector(-0.5, 113.0, 148.5));
+		set.add(new Vector(5.5, 113.0, 148.5));
+		set.add(new Vector(11.5, 113.0, 148.5));
+
+		for (Vector vector : set) {
+			Utils.getDefaultWorld().spawnParticle(Particle.FLASH, new Location(Utils.getDefaultWorld(), vector.getX(), vector.getY(), vector.getZ()), 1, 0, 0, 0, 1, null, true);
+		}
+
 		PotionEffect potion = new PotionEffect(PotionEffectType.NIGHT_VISION, 25, 255, false, false, false);
 
 		for (Player player : Utils.getDefaultWorld().getPlayers()) {

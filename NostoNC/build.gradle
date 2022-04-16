@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
 }
 
 compileJava.options.encoding = 'UTF-8'
@@ -13,6 +14,15 @@ version = '1.0'
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven {
+        name = 'javatuples'
+        url = 'https://mvnrepository.com/artifact/org.javatuples/javatuples'
+    }
+    maven {
+        name = 'm2-dv8tion'
+        url = 'https://m2.dv8tion.net/releases'
+    }
     maven {
         name = 'papermc-repo'
         url = 'https://papermc.io/repo/repository/maven-public/'
@@ -25,6 +35,13 @@ repositories {
 
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT'
+    implementation 'org.javatuples:javatuples:1.2'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 def targetJavaVersion = 17

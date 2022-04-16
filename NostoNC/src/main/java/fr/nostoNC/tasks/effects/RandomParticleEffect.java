@@ -28,7 +28,7 @@ public class RandomParticleEffect {
 			@Override
 			public void run() {
 
-				Bat bat = (Bat) world.spawnEntity(new Location(null, -2, 112, 156), EntityType.BAT);
+				Bat bat = (Bat) world.spawnEntity(new Location(null, -1.99, 103.5, 149.0), EntityType.BAT);
 				bat.setInvisible(true);
 				bat.setSilent(true);
 				

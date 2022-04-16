@@ -29,6 +29,7 @@ import fr.nostoNC.tasks.effects.LaserUpDown;
 import fr.nostoNC.tasks.effects.StrobeEffect;
 import fr.nostoNC.tasks.effects.TopLaser;
 import fr.nostoNC.tasks.effects.WallLaser;
+import fr.nostoNC.tasks.effects.WallLighting;
 
 public class Startup {
 
@@ -54,6 +55,7 @@ public class Startup {
 
 		Utils.putActiveEffects("floorSmoke", false);
 		Utils.putActiveEffects("strobe", false);
+		Utils.putActiveEffects("topLights", true);
 
 		new BukkitRunnable() {
 
@@ -73,13 +75,14 @@ public class Startup {
 	private static void loadAfterWorld(Main main) {
 		FloorSmokeEffect.init(main);
 		StrobeEffect.init(main);
+		WallLighting.init(main);
 
 		GolemPass.init(main);
 		ElevatorTask.init(main);
 
-		TopLaser.setup();
-		WallLaser.setup();
-		GlowingLamp.setup();
+		TopLaser.init();
+		WallLaser.init();
+		GlowingLamp.init();
 
 		LaserUpDown.init(main);
 	}
