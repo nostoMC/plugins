@@ -3,12 +3,6 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.0'
 }
 
-compileJava.options.encoding = 'UTF-8'
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
 group = 'fr.nostoNC'
 version = '1.0'
 
