@@ -28,6 +28,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.github.skytasul:guardianbeam:2.2.3'
     compileOnly 'io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT'
     implementation 'org.javatuples:javatuples:1.2'
 }

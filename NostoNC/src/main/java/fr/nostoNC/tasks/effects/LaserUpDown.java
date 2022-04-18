@@ -8,7 +8,7 @@ import org.bukkit.util.Vector;
 
 import fr.nostoNC.Main;
 import fr.nostoNC.Utils;
-import fr.nostoNC.tasks.Laser;
+import fr.skytasul.guardianbeam.Laser;
 import org.javatuples.Pair;
 
 public class LaserUpDown {
