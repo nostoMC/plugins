@@ -19,6 +19,8 @@ public class Setup {
 
     public Setup(Main main) {
 
+        if (Utils.getDatabaseManager() != null) Utils.getDatabaseManager().close();
+
         // MySQL (Database)
         FileConfiguration fc = Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("Plugin-Custom-Nosto")).getConfig();
         if (!fc.contains("SQL.host")) {

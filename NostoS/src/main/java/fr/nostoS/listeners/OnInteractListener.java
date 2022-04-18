@@ -20,6 +20,8 @@ public class OnInteractListener implements Listener {
 
         Player player = event.getPlayer();
 
+        if (player.isOp()) return;
+
         if (Utils.getSurviesNames().contains(player.getWorld().getName())) {
 
             if (event.getClickedBlock() != null) {
@@ -30,18 +32,17 @@ public class OnInteractListener implements Listener {
                     String chunkID = chunk.getX() + "_" + chunk.getZ();
 
                     final Connection connection = dbConnection.getConnection();
-                    final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, chunkID FROM survival_claim WHERE (uuid = ? AND chunkID = ?)");
-                    preparedStatement.setString(1, player.getUniqueId().toString());
-                    preparedStatement.setString(2, chunkID);
+                    final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid FROM survival_claim WHERE chunkID = ?");
+                    preparedStatement.setString(1, chunkID);
                     final ResultSet resultSet = preparedStatement.executeQuery();
 
-                    if (!resultSet.next()) {
-                        if (!player.isOp()) {
+                    if (resultSet.next()) {
+                        if (!resultSet.getString("uuid").equals(player.getUniqueId().toString())) {
                             event.setCancelled(true);
                             player.sendMessage("\n§cCe chunk a été claim. Tu ne peut donc rien faire dans cette zone.");
                         }
-
                     }
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
