@@ -1,10 +1,14 @@
 package fr.nosto.commands;
 
+import java.awt.*;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+
+import net.dv8tion.jda.api.EmbedBuilder;
 
 import fr.nosto.DiscordSetup;
 
@@ -31,13 +35,23 @@ public class CommandWhitelist implements CommandExecutor {
                 case "on" -> {
                     Bukkit.setWhitelist(true);
                     sender.sendMessage("\n§bLa whitelist est activée !");
-                    DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(DiscordSetup.getCloseServerEmbed().build()).queue();
+                    EmbedBuilder builder = new EmbedBuilder()
+                            .setTitle("Serveur fermé !")
+                            .setDescription("Les techniciens doivent faire une maintenance !")
+                            .setThumbnail("https://cdn.discordapp.com/attachments/555402600640413713/965697347139014757/maintenance_on.gif")
+                            .setColor(Color.RED);
+                    DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(builder.build()).queue();
                 }
 
                 case "off" -> {
                     Bukkit.setWhitelist(false);
                     sender.sendMessage("\n§bLa whitelist est déactivée !");
-                    DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(DiscordSetup.getOpenServerEmbed().build()).queue();
+                    EmbedBuilder builder = new EmbedBuilder()
+                            .setTitle("Serveur ouvert !")
+                            .setDescription("Les portails sont de nouveaux opérationnels !")
+                            .setThumbnail("https://cdn.discordapp.com/attachments/555402600640413713/965696637072732190/maintenance_off.gif")
+                            .setColor(Color.GREEN);
+                    DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(builder.build()).queue();
                 }
 
                 case "reload" -> {

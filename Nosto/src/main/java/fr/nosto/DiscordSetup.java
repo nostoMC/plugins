@@ -23,8 +23,6 @@ public class DiscordSetup implements EventListener {
 	public static String token;
 	public static JDA jda;
 
-	static EmbedBuilder decoEmbed = new EmbedBuilder();
-
 	private static TextChannel channel_survie;
 	private static TextChannel channel_nightclub;
 	private static TextChannel channel_etat_serveur;
@@ -67,9 +65,6 @@ public class DiscordSetup implements EventListener {
 		channel_nightclub = jda.getTextChannelById("877675571193200670");
 		channel_etat_serveur = jda.getTextChannelById("875315182556053524");
 
-		decoEmbed.setTitle("Serveur fermé !");
-		decoEmbed.setColor(Color.RED);
-
 		new BukkitRunnable() {
 
 			@Override
@@ -85,17 +80,17 @@ public class DiscordSetup implements EventListener {
 	}
 
 	public static EmbedBuilder getOpenServerEmbed() {
-		EmbedBuilder embed = new EmbedBuilder();
-		embed.setTitle("Serveur ouvert !");
-		embed.setColor(Color.GREEN);
-		return embed;
+		return new EmbedBuilder()
+				.setTitle("Serveur ouvert !")
+				.setDescription("L'électricité a été rétablie !")
+				.setColor(Color.GREEN);
 	}
 
 	public static EmbedBuilder getCloseServerEmbed() {
-		EmbedBuilder embed = new EmbedBuilder();
-		embed.setTitle("Serveur fermé !");
-		embed.setColor(Color.RED);
-		return embed;
+		return new EmbedBuilder()
+				.setTitle("Serveur fermé !")
+				.setDescription("Qui a éteint la lumière ?")
+				.setColor(Color.RED);
 	}
 
 	public static TextChannel getChannelSurvie() {

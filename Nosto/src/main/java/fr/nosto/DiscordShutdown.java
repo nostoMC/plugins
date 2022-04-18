@@ -6,7 +6,7 @@ public class DiscordShutdown {
 
 	public DiscordShutdown(Main main) {
 
-		if (!Bukkit.hasWhitelist()) DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(DiscordSetup.decoEmbed.build()).queue();
+		if (!Bukkit.hasWhitelist()) DiscordSetup.getChannelEtatServeur().sendMessageEmbeds(DiscordSetup.getCloseServerEmbed().build()).queue();
 		
 		DiscordSetup.jda.shutdown();
 		
