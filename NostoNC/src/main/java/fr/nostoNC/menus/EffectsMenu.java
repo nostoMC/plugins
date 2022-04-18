@@ -42,7 +42,7 @@ public class EffectsMenu implements Listener {
 		inv.setItem(23, Utils.createItem(Material.GLOWSTONE, "§e§lAlternation"));
 		Utils.createAndCheckActiveEffectItem(inv, Material.STRING, "§7§lFloor Smoke", "floorSmoke", 16);
 		Utils.createAndCheckActiveEffectItem(inv, Material.REDSTONE_LAMP, "§8§lStrobe", "strobe", 25);
-		inv.setItem(25, Utils.createItem(Material.CLOCK, "§e§lTiming",
+		inv.setItem(26, Utils.createItem(Material.CLOCK, "§e§lTiming",
 				"§7La vitesse est actuellement à §6§l" + StrobeEffect.timing,
 				"§8Click droit: §a+1",
 				"§8Click gauche: §c-1"));
