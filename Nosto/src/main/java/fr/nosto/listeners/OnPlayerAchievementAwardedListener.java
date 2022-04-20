@@ -15,7 +15,7 @@ import net.kyori.adventure.text.format.TextColor;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 
-import fr.nosto.DiscordSetup;
+import fr.nosto.discord.DiscordSetup;
 import fr.nosto.Utils;
 
 import io.papermc.paper.advancement.AdvancementDisplay;

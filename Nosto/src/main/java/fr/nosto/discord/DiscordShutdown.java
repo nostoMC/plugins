@@ -1,6 +1,9 @@
-package fr.nosto;
+package fr.nosto.discord;
 
 import org.bukkit.Bukkit;
+
+import fr.nosto.Main;
+import fr.nosto.discord.DiscordSetup;
 
 public class DiscordShutdown {
 

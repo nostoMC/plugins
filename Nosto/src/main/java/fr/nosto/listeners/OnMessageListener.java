@@ -1,6 +1,6 @@
 package fr.nosto.listeners;
 
-import fr.nosto.DiscordSetup;
+import fr.nosto.discord.DiscordSetup;
 import fr.nosto.Main;
 import fr.nosto.Utils;
 import fr.nosto.menus.SanctionMenu;

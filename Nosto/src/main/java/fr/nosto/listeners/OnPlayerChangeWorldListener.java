@@ -9,7 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
-import fr.nosto.DiscordSetup;
+import fr.nosto.discord.DiscordSetup;
 import fr.nosto.MessageManager;
 import fr.nosto.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;

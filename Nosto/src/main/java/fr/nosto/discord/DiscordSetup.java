@@ -1,4 +1,4 @@
-package fr.nosto;
+package fr.nosto.discord;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
@@ -6,6 +6,8 @@ import java.awt.*;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.nosto.Main;
+import fr.nosto.discord.commands.DCommandMinecraft;
 import fr.nosto.listeners.OnMessageListener;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
@@ -22,6 +24,8 @@ public class DiscordSetup implements EventListener {
 	
 	public static String token;
 	public static JDA jda;
+
+	public static final String prefix = ";";
 
 	private static TextChannel channel_survie;
 	private static TextChannel channel_nightclub;
@@ -60,6 +64,8 @@ public class DiscordSetup implements EventListener {
 
 		jda.addEventListener(new OnMessageListener());
 		jda.addEventListener(this);
+
+		addCommands();
 
 		channel_survie = jda.getTextChannelById("832554910301290506");
 		channel_nightclub = jda.getTextChannelById("877675571193200670");
@@ -103,6 +109,10 @@ public class DiscordSetup implements EventListener {
 
 	public static TextChannel getChannelEtatServeur() {
 		return channel_etat_serveur;
+	}
+
+	private static void addCommands() {
+		jda.addEventListener(new DCommandMinecraft());
 	}
 
 }

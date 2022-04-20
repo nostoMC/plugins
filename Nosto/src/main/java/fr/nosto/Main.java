@@ -1,5 +1,7 @@
 package fr.nosto;
 
+import fr.nosto.discord.DiscordSetup;
+import fr.nosto.discord.DiscordShutdown;
 import fr.nosto.mysql.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;

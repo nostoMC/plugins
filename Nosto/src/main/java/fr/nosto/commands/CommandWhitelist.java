@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 
-import fr.nosto.DiscordSetup;
+import fr.nosto.discord.DiscordSetup;
 
 import org.jetbrains.annotations.NotNull;
 
