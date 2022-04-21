@@ -16,6 +16,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+
 import org.jetbrains.annotations.NotNull;
 
 public class Utils {
@@ -102,5 +105,28 @@ public class Utils {
         else if (player.hasPermission("group.dev")) groupDiscord = "Developpeur | ";
         else if (player.hasPermission("group.buildeur")) groupDiscord = "Buildeur | ";
         return groupDiscord;
+    }
+
+    public static String getTimestamp(long milliseconds) {
+        int seconds = (int) (milliseconds / 1000) % 60 ;
+        int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+        int hours   = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
+
+        if (hours > 0)
+            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        else
+            return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    public static void DReply(MessageReceivedEvent event, String message) {
+        event.getChannel().sendTyping().queue();
+        event.getChannel().sendMessage(message).queue();
+        event.getMessage().delete().queue();
+    }
+
+    public static void DReply(MessageReceivedEvent event, EmbedBuilder embed) {
+        event.getChannel().sendTyping().queue();
+        event.getChannel().sendMessageEmbeds(embed.build()).queue();
+        event.getMessage().delete().queue();
     }
 }
