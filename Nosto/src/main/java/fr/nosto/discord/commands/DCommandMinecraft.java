@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import fr.nosto.Utils;
 import fr.nosto.discord.DiscordSetup;
 
 public class DCommandMinecraft extends ListenerAdapter {
@@ -32,9 +33,7 @@ public class DCommandMinecraft extends ListenerAdapter {
                 .addField("Nombre de joueurs", Bukkit.getOnlinePlayers().size() + (Bukkit.getOnlinePlayers().size() == 0 ? " *:(*" : ""), true)
                 .addField("TPS", tps, true);
 
-        event.getChannel().sendTyping().queue();
-        event.getChannel().sendMessageEmbeds(embed.build()).queue();
-        event.getMessage().delete().queue();
+        Utils.DReply(event, embed);
 
     }
 

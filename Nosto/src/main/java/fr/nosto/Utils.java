@@ -125,6 +125,7 @@ public class Utils {
     }
 
     public static void DReply(MessageReceivedEvent event, EmbedBuilder embed) {
+        embed.setFooter("Commandé par " + event.getAuthor().getAsTag(), event.getAuthor().getAvatarUrl());
         event.getChannel().sendTyping().queue();
         event.getChannel().sendMessageEmbeds(embed.build()).queue();
         event.getMessage().delete().queue();
