@@ -18,9 +18,11 @@ public class TempDCommandShow extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        if (!event.getMessage().getContentRaw().toLowerCase().startsWith(";event") || !Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) return;
+        String message = event.getMessage().getContentRaw();
 
-        if (event.getMessage().getContentRaw().toLowerCase().contains("stop")) {
+        if (!message.toLowerCase().startsWith(";event") || !Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) return;
+
+        if (message.toLowerCase().contains("stop")) {
             final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
             musicManager.scheduler.player.stopTrack();
             musicManager.scheduler.queue.clear();
@@ -41,7 +43,7 @@ public class TempDCommandShow extends ListenerAdapter {
         final AudioChannel memberChannel = memberVoiceState.getChannel();
 
         audioManager.openAudioConnection(memberChannel);
-        PlayerManager.getInstance().loadAndPlay(event.getTextChannel(), "https://youtu.be/C_xPDuBb-cQ");
+        PlayerManager.getInstance().loadAndPlay(event.getTextChannel(), message.split("\\s+")[1]);
         Utils.DReply(event, "Musique ajoutée");
 
     }
