@@ -19,7 +19,8 @@ public class DCommandHelp extends ListenerAdapter {
         final EmbedBuilder embed = new EmbedBuilder()
                 .setTitle("\uD83D\uDCD3 Liste des commandes \uD83D\uDCD3")
                 .addField(DiscordSetup.prefix + "minecraft", "Affiche les informations en rapport au serveur minecraft", false)
-                .addField(DiscordSetup.prefix + "aide OU " + DiscordSetup.prefix + "help", "Affiche les différentes commandes disponibles", false);
+                .addField(DiscordSetup.prefix + "aide OU " + DiscordSetup.prefix + "help", "Affiche les différentes commandes disponibles", false)
+                .addField(DiscordSetup.prefix + "role", "Choisis les rôles pour le serveur", false);
 
         Utils.DReply(event, embed);
 

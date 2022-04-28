@@ -9,6 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.nosto.Main;
 import fr.nosto.discord.commands.DCommandHelp;
 import fr.nosto.discord.commands.DCommandMinecraft;
+import fr.nosto.discord.commands.DCommandRole;
 import fr.nosto.discord.commands.TempDCommandShow;
 import fr.nosto.listeners.OnMessageListener;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -117,6 +118,7 @@ public class DiscordSetup implements EventListener {
 		jda.addEventListener(new DCommandMinecraft());
 		jda.addEventListener(new TempDCommandShow());
 		jda.addEventListener(new DCommandHelp());
+		jda.addEventListener(new DCommandRole());
 	}
 
 }
