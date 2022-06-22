@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -39,10 +38,6 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-
-		for (Player player : Bukkit.getOnlinePlayers()) {
-			player.kickPlayer("§cLe serveur est en train de s'éteindre.");
-		}
 
 		new DiscordShutdown(this);
 		databaseManager.close();
